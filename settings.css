@@ -1,0 +1,149 @@
+.settingsPopup {
+    display: none;
+
+    background-color: rgb(28, 63, 73);
+    color: white;
+    margin: 0 0.5em 0.5em 0.5em;
+    padding: 0.5em 0em 0 0em;
+    margin-left: max(env(safe-area-inset-left), 0.5em);
+    margin-right: max(env(safe-area-inset-right), 0.5em);
+}
+
+.settingsMainItem {
+    font-size: 0.5em;
+    padding: 0.5em 0;
+}
+
+.settingsMainItem + .settingsMainItem {
+    border: solid #ffffff40;
+    border-width: 1px 0 0px 0;
+}
+
+.settingsMainItem + .settingsMainButton {
+    border: solid #ffffff40;
+    border-width: 1px 0 0px 0;
+}
+
+.settingsMainButton + .settingsMainItem {
+    border: solid #ffffff40;
+    border-width: 1px 0 0px 0;
+}
+
+
+.settingsMainButton {
+    font-size: 0.5em;
+    padding: 0.2em 0;
+    border: solid #ffffff40;
+    border-width: 0px 0 1px 0;
+}
+
+.settingsNavigationText {
+    vertical-align: middle;
+}
+
+.settingsNavigationIcon {
+    vertical-align: middle;
+    height: 1em;
+    padding-left: 0.5em;
+}
+	       
+.settingsmenuLabel {
+    vertical-align: middle;
+}
+
+.settingsmenuCheckbox {
+    vertical-align: middle;
+}
+
+.settingsIcon {
+  display: inline-block;
+  cursor: pointer;
+  border: 1;
+
+  padding: 0;
+
+  background-color: transparent;
+  border-color: white;
+
+  appearance: none;
+  border: none;
+  background: none;
+}
+
+.settingsNavigation {
+  appearance: none;
+  border: none;
+  background: none;
+  color: white;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  padding-left: 1.5em;
+  cursor: pointer;
+}
+
+#partsselection {
+    display: none;
+    background-color: rgb(28, 63, 73);
+    color: white;
+    margin: 0 1em 1em 1em;
+    padding: 1em 0em 0 0em;
+    font-size: 0.5em;
+    margin-left: max(env(safe-area-inset-left), 1em);
+    margin-right: max(env(safe-area-inset-right), 1em);
+}
+
+#multilangchoice {
+    display: none;
+    background-color: rgb(28, 63, 73);
+    color: white;
+    margin: 0 1em 1em 1em;
+    padding: 1em 0em 0 0em;
+    font-size: 0.5em;
+    margin-left: max(env(safe-area-inset-left), 1em);
+    margin-right: max(env(safe-area-inset-right), 1em);
+}
+
+.multilangcolumnwrapper {
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.multilangcolumn {
+    flex: 1;
+    padding-right: 2em;
+    text-wrap: nowrap;
+}
+
+.langcheckboxWrapper {
+    margin: 0.3em 0;
+}
+
+.langcheckboxWrapper * {
+    vertical-align: middle;
+}
+
+
+.settingsIcon.change {
+}
+    
+.settingsIcon a:hover {
+
+}
+
+.settingsBar1, .settingsBar2, .settingsBar3 {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .settingsBar1 {
+  transform: translate(0, 11px) rotate(-45deg);
+}
+.change .settingsBar2 {opacity: 0;}
+.change .settingsBar3 {
+  transform: translate(0, -11px) rotate(45deg);
+}

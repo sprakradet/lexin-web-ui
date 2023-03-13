@@ -1,0 +1,151 @@
+.helpIcon {
+  display: inline-block;
+  cursor: pointer;
+  border: 1;
+
+  width: 46px;
+  height: 46px;
+  
+  position: absolute;
+  right: 5em;
+  top: 0.8em;
+
+  background-color: transparent;
+  border-color: white;
+  color: white;
+}
+
+.helpIconText {
+    font-size: 200%;
+}
+
+.helpIcon.change {
+    top: .65em;
+
+    border-color: black;
+    color: black;
+}
+
+/* .helpPopup { */
+/*     display: none; */
+
+/*     background-color: rgb(28, 63, 73); */
+/*     color: white; */
+/*     margin: 0 1em 1em 1em; */
+/*     padding: 1em 0em 0 0em; */
+/*     font-size: 0.5em; */
+/*     margin-left: max(env(safe-area-inset-left), 1em); */
+/*     margin-right: max(env(safe-area-inset-right), 1em); */
+/* } */
+
+.helpbutton {
+    display: block;
+    appearance: none;
+    border: none;
+    background: none;
+    color: white;
+    font: inherit;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+@media (max-width: 32em) {
+    .helpbutton {
+	display: none;
+    }
+}
+
+.LexinExplanationsWrapper {
+    padding: 0;
+    margin: 0;
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+.LexinExplanations {
+    background: white;
+    padding: 2em 2em 4em 2em;
+    margin: 0;
+}
+
+.LexinExplanationsClose {
+    color: #aaa;
+    background-color: white;
+    font-size: 400%;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    right: 5%;
+    padding: 0 0.2em 0 0.2em;
+    border: 5px solid #aaa;
+}
+
+
+
+
+.helpImageContainer {
+    width: 400px;
+    margin-bottom: 2em;
+}
+
+.helpImageBase {
+    width: 100%;
+    border: 2px solid black;
+}
+
+.helpImageOverlay {
+    position: absolute;
+}
+
+.helpOpenMoreInfo {
+    font-weight: bold;
+    color: blue;
+}
+
+.helpMoreInfo {
+    display: none;
+    margin-left: 2em;
+}
+
+.helpMenu {
+    display: none;
+    top: 0;
+    left: 0;
+    padding-top: 1em;
+    height: 2em;
+    background-color: white;
+    font-size: large;
+    width: 100%;
+    height: 2.2em;
+}
+
+.helpMenu a {
+    margin: 1em;
+    padding-left: 1em;
+}
+
+.helpExample {
+    margin-left: 5em;
+}
+
+.closeHelp {
+    display: inline-block;
+    cursor: pointer;
+    border: 1;
+    padding: 0;
+    background-color: transparent;
+    appearance: none;
+    border: none;
+    background: none;
+    float: right;
+    margin-left: 1em;
+}

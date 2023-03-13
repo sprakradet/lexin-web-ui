@@ -1,0 +1,82 @@
+.downloadPopup {
+    display: none;
+
+    background-color: rgb(28, 63, 73);
+    color: white;
+    margin: 0 1em 1em 1em;
+    padding: 1em 0em 0 0em;
+    font-size: 0.5em;
+    margin-left: max(env(safe-area-inset-left), 1em);
+    margin-right: max(env(safe-area-inset-right), 1em);
+}
+
+#selectDownloadLanguages {
+    font: inherit;
+    vertical-align: middle;
+    padding-left: 0.5em;
+    padding-right: 1.5em;
+    padding-bottom: 2px;
+    width: 100%;
+    max-width: 30em;
+}
+
+#downloadProgress {
+    margin: 1em 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 0.5em;
+}
+
+.downloadProgressLang {
+    align-self: center;
+}
+
+.downloadStartButton {
+    background-color: #D7E9EC;
+    color: black;
+    font: inherit;
+    padding: 0.1em .5em 0.2em 0.5em;
+    border: none;
+    border-radius: 0.3em;
+    margin: 1em 0 2em auto;
+    display: block;
+}
+
+.removeDownloadButton {
+    background-color: rgba(0,0,0,0);
+    color: black;
+    font: inherit;
+    padding: 0.1em .5em 0.2em 1em;
+    margin-left: 0.5em;
+    border: none;
+    border-radius: 0.3em;
+
+    height: 1.3em;
+    width: 1.3em;
+    
+    vertical-align: middle;
+    background-image: url(remove.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.progressWrapper {
+    align-self: center;
+/*    height: 2em;*/
+}
+
+progress {
+    border-radius: 1px;
+    height: 2em;
+    width: 100%;
+}
+progress::-webkit-progress-bar {
+    background-color: rgb(215,233,236);
+    border-radius: 1px;
+}
+progress::-webkit-progress-value {
+    background-color: rgb(28, 63, 73);
+    border-radius: 1px;
+    border: 2px rgb(215,233,236) solid;
+}

@@ -1,0 +1,15 @@
+
+.resultsAndLemmasContainer {
+
+}
+
+.lemmaListWrapper {
+    display: none;
+    float: right;
+    margin: 10px;
+    vertical-align: top;
+}
+
+.lemmaList {
+    overflow-y: scroll;
+}

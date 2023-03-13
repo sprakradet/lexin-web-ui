@@ -1,0 +1,684 @@
+@import url(fonts/noto.css);
+
+html {
+    background-color: rgb(28, 63, 73);
+    -webkit-text-size-adjust: 100%;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.content {
+    background-color: white;
+    min-height: 100vh;
+}
+
+body {
+    font-family: "Noto Sans",sans-serif;
+    font-weight: normal;
+    margin: 0 auto;
+    max-width: var(--lexin-max-width);
+    position: relative;
+}
+
+h1 {
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1em;
+    margin-bottom: 0em;
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: 0.4em;
+
+    color: transparent;
+    background: url(lexinlogo.png);
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    line-height: 1.095;
+}
+
+#inputDiv {
+    padding-top: 0.8em;
+    background-color: rgb(28, 63, 73);
+}
+
+.extrafunctions {
+    margin: 1em;
+}
+
+input[type="submit"] {
+    background: no-repeat center / 1em url(search.svg);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: calc(var(--lexin-right-margin) + 0.5rem);
+    width: 1em;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    text-indent: -99999px;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 1;
+}
+
+form#theForm, form#theForm2 {
+    font-size: 2em;
+    line-height: normal;
+}
+
+.headerrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: var(--lexin-left-margin);
+    padding-right: var(--lexin-right-margin);
+}
+
+form#theForm2 .inputwrapper {
+    max-width: 100vw;
+    width: calc(min(var(--lexin-max-width), 100vw) - var(--lexin-right-margin) - var(--lexin-left-margin));
+    display: inline-block;
+    padding: 0 0.5em;
+    position: relative;
+    padding-right: var(--lexin-right-margin);
+    padding-left: var(--lexin-left-margin);
+}
+
+:root {
+    --lexin-max-width: 600px;
+    --lexin-left-margin: max(env(safe-area-inset-left), clamp(0em, calc((var(--lexin-max-width) - 100vw)/2 + 1rem), 1rem));
+    --lexin-right-margin: max(env(safe-area-inset-right), clamp(0em, calc((var(--lexin-max-width) - 100vw)/2 + 1rem), 1rem));
+}
+
+.permbar {
+    width: 100%;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    z-index: 10;
+    position: sticky;
+    top: 0;
+    background-color: rgb(28, 63, 73);
+}
+
+form#theForm input, form#theForm2 input {
+    font: inherit;
+    line-height: normal;
+    width: 1em;
+}
+
+form#theForm2 input#searchQuery {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 1.5em;
+    padding-left: 0.2em;
+}
+
+main {
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+}
+
+select#languageChoice {
+    font: inherit;
+    margin-right: 0.84em;
+    float: right;
+    font-size: 0.55em;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    appearance: none;
+    padding-left: 0.5em;
+    padding-right: 1.5em;
+    padding-bottom: 2px;
+    width: 100%;
+    max-width: 20em;
+}
+
+select {
+    border-radius: 5px;
+    border-color: transparent;
+}
+
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    font-size: 0.9em;
+/*    width: 100%;*/
+    padding-left: 0.5em;
+}
+
+.select-wrapper:after {
+    content: '\0025BC';
+    font-family: Arial;
+    font-size: 0.5em;
+    line-height: 1;
+    color: black;
+    right: 0.87em;
+    top: 0.6em;
+    padding: 0 0.6em 0 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.multilang-wrapper {
+    position: relative;
+    display: inline-block;
+    font-size: 0.9em;
+    padding-left: 0.5em;
+}
+
+#multiLanguageChoiceButton {
+    font: inherit;
+    float: right;
+    font-size: 0.55em;
+    vertical-align: middle;
+    border-radius: 5px;
+    border-color: transparent;
+    background-color: white;
+}
+
+
+.logo {
+}
+
+#inputwrapper.animate {
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 400ms;
+}
+
+.matchingWord {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.errorReport {
+    padding: 0.5em 1em 0.5em 1em;
+    padding-left: max(env(safe-area-inset-left), 1em);
+    padding-right: max(env(safe-area-inset-right), 1em);
+}
+
+.testVersionInfo {
+    padding: 0.5em 1em 0.5em 1em;
+    padding-left: max(env(safe-area-inset-left), 1em);
+    padding-right: max(env(safe-area-inset-right), 1em);
+    background-color: rgb(252, 235, 145);
+    color: black;
+}
+
+
+.loadingIndicator {
+    padding: 0.5em 1em 0.5em 1em;
+    padding-left: max(env(safe-area-inset-left), 1em);
+    padding-right: max(env(safe-area-inset-right), 1em);
+}
+
+.correction {
+    padding: 0.5em 1em 0.5em 1em;
+    padding-left: max(env(safe-area-inset-left), 1em);
+    padding-right: max(env(safe-area-inset-right), 1em);
+}
+
+.resultList  {
+    list-style-type: none;
+    padding-inline-start: 0;
+}
+
+.resultList > li {
+    margin-bottom: 2em;
+}
+
+.wordInfo {
+    background-color: rgb(215,233,236);
+    padding: 0.5em 0.5em 0.5em 1em;
+    padding-left: max(env(safe-area-inset-left), 1em);
+    padding-right: max(env(safe-area-inset-right), 0.5em);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.listenContainer {
+    display: flex;
+}
+
+.inflections {
+
+}
+
+.phonetic {
+    font-size: 1.3em;
+}
+
+.soundFiles {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
+.listenPronunciation {
+    font-size: 0.7em;
+    margin-top: 0.4em;
+}
+
+.translation {
+    font-weight:bold;
+}
+
+.synonyms {
+
+}
+
+.meaning {
+
+}
+
+.examples {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.exampleList {
+  list-style-type: circle;
+}
+
+.referenceContainer {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.referenceHead {
+
+}
+ 
+.referenceInfo {
+    font-weight:bold;
+}
+
+.idioms {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.idiomList {
+  list-style-type: circle;
+}
+ 
+.idiomHead {
+    font-weight: bold;
+}
+
+.idiomTail {
+    
+}
+
+.idiomHeadTrans {
+
+}
+
+.idiomTailTrans {
+    
+}
+
+.defintion {
+
+}
+
+.imageLink {
+    font-variant: small-caps;
+    cursor: pointer;
+}
+
+.compounds {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.compoundList {
+    list-style-type: circle;
+}
+
+.lexemeList {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.lexemeList li:not(:last-child) {
+    border-style: none none solid none;
+    border-color: lightgrey;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.lexemeList li li:not(:last-child) {
+    border-style: none none none none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.lexemeItem {
+
+}
+
+
+.entryContent {
+    list-style-type: none;
+    padding: 1em 1em 0 1em;
+    padding-left: max(env(safe-area-inset-left), 1em);
+    padding-right: max(env(safe-area-inset-right), 1em);
+}
+
+.comment {
+
+}
+
+.cycleList {
+  list-style-position: inside;
+  padding-left: 0.75em;
+}
+
+.cycle {
+    margin-top: 1em;
+}
+
+.gramInfo {
+
+}
+.gramUsage {
+    font-style: italic;
+}
+
+.orClass {
+    font-variant: small-caps;
+    font-weight: 400;
+}
+
+.cueWord {
+    font-weight: 400;
+    opacity: 0.5;
+}
+
+.inflections {
+    font-weight: 500;
+}
+
+.derivation {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.derivationList {
+
+}
+
+.explanation {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.abbr {
+    
+}
+
+.hyphenate {
+    
+}
+
+
+.ill {
+    margin-top: 1em;
+}
+
+.ims {
+
+}
+
+.antonym {
+
+}
+
+.PoS {
+
+}
+
+.comment_se {
+
+}
+
+.comment_tr {
+
+}
+
+.pronunciation {
+
+}
+
+.alt_form {
+
+}
+
+.listenIcon {
+    height: 1.3em;
+    width: 2em;
+    
+    vertical-align: bottom;
+    background-image: url(lyssna.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: auto;
+}
+
+.soundFiles button {
+    appearance: none;
+    border: none;
+    background: none;
+    font: inherit;
+    margin: 0;
+    padding: 0.4em 0.5em 0.4em 0.8em;
+    color: black;
+}
+
+.partsselectionBox {
+    margin: 0.3em 0;
+}
+
+.partsselectionBox * {
+    vertical-align: middle;
+}
+
+.longClickLink {
+
+}
+
+.makeClickableStandOut {
+    /* color: red; */
+    /* text-decoration: underline; */
+}
+
+.clickableHeading {
+
+}
+
+.makeClickableHeadingsStandOut {
+    /* color: green; */
+    /* text-decoration: underline; */
+}
+
+a:any-link {
+   color: rgba(28, 63, 73, 0.9);
+   text-decoration-color: rgba(28, 63, 73, 0.9);
+}
+
+.notRelevant {
+    /* display: none !important; */
+    /* color: rgb(66, 66, 66); */
+}
+
+.languageIndicator {
+    text-transform: uppercase;
+    font-size: small;
+    font-weight: bold;
+}
+
+.graminfoExplanation {
+    background-color: #e0e0e0;
+    padding: 1em;
+    margin: 0.5em 0;
+}
+
+.metavariable {
+    font-variant: small-caps;
+}
+
+.picWrap {
+  display: inline-block;
+}
+
+.picIcon {
+    height: 1.5em;
+    padding: 0;
+    margin-left: .5em;
+    margin-right: .2em;
+    border: 1px solid black;
+    vertical-align: bottom;
+}    
+
+.vidIcon {
+    height: 1.5em;
+    padding: 0;
+    margin-left: .5em;
+    vertical-align: bottom;
+}    
+
+.vidContainer {
+    margin-top: .5em;
+    margin-bottom: .5em;
+    display: block;
+}    
+
+span[dir=rtl] {
+    display: inline-block;
+    text-align: right;
+}
+
+div[dir=rtl] {
+    text-align: right;
+}
+
+.languageWrapper {
+    display: inline-block;
+}
+
+.translatedExample {
+    margin-right: 0.5em;
+}
+
+.gramInfo {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.expandResultsIcon {
+    vertical-align: baseline;
+    height: 1em;
+    padding-left: 0.5em;
+}
+
+.expandGraminfoIcon {
+    height: 1em;
+    width: 1em;
+    vertical-align: baseline;
+    opacity: 0.5;
+}
+
+.graminfoExplanationText {
+    margin-left: 0.5em;
+}
+
+.expandGraminfoIcon.expanded {
+  transform: rotate(90deg);
+}
+
+footer {
+    margin: 0.5em auto;
+    background-color: rgb(28, 63, 73);
+    padding: 1em 20px 1em 20px;
+    padding-left: var(--lexin-left-margin);
+    padding-right: var(--lexin-right-margin);
+
+    display: block;
+    color: white;
+    justify-content: space-between;
+}
+
+footer ul.signoff {
+    padding: 20px 0 !important;
+    width: auto !important;
+    box-sizing: border-box;
+}
+
+footer img {
+    width: 150px;
+}
+
+footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 1em 0;
+}
+
+footer li {
+    margin-bottom: 1rem;
+}
+
+footer a:any-link {
+    color: white;
+    word-wrap: anywhere;
+    text-decoration-color: white;
+}
+
+.lp-icon {
+    height: 1em;
+    overflow: hidden;
+    vertical-align: -0.05em;
+    width: 1em;
+    fill: currentColor;
+}
+
+.lp-icon, .lp-toggler-icon {
+    pointer-events: none;
+}
+
+footer .lp-icon {
+    color: #3fd695;
+    font-size: .7em;
+    margin-left: .8rem;
+}
+
+@media (prefers-contrast: more) {
+    .wordInfo {
+	background-color: transparent;
+	border: solid black;
+	border-width: 1px 0px;
+    }
+    a:any-link {
+	color: black;
+	text-decoration-color: black;
+    }
+    .graminfoExplanation {
+	background-color: white;
+	padding: 1em;
+	margin: 0.5em 0;
+	border: 1px solid black;
+    }
+
+    .cueWord {
+	opacity: 1;
+	font-style: italic;
+    }
+
+    .expandGraminfoIcon {
+	opacity: 1;
+    }
+}

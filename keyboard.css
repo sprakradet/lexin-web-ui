@@ -1,0 +1,30 @@
+.keybExpand {
+    color: white;
+}
+
+.keyboard {
+    display: none;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.keyboardKeyButton {
+    margin: 0 2px;
+    padding: 3px;
+    width: 2.5em;
+    height: 2.5em;
+    font: inherit;
+    font-size: 0.5em;
+    background-color: #f0f0f0;
+    border: 1px #afafaf;
+    appearance: none;
+}
+
+.keyboardKeyButton:disabled {
+    opacity: 50%;
+}
+
+.geezVowels, .geezConsonants {
+    margin-bottom: 5px;
+}
