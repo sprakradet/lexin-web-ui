@@ -1,0 +1,5 @@
+- Hej, jag skulle hämta ut min medicin. Kan du titta efter om det har kommit in ett e-recept från min doktor.
+- Javisst. Kan jag få ditt personnummer?
+- 810922-0451.
+- Jag är ledsen, men det finns ingenting i vårt datasystem. Återkom om en timme så har det säkert kommit in.
+- Okej, tack så mycket.

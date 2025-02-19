@@ -1,0 +1,1940 @@
+{
+    "animationstema": [
+        {
+            "title": "Människa",
+            "subtitle": "Kroppsvård",
+            "items": [
+                {
+                    "sound": "badar",
+                    "text": "badar",
+                    "movie": "badar"
+                },
+                {
+                    "sound": "duschar",
+                    "text": "duschar",
+                    "movie": "duschar"
+                },
+                {
+                    "sound": "tvattar_sig",
+                    "text": "tvättar sig",
+                    "movie": "tvattar_sig"
+                },
+                {
+                    "sound": "torkar_sig",
+                    "text": "torkar sig",
+                    "movie": "torkar_sig"
+                },
+                {
+                    "sound": "badar_bastu",
+                    "text": "badar bastu",
+                    "movie": "badar_bastu"
+                },
+                {
+                    "sound": "tvattar_haret",
+                    "text": "tvättar håret",
+                    "movie": "tvattar_haret"
+                },
+                {
+                    "sound": "borstar_haret",
+                    "text": "borstar håret",
+                    "movie": "borstar_haret"
+                },
+                {
+                    "sound": "kammar_sig",
+                    "text": "kammar sig",
+                    "movie": "kammar_sig"
+                },
+                {
+                    "sound": "borstar_tanderna",
+                    "text": "borstar tänderna",
+                    "movie": "borstar_tanderna"
+                },
+                {
+                    "sound": "speglar_sig",
+                    "text": "speglar sig",
+                    "movie": "speglar_sig"
+                },
+                {
+                    "sound": "sminkar_sig",
+                    "text": "sminkar sig",
+                    "movie": "sminkar_sig"
+                },
+                {
+                    "sound": "rakar_sig",
+                    "text": "rakar sig",
+                    "movie": "rakar_sig"
+                },
+                {
+                    "sound": "klar_pa_sig",
+                    "text": "klär på sig",
+                    "movie": "klar_pa_sig"
+                },
+                {
+                    "sound": "klar_av_sig",
+                    "text": "klär av sig",
+                    "movie": "klar_av_sig"
+                }
+            ]
+        },
+        {
+            "title": "Människa",
+            "subtitle": "Rörelse och miner",
+            "items": [
+                {
+                    "sound": "andas",
+                    "text": "andas",
+                    "movie": "andas"
+                },
+                {
+                    "sound": "hickar",
+                    "text": "hickar",
+                    "movie": "hickar"
+                },
+                {
+                    "sound": "nyser",
+                    "text": "nyser",
+                    "movie": "nyser"
+                },
+                {
+                    "sound": "hostar",
+                    "text": "hostar",
+                    "movie": "hostar"
+                },
+                {
+                    "sound": "gapar",
+                    "text": "gapar",
+                    "movie": "gapar"
+                },
+                {
+                    "sound": "gaspar",
+                    "text": "gäspar",
+                    "movie": "gaspar"
+                },
+                {
+                    "sound": "blinkar",
+                    "text": "blinkar",
+                    "movie": "blinkar"
+                },
+                {
+                    "sound": "blundar",
+                    "text": "blundar",
+                    "movie": "blundar"
+                },
+                {
+                    "sound": "tittar",
+                    "text": "tittar",
+                    "movie": "tittar"
+                },
+                {
+                    "sound": "nickar",
+                    "text": "nickar",
+                    "movie": "nickar"
+                },
+                {
+                    "sound": "skakar_pa_huvudet",
+                    "text": "skakar på huvudet",
+                    "movie": "skakar_pa_huvudet"
+                },
+                {
+                    "sound": "ler",
+                    "text": "ler",
+                    "movie": "ler"
+                },
+                {
+                    "sound": "skrattar",
+                    "text": "skrattar",
+                    "movie": "skrattar"
+                },
+                {
+                    "sound": "grater",
+                    "text": "gråter",
+                    "movie": "grater"
+                },
+                {
+                    "sound": "snyter_sig",
+                    "text": "snyter sig",
+                    "movie": "snyter_sig"
+                },
+                {
+                    "sound": "darrar",
+                    "text": "darrar",
+                    "movie": "darrar"
+                },
+                {
+                    "sound": "fryser",
+                    "text": "fryser",
+                    "movie": "fryser"
+                },
+                {
+                    "sound": "svettas",
+                    "text": "svettas",
+                    "movie": "svettas"
+                },
+                {
+                    "sound": "satter_sig",
+                    "text": "sätter sig",
+                    "movie": "satter_sig"
+                },
+                {
+                    "sound": "sitter",
+                    "text": "sitter",
+                    "movie": "sitter"
+                },
+                {
+                    "sound": "staller_sig",
+                    "text": "ställer sig",
+                    "movie": "staller_sig"
+                },
+                {
+                    "sound": "star",
+                    "text": "står",
+                    "movie": "star"
+                },
+                {
+                    "sound": "lagger_sig",
+                    "text": "lägger sig",
+                    "movie": "lagger_sig"
+                },
+                {
+                    "sound": "ligger",
+                    "text": "ligger",
+                    "movie": "ligger"
+                },
+                {
+                    "sound": "bojer_sig",
+                    "text": "böjer sig",
+                    "movie": "bojer_sig"
+                },
+                {
+                    "sound": "stracker_sig",
+                    "text": "sträcker sig",
+                    "movie": "stracker_sig"
+                },
+                {
+                    "sound": "lyfter",
+                    "text": "lyfter",
+                    "movie": "lyfter"
+                },
+                {
+                    "sound": "somnar",
+                    "text": "somnar",
+                    "movie": "somnar"
+                },
+                {
+                    "sound": "vaknar",
+                    "text": "vaknar",
+                    "movie": "vaknar"
+                }
+            ]
+        },
+        {
+            "title": "SOS och sjukvård",
+            "items": [
+                {
+                    "sound": "cyklar_omkull",
+                    "text": "cyklar omkull",
+                    "movie": "cyklar_omkull"
+                },
+                {
+                    "sound": "kor_av",
+                    "text": "kör av",
+                    "movie": "kor_av"
+                },
+                {
+                    "sound": "kor_pa",
+                    "text": "kör på",
+                    "movie": "kor_pa"
+                },
+                {
+                    "sound": "krockar",
+                    "text": "krockar",
+                    "movie": "krockar"
+                },
+                {
+                    "sound": "krockkudden_loses_ut",
+                    "text": "krockkudden löses ut",
+                    "movie": "krockkudden_loses_ut"
+                },
+                {
+                    "sound": "ringer_SOS_Alarm",
+                    "text": "ringer SOS Alarm",
+                    "movie": "ringer_SOS_Alarm"
+                },
+                {
+                    "sound": "rycker_ut",
+                    "text": "rycker ut",
+                    "movie": "rycker_ut"
+                },
+                {
+                    "sound": "brinner",
+                    "text": "brinner",
+                    "movie": "brinner"
+                },
+                {
+                    "sound": "slacker",
+                    "text": "släcker",
+                    "movie": "slacker"
+                },
+                {
+                    "sound": "tar_en_nummerlapp",
+                    "text": "tar en nummerlapp",
+                    "movie": "tar_en_nummerlapp"
+                },
+                {
+                    "sound": "vantar_pa_sin_tur",
+                    "text": "väntar på sin tur",
+                    "movie": "vantar_pa_sin_tur"
+                },
+                {
+                    "sound": "anmaler_sig",
+                    "text": "anmäler sig",
+                    "movie": "anmaler_sig"
+                },
+                {
+                    "sound": "betalar_patientavgift",
+                    "text": "betalar patientavgift",
+                    "movie": "betalar_patientavgift"
+                },
+                {
+                    "sound": "tar_tempen",
+                    "text": "tar tempen",
+                    "movie": "tar_tempen"
+                },
+                {
+                    "sound": "lamnar_urinprov",
+                    "text": "lämnar urinprov",
+                    "movie": "lamnar_urinprov"
+                },
+                {
+                    "sound": "tar_blodprov",
+                    "text": "tar blodprov",
+                    "movie": "tar_blodprov"
+                },
+                {
+                    "sound": "lyssnar_pa_hjartat",
+                    "text": "lyssnar på hjärtat",
+                    "movie": "lyssnar_pa_hjartat"
+                },
+                {
+                    "sound": "tar_pulsen",
+                    "text": "tar pulsen",
+                    "movie": "tar_pulsen"
+                },
+                {
+                    "sound": "tar_blodtryck",
+                    "text": "tar blodtryck",
+                    "movie": "tar_blodtryck"
+                },
+                {
+                    "sound": "tar_EKG",
+                    "text": "tar EKG",
+                    "movie": "tar_EKG"
+                },
+                {
+                    "sound": "gor_ultraljud",
+                    "text": "gör ultraljud",
+                    "movie": "gor_ultraljud"
+                },
+                {
+                    "sound": "lagger_pa_salva",
+                    "text": "lägger på salva",
+                    "movie": "lagger_pa_salva"
+                },
+                {
+                    "sound": "smorjer",
+                    "text": "smörjer",
+                    "movie": "smorjer"
+                },
+                {
+                    "sound": "masserar",
+                    "text": "masserar",
+                    "movie": "masserar"
+                },
+                {
+                    "sound": "satter_pa_plaster",
+                    "text": "sätter på plåster",
+                    "movie": "satter_pa_plaster"
+                },
+                {
+                    "sound": "lagger_pa_en_kompress",
+                    "text": "lägger på en kompress",
+                    "movie": "lagger_pa_en_kompress"
+                },
+                {
+                    "sound": "lagger_forband",
+                    "text": "lägger förband",
+                    "movie": "lagger_forband"
+                },
+                {
+                    "sound": "tar_en_tablett",
+                    "text": "tar en tablett",
+                    "movie": "tar_en_tablett"
+                },
+                {
+                    "sound": "far_en_spruta",
+                    "text": "får en spruta",
+                    "movie": "far_en_spruta"
+                },
+                {
+                    "sound": "satter_in_en_kanyl",
+                    "text": "sätter in en kanyl",
+                    "movie": "satter_in_en_kanyl"
+                },
+                {
+                    "sound": "far_dropp",
+                    "text": "får dropp",
+                    "movie": "far_dropp"
+                },
+                {
+                    "sound": "far_blodtransfusion",
+                    "text": "får blodtransfusion",
+                    "movie": "far_blodtransfusion"
+                },
+                {
+                    "sound": "soover",
+                    "text": "söver",
+                    "movie": "soover"
+                },
+                {
+                    "sound": "opererar",
+                    "text": "opererar",
+                    "movie": "opererar"
+                },
+                {
+                    "sound": "gar_med_kryckor",
+                    "text": "går med kryckor",
+                    "movie": "gar_med_kryckor"
+                },
+                {
+                    "sound": "gar_med_rollator",
+                    "text": "går med rollator",
+                    "movie": "gar_med_rollator"
+                },
+                {
+                    "sound": "gar_med_kapp",
+                    "text": "går med käpp",
+                    "movie": "gar_med_kapp"
+                },
+                {
+                    "sound": "sitter_i_rullstol",
+                    "text": "sitter i rullstol",
+                    "movie": "sitter_i_rullstol"
+                },
+                {
+                    "sound": "skriver_ut_recept",
+                    "text": "skriver ut recept",
+                    "movie": "skriver_ut_recept"
+                },
+                {
+                    "sound": "lamnar_in_recept",
+                    "text": "lämnar in recept",
+                    "movie": "lamnar_in_recept"
+                },
+                {
+                    "sound": "hamtar_ut_medicin",
+                    "text": "hämtar ut medicin",
+                    "movie": "hamtar_ut_medicin"
+                },
+                {
+                    "sound": "bestaller_fardtjanst",
+                    "text": "beställer färdtjänst",
+                    "movie": "bestaller_fardtjanst"
+                }
+            ]
+        },
+        {
+            "title": "Bostad",
+            "subtitle": "Matlagning",
+            "items": [
+                {
+                    "sound": "skar",
+                    "text": "skär",
+                    "movie": "skar"
+                },
+                {
+                    "sound": "skalar",
+                    "text": "skalar",
+                    "movie": "skalar"
+                },
+                {
+                    "sound": "tarnar",
+                    "text": "tärnar",
+                    "movie": "tarnar"
+                },
+                {
+                    "sound": "hackar",
+                    "text": "hackar",
+                    "movie": "hackar"
+                },
+                {
+                    "sound": "mosar",
+                    "text": "mosar",
+                    "movie": "mosar"
+                },
+                {
+                    "sound": "river",
+                    "text": "river",
+                    "movie": "river"
+                },
+                {
+                    "sound": "smalter",
+                    "text": "smälter",
+                    "movie": "smalter"
+                },
+                {
+                    "sound": "vispar",
+                    "text": "vispar",
+                    "movie": "vispar"
+                },
+                {
+                    "sound": "ror_om",
+                    "text": "rör om",
+                    "movie": "ror_om"
+                },
+                {
+                    "sound": "knadar",
+                    "text": "knådar",
+                    "movie": "knadar"
+                },
+                {
+                    "sound": "kavlar",
+                    "text": "kavlar",
+                    "movie": "kavlar"
+                },
+                {
+                    "sound": "kokar",
+                    "text": "kokar",
+                    "movie": "kokar"
+                },
+                {
+                    "sound": "steker",
+                    "text": "steker",
+                    "movie": "steker"
+                },
+                {
+                    "sound": "graddar",
+                    "text": "gräddar",
+                    "movie": "graddar"
+                },
+                {
+                    "sound": "grillar",
+                    "text": "grillar",
+                    "movie": "grillar"
+                },
+                {
+                    "sound": "varmer",
+                    "text": "värmer",
+                    "movie": "varmer"
+                },
+                {
+                    "sound": "mater",
+                    "text": "mäter",
+                    "movie": "mater"
+                },
+                {
+                    "sound": "vager",
+                    "text": "väger",
+                    "movie": "vager"
+                },
+                {
+                    "sound": "dukar",
+                    "text": "dukar",
+                    "movie": "dukar"
+                },
+                {
+                    "sound": "haller_upp",
+                    "text": "häller upp",
+                    "movie": "haller_upp"
+                },
+                {
+                    "sound": "serverar",
+                    "text": "serverar",
+                    "movie": "serverar"
+                },
+                {
+                    "sound": "dricker",
+                    "text": "dricker",
+                    "movie": "dricker"
+                },
+                {
+                    "sound": "ater",
+                    "text": "äter",
+                    "movie": "ater"
+                },
+                {
+                    "sound": "matar",
+                    "text": "matar",
+                    "movie": "matar"
+                },
+                {
+                    "sound": "luktar",
+                    "text": "luktar",
+                    "movie": "luktar"
+                },
+                {
+                    "sound": "smakar",
+                    "text": "smakar",
+                    "movie": "smakar"
+                },
+                {
+                    "sound": "slickar",
+                    "text": "slickar",
+                    "movie": "slickar"
+                },
+                {
+                    "sound": "diskar",
+                    "text": "diskar",
+                    "movie": "diskar"
+                },
+                {
+                    "sound": "skoljer",
+                    "text": "sköljer",
+                    "movie": "skoljer"
+                },
+                {
+                    "sound": "torkar",
+                    "text": "torkar",
+                    "movie": "torkar"
+                },
+                {
+                    "sound": "droppar",
+                    "text": "droppar",
+                    "movie": "droppar"
+                },
+                {
+                    "sound": "rinner",
+                    "text": "rinner",
+                    "movie": "rinner"
+                }
+            ]
+        },
+        {
+            "title": "Bostad",
+            "subtitle": "Städ och tvätt",
+            "items": [
+                {
+                    "sound": "sorterar_tvatt",
+                    "text": "sorterar tvätt",
+                    "movie": "sorterar_tvatt"
+                },
+                {
+                    "sound": "stoppar_in_tvatt",
+                    "text": "stoppar in tvätt",
+                    "movie": "stoppar_in_tvatt"
+                },
+                {
+                    "sound": "tvattar",
+                    "text": "tvättar",
+                    "movie": "tvattar"
+                },
+                {
+                    "sound": "tar_ut_tvatt",
+                    "text": "tar ut tvätt",
+                    "movie": "tar_ut_tvatt"
+                },
+                {
+                    "sound": "hanger_tvatt",
+                    "text": "hänger tvätt",
+                    "movie": "hanger_tvatt"
+                },
+                {
+                    "sound": "tumlar",
+                    "text": "tumlar",
+                    "movie": "tumlar"
+                },
+                {
+                    "sound": "stryker",
+                    "text": "stryker",
+                    "movie": "stryker"
+                },
+                {
+                    "sound": "manglar",
+                    "text": "manglar",
+                    "movie": "manglar"
+                },
+                {
+                    "sound": "viker",
+                    "text": "viker",
+                    "movie": "viker"
+                },
+                {
+                    "sound": "tvattar_fonster",
+                    "text": "tvättar fönster",
+                    "movie": "tvattar_fonster"
+                },
+                {
+                    "sound": "piskar",
+                    "text": "piskar",
+                    "movie": "piskar"
+                },
+                {
+                    "sound": "skakar",
+                    "text": "skakar",
+                    "movie": "skakar"
+                },
+                {
+                    "sound": "sopar",
+                    "text": "sopar",
+                    "movie": "sopar"
+                },
+                {
+                    "sound": "dammar",
+                    "text": "dammar",
+                    "movie": "dammar"
+                },
+                {
+                    "sound": "damsuger",
+                    "text": "dammsuger",
+                    "movie": "damsuger"
+                },
+                {
+                    "sound": "skurar",
+                    "text": "skurar",
+                    "movie": "skurar"
+                },
+                {
+                    "sound": "putsar",
+                    "text": "putsar",
+                    "movie": "putsar"
+                },
+                {
+                    "sound": "vattnar_blommor",
+                    "text": "vattnar blommor",
+                    "movie": "vattnar_blommor"
+                }
+            ]
+        },
+        {
+            "title": "Bostad",
+            "subtitle": "Inomhus",
+            "items": [
+                {
+                    "sound": "satter_pa",
+                    "text": "sätter på",
+                    "movie": "satter_pa"
+                },
+                {
+                    "sound": "tittar_pa",
+                    "text": "tittar på",
+                    "movie": "tittar_pa"
+                },
+                {
+                    "sound": "stanger_av",
+                    "text": "stänger av",
+                    "movie": "stanger_av"
+                },
+                {
+                    "sound": "lyssnar",
+                    "text": "lyssnar",
+                    "movie": "lyssnar"
+                },
+                {
+                    "sound": "tander",
+                    "text": "tänder",
+                    "movie": "tander"
+                },
+                {
+                    "sound": "slacker_lampan",
+                    "text": "släcker",
+                    "movie": "slacker_lampan"
+                },
+                {
+                    "sound": "blaser_ut",
+                    "text": "blåser ut",
+                    "movie": "blaser_ut"
+                },
+                {
+                    "sound": "satter_in",
+                    "text": "sätter in",
+                    "movie": "satter_in"
+                },
+                {
+                    "sound": "drar_ur",
+                    "text": "drar ur",
+                    "movie": "drar_ur"
+                },
+                {
+                    "sound": "byter_glodlampa",
+                    "text": "byter glödlampa",
+                    "movie": "byter_glodlampa"
+                },
+                {
+                    "sound": "laser_av_elmataren",
+                    "text": "läser av elmätaren",
+                    "movie": "laser_av_elmataren"
+                },
+                {
+                    "sound": "lagger",
+                    "text": "lägger",
+                    "movie": "lagger"
+                },
+                {
+                    "sound": "staller",
+                    "text": "ställer",
+                    "movie": "staller"
+                },
+                {
+                    "sound": "hanger",
+                    "text": "hänger",
+                    "movie": "hanger"
+                },
+                {
+                    "sound": "drar_ner_rullgardinen",
+                    "text": "drar ner rullgardinen",
+                    "movie": "drar_ner_rullgardinen"
+                },
+                {
+                    "sound": "drar_upp_persiennen",
+                    "text": "drar upp persiennen",
+                    "movie": "drar_upp_persiennen"
+                },
+                {
+                    "sound": "drar_ut",
+                    "text": "drar ut",
+                    "movie": "drar_ut"
+                },
+                {
+                    "sound": "skjuter_in",
+                    "text": "skjuter in",
+                    "movie": "skjuter_in"
+                },
+                {
+                    "sound": "baddar",
+                    "text": "bäddar",
+                    "movie": "baddar"
+                },
+                {
+                    "sound": "lagger_pa_overkastet",
+                    "text": "lägger på överkastet",
+                    "movie": "lagger_pa_overkastet"
+                },
+                {
+                    "sound": "staller_klockan",
+                    "text": "ställer klockan",
+                    "movie": "staller_klockan"
+                },
+                {
+                    "sound": "kastar",
+                    "text": "kastar",
+                    "movie": "kastar"
+                },
+                {
+                    "sound": "knyter_ihop",
+                    "text": "knyter ihop",
+                    "movie": "knyter_ihop"
+                },
+                {
+                    "sound": "moblerar",
+                    "text": "möblerar",
+                    "movie": "moblerar"
+                },
+                {
+                    "sound": "moblerar_om",
+                    "text": "möblerar om",
+                    "movie": "moblerar_om"
+                },
+                {
+                    "sound": "flyttar",
+                    "text": "flyttar",
+                    "movie": "flyttar"
+                }
+            ]
+        },
+        {
+            "title": "Bostad",
+            "subtitle": "Utomhus",
+            "items": [
+                {
+                    "sound": "krattar",
+                    "text": "krattar",
+                    "movie": "krattar"
+                },
+                {
+                    "sound": "hugger_ved",
+                    "text": "hugger ved",
+                    "movie": "hugger_ved"
+                },
+                {
+                    "sound": "eldar",
+                    "text": "eldar",
+                    "movie": "eldar"
+                },
+                {
+                    "sound": "skyfflar",
+                    "text": "skyfflar",
+                    "movie": "skyfflar"
+                },
+                {
+                    "sound": "graver",
+                    "text": "gräver",
+                    "movie": "graver"
+                },
+                {
+                    "sound": "planterar",
+                    "text": "planterar",
+                    "movie": "planterar"
+                },
+                {
+                    "sound": "sar",
+                    "text": "sår",
+                    "movie": "sar"
+                },
+                {
+                    "sound": "godslar",
+                    "text": "gödslar",
+                    "movie": "godslar"
+                },
+                {
+                    "sound": "satter_potatis",
+                    "text": "sätter potatis",
+                    "movie": "satter_potatis"
+                },
+                {
+                    "sound": "skordar",
+                    "text": "skördar",
+                    "movie": "skordar"
+                },
+                {
+                    "sound": "rensar",
+                    "text": "rensar",
+                    "movie": "rensar"
+                },
+                {
+                    "sound": "beskar",
+                    "text": "beskär",
+                    "movie": "beskar"
+                },
+                {
+                    "sound": "plockar",
+                    "text": "plockar",
+                    "movie": "plockar"
+                },
+                {
+                    "sound": "knackar_pa",
+                    "text": "knackar på",
+                    "movie": "knackar_pa"
+                },
+                {
+                    "sound": "ringer_pa",
+                    "text": "ringer på",
+                    "movie": "ringer_pa"
+                },
+                {
+                    "sound": "halsar_pa",
+                    "text": "hälsar på",
+                    "movie": "halsar_pa"
+                },
+                {
+                    "sound": "gar_uppfor_trappan",
+                    "text": "går uppför trappan",
+                    "movie": "gar_uppfor_trappan"
+                },
+                {
+                    "sound": "oppnar",
+                    "text": "öppnar",
+                    "movie": "oppnar"
+                },
+                {
+                    "sound": "gar_in",
+                    "text": "går in",
+                    "movie": "gar_in"
+                },
+                {
+                    "sound": "gar_ut",
+                    "text": "går ut",
+                    "movie": "gar_ut"
+                },
+                {
+                    "sound": "stanger",
+                    "text": "stänger",
+                    "movie": "stanger"
+                },
+                {
+                    "sound": "laser",
+                    "text": "låser",
+                    "movie": "laser"
+                },
+                {
+                    "sound": "gar_nedfor_trappan",
+                    "text": "går nedför trappan",
+                    "movie": "gar_nedfor_trappan"
+                },
+                {
+                    "sound": "hamtar_posten",
+                    "text": "hämtar posten",
+                    "movie": "hamtar_posten"
+                },
+                {
+                    "sound": "hissar_flaggan",
+                    "text": "hissar flaggan",
+                    "movie": "hissar_flaggan"
+                },
+                {
+                    "sound": "halar_flaggan",
+                    "text": "halar flaggan",
+                    "movie": "halar_flaggan"
+                },
+                {
+                    "sound": "pumpar_upp_vatten",
+                    "text": "pumpar upp vatten",
+                    "movie": "pumpar_upp_vatten"
+                }
+            ]
+        },
+        {
+            "title": "Kommunikation",
+            "subtitle": "Trafik",
+            "items": [
+                {
+                    "sound": "koper_biljett",
+                    "text": "köper biljett",
+                    "movie": "koper_biljett"
+                },
+                {
+                    "sound": "visar_biljetten",
+                    "text": "visar biljetten",
+                    "movie": "visar_biljetten"
+                },
+                {
+                    "sound": "vantar",
+                    "text": "väntar",
+                    "movie": "vantar"
+                },
+                {
+                    "sound": "tar_bussen",
+                    "text": "tar bussen",
+                    "movie": "tar_bussen"
+                },
+                {
+                    "sound": "aker_buss",
+                    "text": "åker buss",
+                    "movie": "aker_buss"
+                },
+                {
+                    "sound": "byter_buss",
+                    "text": "byter buss",
+                    "movie": "byter_buss"
+                },
+                {
+                    "sound": "aker_hiss",
+                    "text": "åker hiss",
+                    "movie": "aker_hiss"
+                },
+                {
+                    "sound": "aker_rulltrappa",
+                    "text": "åker rulltrappa",
+                    "movie": "aker_rulltrappa"
+                },
+                {
+                    "sound": "tar_en_taxi",
+                    "text": "tar en taxi",
+                    "movie": "tar_en_taxi"
+                },
+                {
+                    "sound": "promenerar",
+                    "text": "promenerar",
+                    "movie": "promenerar"
+                },
+                {
+                    "sound": "fragar_efter_vagen",
+                    "text": "frågar efter vägen",
+                    "movie": "fragar_efter_vagen"
+                },
+                {
+                    "sound": "visar_vagen",
+                    "text": "visar vägen",
+                    "movie": "visar_vagen"
+                },
+                {
+                    "sound": "stannar",
+                    "text": "stannar",
+                    "movie": "stannar"
+                },
+                {
+                    "sound": "tittar_promenad",
+                    "text": "tittar",
+                    "movie": "tittar_promenad"
+                },
+                {
+                    "sound": "gar_over_gatan",
+                    "text": "går över gatan",
+                    "movie": "gar_over_gatan"
+                }
+            ]
+        },
+        {
+            "title": "Kommunikation",
+            "subtitle": "Bil och cykel",
+            "items": [
+                {
+                    "sound": "spanner_fast_bilbaltet",
+                    "text": "spänner fast bilbältet",
+                    "movie": "spanner_fast_bilbaltet"
+                },
+                {
+                    "sound": "sitter_i_bilbarnstol",
+                    "text": "sitter i bilbarnstol",
+                    "movie": "sitter_i_bilbarnstol"
+                },
+                {
+                    "sound": "startar",
+                    "text": "startar",
+                    "movie": "startar"
+                },
+                {
+                    "sound": "gasar",
+                    "text": "gasar",
+                    "movie": "gasar"
+                },
+                {
+                    "sound": "vaxlar",
+                    "text": "växlar",
+                    "movie": "vaxlar"
+                },
+                {
+                    "sound": "tutar",
+                    "text": "tutar",
+                    "movie": "tutar"
+                },
+                {
+                    "sound": "bromsar",
+                    "text": "bromsar",
+                    "movie": "bromsar"
+                },
+                {
+                    "sound": "kor_om",
+                    "text": "kör om",
+                    "movie": "kor_om"
+                },
+                {
+                    "sound": "blinkar_trafik",
+                    "text": "blinkar",
+                    "movie": "blinkar_trafik"
+                },
+                {
+                    "sound": "svanger_till_vanster",
+                    "text": "svänger till vänster",
+                    "movie": "svanger_till_vanster"
+                },
+                {
+                    "sound": "svanger_till_hoger",
+                    "text": "svänger till höger",
+                    "movie": "svanger_till_hoger"
+                },
+                {
+                    "sound": "kor_rakt_fram",
+                    "text": "kör rakt fram",
+                    "movie": "kor_rakt_fram"
+                },
+                {
+                    "sound": "backar",
+                    "text": "backar",
+                    "movie": "backar"
+                },
+                {
+                    "sound": "parkerar",
+                    "text": "parkerar",
+                    "movie": "parkerar"
+                },
+                {
+                    "sound": "kor_in_i_garaget",
+                    "text": "kör in i garaget",
+                    "movie": "kor_in_i_garaget"
+                },
+                {
+                    "sound": "kor_pa",
+                    "text": "kör på",
+                    "movie": "kor_pa"
+                },
+                {
+                    "sound": "kor_over",
+                    "text": "kör över",
+                    "movie": "kor_over"
+                },
+                {
+                    "sound": "tankar",
+                    "text": "tankar",
+                    "movie": "tankar"
+                },
+                {
+                    "sound": "tvattar_bil",
+                    "text": "tvättar",
+                    "movie": "tvattar_bil"
+                },
+                {
+                    "sound": "lastar",
+                    "text": "lastar",
+                    "movie": "lastar"
+                },
+                {
+                    "sound": "hissar_upp_bilen",
+                    "text": "hissar upp bilen",
+                    "movie": "hissar_upp_bilen"
+                },
+                {
+                    "sound": "skruvar_loss_muttrar",
+                    "text": "skruvar loss muttrar",
+                    "movie": "skruvar_loss_muttrar"
+                },
+                {
+                    "sound": "byter_dack",
+                    "text": "byter däck",
+                    "movie": "byter_dack"
+                },
+                {
+                    "sound": "drar_at",
+                    "text": "drar åt",
+                    "movie": "drar_at"
+                },
+                {
+                    "sound": "sanker_bilen",
+                    "text": "sänker bilen",
+                    "movie": "sanker_bilen"
+                },
+                {
+                    "sound": "trampar",
+                    "text": "trampar",
+                    "movie": "trampar"
+                },
+                {
+                    "sound": "cyklar",
+                    "text": "cyklar",
+                    "movie": "cyklar"
+                },
+                {
+                    "sound": "ger_tecken",
+                    "text": "ger tecken",
+                    "movie": "ger_tecken"
+                },
+                {
+                    "sound": "skjutsar",
+                    "text": "skjutsar",
+                    "movie": "skjutsar"
+                },
+                {
+                    "sound": "cyklar_omkull",
+                    "text": "cyklar omkull",
+                    "movie": "cyklar_omkull"
+                },
+                {
+                    "sound": "pumpar_cykel",
+                    "text": "pumpar",
+                    "movie": "pumpar_cykel"
+                },
+                {
+                    "sound": "smorjer_cykel",
+                    "text": "smörjer",
+                    "movie": "smorjer_cykel"
+                }
+            ]
+        },
+        {
+            "title": "Fritid",
+            "subtitle": "Hobby",
+            "items": [
+                {
+                    "sound": "spelar_piano",
+                    "text": "spelar piano",
+                    "movie": "spelar_piano"
+                },
+                {
+                    "sound": "sjunger",
+                    "text": "sjunger",
+                    "movie": "sjunger"
+                },
+                {
+                    "sound": "fotograferar",
+                    "text": "fotograferar",
+                    "movie": "fotograferar"
+                },
+                {
+                    "sound": "filmar",
+                    "text": "filmar",
+                    "movie": "filmar"
+                },
+                {
+                    "sound": "klipper",
+                    "text": "klipper",
+                    "movie": "klipper"
+                },
+                {
+                    "sound": "klistrar",
+                    "text": "klistrar",
+                    "movie": "klistrar"
+                },
+                {
+                    "sound": "tejpar",
+                    "text": "tejpar",
+                    "movie": "tejpar"
+                },
+                {
+                    "sound": "syr",
+                    "text": "syr",
+                    "movie": "syr"
+                },
+                {
+                    "sound": "broderar",
+                    "text": "broderar",
+                    "movie": "broderar"
+                },
+                {
+                    "sound": "stickar",
+                    "text": "stickar",
+                    "movie": "stickar"
+                },
+                {
+                    "sound": "virkar",
+                    "text": "virkar",
+                    "movie": "virkar"
+                },
+                {
+                    "sound": "vaver",
+                    "text": "väver",
+                    "movie": "vaver"
+                },
+                {
+                    "sound": "ritar",
+                    "text": "ritar",
+                    "movie": "ritar"
+                },
+                {
+                    "sound": "malar",
+                    "text": "målar",
+                    "movie": "malar"
+                },
+                {
+                    "sound": "drejar",
+                    "text": "drejar",
+                    "movie": "drejar"
+                },
+                {
+                    "sound": "sagar",
+                    "text": "sågar",
+                    "movie": "sagar"
+                },
+                {
+                    "sound": "hamrar",
+                    "text": "hamrar",
+                    "movie": "hamrar"
+                },
+                {
+                    "sound": "skruvar",
+                    "text": "skruvar",
+                    "movie": "skruvar"
+                },
+                {
+                    "sound": "borrar",
+                    "text": "borrar",
+                    "movie": "borrar"
+                },
+                {
+                    "sound": "hyvlar",
+                    "text": "hyvlar",
+                    "movie": "hyvlar"
+                },
+                {
+                    "sound": "filar",
+                    "text": "filar",
+                    "movie": "filar"
+                },
+                {
+                    "sound": "slipar",
+                    "text": "slipar",
+                    "movie": "slipar"
+                },
+                {
+                    "sound": "skrapar",
+                    "text": "skrapar",
+                    "movie": "skrapar"
+                },
+                {
+                    "sound": "taljer",
+                    "text": "täljer",
+                    "movie": "taljer"
+                },
+                {
+                    "sound": "lackar",
+                    "text": "lackar",
+                    "movie": "lackar"
+                },
+                {
+                    "sound": "malar_farg",
+                    "text": "målar",
+                    "movie": "malar_farg"
+                }
+            ]
+        },
+        {
+            "title": "Fritid",
+            "subtitle": "Idrott och spel",
+            "items": [
+                {
+                    "sound": "gar",
+                    "text": "går",
+                    "movie": "gar"
+                },
+                {
+                    "sound": "joggar",
+                    "text": "joggar",
+                    "movie": "joggar"
+                },
+                {
+                    "sound": "hoppar",
+                    "text": "hoppar",
+                    "movie": "hoppar"
+                },
+                {
+                    "sound": "stretchar",
+                    "text": "stretchar",
+                    "movie": "stretchar"
+                },
+                {
+                    "sound": "brottas",
+                    "text": "brottas",
+                    "movie": "brottas"
+                },
+                {
+                    "sound": "boxas",
+                    "text": "boxas",
+                    "movie": "boxas"
+                },
+                {
+                    "sound": "faktas",
+                    "text": "fäktas",
+                    "movie": "faktas"
+                },
+                {
+                    "sound": "skjuter",
+                    "text": "skjuter",
+                    "movie": "skjuter"
+                },
+                {
+                    "sound": "styrketranar",
+                    "text": "styrketränar",
+                    "movie": "styrketranar"
+                },
+                {
+                    "sound": "motionerar",
+                    "text": "motionerar",
+                    "movie": "motionerar"
+                },
+                {
+                    "sound": "orienterar",
+                    "text": "orienterar",
+                    "movie": "orienterar"
+                },
+                {
+                    "sound": "rider",
+                    "text": "rider",
+                    "movie": "rider"
+                },
+                {
+                    "sound": "hoppar_hojd",
+                    "text": "hoppar höjd",
+                    "movie": "hoppar_hojd"
+                },
+                {
+                    "sound": "hoppar_langd",
+                    "text": "hoppar längd",
+                    "movie": "hoppar_langd"
+                },
+                {
+                    "sound": "stoter_kula",
+                    "text": "stöter kula",
+                    "movie": "stoter_kula"
+                },
+                {
+                    "sound": "gor_mal",
+                    "text": "gör mål",
+                    "movie": "gor_mal"
+                },
+                {
+                    "sound": "dommer",
+                    "text": "dömer",
+                    "movie": "dommer"
+                },
+                {
+                    "sound": "solar",
+                    "text": "solar",
+                    "movie": "solar"
+                },
+                {
+                    "sound": "simmar",
+                    "text": "simmar",
+                    "movie": "simmar"
+                },
+                {
+                    "sound": "badar_ute",
+                    "text": "badar",
+                    "movie": "badar_ute"
+                },
+                {
+                    "sound": "dyker",
+                    "text": "dyker",
+                    "movie": "dyker"
+                },
+                {
+                    "sound": "paddlar",
+                    "text": "paddlar",
+                    "movie": "paddlar"
+                },
+                {
+                    "sound": "ror",
+                    "text": "ror",
+                    "movie": "ror"
+                },
+                {
+                    "sound": "seglar",
+                    "text": "seglar",
+                    "movie": "seglar"
+                },
+                {
+                    "sound": "gungar",
+                    "text": "gungar",
+                    "movie": "gungar"
+                },
+                {
+                    "sound": "spelar_spel",
+                    "text": "spelar spel",
+                    "movie": "spelar_spel"
+                },
+                {
+                    "sound": "vinner",
+                    "text": "vinner",
+                    "movie": "vinner"
+                },
+                {
+                    "sound": "forlorar",
+                    "text": "förlorar",
+                    "movie": "forlorar"
+                }
+            ]
+        },
+        {
+            "title": "Utbildning och arbete",
+            "items": [
+                {
+                    "sound": "anmaler_sig_till_en_kurs",
+                    "text": "anmäler sig till en kurs",
+                    "movie": "anmaler_sig_till_en_kurs"
+                },
+                {
+                    "sound": "ansoker_om_studiemedel",
+                    "text": "ansöker om studiemedel",
+                    "movie": "ansoker_om_studiemedel"
+                },
+                {
+                    "sound": "lanar_en_bok",
+                    "text": "lånar en bok",
+                    "movie": "lanar_en_bok"
+                },
+                {
+                    "sound": "slar_upp",
+                    "text": "slår upp",
+                    "movie": "slar_upp"
+                },
+                {
+                    "sound": "bladdrar",
+                    "text": "bläddrar",
+                    "movie": "bladdrar"
+                },
+                {
+                    "sound": "laser_bok",
+                    "text": "läser",
+                    "movie": "laser_bok"
+                },
+                {
+                    "sound": "raknar",
+                    "text": "räknar",
+                    "movie": "raknar"
+                },
+                {
+                    "sound": "talar",
+                    "text": "talar",
+                    "movie": "talar"
+                },
+                {
+                    "sound": "uttalar",
+                    "text": "uttalar",
+                    "movie": "uttalar"
+                },
+                {
+                    "sound": "vassar_pennan",
+                    "text": "vässar pennan",
+                    "movie": "vassar_pennan"
+                },
+                {
+                    "sound": "skriver",
+                    "text": "skriver",
+                    "movie": "skriver"
+                },
+                {
+                    "sound": "suddar",
+                    "text": "suddar",
+                    "movie": "suddar"
+                },
+                {
+                    "sound": "delar_ut",
+                    "text": "delar ut",
+                    "movie": "delar_ut"
+                },
+                {
+                    "sound": "skriver_prov",
+                    "text": "skriver prov",
+                    "movie": "skriver_prov"
+                },
+                {
+                    "sound": "fuskar",
+                    "text": "fuskar",
+                    "movie": "fuskar"
+                },
+                {
+                    "sound": "rattar",
+                    "text": "rättar",
+                    "movie": "rattar"
+                },
+                {
+                    "sound": "godkanner",
+                    "text": "godkänner",
+                    "movie": "godkanner"
+                },
+                {
+                    "sound": "underkanner",
+                    "text": "underkänner",
+                    "movie": "underkanner"
+                },
+                {
+                    "sound": "far_betyg",
+                    "text": "får betyg",
+                    "movie": "far_betyg"
+                },
+                {
+                    "sound": "laser_platsannonser",
+                    "text": "läser platsannonser",
+                    "movie": "laser_platsannonser"
+                },
+                {
+                    "sound": "skriver_en_ansokan",
+                    "text": "skriver en ansökan",
+                    "movie": "skriver_en_ansokan"
+                },
+                {
+                    "sound": "intervju",
+                    "text": "intervju",
+                    "movie": "intervju"
+                },
+                {
+                    "sound": "intervjuar",
+                    "text": "intervjuar",
+                    "movie": "intervjuar"
+                },
+                {
+                    "sound": "intervjuas",
+                    "text": "intervjuas",
+                    "movie": "intervjuas"
+                }
+            ]
+        },
+        {
+            "title": "Kontor",
+            "subtitle": "Kontor",
+            "items": [
+                {
+                    "sound": "ringer",
+                    "text": "ringer",
+                    "movie": "ringer"
+                },
+                {
+                    "sound": "svarar",
+                    "text": "svarar",
+                    "movie": "svarar"
+                },
+                {
+                    "sound": "lagger_pa",
+                    "text": "lägger på",
+                    "movie": "lagger_pa"
+                },
+                {
+                    "sound": "slar_numret",
+                    "text": "slår numret",
+                    "movie": "slar_numret"
+                },
+                {
+                    "sound": "tutar_upptaget",
+                    "text": "tutar upptaget",
+                    "movie": "tutar_upptaget"
+                },
+                {
+                    "sound": "faxar",
+                    "text": "faxar",
+                    "movie": "faxar"
+                },
+                {
+                    "sound": "kopierar",
+                    "text": "kopierar",
+                    "movie": "kopierar"
+                },
+                {
+                    "sound": "haftar",
+                    "text": "häftar",
+                    "movie": "haftar"
+                },
+                {
+                    "sound": "slar_hal",
+                    "text": "slår hål",
+                    "movie": "slar_hal"
+                },
+                {
+                    "sound": "satter_in_i_parm",
+                    "text": "sätter in i pärm",
+                    "movie": "satter_in_i_parm"
+                },
+                {
+                    "sound": "tecknar_ett_abonnemang",
+                    "text": "tecknar ett abonnemang",
+                    "movie": "tecknar_ett_abonnemang"
+                },
+                {
+                    "sound": "koper_ett_kontantkort",
+                    "text": "köper ett kontantkort",
+                    "movie": "koper_ett_kontantkort"
+                },
+                {
+                    "sound": "skickar_ett_SMS",
+                    "text": "skickar ett SMS",
+                    "movie": "skickar_ett_SMS"
+                },
+                {
+                    "sound": "klickar_pa_musen",
+                    "text": "klickar på musen",
+                    "movie": "klickar_pa_musen"
+                },
+                {
+                    "sound": "skapar_en_mapp",
+                    "text": "skapar en mapp",
+                    "movie": "skapar_en_mapp"
+                },
+                {
+                    "sound": "skriver_ett_dokument",
+                    "text": "skriver ett dokument",
+                    "movie": "skriver_ett_dokument"
+                },
+                {
+                    "sound": "sparar_en_fil",
+                    "text": "sparar en fil",
+                    "movie": "sparar_en_fil"
+                },
+                {
+                    "sound": "stoppar_in_en_diskett",
+                    "text": "stoppar in en diskett",
+                    "movie": "stoppar_in_en_diskett"
+                },
+                {
+                    "sound": "tar_ut_en_diskett",
+                    "text": "tar ut en diskett",
+                    "movie": "tar_ut_en_diskett"
+                },
+                {
+                    "sound": "branner_en_CD",
+                    "text": "bränner en CD",
+                    "movie": "branner_en_CD"
+                },
+                {
+                    "sound": "skriver_ut",
+                    "text": "skriver ut",
+                    "movie": "skriver_ut"
+                },
+                {
+                    "sound": "scannar",
+                    "text": "scannar",
+                    "movie": "scannar"
+                },
+                {
+                    "sound": "tar_emot_epost",
+                    "text": "tar emot epost",
+                    "movie": "tar_emot_epost"
+                },
+                {
+                    "sound": "oppnar_epost",
+                    "text": "öppnar epost",
+                    "movie": "oppnar_epost"
+                },
+                {
+                    "sound": "surfar",
+                    "text": "surfar",
+                    "movie": "surfar"
+                },
+                {
+                    "sound": "chattar",
+                    "text": "chattar",
+                    "movie": "chattar"
+                },
+                {
+                    "sound": "spelar_datorspel",
+                    "text": "spelar datorspel",
+                    "movie": "spelar_datorspel"
+                }
+            ]
+        },
+        {
+            "title": "Post/Bank/Pass",
+            "items": [
+                {
+                    "sound": "lagger_i_kuvert",
+                    "text": "lägger i kuvert",
+                    "movie": "lagger_i_kuvert"
+                },
+                {
+                    "sound": "koper_frimarken",
+                    "text": "köper frimärken",
+                    "movie": "koper_frimarken"
+                },
+                {
+                    "sound": "frankerar",
+                    "text": "frankerar",
+                    "movie": "frankerar"
+                },
+                {
+                    "sound": "postar",
+                    "text": "postar",
+                    "movie": "postar"
+                },
+                {
+                    "sound": "skickar_paket",
+                    "text": "skickar paket",
+                    "movie": "skickar_paket"
+                },
+                {
+                    "sound": "hamtar_ut_paket",
+                    "text": "hämtar ut paket",
+                    "movie": "hamtar_ut_paket"
+                },
+                {
+                    "sound": "fyller_i_en_blankett",
+                    "text": "fyller i en blankett",
+                    "movie": "fyller_i_en_blankett"
+                },
+                {
+                    "sound": "undertecknar",
+                    "text": "undertecknar",
+                    "movie": "undertecknar"
+                },
+                {
+                    "sound": "satter_in_pengar",
+                    "text": "sätter in pengar",
+                    "movie": "satter_in_pengar"
+                },
+                {
+                    "sound": "legitimerar_sig",
+                    "text": "legitimerar sig",
+                    "movie": "legitimerar_sig"
+                },
+                {
+                    "sound": "tar_ut_pengar",
+                    "text": "tar ut pengar",
+                    "movie": "tar_ut_pengar"
+                },
+                {
+                    "sound": "vaxlar_pengar",
+                    "text": "växlar pengar",
+                    "movie": "vaxlar_pengar"
+                },
+                {
+                    "sound": "ansoker_om_pass",
+                    "text": "ansöker om pass",
+                    "movie": "ansoker_om_pass"
+                }
+            ]
+        },
+        {
+            "title": "Nöje och umgänge",
+            "items": [
+                {
+                    "sound": "bestaller_biljett",
+                    "text": "beställer biljett",
+                    "movie": "bestaller_biljett"
+                },
+                {
+                    "sound": "gar_pa_bio",
+                    "text": "går på bio",
+                    "movie": "gar_pa_bio"
+                },
+                {
+                    "sound": "stammer_mote",
+                    "text": "stämmer möte",
+                    "movie": "stammer_mote"
+                },
+                {
+                    "sound": "traffas",
+                    "text": "träffas",
+                    "movie": "traffas"
+                },
+                {
+                    "sound": "tittar_pa_matsedeln",
+                    "text": "tittar på matsedeln",
+                    "movie": "tittar_pa_matsedeln"
+                },
+                {
+                    "sound": "bestaller",
+                    "text": "beställer",
+                    "movie": "bestaller"
+                },
+                {
+                    "sound": "ber_att_fa_notan",
+                    "text": "ber att få notan",
+                    "movie": "ber_att_fa_notan"
+                },
+                {
+                    "sound": "betalar",
+                    "text": "betalar",
+                    "movie": "betalar"
+                },
+                {
+                    "sound": "skalar_vin",
+                    "text": "skålar",
+                    "movie": "skalar_vin"
+                },
+                {
+                    "sound": "samtalar",
+                    "text": "samtalar",
+                    "movie": "samtalar"
+                },
+                {
+                    "sound": "bjuder_upp",
+                    "text": "bjuder upp",
+                    "movie": "bjuder_upp"
+                },
+                {
+                    "sound": "dansar",
+                    "text": "dansar",
+                    "movie": "dansar"
+                },
+                {
+                    "sound": "roker",
+                    "text": "röker",
+                    "movie": "roker"
+                },
+                {
+                    "sound": "askar",
+                    "text": "askar",
+                    "movie": "askar"
+                },
+                {
+                    "sound": "fimpar",
+                    "text": "fimpar",
+                    "movie": "fimpar"
+                },
+                {
+                    "sound": "tommer",
+                    "text": "tömmer",
+                    "movie": "tommer"
+                },
+                {
+                    "sound": "gar_pa_toaletten",
+                    "text": "går på toaletten",
+                    "movie": "gar_pa_toaletten"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,85 @@
+body {
+    font-family: sans-serif;
+}
+
+.animationstemaruta {
+    max-width: 70rem;
+}
+
+.animationstemaruta h1 {
+    background-color: black;
+    color: #ffffff;
+    margin: 0;
+    font-size: 1.5rem;
+    padding: 0.5em 0.7em;
+    font-weight: normal;
+}
+
+.animationstemaruta table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.animationstemaruta .nav {
+    border: 1px solid black;
+    color: #000000;
+    font-size: 1.3rem;
+    margin: 0.5em 0.4em;
+    padding: 0.7em;
+}
+
+.animationstemaruta .subtitle {
+    font-size: 1.2rem;
+    color: #202020;
+}
+
+.animationstemaruta .menuitem {
+    cursor: pointer;
+}
+
+.animationstemaruta .itemselected {
+    background-color: #bda55e;
+}
+
+.submenu {
+    display: flex;
+    flex-flow: row;
+}
+
+.wordlist {
+    margin: 1em 0;
+    background-color: #e7dec4;
+}
+
+.worditem {
+    padding: 0.4em;
+    font-size: 1.5rem;
+}
+
+.submenucontent {
+    width: 100%;
+}
+
+.videowrapper {
+    padding: 5vh;
+    position: sticky;
+    top: 0;
+}
+
+.submenucontent video {
+    max-height: 85vh;
+    height: 85vh;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.lexingwt-PlainContent {
+    padding: 0 !important;	
+}
+
+.playphrase {
+    width: 25px; 
+    height: 25px; 
+    vertical-align: middle; 
+    padding-right: 25px;
+}

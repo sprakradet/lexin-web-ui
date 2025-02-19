@@ -1,0 +1,251 @@
+/**************************************************************
+ * LAYOUT FOR TEMASIDOR (DIALOGTEMAN, ANIMATIONSTEMAN, O.S.V. *
+ **************************************************************/
+
+/**** OMSLUTANDE FÄLT ****/
+
+body {
+	margin: 0;
+	background: none;
+	font: normal 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+#dialog_videowrapper {
+    width: 400px;
+    height: 224px;
+    vertical-align: middle;
+}
+
+#dialog_textwrapper {
+    text-align: left;
+    padding: 1em 1em;
+}
+
+.dialog_textrow {
+    padding: 0.2em 0;
+}
+
+#tm_bodyWrapper {
+	width: 652px;
+	margin: 30px auto 20px auto;
+}
+
+#tm_superContainer {
+	width: 652px;
+}
+
+.responsible{
+	font-size: 10px;
+}
+
+A:link, A:visited {
+	text-decoration: none;
+}
+
+A:active, A:hover {
+	text-decoration: underline;
+}
+
+/**** HUVUD ****/
+
+#tm_header {
+	width: 652px;
+}
+
+#tm_threadBar {
+	background: #fff url("../img/tm_threadBar_bg.gif") left top no-repeat;
+	color: #fff;
+}
+
+#tm_threadBar h2.tm_thread {
+    padding: 8px 5px 7px 13px;
+    margin: 0;
+    font-size: 11px;
+	font-weight: bold;
+}
+
+#tm_titleBar {
+	background: #537c90;
+	height: 50px;
+	color: #fff;
+}
+
+#tm_titleBar .tm_titleBarColumn {
+	position: relative;
+	float: left;
+}
+
+#tm_title {
+	width: 451px;
+	margin: 0px;
+}
+
+#tm_title h2.tm_titleText {
+    padding: 15px 5px 7px 16px;
+    margin: 0;
+    font-size: 15px;
+}
+
+#tm_buttons 
+{
+	width: 100px;
+	margin: 0px;
+    padding: 10px 0px 0px 80px;
+}
+
+label {
+    position: absolute;
+    left: -9000px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#tm_buttonsForm {
+    display: inline;
+    margin: 0px 5px 0px 0px;
+}
+
+#tm_buttonsForm input {
+	border: 1px solid #000066;
+	background: #FFFFFF;
+	color: #0066CC;
+	font-weight: bold;
+	/*font-family: Arial, Verdana, Helvetica, sans-serif;*/
+}
+
+#tm_buttonsForm .tm_acc_button {
+    padding: 0;
+    margin: 0;
+    color: #000;
+    border-left: 1px solid #676566;
+	border-top: 1px solid #676566;
+	border-bottom: none;
+	border-right: none;
+	background: #a9bec8;
+}
+
+.tm_buttonsTD {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+/**** INNEHÅLLSFÄLT ****/
+
+#tm_container {
+	width: 652px;
+	height: 600px;
+	background: #444444 url("../img/tm_container_bg.gif") 0 100% no-repeat;
+}
+
+#tm_container .tm_column {
+	position: relative;
+	float: left;
+}
+
+#tm_container #tm_left {
+	width: 191px;
+	margin: 0;
+}
+
+#tm_container #tm_centerAndRight {
+	width: 461px;
+	margin: 0;
+	padding-top: 20px;
+	text-align: center;
+}
+
+#tm_leftNavigation {
+	padding: 0 0 1em 0;
+	margin-bottom: 15px;
+	height: 100%;
+	min-height: 400px;
+	border-top:1px solid #c5ced3;
+}
+
+.tm_container #tm_left #tm_leftNavigation:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+}
+
+/**** MENY ****/
+
+.tm_arrowListMenu .tm_menuHeader { /* CSS class for menu headers in general (expanding or not!). */
+	font: bold 11px Verdana, Arial, Helvetica, sans-serif;
+	color: white;
+	background: #537c90 url("../img/tm_arrow_horizontal.gif") no-repeat center left;
+	margin-bottom: 1px; /* Bottom spacing between header and rest of content. */
+	padding: 4px 0 4px 16px; /* Header text is indented. */
+	cursor: hand;
+	cursor: pointer;
+}
+
+.tm_arrowListMenu .tm_openHeader { /* CSS class to apply to expandable header when it's expanded. */
+	background-image: url("../img/tm_arrow_vertical.gif");
+}
+
+.tm_arrowListMenu ul { /* CSS for UL of each sub menu. */
+	cursor: hand;
+	cursor: pointer;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 8px; /* Bottom spacing between each UL and rest of content. */
+}
+
+.tm_arrowListMenu ul li {
+	padding-bottom: 2px; /* Bottom spacing between menu items*/
+	color: white;
+	/* background: url("../img/tm_arrow_horizontal2.gif") no-repeat center left; */
+	display: block;
+	padding: 4px 0;
+	padding-left: 16px; /* Link text is indented. */
+	text-decoration: none;
+	font-weight: bold;
+	border-bottom: 1px solid #dadada;
+	font-size: 97%;
+}
+
+.tm_arrowListMenu ul li:hover { /* Hover state CSS. */
+	color: #537c90;
+	background-color: #F3F3F3;
+}
+
+/**** SPECIALFALL FÖR STARTSIDOR ****/
+
+#tm_containerPlain {
+	width: 652px;
+	height: 600px;
+	background: #444444 url("../img/tm_container_bg_plain.gif") 0 100% no-repeat;
+}
+
+.tm_hide div { /* For hiding content when lacking script support. */
+	display: none;
+}
+
+#tm_indexContent { /* Links, etc. */
+	padding: 30px 50px 30px 50px;
+}
+
+.tm_linkTable {
+	text-align: center;
+	margin: 20px 0px;
+}
+
+.tm_linkTable table tr td { /* Links, etc. */
+	text-align: left;
+	font: bold 12px Verdana, Arial, Helvetica, sans-serif;
+	background: #a9bec8 /*url("../img/tm_arrow_horizontal.gif") no-repeat center left*/;
+	padding: 10px 25px 10px 25px; /* Header text is indented. */
+}
+
+.tm_linkTable table tr td a {
+	color: white;
+	display: block;
+	width: 100%;
+	outline: none;
+}

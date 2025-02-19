@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sv">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="keywords" content="spr&aring;kv&aring;rd, spr&aring;kr&aring;det, dialogfilmer" />
+    <meta name="description" content="Dialogfilmer" />
+    <meta name="author" content="Spr&aring;kr&aring;det - Institutet för spr&aring;k och folkminnen" />
+    <title>Dialogfilmer / Samtal på fritiden</title>
+    <link rel="stylesheet" type="text/css" href="css/dt_styles.css" media="screen" />
+    
+    <!--  MENYRELATERADE SKRIPT -->
+	<script type="text/javascript" src="script/jquery-1.2.2.pack.js"></script>
+    <script type="text/javascript" src="script/ddaccordion.js">
+        /***********************************************
+         * Accordion Content script (c) Dynamic Drive DHTML code library (www.dynamicdrive.com).
+         * Visit http://www.dynamicDrive.com for hundreds of DHTML scripts.
+         * This notice must stay intact for legal use.
+         ***********************************************/
+    </script>
+    <script type="text/javascript">
+        ddaccordion.init({
+            headerclass: "tm_expMenuItem",      // CSS class name of expandable menu headers.
+            contentclass: "tm_catMenuItem",     // CSS class name of content menu items.
+            collapseprev: true,                 // Collapse previous content?
+            defaultexpanded: [0],               // Index of content open by default. [] denotes no content.
+            animatedefault: false,              // Animate contents open by default into view?
+            persiststate: true,                 // Persist state of opened contents within browser session?
+            toggleclass: ["", "tm_openHeader"], // Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"].
+            togglehtml: ["prefix", "", ""],     // Additional HTML added to the header when it's collapsed and expanded, respectively ["position", "html1", "html2"]. (see docs)
+            animatespeed: "normal"              // Speed of animation: "fast", "normal", or "slow".
+        })
+    </script>
+    
+    <!-- EGNA FUNKTIONELLA SKRIPT -->
+    <script type="text/javascript">
+        var flash;
+        var jsReady = false;
+        var prevItmId = null;
+        var prevItmOrigColor = null;
+        var prevItmOrigBGColor = null;
+
+        window.onload = function() { jsReady = true; }
+    
+        function isReady() { return jsReady; }
+
+        function thisMovie(movieName) {
+            if (navigator.appName.indexOf("Microsoft") != -1) {
+                return window[movieName];
+            }
+            else {
+                return document[movieName];
+            }
+        }
+
+        function tm_showContent(callerId, videoName) {
+            // Set title.
+            var caller = document.getElementById(callerId);
+            document.getElementById("tm_titleText").innerHTML = caller.innerHTML;
+            // Hack to set selected item.
+            if (prevItmId != null) {
+                // Restore style of previously selected item.
+                var prevItm = document.getElementById(prevItmId);
+                prevItm.style.color = prevItmOrigColor;
+                prevItm.style.backgroundColor = prevItmOrigBGColor;
+            }
+            prevItmId = callerId;
+            prevItmOrigColor = caller.style.color;
+            prevItmOrigBGColor = caller.style.backgroundColor;
+            //caller.style.background = "url(img/tm_circle.gif) no-repeat center left";
+            caller.style.color = "#537c90";
+            caller.style.backgroundColor = "#f3f3f3";
+            // Load movie.
+	    $("#dialog_videowrapper").attr("src", "videos/" + videoName + ".mp4").attr("controls", "controls");
+	    $.ajax({url: "videos/" + videoName + "-utf8.txt", datatype: "text", type:"GET",
+        	success: function(text, status) {
+		    $("#dialog_textwrapper").empty();
+		    $.each(text.split("\n"), function(i, row) {
+			let row_element = $("<div class='dialog_textrow'></div>");
+			row_element.text(row);
+			$("#dialog_textwrapper").append(row_element);
+		    });
+	        }
+	    });
+        }
+    </script>
+</head>
+<body>
+
+<div id="tm_bodyWrapper">
+<div id="tm_superContainer">
+
+    <!-- HEADER -->
+    <div id="tm_header">
+        <div id="tm_threadBar">
+            <h2 id="tm_threadText" class="tm_thread">Dialogfilmer / Samtal på fritiden</h2>
+        </div>
+        <div id="tm_titleBar">
+            <div id="tm_title" class="tm_titleBarColumn">
+                <h2 id="tm_titleText" class="tm_titleText">Samtal på fritiden</h2>
+            </div>
+            <div id="tm_buttons" class="tm_titleBarColumn">
+                <form id="tm_buttonsForm" action="./" method="get">
+                    <table>
+                        <tr>
+                            <td class="tm_buttonsTD" style="padding: 0px 4px">
+                                <label>Byt tema</label>
+                                <input accesskey="3" id="tm_homeBtn" type="submit" title="Byt tema" value="Byt tema" class="tm_acc_button" style="width:5.3em;" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTAINER -->
+    <div id="tm_container">
+
+        <!-- CONTAINER.LEFTCOLUMN -->
+        <div id="tm_left" class="tm_column">
+        
+            <div id="tm_leftNavigation" class="tm_arrowListMenu">
+                <h3 class="tm_menuHeader tm_expMenuItem">Sociala besök</h3>
+                <ul class="tm_catMenuItem">
+                    <li id="tm_video_1_01" onclick="tm_showContent(this.id, 'socialt_inbjudan')">Bjuda på middag</li>
+                    <li id="tm_video_1_02" onclick="tm_showContent(this.id, 'socialt_besok')">Välkommen</li>
+                    <li id="tm_video_1_03" onclick="tm_showContent(this.id, 'socialt_besok2')">Efter maten</li>
+                </ul>
+                <h3 class="tm_menuHeader tm_expMenuItem">Telefonsamtal</h3>
+                <ul class="tm_catMenuItem">
+                    <li id="tm_video_2_01" onclick="tm_showContent(this.id, 'socialt_tack')">Tacka för senast</li>
+                    <li id="tm_video_2_02" onclick="tm_showContent(this.id, 'socialt_stamma_mote')">Stämma möte</li>
+                </ul>
+                <h3 class="tm_menuHeader tm_expMenuItem">Spontana samtal</h3>
+                <ul class="tm_catMenuItem">
+                    <li id="tm_video_3_01" onclick="tm_showContent(this.id, 'halsning_cafe')">Samtal på kafé</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CONTAINER.CENTERANDRIGHTCOLUMN -->
+        <div id="tm_centerAndRight" class="tm_column">
+	  <video id="dialog_videowrapper"></video>
+	  <div id="dialog_textwrapper"></div>
+        </div> 
+    </div>
+
+</div>
+</div>
+
+</body>
+</html>

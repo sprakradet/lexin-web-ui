@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<!-- this file was created programmatically from the results of a Toolkit for CreateJS export -->
+<!-- the conversion program was developed by Øystein Reigem, CLU, Uni Research Computing, 2015 -->
+<html>
+
+  <head>
+    <title>31-2</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    
+    <!--
+    <script src="http://code.createjs.com/easeljs-0.6.0.min.js"></script>
+    <script src="http://code.createjs.com/tweenjs-0.4.0.min.js"></script>
+    <script src="http://code.createjs.com/movieclip-0.6.0.min.js"></script>
+    <script src="http://code.createjs.com/preloadjs-0.3.0.min.js"></script>
+    <script src="http://code.createjs.com/soundjs-0.5.2.min.js"></script>
+    -->
+    <!-- §§§wanted to change to newer version, but something fails
+    <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+    <script src="https://code.createjs.com/tweenjs-0.6.1.min.js"></script>
+    <!-*- <script src="http://code.createjs.com/movieclip-0.6.0.min.js"></script>   ?????????????? -*->
+    <!-*- §§§2015-11-03. why the above? why not this next line the new version. but i do use it below, in the non-minified version -*->
+    <script src="https://code.createjs.com/movieclip-0.8.1.min.js"></script>
+    <script src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
+    <script src="https://code.createjs.com/soundjs-0.6.1.min.js"></script>   <!-*- §§§error</head> -*->
+    -->
+    <!-- a non-minified version of the code
+    <script src="https://code.createjs.com/createjs-2015.05.21.combined.js"></script>   <!-*- = EaselJS 0.8.1, TweenJS 0.6.1, SoundJS 0.6.1, PreloadJS 0.6.1 -*->
+    <script src="https://code.createjs.com/movieclip-0.8.1.min.js"></script>
+    -->
+    <!-- 2018-04-09. newest version, minified -->
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    
+    <script type="text/javascript">
+      // access variables from the main html
+      var app = window.parent.window.app;
+      var subCategoryAccess = window.parent.window.subCategoryAccess;
+      var functions = window.parent.window.functions;
+      var onResize = window.parent.window.onResize;
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../../css/bildetema.css"/>
+  </head>
+
+  <body>
+
+    <canvas id="canvas" width="750" height="580" style="background-color:#ffffff">
+      <script type="text/javascript">
+
+//var sId = "s31_2";   // §§§or do it from app.etc
+// an array that knows about all the symbols (i.e, illustrations) in this subcategory page.
+// the symbols have names that all start with 'symbol_',
+// followed by the ids of all the sounds of the symbol, stringed together.
+// most symbols have one sound. example:
+//   'symbol_w999'
+// but some have several ones. examples:
+//   'symbol_w999w888'
+//   'symbol_w1720_aw300'
+// what is stored in this array is just the ids part:
+//   'w999'
+//   'w999w888'
+//   'w1720_aw300'
+// admittedly, the syntax of the multiple ids could have been nicer,
+// with a proper separator between the individual ids.
+// but they *are* parseable; each id starts with 'w'
+var symbol_Ids = [   // ###change name to symbolIds???
+  "w1775",
+  "w1776",
+  "w1777",
+  "w1778"
+
+];
+// give the page access to the symbol ids
+subCategoryAccess.symbol_Ids = symbol_Ids;
+// ids/###file names for audio.
+// used to load the sounds we need.
+// we need sounds for all words in the subcategory (the words the canvas).
+// then we need sounds for the names of the current language, category and subcategory.
+// the latter:
+var audio_whereIds = [
+  "language-" + app.currentLanguageCode,
+  "c" + app.currentCategory,
+  "s" + app.currentCategory + "_" + app.currentSubCategory
+];
+// the former:
+// calculate the word ids from the symbol ids; include the id of the category name
+// each entry in this table contains exactly one id, e.g, 'w999'.
+// calculate from the symbol ids; include the id of the category name
+var audio_wIds = functions.wIdSplit(symbol_Ids);
+var audio_allIds = audio_whereIds.concat(audio_wIds);
+
+var audioManifest = [];
+(function (lib, img, cjs) {
+
+var p; // shortcut to reference prototypes
+
+// stage content:
+(lib.subCategory = function() {
+    this.initialize();
+
+    // content
+    this.text_w1775 = new cjs.Text("", "bold 14px Tahoma");
+    this.text_w1775.text = app.allText["w1775"];
+    this.text_w1775.lineHeight = 16;
+    this.text_w1775.lineWidth = 175;
+    this.text_w1775.setTransform(46.4,105.9);
+
+    this.text_w1776 = new cjs.Text("", "13px Tahoma");
+    this.text_w1776.text = app.allText["w1776"];
+    this.text_w1776.lineHeight = 15;
+    this.text_w1776.lineWidth = 175;
+    this.text_w1776.setTransform(571.1,178.9);
+
+    this.text_w1777 = new cjs.Text("", "13px Tahoma");
+    this.text_w1777.text = app.allText["w1777"];
+    this.text_w1777.lineHeight = 15;
+    this.text_w1777.lineWidth = 175;
+    this.text_w1777.setTransform(571.1,222);
+
+    this.text_w1778 = new cjs.Text("", "13px Tahoma");
+    this.text_w1778.text = app.allText["w1778"];
+    this.text_w1778.lineHeight = 15;
+    this.text_w1778.lineWidth = 175;
+    this.text_w1778.setTransform(571.1,265);
+
+    this.symbol_w1778 = new lib.Symbol55(null,0,false);
+    this.symbol_w1778.setTransform(657.9,274.5);
+    new cjs.ButtonHelper(this.symbol_w1778, 0, 1, 2, false, new lib.Symbol55(), 3);
+
+    this.symbol_w1777 = new lib.Symbol54(null,0,false);
+    this.symbol_w1777.setTransform(658.2,231);
+    new cjs.ButtonHelper(this.symbol_w1777, 0, 1, 2, false, new lib.Symbol54(), 3);
+
+    this.symbol_w1776 = new lib.Symbol53(null,0,false);
+    this.symbol_w1776.setTransform(634.1,187.5);
+    new cjs.ButtonHelper(this.symbol_w1776, 0, 1, 2, false, new lib.Symbol53(), 3);
+
+    this.symbol_w1775 = new lib.Symbol52(null,0,false);
+    this.symbol_w1775.setTransform(101.3,118.6);
+    new cjs.ButtonHelper(this.symbol_w1775, 0, 1, 2, false, new lib.Symbol52(), 3);
+
+    this.shape = new cjs.Shape();
+    this.shape.graphics.f().s("#000000").ss(0.3,1,1).p("AGll0IAAFyIINgOICEDxIAAAIIAACMMghrAAAIAAiMICUjrIH9AAIAAlyAiEl0IAACrIE1AAIAAirAw1DpMAhrAAAAGlgCItJAA");
+    this.shape.setTransform(298.9,516.8);
+
+    this.shape_1 = new cjs.Shape();
+    this.shape_1.graphics.f().s("#000000").ss(0.3,1,1).p("AmkAAIEgAAACxAAID0AA");
+    this.shape_1.setTransform(298.9,479.4);
+
+    this.shape_2 = new cjs.Shape();
+    this.shape_2.graphics.f("#A4A4A4").s().p("Aw1F1IAAiMICUjrIH9AAIAAlyIEgAAIAACrIE1AAIAAirID0AAIAAFyIINgOICEDxIAAAIMghrAAAMAhrAAAIAACMgAGlgCItJAAgAQ2Dpg");
+    this.shape_2.setTransform(298.9,516.8);
+
+    this.shape_3 = new cjs.Shape();
+    this.shape_3.graphics.f().s("#000000").ss(0.3,1,1).p("EAlPAXgMhKKAAAMAAAgupMBKKAAAgEgpLAaXMAAAg0tMBSWAAAMAAAA0tg");
+    this.shape_3.setTransform(299.9,311.4);
+
+    this.shape_4 = new cjs.Shape();
+    this.shape_4.graphics.f("#A4A4A4").s().p("EgpKAaXMAAAg0tMBSVAAAMAAAA0tgEgk6AXgMBKIAAAMAAAgupMhKIAAAg");
+    this.shape_4.setTransform(299.9,311.4);
+
+    this.instance = new lib.Bitmap304();
+    this.instance.setTransform(520.7,259);
+
+    this.instance_1 = new lib.Bitmap301();
+    this.instance_1.setTransform(65.3,164,0.745,0.637);
+
+    this.shape_5 = new cjs.Shape();
+    this.shape_5.graphics.f("#FF0000").s().p("Ah/BlQkBgog+iLIgCgFQgFgMgDgMIAJAAIEWAAIAAAxIDuAAIA1gZQg4A/EVAtQB7gIgJAHQgSAOn6BGQgggDgcgEgAA7AbIEcgCIkcgFg");
+    this.shape_5.setTransform(1627.2,406);
+
+    this.shape_6 = new cjs.Shape();
+    this.shape_6.graphics.f("#FF0000").s().p("AgbBsIEZAFIkZACgAAiACIgzAaIjwAAIAAgwIkXAAQADghAOgoIAHgVQgCAUF7ASQF4ASArgFQArgGB8CMQgMABBRAfIgHABIAZAGIiqACQAJgHh7AIQkTgvA3hAgAGqBZIAEAVIAAAAQAsgCAngEQhBgQgQAAQgGAAAAABgAoYAIIgBgGIADAGg");
+    this.shape_6.setTransform(1636.1,397.2);
+
+    this.shape_7 = new cjs.Shape();
+    this.shape_7.graphics.f("#FF0000").s().p("AFpEhIgFABIgMAAIARgBgADsEiIgEgVQgBgHBYAWQgnAEgsACgAEBD7Qh8iOgrAGQgrAFl4gSQl7gSACgUIgHAVIgKgRIARgrQAvgcArhMQAqhMBchGQA7gsA9gIQBfgNBgABQB0ACByALIC8APICoAVQBaAHBIAiQAvAXAdAQQAcAQAWATQBpFPmmBCQgdAEgfADQhRgfAMgBg");
+    this.shape_7.setTransform(1655.5,379.2);
+
+    this.shape_8 = new cjs.Shape();
+    this.shape_8.graphics.f("#FF0000").s().p("Ah/BlQkBgog+iLIgCgFQgFgMgDgMIAJAAIEWAAIAAAxIDuAAIA1gZQg4A/EVAtQB7gIgJAHQgSAOn6BGQgggDgcgEgAA7AbIEcgCIkcgFg");
+    this.shape_8.setTransform(1627.2,406);
+
+    this.shape_9 = new cjs.Shape();
+    this.shape_9.graphics.f("#FF0000").s().p("AgbBsIEZAFIkZACgAAiACIgzAaIjwAAIAAgwIkXAAQADghAOgoIAHgVQgCAUF7ASQF4ASArgFQArgGB8CMQgMABBRAfIgHABIAZAGIiqACQAJgHh7AIQkTgvA3hAgAGqBZIAEAVIAAAAQAsgCAngEQhBgQgQAAQgGAAAAABgAoYAIIgBgGIADAGg");
+    this.shape_9.setTransform(1636.1,397.2);
+
+    this.shape_10 = new cjs.Shape();
+    this.shape_10.graphics.f("#FF0000").s().p("AFpEhIgFABIgMAAIARgBgADsEiIgEgVQgBgHBYAWQgnAEgsACgAEBD7Qh8iOgrAGQgrAFl4gSQl7gSACgUIgHAVIgKgRIARgrQAvgcArhMQAqhMBchGQA7gsA9gIQBfgNBgABQB0ACByALIC8APICoAVQBaAHBIAiQAvAXAdAQQAcAQAWATQBpFPmmBCQgdAEgfADQhRgfAMgBg");
+    this.shape_10.setTransform(1655.5,379.2);
+
+    this.shape_11 = new cjs.Shape();
+    this.shape_11.graphics.f("#FF0000").s().p("AicgBID4AAIgOAAIBPABQidABicABg");
+    this.shape_11.setTransform(-722.8,902.7);
+
+    this.addChild(this.shape_11,this.shape_10,this.shape_9,this.shape_8,this.shape_7,this.shape_6,this.shape_5,this.instance_1,this.instance,this.shape_4,this.shape_3,this.shape_2,this.shape_1,this.shape,this.symbol_w1775,this.symbol_w1776,this.symbol_w1777,this.symbol_w1778,this.text_w1778,this.text_w1777,this.text_w1776,this.text_w1775);
+
+    // add handlers for audio
+    local_addAudioHandlers(this, symbol_Ids);
+
+    // add onclick handlers for skeleton parts in 3-4
+    if (app.currentCategory == "3" && app.currentSubCategory == "4") {
+      local_add_3_4_Handlers(this);
+    }
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(-738.5,98.5,2466.6,804.4);
+
+
+// symbols:
+(lib.Bitmap1 = function() {
+    this.initialize(img.Bitmap1);
+}).prototype = p = new cjs.Bitmap();
+p.nominalBounds = new cjs.Rectangle(0,0,21,136);
+
+
+(lib.Bitmap301 = function() {
+    this.initialize(img.Bitmap301);
+}).prototype = p = new cjs.Bitmap();
+p.nominalBounds = new cjs.Rectangle(0,0,629,491);
+
+
+(lib.Bitmap304 = function() {
+    this.initialize(img.Bitmap304);
+}).prototype = p = new cjs.Bitmap();
+p.nominalBounds = new cjs.Rectangle(0,0,16,123);
+
+
+(lib.Symbol55 = function(mode,startPosition,loop) {
+    this.initialize(mode,startPosition,loop,{});
+
+    // Layer 1
+    this.shape = new cjs.Shape();
+    this.shape.graphics.f().s("#FF3300").ss(2,1,1).p("ABV0wMAAAAphIipAAMAAAgphg");
+    this.shape.setTransform(-131,44.9);
+
+    this.shape_1 = new cjs.Shape();
+    this.shape_1.graphics.f("#FF3300").s().p("AqsCbIAAk0IVYAAIAAE0g");
+    this.shape_1.setTransform(-1,2.5);
+
+    this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.shape}]},1).to({state:[]},1).to({state:[{t:this.shape_1}]},1).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,0,0);
+
+
+(lib.Symbol54 = function(mode,startPosition,loop) {
+    this.initialize(mode,startPosition,loop,{});
+
+    // Layer 1
+    this.shape = new cjs.Shape();
+    this.shape.graphics.f().s("#FF3300").ss(2,1,1).p("A53hbMAzvAAAIAAC3MgzvAAAg");
+    this.shape.setTransform(-334.1,-56.1);
+
+    this.text = new cjs.Text("en webbadress", "14px Verdana");
+    this.text.textAlign = "center";
+    this.text.lineHeight = 16;
+    this.text.setTransform(-1.9,-10.4);
+
+    this.shape_1 = new cjs.Shape();
+    this.shape_1.graphics.f().s("#000000").ss(3,1,1).p("A4cgxMAw5AAAIAABjMgw5AAAg");
+    this.shape_1.setTransform(-340.7,-55.9);
+
+    this.shape_2 = new cjs.Shape();
+    this.shape_2.graphics.f().s("#FF3300").ss(2,1,1).p("ALGCbI2LAAIAAk1IWLAAg");
+    this.shape_2.setTransform(1.1,2);
+
+    this.shape_3 = new cjs.Shape();
+    this.shape_3.graphics.f("#F68162").s().p("AWSGIIAAk2IWMAAIAAE2gEgsdgEjIAAhkMAw4AAAIAABkg");
+    this.shape_3.setTransform(-212.5,-21.7);
+
+    this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.shape}]},1).to({state:[]},1).to({state:[{t:this.shape_3},{t:this.shape_2},{t:this.shape_1},{t:this.text}]},1).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,0,0);
+
+
+(lib.Symbol53 = function(mode,startPosition,loop) {
+    this.initialize(mode,startPosition,loop,{});
+
+    // Layer 1
+    this.shape = new cjs.Shape();
+    this.shape.graphics.f().s("#FF3300").ss(2,1,1).p("AUiDxMgpDAAAIAAnhMApDAAAg");
+    this.shape.setTransform(-261.6,25.9);
+
+    this.text = new cjs.Text("en meny", "14px Verdana");
+    this.text.textAlign = "center";
+    this.text.lineHeight = 16;
+    this.text.setTransform(-1.9,-10.4);
+
+    this.shape_1 = new cjs.Shape();
+    this.shape_1.graphics.f().s("#000000").ss(3,1,1).p("ARWDXMgirAAAIAAmtMAirAAAg");
+    this.shape_1.setTransform(-247,22);
+
+    this.shape_2 = new cjs.Shape();
+    this.shape_2.graphics.f().s("#FF3300").ss(2,1,1).p("AKZi9IAAF7I0xAAIAAl7g");
+    this.shape_2.setTransform(20.8,-1.9);
+
+    this.shape_3 = new cjs.Shape();
+    this.shape_3.graphics.f("#F68162").s().p("EgixAFCIAAmsMAisAAAIAAGsgAOAA5IAAl6IUyAAIAAF6g");
+    this.shape_3.setTransform(-135.3,11.3);
+
+    this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.shape}]},1).to({state:[]},1).to({state:[{t:this.shape_3},{t:this.shape_2},{t:this.shape_1},{t:this.text}]},1).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,0,0);
+
+
+(lib.Symbol52 = function(mode,startPosition,loop) {
+    this.initialize(mode,startPosition,loop,{});
+
+    // Layer 1
+    this.shape = new cjs.Shape();
+    this.shape.graphics.f().s("#FF3300").ss(5,1,1).p("EAkyAXIMhJjAAAMAAAguPMBJjAAAg");
+    this.shape.setTransform(198.6,194);
+
+    this.text = new cjs.Text("ett gränssnitt", "bold 14px Verdana");
+    this.text.textAlign = "center";
+    this.text.lineHeight = 16;
+    this.text.setTransform(-1.9,-10.4);
+
+    this.shape_1 = new cjs.Shape();
+    this.shape_1.graphics.f().s("#000000").ss(0.3,1,1).p("AroizIXRAAIAAFnI3RAAg");
+    this.shape_1.setTransform(15.6,-2);
+
+    this.shape_2 = new cjs.Shape();
+    this.shape_2.graphics.f("#F68162").s().p("ArnCzIAAlmIXPAAIAAFmg");
+    this.shape_2.setTransform(15.6,-2);
+
+    this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.shape}]},1).to({state:[]},1).to({state:[{t:this.shape_2},{t:this.shape_1},{t:this.text}]},1).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,0,0);
+
+})(lib = lib||{}, images = images||{}, createjs = createjs||{});
+var lib, images, createjs;
+var canvas, exportRoot;   // stage,
+
+canvas = document.getElementById("canvas");
+images = images||{};
+
+// §§§otherwise the variable audioPath is not set?? dodgy?
+if (createjs.Sound.initializeDefaultPlugins()) {
+  var audioPath = app.root + "language" + "/" + app.currentLanguageCode + "/" + "audio/";
+}
+
+var currentSubCategoryDirectoryPath = app.currentSubCategoryPath.substring(0, app.currentSubCategoryPath.lastIndexOf("/")) + "/";
+var basePath = "../../../" + currentSubCategoryDirectoryPath;
+
+var manifest = [
+  // oystein
+    {src:basePath+"images/Bitmap1.png", id:"Bitmap1"},
+    {src:basePath+"images/Bitmap301.png", id:"Bitmap301"},
+    {src:basePath+"images/Bitmap304.png", id:"Bitmap304"}
+
+];
+// seems there's a problem if the manifest is empty. here's a dummy, non-empty one
+var dummyImagePath = "../../../category-html5/dummy/dummy.jpg";
+var dummyManifest = [
+  {src:dummyImagePath, id:"_dummy"}
+];
+
+var loader = new createjs.LoadQueue(false);
+loader.addEventListener("fileload", handleFileLoad);
+loader.addEventListener("complete", handleComplete);
+loader.addEventListener("error", function() { console.log("loader error"); });
+if (manifest.length > 0) {
+  loader.loadManifest(manifest);
+} else {
+  // seems manifest can't be empty. use a dummy one
+  loader.loadManifest(dummyManifest);
+}
+
+// (this function runs once per file)
+function handleFileLoad(evt) {
+    if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+// for audio. §§§not necessary?
+// oystein comment: this one also runs once per file? on IE? but not Chrome?
+// seems to be once per file in chrome, once for each mp3 and once for each ogg.
+// §§§this has to do with the error where only the first sound of the manifest will play. chrome has that error. not ie! should run once for each sound.
+// §§§having an alert() here messes up things in chrome, so it only runs for the first sound
+var audioLoadCounter = 0;
+var whereIds = {};   // as object
+function handleAudioLoad(event) {
+  //alert(event.type);
+  audioLoadCounter += 1;
+  //console.log("function handleAudioLoad(). count = " + audioLoadCounter);   // ¤¤¤
+  //console.log(audioManifest);
+  //console.log("preloaded:", event.type, event.id, event.src);
+  // collect the non-w ids
+  var id = event.id.slice(6,999);   // strip "audio_"
+  var type = id.slice(0,1);   // "l", "c", "s" or "w"
+  if (type == "l" || type == "c" || type == "s") {
+    whereIds[type] = id;
+  }
+  /* §§§fun. play all words at once
+  if (type == "w") {
+    local_playSounds(id, "init");
+  }
+  */
+  if (audioLoadCounter == audioManifest.length) {
+    playWhereAudio(whereIds);
+  }
+}
+
+// play language, category and/or subcategory names
+function playWhereAudio(whereIds) {
+
+  var playIds = "";   // as string
+
+  if ("l" in whereIds) {
+    // "previous" as in the previous request
+    if (app.previousLanguageCode != app.currentLanguageCode) {
+      // §§§we should have had delimiters between all single ids, but we have managed without, but we really need it for the language ids. not implemented yet
+      // var delimiter = "#";
+      playIds = playIds + whereIds["l"];   // + delimiter;
+    }
+  }
+
+  if (app.currentCategory == "1") {
+    if ("c" in whereIds) {
+      var playIds = playIds + "c1";
+    }
+  } else {
+    // "previous" as in the previous request
+    if ("c" in whereIds) {
+      if (app.previousCategory != app.currentCategory) {
+        playIds = playIds + whereIds["c"];
+      }
+    }
+    if ("s" in whereIds) {
+      var sId = "s" + app.currentCategory + "_" + app.currentSubCategory;
+      //var sId = "s" + app.currentCategory + "_" + subCategoryNumber;
+      playIds = playIds + whereIds["s"];
+    }
+  }
+
+  local_playSounds(playIds, "init");
+
+}
+
+function handleComplete() {
+
+  exportRoot = new lib.subCategory();
+
+  window.parent.window.stage = new createjs.Stage(canvas);
+  window.parent.window.stage.addChild(exportRoot);
+  window.parent.window.stage.update();
+  window.parent.window.stage.enableMouseOver();   // §§§tried with argument 10, but didn't make any difference on iPad
+
+  // §§§on ipad the 'up' (final) part of the animation doesn't run, so the objects stay in their 'down' state until something else is clicked
+  // i tried this to see if it could help. but with this there is no animation at all
+  // §§§Note: It is important to disable Touch on a stage that you are no longer using: createjs.Touch.disable(stage);
+  // §§§relevant?? solution??:
+  // https://github.com/CreateJS/EaselJS/issues/586
+  // createjs.Touch.enable(stage, false, true); does not work in 0.8.0 #586
+  //createjs.Touch.enable(window.parent.window.stage);
+
+  createjs.Ticker.setFPS(12);
+  createjs.Ticker.addEventListener("tick", window.parent.window.stage);
+
+  // for audio.
+  // (here the entries for the words must have one id each.
+  // when symbols have more than one sound, each sound must have its own entry)
+  for (i in audio_allIds) {
+    id = audio_allIds[i];
+    // oystein
+    // skip non-existing files. §§§hoped we could do this a better way, e.g with PreloadJS
+    //if (functions.urlExists(audioPath + id + ".mp3")) {
+    if (functions.urlExists(audioPath + id + ".ogg")) {
+      //audioManifest.push( {src : id + ".mp3", id : "audio_" + id} );
+      audioManifest.push( {src : id + ".ogg", id : "audio_" + id} );
+    }
+  }
+  /*
+  */
+
+  // for audio contd
+  createjs.Sound.alternateExtensions = ["mp3"];
+  //createjs.Sound.alternateExtensions = ["ogg"];
+  createjs.Sound.addEventListener("fileload", handleAudioLoad);
+  //createjs.Sound.registerManifest(audioManifest, audioPath);
+  createjs.Sound.registerSounds( { "path" : audioPath, "manifest" : audioManifest } );
+
+  // this is the right place to trigger the resizing code for the initial view
+  onResize();
+
+}
+
+// add popup for each person
+local_addPopups = function(obj, symbol_Ids) {
+
+  // each family page popup contains one or more texts.
+  // each text tells about a relation to some other person.
+  // each text may have a coloured background, or a coloured bullet in front of it.
+  // what kind of coloured thing, and which colour, depends on who that other person is.
+  // it could be one of the three central people of the page (Jan, Henrik, Eva),
+  // in which case a coloured *background* is used,
+  // with a fourth colour (or transparent?) for other people.
+  // or it could be one of three other people or couples (Astrid/Lars, Johanna/Evert, Georg),
+  // in which case a coloured *bullet* is used.
+  // the same bullets are also found in the page itself, beside these peoples' names.
+  // note. the w01070 popup reuses the text values of the w01060 popup
+  // §§§that should have been changed in the homonym cleanup process!
+  // §§§note. w01140 should perhaps have an additional "other" text = w01134 = w01124
+  var popupTextsAndColors = {
+    "w01010w01011w01012" : {
+      "w01011" : ["background", "Jan"],
+      "w01012" : ["background", "Henrik"]
+    },
+    "w01020w01021w01022" : {
+      "w01021" : ["background", "Jan"],
+      "w01022" : ["background", "Henrik"]
+    },
+    "w01030w01031w01032" : {
+      "w01031" : ["background", "Jan"],
+      "w01032" : ["background", "Eva"]
+    },
+    "w01040w01041w01042" : {
+      "w01041" : ["background", "Jan"],
+      "w01042" : ["background", "Eva"]
+    },
+    "w01050w01051w01052" : {
+      "w01051" : ["background", "Jan"],
+      "w01052" : ["background", "Henrik"]
+    },
+    "w01050w01051w01052_1" : {
+      "w01051" : ["background", "Jan"],
+      "w01052" : ["background", "Henrik"]
+    },
+    "w01060w01061w01062" : {
+      "w01061" : ["background", "Jan"],
+      "w01062" : ["background", "Henrik"]
+    },
+    "w01070w01081w01082" : {
+      "w01061" : ["background", "Jan"],
+      "w01062" : ["background", "Henrik"]
+    },
+    "w01080w01081w01082w01083w01084" : {
+      "w01081" : ["background", "Jan"],
+      "w01082" : ["background", "Henrik"],
+      "w01083" : ["background", "Eva"],
+      "w01084" : ["bullet", "Astrid_Lars"]
+    },
+    "w01090w01091" : {
+      "w01091" : ["background", "Jan"]
+    },
+    "w01100w01101w01102" : {
+      "w01101" : ["background", "Jan"],
+      "w01102" : ["background", "Henrik"]
+    },
+    "w01110w01111w01112w01113" : {
+      "w01111" : ["background", "Jan"],
+      "w01112" : ["background", "Eva"],
+      "w01113" : ["bullet", "Astrid_Lars"]
+    },
+    "w01120w01121w01122w01123w01124" : {
+      "w01121" : ["background", "Jan"],
+      "w01122" : ["background", "Henrik"],
+      "w01123" : ["background", "Eva"],
+      "w01124" : ["bullet", "Johanna_Evert"]
+    },
+    "w01130w01131w01132w01133w01134" : {
+      "w01131" : ["background", "Jan"],
+      "w01132" : ["background", "Henrik"],
+      "w01133" : ["background", "Eva"],
+      "w01134" : ["bullet", "Johanna_Evert"]
+    },
+    "w01140w01141w01142w01143w01144" : {
+      "w01141" : ["background", "Jan"],
+      "w01142" : ["background", "Henrik"],
+      "w01143" : ["background", "Eva"],
+      "w01144" : ["bullet", "Georg"]
+    },
+    "w01150w01151w01152" : {
+      "w01151" : ["background", "Jan"],
+      "w01152" : ["background", "Eva"]
+    },
+    "w01150w01151w01152_1" : {
+      "w01151" : ["background", "Jan"],
+      "w01152" : ["background", "Eva"]
+    },
+    "w01150w01151w01152_2" : {
+      "w01151" : ["background", "Jan"],
+      "w01152" : ["background", "Eva"]
+    },
+    "w01160w01161w01162" : {
+      "w01161" : ["background", "Jan"],
+      "w01162" : ["background", "Eva"]
+    },
+    "w01170w01171w01172" : {
+      "w01171" : ["background", "Eva"],
+      "w01172" : ["background", "Jan"]
+    },
+    "w01180w01181w01182w01183" : {
+      "w01181" : ["background", "Jan"],
+      "w01182" : ["background", "Eva"],
+      "w01183" : ["background", "other"]
+    },
+    "w01190w01191" : {
+      "w01191" : ["background", "Jan"]
+    },
+    "w01200w01201" : {
+      "w01201" : ["background", "Jan"]
+    },
+    "w01200w01201_1" : {
+      "w01201" : ["background", "Jan"]
+    },
+    "w01210w01211w01212" : {
+      "w01211" : ["background", "Jan"],
+      "w01212" : ["background", "other"]
+    },
+    "w01220w01221w01222" : {
+      "w01221" : ["background", "Jan"],
+      "w01222" : ["background", "other"]
+    }
+  }
+
+  for (i in symbol_Ids) {
+    var symbol_Id = symbol_Ids[i];   // can contain more than one id, e.g, 'w999w888'
+    // 'try' shouldn't be necessary, but just in case
+    try {
+      var instruction = '$(obj.symbol_' + symbol_Id + ').hover(function(event) { populateAndShowPopup(event, "' + symbol_Id + '", popupTextsAndColors); }, function() { hideAndClearPopup(); });';
+      eval(instruction);
+    } catch(error) {
+      console.log("couldn't add handlers for popup " + symbol_Id);
+    }
+  }
+
+}
+
+function hideAndClearPopup() {
+  $($("#popup")[0]).hide().text("dummy");
+}
+
+function populateAndShowPopup(event, symbol_Id, popupTextsAndColors) {
+  $($("#popup")[0]).empty();
+  for (wId in popupTextsAndColors[symbol_Id]) {
+    if (popupTextsAndColors[symbol_Id][wId][0] == "bullet") {
+      var bulletColorsClass = popupTextsAndColors[symbol_Id][wId][1] + "_color";
+      var textColorsClass = "other_color";
+    } else { // == "background"
+      var bulletColorsClass = "no_color";
+      var textColorsClass = popupTextsAndColors[symbol_Id][wId][1] + "_color";
+    }
+    var text = app.getText(wId);
+    var $div = $("<div></div>")
+      .appendTo("#popup");
+    var $bulletSpan = $("<span></span>")
+      .addClass(bulletColorsClass)
+      .html("&bullet;&nbsp;")
+      .appendTo($div);
+    var $textSpan = $('<span class="popupText"></span>')
+      .addClass(textColorsClass)
+      .text(text)
+      .appendTo($div);
+  }
+  $("obj.symbol_" + symbol_Id)
+  scale = functions.getScale();   // must scale the stage coordinates to make them windows coordinates
+  var x = event.target.x * scale - 10 + $("#canvas").position().left;
+  var y = event.target.y * scale - 30;
+  height = $("#popup").height();
+  $("#popup").css({'position': 'absolute', 'top': y - height, 'left': x}).show();
+}
+
+// add onclick handlers for skeleton parts in 3-4
+local_add_3_4_Handlers = function(obj) {
+
+  try {
+    // upper
+    $(obj.instance_1).on("click", function() { obj.gotoAndStop(1); });
+    // lower
+    $(obj.instance).on("click", function() { obj.gotoAndStop(0); });
+  } catch(error) {
+    console.log("couldn't add handler for upper and/or lower part of skeleton");
+  }
+
+}
+
+// add onclick handlers for audio
+local_addAudioHandlers = function(obj, symbolIds) {
+
+  for (i in symbolIds) {
+    var symbolId = symbolIds[i];   // can contain more than one id, e.g, 'w999w888'
+    // 'try' shouldn't be necessary, but just in case
+    try {
+      //var instruction = '$(obj.symbol_' + symbolId + ').on("click", function() { local_playSounds("' + symbolId + '"); });';
+      //var instruction = '$(obj.symbol_' + symbolId + ').on("click", function() { local_playSounds("' + symbolId + '", "init"); });';
+      // §§§perhaps this is more correct??? this is what the easeljs docs say
+      // firefox seems to need the 'false' parameter here and at least one more place. to get event bubbling instead of trickling? 
+      var instruction = 'obj.symbol_' + symbolId + '.addEventListener("click", function() { local_playSounds("' + symbolId + '", "init"); }, false);';
+      eval(instruction);
+    } catch(error) {
+      console.log("couldn't add handler for audio " + symbolId);
+    }
+  }
+
+}
+
+// play a sequence of one or more sounds
+// §§§fails on swedish sounds when the first of two audio files is missing
+// §§§2015-05-20. i notice this function manages to use global functions from the functions object. could it be replaced completely by its corresponding global function from the functions object?
+local_playSounds = function(symbolIds, info) {
+
+  //console.log("local_playSounds() to play " + symbolIds);
+
+  // symbolIds may contain more than one word id, e.g, 'w888w999'
+
+  // this function is recursive. if there is more than one sound to play, it calls itself.
+  // the 'info' parameter should have the value 'init' for the first call
+
+  // id for next sound to play
+  // §§§clunky
+  var type = symbolIds.slice(0,1);
+  //console.log("type " + type);
+  var symbolId = "";
+  if (type == "l") {
+    symbolId = symbolIds.replace(/(^language-...(_us|_none|_lovari)?)(.*)/, "$1");   // §§§§§§§§§§§§§§§§not good enough!!!!
+  } else if (type == "c") {
+    symbolId = symbolIds.replace(/(^c[0-9]+)(.*)/, "$1");
+  } else if (type == "s") {
+    symbolId = symbolIds.replace(/(^s[0-9]+_[0-9]+)(.*)/, "$1");
+  } else if (type == "w") {
+    symbolId = symbolIds.replace(/(^w[^w]+)($|w.+)/, "$1");
+  } else {
+    // give up
+    symbolId = symbolIds;
+  }
+  // the rest of the ids
+  var symbolIdsRest = symbolIds.slice(symbolId.length,999);
+  //console.log("id " + symbolId);
+  //console.log("rest " + symbolIdsRest);
+  
+  var soundId = "audio_" + symbolId;
+
+  // keep track of success, as in "the audio exists"
+  newInfo = info;
+  if (info == "init") {
+    if (functions.audioExists(audioManifest, soundId)) {
+      newInfo = "yes";
+    } else {
+      newInfo = "no";
+    }
+  } else if (info == "yes") {
+    if (functions.audioExists(audioManifest, soundId)) {
+      newInfo = "yes";
+    } else {
+      newInfo = "both";
+    }
+  } else if (info == "no") {
+    if (functions.audioExists(audioManifest, soundId)) {
+      newInfo = "both";
+    } else {
+      newInfo = "no";
+    }
+  } else if (info == "both") {
+    newInfo = "both";
+  }
+
+  // §§§this seems to succeed even if the audio file doesn't exist. so we can't catch the error which causes the next audio files not to play
+  // might help to use PreloadJS to load the audio files. §§§didn't seem to help
+
+  var mySoundInstance = null;
+  if (functions.audioExists(audioManifest, soundId)) {
+    //console.log("play " + soundId);
+    var mySoundInstance = createjs.Sound.play(soundId);
+  }
+
+  if (symbolIdsRest.length > 0) {
+    //console.log("recurse");
+    if (mySoundInstance) {
+      // firefox seems to need the 'false' parameter when adding event listener for "click",
+      // and also for at least one of the two events here ("complete", "failed").
+      // the parameter specified event bubbling. presumably otherwise firefox uses trickling and fails
+      //mySoundInstance.addEventListener("complete", function() { local_playSounds(symbolIdsRest); });
+      mySoundInstance.addEventListener("complete", function() { local_playSounds(symbolIdsRest, newInfo); }, false);
+      // try to play next even if failure - ?
+      // comment: see above
+      //mySoundInstance.addEventListener("failed", function() { local_playSounds(symbolIdsRest); });
+      mySoundInstance.addEventListener("failed", function() { local_playSounds(symbolIdsRest, newInfo); }, false);
+    } else {
+      //local_playSounds(symbolIdsRest);
+      local_playSounds(symbolIdsRest, newInfo);
+    }
+  } else {
+    // show how much success we had with the audio
+    functions.signalAudioSuccess(newInfo);
+  }
+
+}
+
+// give the page access to the subcategory's function for playing the sounds of the canvas
+subCategoryAccess.local_playSounds = local_playSounds;   // §§§works!!!!!!
+
+
+
+      </script>
+    </canvas>
+
+  </body>
+
+</html>
+
