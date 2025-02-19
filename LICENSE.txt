@@ -1,6 +1,6 @@
 BSD 2-Clause License
 
-Copyright (c) 2023, Institutet för språk och folkminnen (the Institute for Language and Folklore)
+Copyright (c) 2023-2025, Institutet för språk och folkminnen (the Institute for Language and Folklore)
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
