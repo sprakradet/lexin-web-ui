@@ -14,3 +14,37 @@ Ahltorp, Magnus and Höglund, Laila. Shrinking Lexin: The challenges of a Swedis
 
 Ahltorp, Magnus, Sjöbergh, Jonas and Höglund, Laila. Anpassning av Lexin till små skärmar. Den 17. konferansen om leksikografi i Norden, Bergen 24–26 May 2023. https://www.uib.no/sites/w3.uib.no/files/attachments/samandrag-nfl-17.pdf
 
+Deployment
+----------
+
+```
+git clone https://github.com/sprakradet/lexin-web-ui lexin
+cd lexin
+git clone https://github.com/sprakradet/lexin-static-swe swe
+git clone https://github.com/sprakradet/lexin-json
+python3 build-dl.py
+```
+
+The `build-dl` script must be run whenever the lexin-json directory is updated. This generates copies of the dictionary files with unique names and builds the `lexin-downloadable.json` index file.
+
+### File compression
+
+Optionally generate Brotli compressed versions of the downloadable dictionaries:
+
+```
+cd lexin-json
+brotli *.json
+```
+
+Then configure your web server to use the Brotli compressed files. For example, if you are using Apache, this configuration works for .json files:
+
+```
+RewriteEngine on
+RewriteCond %{HTTP:Accept-Encoding} br
+RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME}.br -f
+RewriteRule ^(.*)$ $1.br [L]
+<Files *.json.br>
+  AddType "application/json" .br
+  AddEncoding br .br
+</Files>
+```
