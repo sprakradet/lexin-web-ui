@@ -8,11 +8,11 @@ function openHelpExamples(inner) {
 	<h3>Språkexempel</h3>
 
 	<p>
-	  Till många uppslagsord finns det exempel på hur ordet kan
-	  användas. Det finns tre sorters exempel, fria fraser och
-	  meningar (satser eller satsfragment) där ordet används,
-	  sammansatta ord där uppslagsordet ingår som en del, och
-	  fasta uttryck (idiom) där ordet används.
+	  Språkexempel visar hur uppslagsordet kan
+	  användas. Det finns tre sorters exempel: fria fraser och
+	  meningar (satser eller satsfragment),
+	  sammansatta ord, och
+	  fasta uttryck (idiom).
 	</p>
         `;
 }
@@ -22,25 +22,24 @@ function openHelpIdioms(inner) {
 	<h3>Språkexempel, Idiom ("Uttryck")</h3>
 
 	<p>
-	  Till många uppslagsord finns det exempel på hur ordet kan
-	  användas. Det finns tre sorters exempel, fria fraser och
-	  meningar (satser eller satsfragment) där ordet används,
-	  sammansatta ord där uppslagsordet ingår som en del, och
-	  fasta uttryck (idiom) där ordet används.
+	  Språkexempel visar hur uppslagsordet kan
+	  användas. Det finns tre sorters exempel: fria fraser och
+	  meningar (satser eller satsfragment),
+	  sammansatta ord, och
+	  fasta uttryck (idiom).
 	</p>
         <h4>Idiom</h4>
         <p>
 	  Idiom är fraser och meningar som måste förklaras.
 	</p>
 	<p>
-	  Det har alltid varit ett problem för dem som använder
-	  ordböcker att gissa på vilket av orden i idiomet som man
-	  får förklaringen. Ska man leta efter idiomet <em>lovar
+	  Det är ofta svårt 
+	  att gissa på vilket av orden i idiomet som man
+	  hittar förklaringen i en ordbok. Hittar man idiomet <em>lovar
 	  guld och gröna skogar</em> i
 	  artikeln <em>lovar</em>, <em>guld</em>, <em>grön</em>
-	  eller <em>skog</em>? I Lexin spelar det ingen roll var du
-	  letar, du hittar informationen i alla fyra artiklarna. Det
-	  bör spara en del tid och energi
+	  eller <em>skog</em>? I Lexin hittar informationen i alla fyra artiklarna. Det
+	  bör spara en del tid och energi.
 	</p>
         `;
 }
@@ -50,15 +49,15 @@ function openHelpComps(inner) {
 	<h3>Språkexempel, Sammansättningar</h3>
 
 	<p>
-	  Till många uppslagsord finns det exempel på hur ordet kan
-	  användas. Det finns tre sorters exempel, fria fraser och
-	  meningar (satser eller satsfragment) där ordet används,
-	  sammansatta ord där uppslagsordet ingår som en del, och
-	  fasta uttryck (idiom) där ordet används.
+	  Språkexempel visar hur uppslagsordet kan
+	  användas. Det finns tre sorters exempel: fria fraser och
+	  meningar (satser eller satsfragment),
+	  sammansatta ord, och
+	  fasta uttryck (idiom).
 	</p>
         <h4>Sammansättningar</h4>
         <p>
-          Det är vanligt att det blir små förändringar när man gör en sammansättning från två eller flera ord på svenska.
+          När man gör en sammansättning av två eller flera ord på svenska ändras ofta något litet.
           T.ex. "skog" + "dunge" blir "skog<strong>s</strong>dunge". Mycket ofta
           lägger man till ett <em>s</em> som i det här fallet. Andra exempel är <em>berg<strong>s</strong></em>-<em>trakt</em>, <em>dag<strong>s</strong></em>-<em>resa</em>).
         </p><p>
@@ -70,30 +69,30 @@ function openHelpComps(inner) {
 
 function openHelpUse(inner) {
     inner.innerHTML = `
-       <p>Användningskommentarer ger information om hur ett ord används eller begränsningar för sammanhang där ordet kan användas.</p>
+       <p>Användningskommentarer ger information om hur ett ord används eller begränsningar av sammanhang ordet kan användas i.</p>
        `;
 }
 
 function openHelpDer(inner) {
     inner.innerHTML = `
-       <p>Avledningar är ord som är relaterade, till exempel "allergi" och "allergiker" (en person som har en allergi), eller "jogga" och "joggning" (när man joggar).</p>
+       <p>Avledningar är ord gjorda av ett annat ord genom att lägga till en förstavelse eller en ändelse, till exempel "allergi" och "allergiker" (en person som har en allergi), eller "jogga" och "joggning" (när man joggar).</p>
        `;
 }
 
 function openHelpAbbr(inner) {
     inner.innerHTML = `
-       <p>"Förkortning" betyder att det finns ett vanligt sätt att förkorta ordet, t.ex. "dr" istället för "doktor", "kg" istället för "kilogram", eller "SVT" istället för "Sveriges Television".</p>
+       <p>"Förkortning" visar det vedertagna sättet att förkorta ordet, t.ex. "dr" i stället för "doktor", "kg" i stället för "kilogram", eller "SVT" i stället för "Sveriges Television".</p>
        `;
 }
 
 function openHelpVar(inner) {
     inner.innerHTML = `
-	<p> Ett uppslagsord kan följas av en alternativform. Det är
-	  ofta en annan form som har samma uttal men en annan
+	<p> Ett uppslagsord kan följas av en alternativform. 
+	  Ofta är det en annan form som har samma uttal men annan
 	  stavning, t.ex. <em>sjal</em> och <em>schal</em>
-	  eller <em>idag</em> och <em>i dag</em>. Det kan också vara
-	  en talspråklig variant, t.ex. <em>sedan</em>
-	  och <em>sen</em>. Den första formen är då huvudformen och
+	  eller <em>i dag</em> och <em>idag</em>. Det kan också vara
+	  en talspråksvariant, t.ex. <em>sedan</em>
+	  och <em>sen</em>. Den första formen är huvudformen och
 	  den form som rekommenderas. Uttal och böjningsformer gäller
 	  uppslagsordet, inte alternativformen.
        </p>
@@ -102,19 +101,19 @@ function openHelpVar(inner) {
 
 function openHelpHyp(inner) {
     inner.innerHTML = `
-       <p> Vissa ord ändras när de avstavas. Det kan t.ex. vara sammansatta ord där tre likadana konsonanter i rad skrivs som två, men när ordet avstavas skrivs alla tre ut igen, t.ex. "äggula" som avstavas till "ägg-gula" eller "Halland" som avstavas som "Hall-land".</p>
+       <p> Vissa ord ändras när de avstavas. Sammansatta ord med tre likadana konsonanter i rad skrivs som två, men när ordet avstavas skrivs alla tre ut igen, t.ex. "äggula" som avstavas "ägg-gula" eller "Halland" som avstavas "Hall-land".</p>
        `;
 }
 
 function openHelpSee(inner) {
     inner.innerHTML = `
-       <p>"Se"-referenser används för att visa ordet en förkorning står för (t.ex. "AD, se: Arbetsdomstolen") eller för att visa normalformen för en talspråklig variant (t.ex. "Sen, se: sedan").</p>
+       <p>"Se"-referenser hänvisar till ordet som en förkortning står för (t.ex. "AD, Se: Arbetsdomstolen") eller normalformen för en talspråklig variant (t.ex. "sen, Se: sedan").</p>
        `;
 }
 
 function openHelpCompare(inner) {
     inner.innerHTML = `
-       <p>"Jämför"-referenser används för att visa liknande ord, t.ex. "förstaspråk" och "andraspråk". Det finns ofta en "jämför"-referens för partikelverb där verbet också kan skrivas som en sammansättning med liknande betydelse, t.ex. "koppla av" och "avkoppling".</p>
+       <p>"Jämför"-referenser visar liknande ord, t.ex. "förstaspråk" och "andraspråk" och för partikelverb som både kan skrivas ihop och isär med liknande betydelse, t.ex. "hålla av" och "avhållen".</p >
        `;
 }
 
@@ -126,12 +125,9 @@ function openHelpAnt(inner) {
 	  <p>
 	    Syftet med att ge synonymer eller antonymer utöver
 	    definitionen är dubbelt. Dels ökar det chansen att du
-	    förstår uppslagsordet utan att behöva slå upp i en
-	    tvåspråkig ordbok – det räcker ju att du förstår en av
+	    förstår uppslagsordet – det räcker ju att du förstår en av
 	    synonymerna (eller antonymerna). Dels kan det bidra till
-	    att öka ditt aktiva svenska ordförråd, även när du slår
-	    upp uppslagsordet i en tvåspråkig ordbok – i bästa fall
-	    kanske du lär dig ett nytt ord i förbifarten.
+	    att öka ditt aktiva svenska ordförråd.
 	  </p>
        `;
 }
@@ -140,7 +136,7 @@ function openHelpConstr(inner) {
     inner.innerHTML = `
 	<h3>Grammatiska konstruktioner</h3>
 	<p>
-	  Alla verb i ordboken - utom de verb som bara förekommer i
+	  Alla verb i ordboken - utom de som bara förekommer i
 	  idiom - har mönster som visar hur verbet används.
 	</p>
 	
@@ -150,8 +146,7 @@ function openHelpConstr(inner) {
 	<p> För att få hjälp med att förstå en grammatisk konstruktion
 	  kan du klicka på mönstret. Då visas en kort förklaring till
 	  vad de olika delarna, t.ex. <em>A</em> och <em>B</em>,
-	  betyder. En lista med alla kombinationer som passar mönstret
-	  visas också.</p>
+	  betyder. En lista med alla kombinationer visas också.</p>
 
         <p>A/B = en person, x/y = en
         sak<ul><li><span><span></span><span
@@ -167,23 +162,23 @@ function openHelpConstr(inner) {
 	<p>
           <em>A</em> och <em>B</em> är
 	  personer, <em>x</em> är en sak, och <em>att+SATS</em>
-	  betyder att det också kan vara en hel sats där. Tecknet "/"
+	  betyder att det också kan vara en fras eller en hel sats. Tecknet "/"
 	  betyder "eller", så mönstret betyder att <em>en person
 	    tycker om en person eller en sak eller att + en
-	    fras</em>. Så tre exempel på hur <em>tycker om</em> kan
-	  användas är (1) <cite>jag tycker om Lisa</cite>,
+	    fras</em>. Exempel på hur <em>tycker om</em> kan
+	  användas: (1) <cite>jag tycker om Lisa</cite>,
 	  (2) <cite>jag tycker om jordgubbar</cite>, och (3) <em>jag
 	    tycker om att spela fotboll</em>.
 	</p>
 
 
 	<p> Mönster för verb är till för att visa möjliga sätt att
-	  använda verbet utan att skriva språkexempel för varje
-	  möjlighet. Det kan finnas fler möjligheter än dem som beskrivs
-	  i de mönster som visas, för vissa verb visas bara de
+	  använda verbet utan att ge språkexempel för varje
+	  möjlighet. Det kan finnas fler möjligheter,
+	  för vissa verb visas bara de
 	  vanligaste mönstren.</p>
 
-	<p> I mönster kan personer och saker finnas. Det kan också
+	<p> I verbmönstren finns personer och saker. Det kan också
 	  finnas satsdelar som <em>subjekt</em> och <em>objekt</em>. Det
 	  finns även ord som beskriver betydelse, t.ex. <em>TID</em>
 	  och <em>PLATS</em>.
@@ -213,14 +208,14 @@ function openHelpSakuppl(inner) {
 function openHelpPoS(inner, pos) {
     inner.innerHTML = `<h3>Ordklass</h3>
 	<p>
-          Ord tillhör en ordklass, t.ex. substantiv eller verb. De
-          ordklasser som förekommer i Lexin är: adjektiv,
-          adverb, artikel, förkortning, infinitivmärke,
-          interjektion, konjunktion, namn, preposition, pronomen,
-          räkneord, substantiv och verb. Det finns också två
+          Ord tillhör en ordklass, t.ex. substantiv eller verb.
+          Ordklasser som förekommer i Lexin är: substantiv, adjektiv,
+          verb, adverb, preposition, pronomen, konjunktion, interjektion, räkneord,
+          namn, artikel, infinitivmärke och förkortning.
+          Det finns också två
           klasser <em>förled</em> och <em>efterled</em> som inte är
-          riktiga ordklasser men används när uppslagsordet är förled
-          eller efterled till sammansatta ord.
+          riktiga ordklasser men som används när uppslagsordet är förled
+          eller efterled i sammansatta ord.
 
 	</p>`;
 }
@@ -270,7 +265,7 @@ function openHelpPhon(inner, phon) {
 function openHelpVideo(inner) {
     inner.innerHTML = `
        <h3>Video</h3>
-       <p>Klicka på "Visa film" för att gå till en ny sida och se ett videoklipp som visar vad ordet betyder.</p>
+       <p>Klicka på "Visa film" för att se ett videoklipp som visar vad ordet betyder.</p>
        <p>Klicka på ikonen <img src="/video.svg" class="vidIcon"/> för att ladda videon och visa den i Lexin.</p>
        `;
 }
