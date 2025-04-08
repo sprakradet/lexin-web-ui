@@ -8,7 +8,7 @@
       <div class="LexinExplanations" id="LexinExplanations">
 	<div class="helpMenu">
 	  <a href="#sprak">Hur man använder Lexin</a>
-	  <a href="#resultatBeskr">Vad betyder sökresultaten?</a>
+	  <a href="#resultatBeskr">Vad betyder resultaten?</a>
 	  <a href="#omLexin">Information om Lexin</a>
 	</div>
 	
@@ -24,14 +24,14 @@
 	<ul>
 	  <li>Välj språk längst upp, t.ex. spanska.</li>
 	  
-	  <li>Du kan slå upp ord på flera språk genom att
-	    öppna "Inställningar" (knappen med tre streck uppe
+	  <li>Du kan välja flera språk. För att kunna välja flera språk,
+	    öppna först "Inställningar" (knappen med tre streck uppe
 	    till höger, "&#x2261;") och klicka på "Sök på flera språk
-	    samtidigt". I listan kan du nu välja flera språk,
-	    genom att klicka på
-	    dem. Om du använder en mobil trycker du på de språk du vill välja.</li>
+	    samtidigt". I listan på språk kan du nu välja flera språk,
+	    t.ex. genom att hålla Ctrl-knappen nere och klicka på nya
+	    språk.</li>
 
-	  <li>För att alltid få sökresultaten från den svenska ordboken, som
+	  <li>För att alltid få resultaten från den svenska ordboken, som
 	    har många ord, kan du också öppna "Inställningar" och klicka på
 	    "Lägg alltid till svenska resultat".</li>
 	</ul>
@@ -47,8 +47,11 @@
 	<ul>
 	  <li>Många ord har bilder som hjälper till att förklara
 	    ordet. För att visa en bild, klicka på länken "BILD SVENSKA"
-	    eller den lilla bildikonen bredvid texten. </li>
-	  <li>Bilderna har också samlats i olika tematiska grupper,
+	    eller den lilla bilden bredvid texten. Bilderna öppnas på
+	    en <a href="https://bildetema.oslomet.no/bildetema/bildetema-portal/index.html?page=simple-html5&version=swedish">ny
+	      sida hos Bildtema</a>.</li>
+	  <li>Bilderna har förklaringar på många språk.</li>
+	  <li>Bilderna har samlats i olika grupper,
 	    t.ex. <a href="https://bildetema.oslomet.no/bildetema/bildetema-html5/bildetema.html?version=swedish&languages=eng,swe&language=swe&prev_language=swe&page=7&subpage=2&prev_page=7&title=Bildtema%20html5-version&language_selector=simple">ord
 	      som handlar om matlagning</a>.</li>
 	  
@@ -63,7 +66,8 @@
 	</div>
 	<ul>
 	  <li> Ord kan ha ett eller flera videoklipp som visar vad ordet betyder.</li>
-	  <li> Du kan klicka på texten "Visa film" eller klicka på ikonen bredvid för att visa filmen.</li>
+	  <li> Du kan klicka på texten "Visa film" för att gå till en ny sida som visar videoklippet.</li>
+	  <li> Du kan också klicka på ikonen bredvid "Visa film" för att visa filmen på samma sida.</li>
 	  <li> Om du inte vill se videoklippet mer kan du klicka på ikonen en gång till för att gömma videon.</li>
 	</ul>
 
@@ -81,7 +85,7 @@
 
 	<ul>
 	  <li>Uttalet beskrivs också med fonetisk skrift, t.ex. "idag [ida:g] eller [ida:]".</li>
-	  <li>Kolon ":" betyder att ljudet före ska vara ett långt ljud.</li>
+	  <li>Kolon ":" betyder att ljudet före kolon ska vara ett långt ljud.</li>
 	  <li>När det finns två eller flera uttal skrivs det med "eller"
 	    mellan uttalen. "[ida:g] eller [ida:]" betyder att det går att
 	    uttala sista bokstaven "g" och att det går att hoppa över "g",
@@ -92,7 +96,7 @@
 	<h2>Klicka på ord</h2>
 	<ul>
 	  <li>Ord i texten som du inte förstår kan du dubbelklicka
-	    på för att slå upp ordet.</li>
+	    på. Då slår man upp ordet du klickade på.</li>
 	  <li>På en mobiltelefon kan du trycka på ordet och hålla
 	    fingret nere en lång stund istället för att dubbelklicka.</li>
 	  <li>Om du inte vill att ord du klickar på ska slås upp kan
@@ -112,14 +116,14 @@
 	  <img class="helpImageBase" src="helpImages/helpKeyboardAra.png"></img>
 	</div>
 	<ul>
-	  <li>Du kan få hjälp med inmatning av tecken som din dator eller mobil saknar.</li>
+	  <li>Du kan få hjälp med inmatning av tecken din dator eller mobil saknar.</li>
 	  <li>Öppna inställningar (knappen med tre streck "&#x2261;")
 	    och välj "Svenskt tangentbord med å, ä, ö" för att få upp tre
 	    knappar som kan mata in de svenska tecknen "å", "ä" och "ö" om
 	    din dator eller mobil inte har svenska tecken.</li>
 	  <li>Öppna inställningar (knappen med tre streck "&#x2261;")
 	    och välj "Tangentbord för andra språk" för att få hjälp
-	    med tecken på det språk som används i lexikonet du har
+	    med tecken på det språk som används i det lexikon du har
 	    valt. Om du har valt att söka i Lexin med arabiska
 	    översättningar får du hjälp med inmatning av arabiska
 	    tecken.</li>
@@ -137,7 +141,7 @@
 	  <li>Öppna inställningar (knappen med tre streck,
 	    "&#x2261;"). Där finns en knapp för att "Spara" ord.</li>
 	  <li>För att se de ord du har sparat kan du klicka på "Sparade
-	    ord" under knappen.</li>
+	    ord" under knappen för att spara ett ord.</li>
 	  <li>Du kan slå upp ett sparat ord genom att klicka på ordet i
 	    listan.</li>
 	  <li>Du kan sortera alla sparade ord i bokstavsordning med
@@ -149,9 +153,9 @@
 	<h2>Andra söktips</h2>
 	<ul>
 	  <li> För att få fram sammansatta ord gör du så här:
-	    Skriv <em>regn-</em> så får du fram alla ord med förledet
+	    Skriv <em>regn-</em> så får du fram alla ord med förleden
 	    regn. Skriv <em>-regn</em> så får du fram alla ord med
-	    efterledet regn.</li>
+	    efterleden regn.</li>
 	  <li> För att få större text kan du använda din webbläsares
 	    zoomfunction. På en mobil kan du zooma med två fingrar på
 	    skärmen. På en dator kan du använda webbläsarens meny,
@@ -166,21 +170,21 @@
 	  <img class="helpImageBase" src="helpImages/helpDownload1.png"></img>
 	</div>
 	<ul>
-	  <li>Du kan ladda ned ett eller flera lexikon från Lexin.</li>
-	  <li>När du har laddat ned ett lexikon kan du använda Lexin
+	  <li>Du kan ladda ned en eller flera ordlistor från Lexin.</li>
+	  <li>När du har laddat ned en ordlista kan du använda Lexin
 	    utan att ha tillgång till Internet.</li>
 	</ul>
 
 	<h2><a id="resultatBeskrAnchor" name="resultatBeskr"/>Vad betyder sökresultaten?</h2>
 	<p>
 	  Den svenska ordboken har ett annat innehåll än de
-	  tvåspråkiga ordböckerna. De tvåspråkiga ordböckerna innehåller
-	  i stort samma svenska uppslagsord förutom för några språk där inte
-	  alla ord har översatts. De språk som inte har
+	  tvåspråkiga ordböckerna. De tvåspråkiga ordböckerna har
+	  samma svenska uppslagsord förutom för ett par språk där inte
+	  alla ord har översatts. För en del ordlistor pågår arbete nu
+	  för att översätta fler ord tills de också får samma
+	  uppslagsord som de stora ordböckerna. De språk som inte har
 	  alla ord är: amhariska, azerbajdzjanska, pashto, tigrinska
-	  och ukrainska. För en del ordlistor pågår arbete nu
-	  för att översätta fler ord tills de också får samma antal
-	  uppslagsord som de stora ordböckerna.
+	  och ukrainska.
 	</p>
 
 	<p>I de tvåspråkiga ordböckerna finns följande
@@ -212,7 +216,7 @@
 
 	<p>I exemplet ovan finns:
 	  <ol>
-	    <li>ett uppslagsord, "läser"</li>
+	    <li>ett uppslagsord, "läsa"</li>
 	    <li>uttal, i fonetisk skrift "[l'ä:ser]" (till vänster) och en ljudfil
 	      att lyssna på (till höger)</li>
 	    <li>ordklass, "verb"</li>
@@ -222,14 +226,14 @@
 	    <li>video, en länk till ett videoklipp som visar vad ordet betyder</li>
 	    <li>grammatisk konstruktion, "&lt;A läser x&gt;"</li>
 	    <li>översättning, en översättning på det språk du har valt</li>
-	    <li>språkexempel, som visar hur ordet kan användas</li>
+	    <li>språkexempel, exempel som visar hur ordet kan användas</li>
 	  </ol>
 	</p>
 	
 	<h3><a id="uppslagsordAnchor" name="uppslagsord"/>Uppslagsord</h3>
 	<p> Ett uppslagsord är normalt ett ord men det kan också vara
 	  ett uttryck med flera ord. Exempel på sådana uppslagsord är
-	  partikelverb (t.ex. <em>tycker om</em>) och samhällsord
+	  sammansatta verb (t.ex. <em>tycker om</em>) och sammahällsord
 	  (t.ex. <em>allmän rättshjälp</em>).
 	</p>
 
@@ -247,7 +251,7 @@
 	  konsonanter i rad skrivs bara två konsonanter ut på svenska,
 	  t.ex. <em>ägg</em> + <em>gula</em> blir <em>äggula</em>. Tre
 	  konsonanter skrivs bara ut när man avstavar
-	  ordet, <em>ägg-gula</em>. Då markeras detta efter
+	  ordet, <em>ägg-gula</em>. För sådana ord markeras detta efter
 	  uppslagsordet, <em>äggula (ägg-gula)</em>.</p>
 	
 	<p> Ett uppslagsord kan följas av en alternativform. Det är
@@ -261,15 +265,15 @@
 	
 	<h3><a id="uttalAnchor" name="uttal"/>Uttal</h3>
 
-	<p> Lexin togs fram för att underlätta inlärningen av svenska för
-	  personer som har flyttat till Sverige.
-	  Därför finns information om uttal bara för de svenska
+	<p> Lexin togs fram för att användas i undervisning av
+	  personer som har flyttat till Sverige när de lär sig
+	  svenska. Därför finns information om uttal bara för de svenska
 	  orden, inte för översättningar.
 	</p>
 	
 	<p> Uttal visas med både <em>fonetisk skrift</em>,
 	  t.ex. <strong>[²ụ:ta:l]</strong>, och med en ljudfil du kan
-	  lyssna på. <a href="#ljud">Ljudfilerna</a> beskrivs
+	  lyssna på. <a href="#ljud">Ljudfilerna</a> breskrivs
 	  tidigare i texten.</p>
 
 	<ul>
@@ -314,7 +318,7 @@
 	  </p>
 	  <p>
 	    I sammansatta ord finns inte bara huvudtryck, utan också
-	    s.k. bitryck 
+	    s.k. bitryck på en av de stavelser som inte har huvudtryck
 	    (t.ex. <em>-lag</em> i <em>landslag</em>). Detta bitryck
 	    markeras indirekt genom längdtecknet
 	    ":" <strong>[²lạn:dsla:g]</strong>. Om det finns tre
@@ -330,10 +334,10 @@
 	  
 	  <h4>Tonaccent</h4>
 	  <p>
-	    I svenskan finns två sorters accenter. Akut
-	    accent (accent 1) är den accent som finns i enstaviga ord och många
+	    I svenskan finns två sorters tryck eller accenter. Akut
+	    accent är den accent som finns i enstaviga ord och många
 	    av deras böjningsformer: <em>bil</em>, <em>bilen</em>. Grav
-	    accent (accent 2) uppträder först och främst i sammansättningar
+	    accent uppträder först och främst i sammansättningar
 	    (<em>järnväg</em>) men också i de flesta andra flerstaviga
 	    ord (<em>flicka</em>). Det här fenomenet kallas
 	    tonaccent. Ibland ser två ord helt lika ut men skiljer sig
@@ -348,7 +352,7 @@
 	    ordet: <strong>[²dạ:ghem:]</strong>, <strong>[²ạn:de]</strong>. När
 	    det inte finns någon tvåa utan bara tryckmarkering (eller
 	    ingen tryckmarkering alls), betyder det att ordet har akut
-	    accent (eller "accent 1"): <strong>[bi:l]</strong>, <strong>[an:d]</strong>, <strong>[betạ:lar]</strong>.
+	    accent: <strong>[bi:l]</strong>, <strong>[an:d]</strong>, <strong>[betạ:lar]</strong>.
 	  </p>
 	  <p style="display: none">
 	    Några ord kan uttalas både med grav och akut accent; det
@@ -488,10 +492,10 @@
 	<h3><a id="ordklassbeteckningAnchor" name="ordklassbeteckning"/>Ordklass</h3>
 
 	<p> Ord tillhör en ordklass, t.ex. substantiv eller verb. De
-          ordklasser som förekommer i ordböckerna är: substantiv, adjektiv,
-          verb, adverb, preposition, pronomen, konjunktion, interjektion, räkneord,
-          namn, artikel, infinitivmärke och förkortning
-          Det finns också två
+          ordklasser som förekommer i ordböckerna är: adjektiv,
+          adverb, artikel, förkortning, infinitivmärke,
+          interjektion, konjunktion, namn, preposition, pronomen,
+          räkneord, substantiv och verb. Det finns också två
           klasser <em>förled</em> och <em>efterled</em> som inte är
           riktiga ordklasser men används när uppslagsordet är förled
           eller efterled till sammansatta ord.
@@ -623,7 +627,7 @@
 
 	<p> Om ett ord tillhör en ordklass som har böjningsformer men
 	  där just detta ord inte kan böjas står det <em>oböjligt</em>
-	  där böjningformerna brukar anges.</p>
+	  där böjningformernar står.</p>
 
 	<p class="helpOpenMoreInfo" onclick="let d = getElementById('merInfl'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
 	  Visa mer information om böjningsformer &gt;
@@ -668,10 +672,13 @@
 	    Många adjektiv, bl.a. glad, kan kompareras: <em>gladare,
 	      gladast</em> (<em>Erik är gladare än Anna</em>, <em>Anders
 	      är gladast av alla</em>). Med några få undantag, som anges
-	    i ordboken och finns i listan med oregelbundna adjektiv här
-	    nedanför, bildas komparationsformerna genom att man lägger
+	    i ordboken och samlas i en lista med oregelbundna adjektiv
+	    nedan, bildas komparationsformerna genom att man lägger
 	    till -are och -ast. Formen med -ast (superlativformen) kan
-	    i sin tur böjas: <em>den gladaste pojken</em>.
+	    i sin tur böjas: <em>den gladaste pojken</em>. Därmed är
+	    adjektivets böjning komplett, och det är tydligt att man
+	    utan problem kan räkna ut alla former som inte anges i
+	    ordboken.
 	  </p>
 	  
 	  <p>
@@ -724,7 +731,7 @@
 		  <td>stor</td><td>större</td><td>störst</td>
 		</tr>
 		<tr>
-		  <td>trång</td><td>trängre/trångare</td><td>trångast/trängst</td>
+		  <td>trång</td><td>trångare/trängre</td><td>trångast/trängst</td>
 		</tr>
 		<tr>
 		  <td>tung</td><td>tyngre</td><td>tyngst</td>
@@ -737,7 +744,7 @@
 	    
 	    <p>
 	      Alla dessa komparativformer (utom godare och trångare) har akut accent till skillnad från komparativformer på
-	      -are, som alltid har grav accent.
+	      -are, som alltid har grav
 	    </p>
 	  </div>
 	  
@@ -745,9 +752,10 @@
 	  <p>
 	    För verben ges fem former utöver presensformen som är
 	    uppslagsform. På grammatiskt språk kallas de infinitiv,
-	    preteritum, supinum, perfekt particip och imperativ. Ett
-	    exempel är kastar: att kasta, kastade, har kastat, är
-	    kastad, kasta! De korta orden i liten stil framför tre av böjningsformerna visar hur de
+	    imperfekt, supinum, perfekt particip och imperativ. Ett
+	    exempel är kastar att kasta, kastade, har kastat, är
+	    kastad, kasta!  Observera de korta orden i liten stil som
+	    står framför tre av formerna och som antyder hur formerna
 	    används: det är roligt <em>att kasta</em> boll,
 	    Anna <em>har kastat</em> bollen till Erik, bollen <em>är
 	      kastad</em>. Observera också utropstecknet efter den
@@ -756,7 +764,7 @@
 	  </p>
 	  <p>
 	    Också hos verben kan vissa former saknas, och då kan det se ut så här:
-	    <ul><li>regnar: att regna, regnade, har regnat –, –</li></ul>
+	    <ul><li>regnar att regna, regnade, har regnat –, –</li></ul>
 	    Man kan ju inte tänka sig en uppmaning (till naturen?!) som <em>Regna!</em>
 	  </p>
 	  <p>
@@ -767,7 +775,7 @@
 	    former som ges i ordboken, utom perfekt participformen
 	    (<em>kastas, kastades, kastats, kastas</em>). Man måste
 	    dock observera, att när man lägger till ett -s till
-	    imperativformen så får man den passiva form som hör till
+	    imperativformen, så får man den passiva form som hör till
 	    presens.
 	  </p>
 	  <p>
@@ -787,9 +795,9 @@
 	    Böjningen av verben är komplicerad, men utifrån de sex
 	    former som ordboken ger är det ändå ganska lätt att räkna
 	    ut de övriga formerna. I själva verket behövs inte så
-	    många former, och för alla regelbundna verb räcker
+	    många som sex former, och för alla regelbundna verb räcker
 	    det faktiskt med uppslagsformen. Detta tack vare att Lexin
-	    ger
+	    till skillnad från alla andra svenska ordböcker ger
 	    presensformen (<em>jagar</em>) och inte infinitivformen
 	    (<em>jaga</em>) som uppslagsform. Vi kan snabbt se hur det
 	    fungerar.
@@ -802,11 +810,11 @@
 		jagad – jaga!</em></span> Men om du kan presensformen
 	    jagar, så kan du räkna ut alla de andra formerna, under
 	    förutsättning att du vet att verbet är
-	    regelbundet. Ändelsen i presens (-ar i
+	    regelbundet. Poängen är att ändelsen i presens (-ar i
 	    <em>jagar</em>, -er i <em>köper</em>) ger en väldigt stark
 	    signal om verbets övriga böjningsformer. Därför används
 	    presensformen ofta som den memorerade formen vid
-	    undervisning i svenska som nybörjarspråk. (De få verb vars
+	    undervisning i svenska som andraspråk. (De få verb vars
 	    infinitivform slutar på annan vokal än -a, t.ex. <em>tro</em>, har
 	    en lite annorlunda, men förutsägbar, böjning:
 	    <em>tror-tro-trodde-trott-trodd-tro!</em>)
