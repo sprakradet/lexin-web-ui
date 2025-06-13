@@ -403,7 +403,20 @@ class LexinService {
         this.backendServer = "https://lexin.nada.kth.se/lexin/service";
 	this.getJson = async function(direction, lang, word) {
 	    const url = lexinService.backendServer + "?searchinfo=" + direction + ",swe_" + lang + "," + encodeURIComponent(word) + "&output=JSON";
-	    return await $.get(url);
+	    //HB 250613
+	    //BUG in api: \ is replaced by \u005c everywhere (?)
+	    //simple fix here is to get text instead of json and replace it back..
+	    //not sure if it will work in every case fixes the current bug
+	    //TODO: remove this when the api is back in order!
+
+	    //this is the old and correct call
+	    //return await $.get(url);
+
+	    //this is the temporary bugfix
+	    let res = await $.get(url, null, null, "text");
+	    res = res.replaceAll("\\u005c","\\");
+	    return JSON.parse(res);
+	    //end of the temporary bugfix
 	}
     }
 }
@@ -444,6 +457,7 @@ async function fetchNext(requestedLanguages) {
 	    } else {
 		data = await lexinService.getJson(tf, d, w);
 	    }
+	    
 	    let convertedData = addOneJSON(d, data);
             fetchedLanguages[d] = {'w':w, 'lang':d, 'data':convertedData};
 	} catch(error) {
