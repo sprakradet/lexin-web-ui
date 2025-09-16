@@ -1,4 +1,4 @@
-Lexin Web UI
+ Lexin Web UI
 ============
 
 This is the Web UI for Lexin, the official dictionary for learners of Swedish as a second language.
