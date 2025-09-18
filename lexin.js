@@ -254,47 +254,94 @@ async function loadHelp() {
 
 let bildtemaWords;
 
+// CG: THE FUNCTION BELOW LOADS ALL DETAIL PICTURES
+// CG: IT IS RUN ONLY ONCE, AS YOU OPEN THE APP
+
 async function loadBildtema() {
-    console.log("loadBildtema");
+	// creates arrays of words and images
     let words = await $.ajax({url:"https://lexin.se/all.json", dataType: "json", type: "GET"});
     let images = await $.ajax({url:"https://lexin.se/images.json", dataType: "json", type: "GET"});
 
+	// get the first image of every word, creates an array of words and single images
     let imageurls = {};
-    
+
     for (let image of images) {
-	let id = image.id;
-	let urls = image.images;
-	if (urls && urls.length) {
-	    if (!imageurls[id]) {
-		imageurls[id] = [];
-	    }
-	    imageurls[id].push(urls[0]);
-	}
+		let id = image.id;
+		let urls = image.images;
+
+		/* CG ADD START
+		if(id == "w1426") {
+			console.log("CG tomat urls" + urls);
+		}
+		if(id == "w1041") {
+			console.log("CG purjolök urls" + urls);
+		}
+		CG ADD END */
+
+		if (urls && urls.length) {
+			if (!imageurls[id]) {
+				imageurls[id] = [];
+			}
+			imageurls[id].push(urls[0]);
+		}
     }
-//    console.log(imageurls);
     
     bildtemaWords = {};
-    for (let key of Object.keys(words)) {
-	let value = words[key];
-	let splitvalue = value.split(" ");
-	if (splitvalue.length == 2) {
-	    if (splitvalue[0] == "en" || splitvalue[0] == "ett") {
-		value = splitvalue[1];
-		value = value.replace(/\([^)]+\)$/, "");
-	    }
-	} else {
-	    value = value.replace(/\([^)]+\)$/, "");
-	}
-//	console.log(key);
-	let urls = imageurls[key];
-	if (urls) {
-	    if (!bildtemaWords[value]) {
-		bildtemaWords[value] = [];
-	    }
-	    for (let url of urls) {
-		bildtemaWords[value].push(url);
-	    }
-	}
+	for (let key of Object.keys(words)) {	
+		let value = words[key];		// actual word string
+
+		// CG ADD 
+		let valueCheck = value;
+
+		// normalize lemma (strip article + trailing parentheses)
+		let splitvalue = value.split(" ");
+		if (splitvalue.length == 2) {
+			if (splitvalue[0] == "en" || splitvalue[0] == "ett") {
+				value = splitvalue[1];
+				value = value.replace(/\([^)]+\)$/, "");
+			}
+		} else {
+			value = value.replace(/\([^)]+\)$/, "");
+		}
+
+		/* CG ADD START
+		if (valueCheck == "en tomat") {
+			console.log("CG tomat value " + value)
+		}
+		if (valueCheck == "en purjolök") {
+			console.log("CG purjolök value " + value)
+		}
+		CG ADD END */
+
+		// create array of normalized lemmas and images
+		let urls = imageurls[key];
+
+		/* CG ADD START
+		if (key == "w1426") {
+			console.log("tomat key exists")
+		}
+		if (key == "w1041") {
+			console.log("purjo key exists")
+		}
+		CG ADD END */
+
+		if (urls) {
+			if (!bildtemaWords[value]) {
+				bildtemaWords[value] = [];
+			}
+			for (let url of urls) {
+				bildtemaWords[value].push(url);
+			}
+
+			/* CG ADD START */
+			if(value == "purjolök") {
+				console.log("CG purjolök link: " + bildtemaWords[value])
+			}
+			if(value == "tomat") {
+				console.log("CG tomat link: " + bildtemaWords[value])
+			}
+			/* CG ADD END */
+		}
     }
 }
 
@@ -2668,27 +2715,34 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     let pictures = document.createElement('div');
     let picicon = getPictureIcon();
     tmp.appendChild(picicon);
+
+	// load images on click
     tmp.onclick = () => {
-	if($(pictures).find(".inlineImage").length == 0) {
-	    let li = $(parentElement).closest(".entryContent").closest("li");
-	    let word = li.find(".matchingWord").text().trim();
-	    word = word.replace(/\s+\(\d+\)$/, "");
-	    console.log("li", li, word);
-	    let urls = bildtemaWords[word];
-	    for (let url of urls || []) {
-		addBildtemaInlineDetail(url, pictures);
-	    }
-	    for(var i = 0; i < ill.length; i++) {
-		addBildtemaInline(ill[i], pictures);	
-	    }
-	}
-	if(!pictures.style.display || pictures.style.display == 'none') {
-	    pictures.style.display = 'block';
-	} else {
-	    pictures.style.display = 'none';
-	}
-	return false;
+		if($(pictures).find(".inlineImage").length == 0) {
+			let li = $(parentElement).closest(".entryContent").closest("li");
+			let word = li.find(".matchingWord").text().trim();
+
+			// CG ADD - THIS FIXES THE "DETAIL PIC NOT SHOWN ERROR"
+			word = word.replace(/\|/g, "");
+
+			word = word.replace(/\s+\(\d+\)$/, "");
+			console.log("li", li, word);
+			let urls = bildtemaWords[word];
+			for (let url of urls || []) {
+				addBildtemaInlineDetail(url, pictures);
+			}
+			for(var i = 0; i < ill.length; i++) {
+				addBildtemaInline(ill[i], pictures);	
+			}
+		}
+		if(!pictures.style.display || pictures.style.display == 'none') {
+			pictures.style.display = 'block';
+		} else {
+			pictures.style.display = 'none';
+		}
+		return false;
     };
+
     wrap.append(pictures);
     outerWrap.appendChild(wrap);
 }
