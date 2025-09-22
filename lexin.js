@@ -257,41 +257,35 @@ let bildtemaWords;
 // CG: THE FUNCTION BELOW LOADS ALL DETAIL PICTURES
 // CG: IT IS RUN ONLY ONCE, AS YOU OPEN THE APP
 
+/* CG ADD START */
 async function loadBildtema() {
 	// creates arrays of words and images
     let words = await $.ajax({url:"https://lexin.se/all.json", dataType: "json", type: "GET"});
     let images = await $.ajax({url:"https://lexin.se/images.json", dataType: "json", type: "GET"});
 
-	// get the first image of every word, creates an array of words and single images
+	// get the first image of every word, creates an array of word ids and single images
     let imageurls = {};
-
     for (let image of images) {
 		let id = image.id;
 		let urls = image.images;
 
-		/* CG ADD START
-		if(id == "w1426") {
-			console.log("CG tomat urls" + urls);
-		}
-		if(id == "w1041") {
-			console.log("CG purjolök urls" + urls);
-		}
-		CG ADD END */
+		// CG ADD
+		let page = image.page;
+		let subpage = image.subpage;
 
 		if (urls && urls.length) {
 			if (!imageurls[id]) {
 				imageurls[id] = [];
 			}
-			imageurls[id].push(urls[0]);
+			// CG CHANGE
+			imageurls[id].push(urls[0]+"|"+page+"|"+subpage);	// add image to word id, e.g. "w325_a": ["26/6/images/Bitmap15.png"]
 		}
     }
     
+	// CG CHANGE - THIS FIXES THE "WRONG DETAIL PIC ERROR"
     bildtemaWords = {};
 	for (let key of Object.keys(words)) {	
 		let value = words[key];		// actual word string
-
-		// CG ADD 
-		let valueCheck = value;
 
 		// normalize lemma (strip article + trailing parentheses)
 		let splitvalue = value.split(" ");
@@ -304,46 +298,83 @@ async function loadBildtema() {
 			value = value.replace(/\([^)]+\)$/, "");
 		}
 
-		/* CG ADD START
-		if (valueCheck == "en tomat") {
-			console.log("CG tomat value " + value)
-		}
-		if (valueCheck == "en purjolök") {
-			console.log("CG purjolök value " + value)
-		}
-		CG ADD END */
-
 		// create array of normalized lemmas and images
 		let urls = imageurls[key];
 
-		/* CG ADD START
-		if (key == "w1426") {
-			console.log("tomat key exists")
+		if (urls) {
+			//CG CHANGE
+			for (let url of urls) {
+				const parts = String(url).split("|");     // ["26/6/images/Bitmap15.png","26","6"]
+				const compositeKey = value+"|"+parts[1]+"|"+parts[2];
+
+				if (!bildtemaWords[compositeKey]) {
+					bildtemaWords[compositeKey] = [];
+				}
+				bildtemaWords[compositeKey].push(parts[0]);  // add the image path
+			}
 		}
-		if (key == "w1041") {
-			console.log("purjo key exists")
+    }
+}
+/* CG ADD END */
+
+/* CG REMOVE START */
+/*async function loadBildtema() {
+	// creates arrays of words and images
+    let words = await $.ajax({url:"https://lexin.se/all.json", dataType: "json", type: "GET"});
+    let images = await $.ajax({url:"https://lexin.se/images.json", dataType: "json", type: "GET"});
+
+	// get the first image of every word, creates an array of word ids and single images
+    let imageurls = {};
+    for (let image of images) {
+		let id = image.id;
+		let urls = image.images;
+
+		if (urls && urls.length) {
+			if (!imageurls[id]) {
+				imageurls[id] = [];
+			}
+			imageurls[id].push(urls[0]);	// add image to word id, e.g. "w325_a": ["26/6/images/Bitmap15.png"]
 		}
-		CG ADD END */
+    }
+    
+	// CG ADD
+	//bildtemawords = imageurls;
+	
+    bildtemaWords = {};
+	for (let key of Object.keys(words)) {	
+		let value = words[key];		// actual word string
+
+		// normalize lemma (strip article + trailing parentheses)
+		let splitvalue = value.split(" ");
+		if (splitvalue.length == 2) {
+			if (splitvalue[0] == "en" || splitvalue[0] == "ett") {
+				value = splitvalue[1];
+				value = value.replace(/\([^)]+\)$/, "");
+			}
+		} else {
+			value = value.replace(/\([^)]+\)$/, "");
+		}
+
+		// create array of normalized lemmas and images
+		let urls = imageurls[key];
 
 		if (urls) {
 			if (!bildtemaWords[value]) {
 				bildtemaWords[value] = [];
 			}
 			for (let url of urls) {
-				bildtemaWords[value].push(url);
+				bildtemaWords[value].push(url);		// add link to lemma
 			}
 
 			/* CG ADD START */
-			if(value == "purjolök") {
-				console.log("CG purjolök link: " + bildtemaWords[value])
-			}
-			if(value == "tomat") {
-				console.log("CG tomat link: " + bildtemaWords[value])
-			}
+			/*if(value == "fluga") {
+				console.log("CG fluga link: " + bildtemaWords[value])
+			}*/
 			/* CG ADD END */
-		}
+		/*}
     }
-}
+}*/
+/* CG REMOVE END */
 
 function unAbbreviatePoS(str) {
     if(PoSnames.hasOwnProperty(str)) { // most common case
@@ -2716,8 +2747,8 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     let picicon = getPictureIcon();
     tmp.appendChild(picicon);
 
-	// load images on click
-    tmp.onclick = () => {
+	/* CG ADD START */
+	tmp.onclick = () => {
 		if($(pictures).find(".inlineImage").length == 0) {
 			let li = $(parentElement).closest(".entryContent").closest("li");
 			let word = li.find(".matchingWord").text().trim();
@@ -2726,13 +2757,24 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 			word = word.replace(/\|/g, "");
 
 			word = word.replace(/\s+\(\d+\)$/, "");
-			console.log("li", li, word);
-			let urls = bildtemaWords[word];
-			for (let url of urls || []) {
-				addBildtemaInlineDetail(url, pictures);
-			}
+
+			// CG CHANGE - THIS FIXES THE "WRONG DETAIL PIC ERROR"
 			for(var i = 0; i < ill.length; i++) {
-				addBildtemaInline(ill[i], pictures);	
+				let parsedUrl = new URL(ill[i]);
+				let urlParams = parsedUrl.searchParams;
+				let page = urlParams.get("page");
+    			let subpage = urlParams.get("subpage");
+
+				let urls = bildtemaWords[word+"|"+page+"|"+subpage];		// CG: new key, includes pages 
+				for (let url of urls || []) {
+					addBildtemaInlineDetail(url, pictures);					// CG: detail picture
+					console.log("CG " + word + " detaljbild " + url);
+				}
+			}
+
+			for(var i = 0; i < ill.length; i++) {
+				addBildtemaInline(ill[i], pictures);						// CG: overview picture
+				console.log("CG " + word + " översiktsbild " + ill[i]);
 			}
 		}
 		if(!pictures.style.display || pictures.style.display == 'none') {
@@ -2742,6 +2784,39 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 		}
 		return false;
     };
+	/* CG ADD END */
+
+	/* CG REMOVE START */
+	// load images on click
+    /*tmp.onclick = () => {
+		if($(pictures).find(".inlineImage").length == 0) {
+			let li = $(parentElement).closest(".entryContent").closest("li");
+			let word = li.find(".matchingWord").text().trim();
+
+			// CG ADD - THIS FIXES THE "DETAIL PIC NOT SHOWN ERROR"
+			word = word.replace(/\|/g, "");
+
+			word = word.replace(/\s+\(\d+\)$/, "");
+			//console.log("li", li, word);
+			let urls = bildtemaWords[word];					// CG: here the picture for current lemma is looked up
+			//console.log("CG " + word + " " + urls);
+			for (let url of urls || []) {
+				addBildtemaInlineDetail(url, pictures);		// CG: detail picture
+				console.log("CG " + word + " detaljbild " + url);
+			}
+			for(var i = 0; i < ill.length; i++) {
+				addBildtemaInline(ill[i], pictures);		// CG: overview picture
+				console.log("CG " + word + " översiktsbild " + ill[i]);
+			}
+		}
+		if(!pictures.style.display || pictures.style.display == 'none') {
+			pictures.style.display = 'block';
+		} else {
+			pictures.style.display = 'none';
+		}
+		return false;
+    };*/
+	/* CG REMOVE END */
 
     wrap.append(pictures);
     outerWrap.appendChild(wrap);
@@ -2783,7 +2858,7 @@ function addBildtemaInline(url, parent) {
     if (subpage == null) {
 	subpage = 1;
     }
-    console.log("page", page, "subpage", subpage);
+    //console.log("page", page, "subpage", subpage);
     inlineImg.innerHTML='<img src="/bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
     let link = $("<a></a>");
     link.attr("href", url);
