@@ -5851,20 +5851,38 @@ $(document).ready(function() {
 	    dbServer.resolve(await db.open({
 		server: 'lexin-test-1',
 		version: 6,
+
 		schema: {
 		    entries: {
+			
+			// CG REMOVE
 			key: {keyPath: 'id', autoIncrement: true},
+
+			// CG ADD
+			//key: { keyPath: 'lang' },
+
 			indexes: {
 			    lang: {},
+
+				// CG REMOVE
 			    langid: {keyPath: ['lang', 'ID']},
+
+				// CG ADD
+				//lang_ID_VariantID: { keyPath: ['lang','ID','VariantID'], unique: true },
+
 			    search: {keyPath: 'index', multiEntry:true}
 			}
 		    },
 		    metadata: {
-			key: {keyPath: 'id', autoIncrement: true},
-			indexes: {
-			    lang: {}
-			}
+				// CG REMOVE
+				key: {keyPath: 'id', autoIncrement: true},
+
+				// CG ADD
+				//key: { keyPath: 'lang' },
+
+				indexes: {
+					lang: {}
+				}
 		    }
 		}
 	    }));

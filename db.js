@@ -428,9 +428,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                     try {
                         // Safe to add since in readwrite
                         if (key != null) {
+                            // CG REMOVE
                             req = store.add(record, key);
+
+                            // CG ADD
+                            //req = store.put(record, key);
                         } else {
+                            // CG REMOVE
                             req = store.add(record);
+
+                            // CG ADD
+                            //req = store.put(record);
                         }
                     } catch (e) {
                         reject(e);

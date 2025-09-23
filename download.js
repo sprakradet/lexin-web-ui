@@ -56,9 +56,18 @@ async function openDownload() {
     });
     redrawDownload();
 
-    $(".downloadStartButton").click(function (e) {
+	// CG REMOVE
+    /*$(".downloadStartButton").click(function (e) {
 	startDownload();
-    });
+    });*/
+
+	// CG ADD - THIS POSSIBLY FIXES THE "DUPLICATE DOWNLOADS" BUG
+	$(".downloadStartButton")
+	.off("click.lexin")                // namespaced off
+	.on("click.lexin", function (e) {
+		e.preventDefault();
+		startDownload();
+	});
 }
 
 function startDownload() {
@@ -142,6 +151,7 @@ async function doDownload(wrapper, lang) {
     console.log("doDownload", await dbServerValue.metadata.query().all().execute());
     
     let filename = downloadableDictionariesDict[lang].filename;
+
     console.log(Date.now(), "start fetching file");
     const json_dict = await $.ajax({
 	xhr: function() {
