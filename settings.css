@@ -51,8 +51,18 @@
     vertical-align: middle;
 }
 
+/* CG text highlight on hover */
+.settingsmenuLabel:hover {
+    cursor: pointer;
+}
+
 .settingsmenuCheckbox {
     vertical-align: middle;
+}
+
+/* CG highlight on hover */
+.settingsmenuCheckbox:hover {
+    cursor: pointer;
 }
 
 .settingsIcon {
@@ -80,6 +90,11 @@
   padding: 0;
   padding-left: 1.5em;
   cursor: pointer;
+}
+
+/* CG text highlight on hover */
+.settingsNavigation:hover .settingsNavigationText {
+  text-decoration: underline;
 }
 
 #partsselection {
