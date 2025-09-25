@@ -2,7 +2,6 @@
 // Handle the "Download" functionality.
 // --------------------------------------------------------------------
 
-
 // --------------------------------------------------------------------
 // openDownload(elem)
 // --------------------------------------------------------------------
@@ -17,12 +16,12 @@ async function openDownload() {
     var h = document.getElementById("downloadPopup");
     h.style.display = "block";
 
-    let testVersionDiv = document.createElement('div');
+	// CG REMOVE 2025-09-25 - download works
+    /*let testVersionDiv = document.createElement('div');
     testVersionDiv.className = "testVersionInfo";
     testVersionDiv.textContent = "Nedladdning av lexikon är inte fullt fungerande ännu, men du får gärna prova att ladda ner lexikon och testa.";
     $(".testVersionInfo").remove();
-    $(h).prepend(testVersionDiv);
-
+    $(h).prepend(testVersionDiv);*/
 
     downloadableDictionaries = await $.ajax({url:"lexin-downloadable.json", datatype: "json", type:"GET"});
     downloadableDictionariesDict = _.object(_.map(downloadableDictionaries, e => [e.lang, e]));
@@ -113,13 +112,12 @@ function activateRedownloadButton(wrapper, lang) {
     });
 }
 
-
 async function removeLanguage(lang, progress, wantedStatus) {
     console.log(Date.now(), "removeLanguage", lang);
     let dbServerValue = await dbServer.promise;
     let metadataEntries = await dbServerValue.metadata.query("lang").only(lang).execute()
     if (!wantedStatus) {
-	wantedStatus = "removing";
+		wantedStatus = "removing";
     }
     await dbServerValue.metadata.query("lang").only(lang).modify({status:wantedStatus}).execute()
 
@@ -139,6 +137,13 @@ async function removeLanguage(lang, progress, wantedStatus) {
     }
     console.log(Date.now(), "removeLanguage removed all entries");
     console.log(Date.now(), "removeLanguage complete");
+
+	// CG ADD
+	// 1) Remove metadata row for this lang so UI logic won’t treat it as downloaded
+	//await dbServerValue.metadata.remove(lang);
+
+	// 2) Rebuild the whole download section (dropdown + list)
+	//await redrawDownload();
 }
 
 async function doDownload(wrapper, lang) {
@@ -202,6 +207,7 @@ async function doDownload(wrapper, lang) {
 
 let downloadLanguages;
 
+// "draws" the current view for the download popup
 async function redrawDownload() {
     let dbServerValue = await dbServer.promise;
 
@@ -228,12 +234,12 @@ async function redrawDownload() {
 		console.log("stored", downloadedLanguages[lang]);
 		console.log("server", downloadableDictionariesDict[lang]);
 		if (downloadedLanguages[lang].status != "active") {
-		    progress.empty().append("Misslyckades <button type='button'>Ladda ner ny version</button>");
+		    progress.empty().append("<div class='downloadControls'>Misslyckades <button type='button' class='downloadFailedButton'>Ladda ner ny</button></div>");
 		    activateRedownloadButton(progress, lang);
 		} else if (downloadedLanguages[lang].version == downloadableDictionariesDict[lang].version) {
 		    setAsDownloaded(progress, lang);
 		} else {
-		    progress.empty().append("Nedladdat <button type='button'>Ladda ner ny version</button>");
+		    progress.empty().append("Nedladdat <button type='button'>Ladda ner ny</button>");
 		    activateRedownloadButton(progress, lang);
 		}
 	    } else {
