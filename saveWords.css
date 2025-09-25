@@ -65,6 +65,13 @@
     background-color: #3FD695;
 }
 
+/* CG disable design */
+.saveWordsButton:disabled {
+    background-color: #BFCED0;
+    color: #415558;
+    cursor: not-allowed;
+}
+
 .removeOneSavedWordButton {
     border: 1px solid;
     cursor: pointer;
@@ -77,4 +84,16 @@
 
 .removeOneSavedWordButton .savedWordsList a:hover {
     text-decoration: underline;
+}
+
+/* --------- CG ADD BELOW --------- */ 
+
+.saveMessage {
+  margin-left: 10px;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.saveMessage.show {
+  opacity: 1;
 }
