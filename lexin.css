@@ -487,12 +487,24 @@ select {
     color: black;
 }
 
+/* ------ PARTS SELECTION ------ */
+
 .partsselectionBox {
     margin: 0.3em 0;
 }
 
 .partsselectionBox * {
     vertical-align: middle;
+}
+
+/* CG highlight on hover */
+.partsselectionCheckbox:hover {
+    cursor: pointer;
+}
+
+/* CG highlight on hover */
+.partsselectionLabel:hover {
+    cursor: pointer;
 }
 
 .longClickLink {
@@ -597,6 +609,7 @@ div[dir=rtl] {
     vertical-align: baseline;
     height: 1em;
     padding-left: 0.5em;
+    cursor: pointer;
 }
 
 .expandGraminfoIcon {

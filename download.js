@@ -126,8 +126,8 @@ async function removeLanguage(lang, progress, wantedStatus) {
     let chunks = _.chunk(ids, 100);
     let i = 0;
     for (const chunk of chunks) {
-	let removePromises = _.map(chunk, (e, i) => {
-	    return dbServerValue.entries.remove(e.id)
+		let removePromises = _.map(chunk, (e, i) => {
+			return dbServerValue.entries.remove(e.id)
 	})
 	await Promise.all(removePromises)
 	i++;
