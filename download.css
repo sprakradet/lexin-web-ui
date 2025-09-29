@@ -127,7 +127,7 @@ progress::-moz-progress-bar {           /* Firefox */
 .download-controls select,
 .download-controls .downloadStartButton{
   font: inherit;
-  height: 2.25rem;           /* single-row height */
+  height: 2.25rem;
   box-sizing: border-box;
 }
 

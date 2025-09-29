@@ -683,30 +683,50 @@ footer .lp-icon {
     margin-left: .8rem;
 }
 
+/* --------- CONTRAST MODE SETTINGS --------- */
+
 @media (prefers-contrast: more) {
     .wordInfo {
-	background-color: transparent;
-	border: solid black;
-	border-width: 1px 0px;
+        background-color: transparent;
+        border: solid black;
+        border-width: 1px 0px;
     }
+
     a:any-link {
-	color: black;
-	text-decoration-color: black;
+        /*color: black;*/
+        color: CanvasText;
+        text-decoration-color: black;
     }
+
     .graminfoExplanation {
-	background-color: white;
-	padding: 1em;
-	margin: 0.5em 0;
-	border: 1px solid black;
+        background-color: white;
+        padding: 1em;
+        margin: 0.5em 0;
+        border: 1px solid black;
     }
 
     .cueWord {
-	opacity: 1;
-	font-style: italic;
+        opacity: 1;
+        font-style: italic;
     }
 
     .expandGraminfoIcon {
-	opacity: 1;
+	    opacity: 1;
+    }
+
+    /* CG ADD */
+
+    form#theForm input,
+    form#theForm2 input  {
+        border: 2px solid CanvasText;
+    }
+
+    .listenIcon {
+        border: 2px solid CanvasText;
+    }
+
+    .expandResultsIcon {
+        border: 2px solid CanvasText;
     }
 }
 
@@ -714,3 +734,5 @@ footer .lp-icon {
 input[type="checkbox"] {
   accent-color: #3FD695;
 }
+
+

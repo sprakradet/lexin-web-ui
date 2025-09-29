@@ -109,6 +109,7 @@
 .helpOpenMoreInfo {
     font-weight: bold;
     color: blue;
+    cursor: pointer;
 }
 
 .helpMoreInfo {
@@ -148,4 +149,10 @@
     background: none;
     float: right;
     margin-left: 1em;
+}
+
+@media (prefers-contrast: more) {
+    .closeHelp {
+        border: 2px solid CanvasText;
+    }
 }
