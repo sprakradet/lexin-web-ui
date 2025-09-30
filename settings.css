@@ -176,7 +176,7 @@
 /* --------- (CG ADD) HIGH CONTRAST MODE SETTINGS --------- */
 
 @media (prefers-contrast: more) {
-    .settingsIcon {
+    .settingsBar1, .settingsBar2, .settingsBar3 {
         background-color: CanvasText;
     }
 

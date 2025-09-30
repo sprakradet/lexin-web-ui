@@ -713,21 +713,6 @@ footer .lp-icon {
     .expandGraminfoIcon {
 	    opacity: 1;
     }
-
-    /* CG ADD */
-
-    form#theForm input,
-    form#theForm2 input  {
-        border: 2px solid CanvasText;
-    }
-
-    .listenIcon {
-        border: 2px solid CanvasText;
-    }
-
-    .expandResultsIcon {
-        border: 2px solid CanvasText;
-    }
 }
 
 /* CG ADD */
