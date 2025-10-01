@@ -457,7 +457,7 @@ select {
 }
 
 .pronunciation {
-    display: inline;
+    display: inline !important;
 }
 
 .alt_form {
