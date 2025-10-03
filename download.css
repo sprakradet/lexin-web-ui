@@ -27,6 +27,7 @@
     width:auto;
     max-width:none;
     padding: 0 1.5em 0 0.5em;
+    cursor: pointer;
 }
 
 /* --------- PROGRESS BAR --------- */
