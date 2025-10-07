@@ -2911,6 +2911,7 @@ function addBildtemaInline(url, parent) {
     inlineImg.className = 'inlineImage';
     inlineImg.style.width = "100%";
     parent.appendChild(inlineImg);
+
     let cleanurl = url.replace("bildetema.html", "bildetema-clean.html");
     let parsedUrl = new URL(url);
     let urlParams = parsedUrl.searchParams;
@@ -2921,10 +2922,15 @@ function addBildtemaInline(url, parent) {
     }
     //console.log("page", page, "subpage", subpage);
     inlineImg.innerHTML='<img src="/bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
+
+	// add external Bildtema link
     let link = $("<a></a>");
     link.attr("href", url);
     link.text("Visa i Bildteman");
     $(parent).append(link);
+
+	// open link in new tab
+	link.attr("target", "_blank");
 }
 
 function addBildtemaInlineDetail(url, parent) {
