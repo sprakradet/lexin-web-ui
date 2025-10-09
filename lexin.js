@@ -254,9 +254,8 @@ async function loadHelp() {
 
 let bildtemaWords;
 
-// CG: THE FUNCTION BELOW LOADS ALL DETAIL PICTURES
-// CG: IT IS RUN ONLY ONCE, AS YOU OPEN THE APP
-
+/* --------- LOAD ALL DETAIL PICTURES --------- */
+/* --------- RUN ONLY ONCE, AS YOU OPEN THE APP --------- */
 /* CG ADD START */
 async function loadBildtema() {
 	// creates arrays of words and images
@@ -286,10 +285,6 @@ async function loadBildtema() {
     bildtemaWords = {};
 	for (let key of Object.keys(words)) {	
 		let value = words[key];		// actual word string
-
-		if (value.includes("behå")) {
-			console.log("CG BILDTEMAORD RAW: \"" + value + "\"");
-		}
 
 		// normalize lemma (strip article + trailing parentheses)
 		/*let splitvalue = value.split(" ");
@@ -329,10 +324,6 @@ async function loadBildtema() {
 					bildtemaWords[compositeKey] = [];
 				}
 				bildtemaWords[compositeKey].push(parts[0]);  // add the image path
-
-				if (value.includes("behå")) {
-					console.log("CG BILDTEMAORD HELT PROCESSAT: \"" + value + "\"");
-				}
 			}
 		}
     }
@@ -502,7 +493,7 @@ async function callLexin(pushPreviousState) {
 
 let permbartop;
 
-/* --------- FETCH JSON OBJECT --------- */
+/* --------- FETCH JSON OBJECT FROM KTH API --------- */
 class LexinService {
     backendServer;
     getJson;
@@ -514,7 +505,16 @@ class LexinService {
 		// build rest of url
 		// return json object
 		this.getJson = async function(direction, lang, word) {
+			console.log("CG query: \"" + word + "\"");
+			console.log("CG query encoded: \"" + encodeURIComponent(word) + "\"");
+
 			const url = lexinService.backendServer + "?searchinfo=" + direction + ",swe_" + lang + "," + encodeURIComponent(word) + "&output=JSON";
+
+			// CG ADD REGEX TEST
+			/*const regex = new RegExp(`^${word}$`, "i");
+			const word2 = String(regex);
+			console.log("CG query regexed: \"" + word2 + "\"");
+			const url = lexinService.backendServer + "?searchinfo=" + direction + ",swe_" + lang + "," + encodeURIComponent(word2) + "&output=JSON";*/
 
 			//HB 250613
 			//BUG in api: \ is replaced by \u005c everywhere (?)
@@ -858,10 +858,13 @@ function printJSON(word, res, moreThanOneLanguage) {
 
 		// show correction suggestions
 		if(res.Corrections?.length > 0) {
+			console.log("CG rättningsförslag: ", res.Corrections);
+
 			let langs = getSelectedLexicon();
 			let sp = document.createElement('span');
 			sp.textContent = "Rättningsförslag: ";
 			let ul = document.createElement('ul');
+
 			for(let correction of res.Corrections) {
 				var li = document.createElement('li');
 				var w = correction;
@@ -875,7 +878,6 @@ function printJSON(word, res, moreThanOneLanguage) {
 			html.appendChild(sp);
 			html.appendChild(ul);
 		}
-
     } 
 	// no matching
 	else if(res.Status == "no matching") {
@@ -890,7 +892,11 @@ function printJSON(word, res, moreThanOneLanguage) {
 			corr.className = 'correction';
 			if(res?.Result?.[0]?.Value) {
 				for(let correctedWord of Object.values(res.Result[0].Value)) {
-					corr.textContent = "Ordet \"" + word + "\" finns inte i lexikonet, men ordet \"" + correctedWord + "\" finns.";
+					// CG ADD - remove "|" from suggested word
+					const correctedWord2 = correctedWord.replace(/\|/g, "");
+
+					// CG CHANGE - from correctedWord to correctedWord2
+					corr.textContent = "Ordet \"" + word + "\" finns inte i lexikonet, men ordet \"" + correctedWord2 + "\" finns.";
 					word = correctedWord; // treat this as the query for relevance etc. purposes
 					break;
 				}
@@ -2817,7 +2823,7 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 
 			word = word.replace(/\s+\(\d+\)$/, "");
 			
-			console.log("CG SÖKORD: \"" + word + "\"");
+			console.log("CG sökord bild: \"" + word + "\"");
 
 			// CG CHANGE - THIS FIXES THE "WRONG DETAIL PIC ERROR"
 			for(var i = 0; i < ill.length; i++) {
@@ -2829,13 +2835,13 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 				let urls = bildtemaWords[word+"|"+page+"|"+subpage];		// CG: new key, includes pages 
 				for (let url of urls || []) {
 					addBildtemaInlineDetail(url, pictures);					// CG: detail picture
-					console.log("CG " + word + " detaljbild " + url);
+					console.log("CG " + word + " detaljbild: " + url);
 				}
 			}
 
 			for(var i = 0; i < ill.length; i++) {
 				addBildtemaInline(ill[i], pictures);						// CG: overview picture
-				console.log("CG " + word + " översiktsbild " + ill[i]);
+				console.log("CG " + word + " översiktsbild: " + ill[i]);
 			}
 		}
 		if(!pictures.style.display || pictures.style.display == 'none') {
@@ -5153,33 +5159,31 @@ function calculateScore(js, word, lang) {
     return score;
 }
 
+/* --------- DETERMINE ORDER OF SEARCH RESULTS --------- */
 function rankSearchResults(results, searchQuery) {
     // 0 Rank exact match first
     // 1 Rank matches with search term in Inflections second
     // 2 Rank matches with search term in Translation next
     // 3 Rank matches that are themselves compound words with the search term as one part next, as the last part
-
     // 4 Rank matches that are themselves compound words with the search term as one part next, not as the last part
-
     // 5 Rank matches with Compounds examples with the search term next
     // 6 Rank matches with the search term in idioms or examples next
-    // Anything else
+    // 7 Anything else
 
     let scores = [];
     let word = cleanWord(searchQuery);
     for(let r = 0; r < results.length; r++) {
-	var js = results[r];
-
-	let lang = results[r].lang;
-	
-	if(js) {
-            let score = calculateScore(js, word, lang);
-	    scores.push({'v':score, 'obj':js});
-	}
+		var js = results[r];
+		let lang = results[r].lang;
+		
+		if(js) {
+			let score = calculateScore(js, word, lang);
+			scores.push({'v':score, 'obj':js});
+		}
     }
 
     for(const score of scores) {
-//        console.log("score", score.v, score.obj.Value, score.obj.lang);
+	//        console.log("score", score.v, score.obj.Value, score.obj.lang);
     }
     scores.sort((a, b) => {
         if (b.v < a.v) {
