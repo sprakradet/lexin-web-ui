@@ -4888,96 +4888,118 @@ function getCycles(js) {
 
 let multilangDisplay = "none";
 
+/* --------- TURN ON SINGLE/MULTIPLE LANGUAGE SETTING --------- */
 function multiLangOrNot() {
+	// show several languages
     if (settings.multiple_languages.val) {
-	if (multilangDisplay == "multi") {
-	    return;
-	}
-    } else {
-	if (multilangDisplay == "single") {
-	    return;
-	}
+		// current display already shows that?
+		if (multilangDisplay == "multi") {
+			return;
+		}
+    } 
+	// show single language
+	else {
+		// current display already shows that?
+		if (multilangDisplay == "single") {
+			return;
+		}
     }
+
     let lc = $(".select-wrapper");
     $(".multilang-wrapper").remove();
+
+	// turn on several languages
     if(settings.multiple_languages.val) {
-	lc.css("display", "none");
-	let multilangchoicebutton = $("<div class='multilang-wrapper'><button id='multiLanguageChoiceButton'>Välj språk</button></div>");
-	lc.after(multilangchoicebutton);
-	let multilangchoice = $("#multilangchoice");
+		// hide single language dropdown
+		lc.css("display", "none");
 
-	let columnwrapper = $("<div class='multilangcolumnwrapper'></div>");
-	
-	let languages = $("#languageChoice").children("option").map((i, e) => {
-	    let langcode = $(e).attr("value");
-	    let langname = $(e).text();
-	    return {code:langcode,name:langname}
-	}).get();
-	let halfway = (languages.length-1) / 2 + 1;
-	let firsthalf = languages.slice(0, halfway);
-	let secondhalf = languages.slice(halfway);
-	for (let langhalf of [firsthalf, secondhalf]) {
-	    let column = $("<div class='multilangcolumn'></div>");
-	    for (let lang of langhalf) {
-		let langcheckbox = $("<input type='checkbox' name='multilangchoice'>");
-		langcheckbox.attr("value", lang.code);
-		langcheckbox.attr("id", "multilangchoice-" + lang.code);
-		let langcheckbox_wrapper = $("<div class='langcheckboxWrapper'>	  	  	  </div>");
-		langcheckbox_wrapper.append(langcheckbox);
-		let langcheckbox_label = $("<label>Avledningar</label>");
-		langcheckbox_label.attr("for", "multilangchoice-" + lang.code);
-		langcheckbox_wrapper.append(langcheckbox_label);
-		langcheckbox_label.text(lang.name);
-	    
-		column.append(langcheckbox_wrapper);
-	    }
-	    columnwrapper.append(column)
-	}
-	$(multilangchoice).append(columnwrapper);
-	$("#theForm").append(multilangchoice);
-	multilangchoicebutton.click((e) => {
-	    let active = multilangchoice.is(":visible");
-	    dismissSettings();
-	    if (active) {
-		$("#multilangchoice").hide();
-		e.preventDefault();
-		return;
-	    }
-	    
-	    $(".settingsIcon").addClass("change");
-	    $("#multilangchoice").show();
-	    e.preventDefault();
+		// add new button
+		let multilangchoicebutton = $("<div class='multilang-wrapper'><button id='multiLanguageChoiceButton'>Välj språk</button></div>");
+		lc.after(multilangchoicebutton);
 
-	});
-	let selectedLanguages = [$("#languageChoice")[0].value];
-	setMultilangchoice(selectedLanguages);
-	multilangDisplay = "multi";
-    } else {
-	// TODO: what do we do if there is more than one selected language?
-	let selectedLanguages = getMultilangchoice();
-	if (selectedLanguages.length > 0) {
-	    $("#languageChoice")[0].value = selectedLanguages[0];
-	} else {
-	    $("#languageChoice")[0].value = "swe";
-	}
+		let multilangchoice = $("#multilangchoice");
+		let columnwrapper = $("<div class='multilangcolumnwrapper'></div>");
+		
+		// build language array
+		let languages = $("#languageChoice").children("option").map((i, e) => {
+			let langcode = $(e).attr("value");
+			let langname = $(e).text();
+			return {code:langcode,name:langname}
+		}).get();
 
-	lc.css("display", "block");
-	$("#multilangchoice").empty();
-	multilangDisplay = "single";
+		// divide language options into two columns
+		let halfway = (languages.length-1) / 2 + 1;
+		let firsthalf = languages.slice(0, halfway);
+		let secondhalf = languages.slice(halfway);
+		for (let langhalf of [firsthalf, secondhalf]) {
+			let column = $("<div class='multilangcolumn'></div>");
+			for (let lang of langhalf) {
+				let langcheckbox = $("<input type='checkbox' name='multilangchoice'>");
+				langcheckbox.attr("value", lang.code);
+				langcheckbox.attr("id", "multilangchoice-" + lang.code);
+				let langcheckbox_wrapper = $("<div class='langcheckboxWrapper'>	  	  	  </div>");
+				langcheckbox_wrapper.append(langcheckbox);
+				let langcheckbox_label = $("<label>Avledningar</label>");
+				langcheckbox_label.attr("for", "multilangchoice-" + lang.code);
+				langcheckbox_wrapper.append(langcheckbox_label);
+				langcheckbox_label.text(lang.name);
+				column.append(langcheckbox_wrapper);
+			}
+			columnwrapper.append(column)
+		}
+
+		// insert language options on page
+		$(multilangchoice).append(columnwrapper);
+		$("#theForm").append(multilangchoice);
+
+		// clicking "choose language" (SE: "Välj språk") button 
+		multilangchoicebutton.click((e) => {
+			let active = multilangchoice.is(":visible");
+			dismissSettings();
+			if (active) {
+				$("#multilangchoice").hide();
+				e.preventDefault();
+				return;
+			}
+			
+			$(".settingsIcon").addClass("change");
+			$("#multilangchoice").show();
+			e.preventDefault();
+		});
+
+		let selectedLanguages = [$("#languageChoice")[0].value];
+		setMultilangchoice(selectedLanguages);
+		multilangDisplay = "multi";
+    } 
+	// turn on single language
+	else {
+		// TODO: what do we do if there is more than one selected language?
+		let selectedLanguages = getMultilangchoice();
+		if (selectedLanguages.length > 0) {
+			$("#languageChoice")[0].value = selectedLanguages[0];
+		} else {
+			$("#languageChoice")[0].value = "swe";
+		}
+
+		lc.css("display", "block");
+		$("#multilangchoice").empty();
+		multilangDisplay = "single";
     }
 }
 
+/* --------- CHECK WHICH LANGUAGES ARE CHECKED --------- */
 function getMultilangchoice() {
     let lexicons = [];
 
     for (let langchoicewrapper of $("#multilangchoice .multilangcolumn").children(".langcheckboxWrapper")) {
-	let langchoice = $(langchoicewrapper).find("input");
-	let langcode = $(langchoice).attr("value");
-	if (langchoice[0].checked) {
-	    //		console.log(langcode);
-	    lexicons.push(langcode);
-	}
+		let langchoice = $(langchoicewrapper).find("input");
+		let langcode = $(langchoice).attr("value");
+		if (langchoice[0].checked) {
+			console.log(langcode);
+			lexicons.push(langcode);
+		}
     }
+
     return lexicons;
 }
 
@@ -5460,9 +5482,9 @@ function openPageDescription(elem) {
 
 $.fn.condShow = function(shouldBeShown) {
     if (shouldBeShown) {
-	this.show();
+		this.show();
     } else {
-	this.hide();
+		this.hide();
     }
 };
 
@@ -5472,6 +5494,7 @@ $.fn.condShow = function(shouldBeShown) {
 // Set the initial show()/hide() status of dynamically created
 // elements.
 // ----------------------------------------------------------------------
+
 function initialShowHide() {
     // lemma list triggers
     /* // Turn off for now
@@ -5484,42 +5507,79 @@ function initialShowHide() {
     }
     */
     
+	// SE: Avledningar
     $(".derivation").
 	condShow(settings.derivations.val);
+
+	// SE: Bilder
     $(".ill").
 	condShow(settings.illustrations.val);
+
+	// SE: Bildtema - THIS DOES NOT WORK
     $(".ims").
 	condShow(settings.im.val);
+
+	// SE: Böjning
     $(".inflections").
 	condShow(settings.inflections.val);
+
+	// SE: Definition
     $(".meaning").
 	condShow(settings.definition.val);
+
+	// SE: Exempel
     $(".examples").
 	condShow(settings.examples.val);
+
+	// SE: Förkortningar
     $(".abbr").
 	condShow(settings.abbr.val);
+
+	// SE: Konstruktioner
     $(".gramInfo").
 	condShow(settings.constructions.val);
+
+	// SE: Motsatser
     $(".antonym").
 	condShow(settings.antonyms.val);
+
+	// SE: Ordklass
     $(".PoS").
 	condShow(settings.pos.val);
+
+	// SE: Sammansättningar
     $(".compounds").
 	condShow(settings.compounds.val);
+
+	// SE: Svenska kommentarer
     $(".comment_se").
 	condShow(settings.comments_se.val);
+
+	// SE: Synonymer till översättningar
     $(".synonyms").
 	condShow(settings.synonyms.val);
+
+	// SE: Uppslagsord
     $(".matchingWord").
 	condShow(settings.word.val);
+
+	// SE: Uttal
     $(".pronunciation").
 	condShow(settings.pron.val);
+
+	// SE: Uttryck
     $(".idioms").
 	condShow(settings.expressions.val);
+
+	// SE: Variantform
     $(".alt_form").
 	condShow(settings.alt.val);
+
+	// SE: Översättning
     $(".translation").
 	condShow(settings.translation.val);
+
+	// SE: Översättningskommentarer
     $(".comment_tr").
 	condShow(settings.comments_other.val);
 

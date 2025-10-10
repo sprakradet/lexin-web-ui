@@ -29,6 +29,7 @@
 
 .keyboardKeyButton:disabled {
     opacity: 50%;
+    pointer-events: none;
 }
 
 .geezVowels, .geezConsonants {

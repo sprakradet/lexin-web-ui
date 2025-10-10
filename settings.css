@@ -173,7 +173,7 @@
     vertical-align: middle;
 }
 
-/* --------- (CG ADD) HIGH CONTRAST MODE SETTINGS --------- */
+/* --------- (CG ADD) HIGH CONTRAST MODE --------- */
 
 @media (prefers-contrast: more) {
     .settingsBar1, .settingsBar2, .settingsBar3 {

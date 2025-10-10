@@ -458,7 +458,7 @@ select {
 }
 
 .pronunciation {
-    display: inline !important;
+    /*display: inline !important;*/
 }
 
 .alt_form {
@@ -684,7 +684,7 @@ footer .lp-icon {
     margin-left: .8rem;
 }
 
-/* --------- CONTRAST MODE SETTINGS --------- */
+/* --------- HIGH CONTRAST MODE --------- */
 
 @media (prefers-contrast: more) {
     .wordInfo {
@@ -719,6 +719,14 @@ footer .lp-icon {
 /* CG ADD */
 input[type="checkbox"] {
   accent-color: #3FD695;
+}
+
+/* --------- URLS --------- */
+
+.footerLink:hover {
+  background-color: #16323A !important;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 
