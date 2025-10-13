@@ -634,7 +634,7 @@ function updateKeyboardLanguage() {
 // --------------------------------------------------------------------
 
 $(document).ready(function() {
-	// change in single language mod
+	// change in single language mode
     $("#languageChoice").change(function(e) {
 		updateKeyboardLanguage();
 		e.preventDefault();

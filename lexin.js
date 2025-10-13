@@ -2924,8 +2924,9 @@ function addBildtemaInline(url, parent) {
     let page = urlParams.get("page");
     let subpage = urlParams.get("subpage");
     if (subpage == null) {
-	subpage = 1;
+		subpage = 1;
     }
+
     //console.log("page", page, "subpage", subpage);
     inlineImg.innerHTML='<img src="/bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
 
@@ -2934,6 +2935,11 @@ function addBildtemaInline(url, parent) {
     link.attr("href", url);
     link.text("Visa i Bildteman");
     $(parent).append(link);
+
+	// CG ADD - FIX "DISABLE BILDTEMA" BUG
+	link.addClass("bildtemaLink");
+	$(".bildtemaLink").
+	condShow(settings.btlink.val);
 
 	// open link in new tab
 	link.attr("target", "_blank");
@@ -4995,7 +5001,7 @@ function getMultilangchoice() {
 		let langchoice = $(langchoicewrapper).find("input");
 		let langcode = $(langchoice).attr("value");
 		if (langchoice[0].checked) {
-			console.log(langcode);
+			// console.log(langcode);
 			lexicons.push(langcode);
 		}
     }
@@ -5515,9 +5521,13 @@ function initialShowHide() {
     $(".ill").
 	condShow(settings.illustrations.val);
 
-	// SE: Bildtema - THIS DOES NOT WORK
+	// SE: Bildtema - THIS DOES NOT DO ANYTHING ATM
     $(".ims").
 	condShow(settings.im.val);
+
+	// CG ADD - FIX "DISABLE BILDTEMA" BUG
+    $(".bildtemaLink").
+	condShow(settings.btlink.val);
 
 	// SE: Böjning
     $(".inflections").
@@ -5564,8 +5574,8 @@ function initialShowHide() {
 	condShow(settings.word.val);
 
 	// SE: Uttal
-    $(".pronunciation").
-	condShow(settings.pron.val);
+    $(".pronunciation").			// class name
+	condShow(settings.pron.val);	// settings name
 
 	// SE: Uttryck
     $(".idioms").
@@ -5727,7 +5737,6 @@ var settings = {
     'clickable_headings':{'text':'Gör rubriker klickbara för att öppna hjälptext.', 'val':1},
     'add_swedish_results':{'text':'Lägg till enspråkiga svenska resultat vid sökning i tvåspråkiga lexikon.', 'val':0},
     
-    
     'completion':{'text':'Visa kompletteringsförslag under sökrutan.', 'val':1},
     'keyb_se':{'text':'Visa alltid svenskt tangentbord med å, ä, ö.', 'val':0},
     'keyb_other':{'text':'Visa alltid tangentbord för språk med andra skrivtecken.', 'val':0},
@@ -5749,6 +5758,10 @@ var settings = {
     'synonyms':{'text':'synonymer till översättningar', 'val':1},
     'word':{'text':'uppslagsord', 'val':1},
     'pron':{'text':'uttal', 'val':1},
+
+	// CG ADD - FIX "DISABLE BILDTEMA LINK" BUG
+	'btlink':{'text':'bildtemalänk', 'val':1},
+
     'expressions':{'text':'uttryck', 'val':1},
     'alt':{'text':'variantform', 'val':1},
     'translation':{'text':'översättning', 'val':1},
@@ -5831,7 +5844,7 @@ window.onbeforeunload = function (event) {
 // --------------------------------------------------------------------
 function registerPartsselectionUpdate(selector, settingsName) {
     $(document).on("lexin_settingsupdate_" + settingsName, function () {
-	$(selector).condShow(settings[settingsName].val);
+		$(selector).condShow(settings[settingsName].val);
     });
 }
 
@@ -5919,6 +5932,10 @@ $(document).ready(function() {
     registerPartsselectionUpdate(".synonyms", "synonyms");
     registerPartsselectionUpdate(".matchingWord", "word");
     registerPartsselectionUpdate(".pronunciation", "pron");
+
+	// CG ADD - FIX "DISABLE BILDTEMA LINK" BUG
+	registerPartsselectionUpdate(".bildtemaLink", "btlink");
+
     registerPartsselectionUpdate(".idioms", "expressions");
     registerPartsselectionUpdate(".alt_form", "alt");
     registerPartsselectionUpdate(".translation", "translation");
