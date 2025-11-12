@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="sv">
+	
   <head>
+
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/lexin.css">
     <meta name="theme-color" content="#1c3f49" />
@@ -44,275 +46,339 @@
 
     <link rel="stylesheet" href="/lemmalist.css">
     <script type="text/javascript" src="/lemmalist.js"></script>
+
   </head>
 
   <body>
+
     <div id="inputDiv">
-      
-      <form id="theForm">
-	<div class="headerrow">
-	  <h1 class="heading">LEXIN</h1>
-	<div class="select-wrapper">
-	<select id="languageChoice" name="languageChoice" title="Språkval">
- 	  <option value="alb">albanska</option>
-	  <option value="amh">amhariska</option>
-	  <option value="ara">arabiska</option>
-	  <option value="azj">azerbajdzjanska</option>
-	  <option value="bos">bosniska</option>
-	  <option value="fin">finska</option>
-	  <option value="gre">grekiska</option>
-	  <option value="hrv">kroatiska</option>
-	  <option value="kmr">kurdiska (kurmanji)</option>
-	  <option value="pus">pashto</option>
-	  <option value="per">persiska</option>
-	  <option value="rus">ryska</option>
-	  <option value="srp">serbiska (latinskt)</option>
-	  <option value="srp_cyrillic">serbiska (kyrilliskt)</option>
-	  <option value="som">somaliska</option>
-	  <option value="spa">spanska</option>
-	  <option value="swe" selected>svenska</option>
-	  <option value="sdh">kurdiska (sorani)</option>
-	  <option value="tir">tigrinska</option>
-	  <option value="tur">turkiska</option>
-	  <option value="ukr">ukrainska</option>
-	</select>
-	</div>
 
-	<button title="Visa inställningar" class="settingsIcon" onclick="openCloseSettings(this)" type="button">
-	  <div class="settingsBar1"></div>
-	  <div class="settingsBar2"></div>
-	  <div class="settingsBar3"></div>
-	</button>
+    	<form id="theForm">
 
-      </div>
+			<div class="headerrow">
 
-      <div id="saveWordPopup" class="saveWordPopup">
-	<h2>Sparade ord</h2>
-	<button class="saveWordsButton" id="savedWordsSaveCurrentWrd" title="Spara senaste uppslagning" onclick="savedWordsSaveCurrentWord(this)" type="button">
-	  Spara senaste
-	</button>
-	<div id="savedWordsList">
-	</div>
-	<button class="saveWordsButton" id="savedWordsSort" title="Sortera sparade ord" onclick="savedWordsSortWords(this)" type="button">
-	  Sortera orden
-	</button>
-	<button class="saveWordsButton" id="savedWordsClear" title="Rensa sparade ord" onclick="savedWordsClearWords(this)" type="button">
-	  Rensa listan
-	</button>
-      </div>
-      <div id="downloadPopup" class="downloadPopup">
-	<h2>Ladda ner lexikon</h2>
-	<select id="selectDownloadLanguages">
-	</select>
-	<div><button class="downloadStartButton" type="button">Ladda ner</button></div>
-	<div id="downloadProgress">
-	</div>
-      </div>
-      <div id="settingsPopup" class="settingsPopup">
-	<div class="settingsMainItem">
-	  <input type="checkbox" class="settingsmenuCheckbox" id="multiple_languagesSet" name="multiple_languagesSet" value="settings_multiple_languages">
-	  <label class="settingsmenuLabel" for="multiple_languagesSet">Sök på flera språk samtidigt</label>
-	</div>
-	<div class="settingsMainItem">
-	  <input type="checkbox" class="settingsmenuCheckbox" id="add_swedish_resultsSet" name="add_swedish_resultsSet" value="settings_add_swedish_results">
-	  <label class="settingsmenuLabel" for="add_swedish_resultsSet">Lägg alltid till svenska resultat</label>
-	</div>
-	<div class="settingsMainItem">
-	  <input type="checkbox" class="settingsmenuCheckbox" id="clickable_headingsSet" name="clickable_headingsSet" value="settings_clickable_headings">
-	  <label class="settingsmenuLabel" for="clickable_headingsSet">Klickbara rubriker</label>
-	</div>
-	<div class="settingsMainItem">
-	  <input type="checkbox" class="settingsmenuCheckbox" id="completionSet" name="completionSet" value="settings_completion">
-	  <label class="settingsmenuLabel" for="completionSet">Sökförslag</label>
-	</div>
-	<div class="settingsMainItem">
-	  <input type="checkbox" class="settingsmenuCheckbox" id="keyb_seSet" name="keyb_seSet" value="settings_keyb_se">
-	  <label class="settingsmenuLabel" for="keyb_seSet">Svenskt tangentbord med å, ä, ö</label><br/>
-	</div>
-	<div class="settingsMainItem">
-	  <input type="checkbox" class="settingsmenuCheckbox" id="keyb_otherSet" name="keyb_otherSet" value="settings_keyb_other">
-	  <label class="settingsmenuLabel" for="keyb_otherSet">Tangentbord för andra språk</label><br/>
-	</div>
-	<div class="settingsMainButton">
-	<button class="saveWordsButton" id="savedWordsSaveCurrent" title="Spara senaste uppslagning" onclick="savedWordsSaveCurrentWord(this)" type="button">
-	  Spara senaste
-	</button>
-	</div>
-	<div class="settingsMainItem">
-	  <button class="settingsNavigation" id="openSavedWords" type="button">
-	    <span class="settingsNavigationText">Sparade ord</span>
-	    <img src="/submenu.svg" class="settingsNavigationIcon">
-	  </button>
-	</div>
-	<div class="settingsMainItem">
-	  <button class="settingsNavigation" id="openPartsSelection" type="button">
-	    <span class="settingsNavigationText">Välj delar av lexikontexten att visa</span>
-	    <img src="/submenu.svg" class="settingsNavigationIcon">
-	  </button>
-	</div>
-       <div class="settingsMainItem">
-         <button class="settingsNavigation" id="openDownload" type="button">
-           <span class="settingsNavigationText">Ladda ner lexikon</span>
-           <img src="submenu.svg" class="settingsNavigationIcon">
-         </button>
-       </div>
-	<div class="settingsMainItem">
-	  <button class="settingsNavigation openHelp" type="button">
-	    <span class="settingsNavigationText">Hjälp</span>
-	    <img src="/submenu.svg" class="settingsNavigationIcon">
-	  </button>
-	</div>
-	</div>
+				<!-- PAGE TITLE -->
+				<h1 class="heading">LEXIN</h1>
 
-	<div id="partsselection">
-	<p>Visa följande delar av lexikontexten:</p>
+				<!-- LANGUAGE SELECT -->
+				<div class="select-wrapper">
+					<select id="languageChoice" name="languageChoice" title="Språkval">
+						<option value="alb">albanska</option>
+						<option value="amh">amhariska</option>
+						<option value="ara">arabiska</option>
+						<option value="azj">azerbajdzjanska</option>
+						<option value="bos">bosniska</option>
+						<option value="fin">finska</option>
+						<option value="gre">grekiska</option>
+						<option value="hrv">kroatiska</option>
+						<option value="kmr">kurdiska (kurmanji)</option>
+						<option value="pus">pashto</option>
+						<option value="per">persiska</option>
+						<option value="rus">ryska</option>
+						<option value="srp">serbiska (latinskt)</option>
+						<option value="srp_cyrillic">serbiska (kyrilliskt)</option>
+						<option value="som">somaliska</option>
+						<option value="spa">spanska</option>
+						<option value="swe" selected>svenska</option>
+						<option value="sdh">kurdiska (sorani)</option>
+						<option value="tir">tigrinska</option>
+						<option value="tur">turkiska</option>
+					<option value="ukr">ukrainska</option>
+					</select>
+				</div>
 
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="derivationsSet" name="derivationsSet" value="settings_derivations">
-	  <label for="derivationsSet">Avledningar</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="illustrationsSet" name="illustrationsSet" value="settings_illustrations">
-	  <label for="illustrationsSet">Bilder</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="imSet" name="imSet" value="settings_im">
-	  <label for="imSet">Bildtema</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="inflectionsSet" name="inflectionsSet" value="settings_inflections">
-	  <label for="inflectionsSet">Böjning</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="definitionSet" name="definitionSet" value="settings_definition">
-	  <label for="definitionSet">Definition</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="examplesSet" name="examplesSet" value="settings_examples">
-	  <label for="examplesSet">Exempel</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="abbrSet" name="abbrSet" value="settings_abbr">
-	  <label for="abbrSet">Förkortningar</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="constructionsSet" name="constructionsSet" value="settings_constructions">
-	  <label for="constructionsSet">Konstruktioner</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="antonymsSet" name="antonymsSet" value="settings_antonyms">
-	  <label for="antonymsSet">Motsatser</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="posSet" name="posSet" value="settings_pos">
-	  <label for="posSet">Ordklass</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="compoundsSet" name="compoundsSet" value="settings_compounds">
-	  <label for="compoundsSet">Sammansättningar</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="comments_seSet" name="comments_seSet" value="settings_comments_se">
-	  <label for="comments_seSet">Svenska kommentarer</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="synonymsSet" name="synonymsSet" value="settings_synonyms">
-	  <label for="synonymsSet">Synonymer till översättningar</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="wordSet" name="wordSet" value="settings_word">
-	  <label for="wordSet">Uppslagsord</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="pronSet" name="pronSet" value="settings_pron">
-	  <label for="pronSet">Uttal</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="expressionsSet" name="expressionsSet" value="settings_expressions">
-	  <label for="expressionsSet">Uttryck</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="altSet" name="altSet" value="settings_alt">
-	  <label for="altSet">Variantform</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="translationSet" name="translationSet" value="settings_translation">
-	  <label for="translationSet">Översättning</label>
-	  </div>
-	  <div class="partsselectionBox">
-	  <input type="checkbox" id="comments_otherSet" name="comments_otherSet" value="settings_comments_other">
-	  <label for="comments_otherSet">Översättningskommentarer</label>
-	  </div>
-	</div>
-	<div id="multilangchoice">
-	</div>
-      </form>
+				<!-- SETTINGS ICON -->
+				<button title="Visa inställningar" class="settingsIcon" onclick="openCloseSettings(this)" type="button">
+					<div class="settingsBar1"></div>
+					<div class="settingsBar2"></div>
+					<div class="settingsBar3"></div>
+				</button>
+
+      		</div>
+
+			<!-- SAVED WORDS VIEW -->
+			<div id="saveWordPopup" class="saveWordPopup">
+				<h2>Sparade ord</h2>
+				<button class="saveWordsButton" id="savedWordsSaveCurrentWrd" title="Spara senaste uppslagning" onclick="savedWordsSaveCurrentWord(this, 'saveMessage1')" type="button">
+					Spara senaste
+				</button>
+				<span id="saveMessage1" class="saveMessage">
+					Uppslagningen sparades!
+				</span> 
+				<div id="savedWordsList"></div>
+				<button class="saveWordsButton" id="savedWordsSort" title="Sortera sparade ord" onclick="savedWordsSortWords(this)" type="button">
+					Sortera orden
+				</button>
+				<button class="saveWordsButton" id="savedWordsClear" title="Rensa sparade ord" onclick="savedWordsClearWords(this)" type="button">
+					Rensa listan
+				</button>
+			</div>
+
+			<!-- LEXICON D0WNLOAD VIEW -->
+			<div id="downloadPopup" class="downloadPopup">
+				<h2>Ladda ner lexikon</h2>
+				<div class="downloadControls">
+					<select id="selectDownloadLanguages"></select>
+					<button class="downloadStartButton" type="button">
+						Ladda ner
+					</button>
+				</div>
+				<div id="downloadProgress"></div>
+			</div>
+
+			<!-- CHECKBOX VIEW -->
+			<div id="settingsPopup" class="settingsPopup">
+				<div class="settingsMainItem">
+					<input type="checkbox" class="settingsmenuCheckbox" id="multiple_languagesSet" name="multiple_languagesSet" value="settings_multiple_languages">
+					<label class="settingsmenuLabel" for="multiple_languagesSet">Sök på flera språk samtidigt</label>
+				</div>
+				<div class="settingsMainItem">
+					<input type="checkbox" class="settingsmenuCheckbox" id="add_swedish_resultsSet" name="add_swedish_resultsSet" value="settings_add_swedish_results">
+					<label class="settingsmenuLabel" for="add_swedish_resultsSet">Lägg alltid till svenska resultat</label>
+				</div>
+				<div class="settingsMainItem">
+					<input type="checkbox" class="settingsmenuCheckbox" id="clickable_headingsSet" name="clickable_headingsSet" value="settings_clickable_headings">
+					<label class="settingsmenuLabel" for="clickable_headingsSet">Klickbara rubriker</label>
+				</div>
+				<div class="settingsMainItem">
+					<input type="checkbox" class="settingsmenuCheckbox" id="completionSet" name="completionSet" value="settings_completion">
+					<label class="settingsmenuLabel" for="completionSet">Sökförslag</label>
+				</div>
+				<div class="settingsMainItem">
+					<input type="checkbox" class="settingsmenuCheckbox" id="keyb_seSet" name="keyb_seSet" value="settings_keyb_se">
+					<label class="settingsmenuLabel" for="keyb_seSet">Svenskt tangentbord med å, ä, ö</label><br/>
+				</div>
+				<div class="settingsMainItem">
+					<input type="checkbox" class="settingsmenuCheckbox" id="keyb_otherSet" name="keyb_otherSet" value="settings_keyb_other">
+					<label class="settingsmenuLabel" for="keyb_otherSet">Tangentbord för andra språk</label><br/>
+				</div>
+				<div class="settingsMainButton">
+					<button class="saveWordsButton" id="savedWordsSaveCurrent" title="Spara senaste uppslagning" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
+						Spara senaste
+					</button>
+					<span id="saveMessage2" class="saveMessage">
+						Uppslagningen sparades!
+					</span>
+				</div>
+				<div class="settingsMainItem">
+					<button class="settingsNavigation" id="openSavedWords" type="button">
+						<span class="settingsNavigationText">Sparade ord</span>
+						<img src="/submenu.svg" class="settingsNavigationIcon">
+					</button>
+				</div>
+				<div class="settingsMainItem">
+					<button class="settingsNavigation" id="openPartsSelection" type="button">
+						<span class="settingsNavigationText">Välj delar av lexikontexten att visa</span>
+						<img src="/submenu.svg" class="settingsNavigationIcon">
+					</button>
+				</div>
+				<div class="settingsMainItem">
+					<button class="settingsNavigation" id="openDownload" type="button">
+						<span class="settingsNavigationText">Ladda ner lexikon</span>
+						<img src="submenu.svg" class="settingsNavigationIcon">
+					</button>
+				</div>
+				<div class="settingsMainItem">
+					<button class="settingsNavigation openHelp" type="button">
+						<span class="settingsNavigationText">Hjälp</span>
+						<img src="/submenu.svg" class="settingsNavigationIcon">
+					</button>
+				</div>
+			</div>
+
+			<!-- LEXICON PARTS VIEW -->
+			<div id="partsselection">
+				<h2>Välj delar av lexikontexten att visa</h2>
+				<p>Visa följande delar av lexikontexten:</p>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="derivationsSet" name="derivationsSet" value="settings_derivations">
+					<label class="partsselectionLabel" for="derivationsSet">Avledningar</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="illustrationsSet" name="illustrationsSet" value="settings_illustrations">
+					<label class="partsselectionLabel" for="illustrationsSet">Bilder</label>
+				</div>
+				
+				<!-- CG REMOVE - FIX "DISABLE BILDTEMA" BUG -->
+				<!--
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="imSet" name="imSet" value="settings_im">
+					<label class="partsselectionLabel" for="imSet">Bildtema</label>
+				</div>
+				-->
+
+				<!-- CG ADD - FIX "DISABLE BILDTEMA" BUG -->
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="btlinkSet" name="btlinkSet" value="settings_btlink">
+					<label class="partsselectionLabel" for="btlinkSet">Bildtema</label>
+				</div>
+
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="inflectionsSet" name="inflectionsSet" value="settings_inflections">
+					<label class="partsselectionLabel" for="inflectionsSet">Böjning</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="definitionSet" name="definitionSet" value="settings_definition">
+					<label class="partsselectionLabel" for="definitionSet">Definition</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="examplesSet" name="examplesSet" value="settings_examples">
+					<label class="partsselectionLabel" for="examplesSet">Exempel</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="abbrSet" name="abbrSet" value="settings_abbr">
+					<label class="partsselectionLabel" for="abbrSet">Förkortningar</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="constructionsSet" name="constructionsSet" value="settings_constructions">
+					<label class="partsselectionLabel" for="constructionsSet">Konstruktioner</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="antonymsSet" name="antonymsSet" value="settings_antonyms">
+					<label class="partsselectionLabel" for="antonymsSet">Motsatser</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="posSet" name="posSet" value="settings_pos">
+					<label class="partsselectionLabel" for="posSet">Ordklass</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="compoundsSet" name="compoundsSet" value="settings_compounds">
+					<label class="partsselectionLabel" for="compoundsSet">Sammansättningar</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="comments_seSet" name="comments_seSet" value="settings_comments_se">
+					<label class="partsselectionLabel" for="comments_seSet">Svenska kommentarer</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="synonymsSet" name="synonymsSet" value="settings_synonyms">
+					<label class="partsselectionLabel" for="synonymsSet">Synonymer till översättningar</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="wordSet" name="wordSet" value="settings_word">
+					<label class="partsselectionLabel" for="wordSet">Uppslagsord</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="pronSet" name="pronSet" value="settings_pron">
+					<label class="partsselectionLabel" for="pronSet">Uttal</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="expressionsSet" name="expressionsSet" value="settings_expressions">
+					<label class="partsselectionLabel" for="expressionsSet">Uttryck</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="altSet" name="altSet" value="settings_alt">
+					<label class="partsselectionLabel" for="altSet">Variantform</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="translationSet" name="translationSet" value="settings_translation">
+					<label class="partsselectionLabel" for="translationSet">Översättning</label>
+				</div>
+				<div class="partsselectionBox">
+					<input type="checkbox" class="partsselectionCheckbox" id="comments_otherSet" name="comments_otherSet" value="settings_comments_other">
+					<label class="partsselectionLabel" for="comments_otherSet">Översättningskommentarer</label>
+				</div>
+			</div>
+
+			<div id="multilangchoice"></div>
+    
+		</form>
       
     </div>
 
     <form id="theForm2" class="permbar">
-      <div>
-	<div class="keyboard" id="keybSE">
-	  <button id="keybsweå" class="keyboardKeyButton" title="Mata in å" type="button">å</button>
-	  <button id="keybsweä" class="keyboardKeyButton" title="Mata in ä" type="button" >ä</button>
-	  <button id="keybsweö" class="keyboardKeyButton" title="Mata in ö" type="button" >ö</button>
-	</div>
-	<div id="transKeybWrapper">
-	  <div class="keyboard" id="keybTrans">
-	  </div>
-	</div>
-      </div>
-	  <div class="inputwrapper">
-	    <input name="word" dir="auto" placeholder="Sök..." value="" id="searchQuery" autofocus autocorrect="off" autocapitalize="none" autocomplete="off">
-	    <input type="submit">
-	  </div>
+
+		<!-- KEYBOARD -->
+    	<div>
+			<div class="keyboard" id="keybSE">
+				<button id="keybsweå" class="keyboardKeyButton" title="Mata in å" type="button">å</button>
+				<button id="keybsweä" class="keyboardKeyButton" title="Mata in ä" type="button" >ä</button>
+				<button id="keybsweö" class="keyboardKeyButton" title="Mata in ö" type="button" >ö</button>
+			</div>
+			<div id="transKeybWrapper">
+	  			<div class="keyboard" id="keybTrans"></div>
+			</div>
+    	</div>
+
+		<!-- SEARCH FIELD -->
+		<div class="inputwrapper">
+			<input name="word" dir="auto" placeholder="Sök..." value="" id="searchQuery" autofocus autocorrect="off" autocapitalize="none" autocomplete="off">
+			<input type="submit">
+		</div>
+
     </form>
 
     <div class="content">
-    <main>
-      <div class="resultsAndLemmasContainer">
-	<div id="lemmaListWrapper" class="lemmaListWrapper">
-	  <button onclick="let d = getElementById('lemmaListWrapper'); d.style.display = 'none'; return false;">Stäng Lemmalista</button>
-	  <div id="lemmaList" class="lemmaList"></div>
-	</div>
-
-	<div id="resultsDiv" aria-live="polite">
-	</div>
-      </div>
-    </main>
+		<main>
+			<div class="resultsAndLemmasContainer">
+				<div id="lemmaListWrapper" class="lemmaListWrapper">
+					<button onclick="let d = getElementById('lemmaListWrapper'); d.style.display = 'none'; return false;">Stäng Lemmalista</button>
+					<div id="lemmaList" class="lemmaList"></div>
+				</div>
+				<div id="resultsDiv" aria-live="polite"></div>
+			</div>
+		</main>
 
     </div>
 
+    <div class="LexinExplanationsWrapper" id="LexinExplanationsWrapper"></div>
 
-    <div class="LexinExplanationsWrapper" id="LexinExplanationsWrapper">
-    </div>
     <footer>
-    <ul>
-      <li> <a href="https://bildtema.isof.se/">Lexin bildtema</a>
-      <li> <a href="/lexinanim/">Lexin verbfilmer</a>
-      <li> <a href="/dialogteman/">Lexin dialogfilmer</a>
-      </ul>
-       <div class="isoflogowrapper">
-       <img alt="​&quot;Vit" logotyp="" isof"="" src="/logotyp-isof.svg">
-</div>
-<ul class="signoff">
-    <li>
-      Lexin publiceras av Institutet för språk och folkminnen.
-    </li>
-</ul>
-<ul class="lp-footer-menu">
-<li>
-<a class="normal" href="https://www.isof.se/vart-uppdrag/om-myndigheten">
-              <span>Om myndigheten Isof</span>                <svg aria-hidden="true" class="lp-icon">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/lp-icons.svg#lp-chevron-right"></use>
-                </svg>            </a>
-</li>
-    <li>
-      <a href="https://www.isof.se/vart-uppdrag/om-myndigheten/om-webbplatsen/tillganglighetsredogorelse">Tillgänglighetsredogörelse <svg aria-hidden="true" class="lp-icon">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/lp-icons.svg#lp-chevron-right"></use>
-                </svg></a>
-    </li>
-</ul>
+
+		<!-- TOOL LINKS -->
+		<ul>
+			<li> 
+				<a href="https://bildtema.isof.se/" class="footerLink">Lexin bildtema
+					<svg aria-hidden="true" class="lp-icon">
+						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/lp-icons.svg#lp-chevron-right"></use>
+					</svg>
+				</a> 
+			</li>
+			<li> 
+				<a href="/lexinanim/" class="footerLink">Lexin verbfilmer
+					<svg aria-hidden="true" class="lp-icon">
+						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/lp-icons.svg#lp-chevron-right"></use>
+					</svg>
+				</a> 
+			</li>
+			<li> 
+				<a href="/dialogteman/" class="footerLink">Lexin dialogfilmer
+					<svg aria-hidden="true" class="lp-icon">
+						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/lp-icons.svg#lp-chevron-right"></use>
+					</svg>
+				</a>
+			</li>
+		</ul>
+
+		<!-- ISOF INFO -->
+		<div class="isoflogowrapper">
+			<img alt="​&quot;Vit" logotyp="" isof"="" src="/logotyp-isof.svg">
+		</div>
+		<ul class="signoff">
+			<li>
+				Lexin publiceras av Institutet för språk och folkminnen.
+			</li>
+		</ul>
+
+		<!-- ISOF LINKS -->
+		<ul class="lp-footer-menu">
+			<li>
+				<a class="normal footerLink" href="https://www.isof.se/vart-uppdrag/om-myndigheten">
+					<span>Om myndigheten Isof</span>
+					<svg aria-hidden="true" class="lp-icon">
+						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/lp-icons.svg#lp-chevron-right"></use>
+					</svg>            
+				</a>
+			</li>
+			<li>
+				<a href="https://www.isof.se/vart-uppdrag/om-myndigheten/om-webbplatsen/tillganglighetsredogorelse" class="footerLink">
+					Tillgänglighetsredogörelse
+					<svg aria-hidden="true" class="lp-icon">
+						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/lp-icons.svg#lp-chevron-right"></use>
+					</svg>
+				</a>
+			</li>
+		</ul>
+
     </footer>
     
   </body>

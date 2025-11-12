@@ -7,12 +7,12 @@
 // --------------------------------------------------------------------
 function openCloseSettings(elem) {
     if ($(elem).hasClass("change")) {
-	dismissSettings();
+		dismissSettings();
     } else {
-	$("#settingsPopup").show();
-	$(elem).addClass("change");
-	showSettings();
-	updateSaveCurrentButton();
+		$("#settingsPopup").show();
+		$(elem).addClass("change");
+		showSettings();
+		updateSaveCurrentButton();
     }
 }
 
@@ -31,52 +31,57 @@ function dismissSettings() {
 // --------------------------------------------------------------------
 function showSettings() {
     if(settings) {
-	for(let prop of Object.keys(settings)) {
-	    let elID = "#" + prop + "Set";
-	    let el = $(elID)[0];
-	    if(el) {
-		if(settings[prop].val) {
-		    el.checked = true;
-		} else {
-		    el.checked = false;
+		// handle checkboxes 
+		for(let prop of Object.keys(settings)) {
+			let elID = "#" + prop + "Set";
+			let el = $(elID)[0];
+			if(el) {
+				if(settings[prop].val) {
+					el.checked = true;
+				} else {
+					el.checked = false;
+				}
+				$(elID).off("change.updateSettings");
+				$(elID).on("change.updateSettings", () => {
+					console.log(prop, "changed", el.checked);
+					settings[prop].val = el.checked;
+					$(document).trigger("lexin_settingsupdate_" + prop);
+					saveToLocalStorage();
+				});
+			}
 		}
-		$(elID).off("change.updateSettings");
-		$(elID).on("change.updateSettings", () => {
-		    console.log(prop, "changed", el.checked);
-		    settings[prop].val = el.checked;
-		    $(document).trigger("lexin_settingsupdate_" + prop);
-		    saveToLocalStorage();
+
+		// show saved words 
+		$("#openSavedWords").off("click");
+		$("#openSavedWords").on("click", function () {
+			openSavedWords();
+			$(".settingsIcon").addClass("change");
+			$("#settingsPopup").hide();
 		});
-	    }
-	}
-	$("#openSavedWords").off("click");
-	$("#openSavedWords").on("click", function () {
-	    openSavedWords();
 
-	    $(".settingsIcon").addClass("change");
-    
-	    $("#settingsPopup").hide();
-	});
-	$("#openPartsSelection").off("click");
-	$("#openPartsSelection").on("click", function () {
-	    $("#partsselection").show();
+		// choose display parts
+		$("#openPartsSelection").off("click");
+		$("#openPartsSelection").on("click", function () {
+			$("#partsselection").show();
 
-	    $(".settingsIcon").addClass("change");
-    
-	    $("#settingsPopup").hide();
-	});
+			$(".settingsIcon").addClass("change");
+		
+			$("#settingsPopup").hide();
+		});
 
-	$("#openDownload").off("click");
-	$("#openDownload").on("click", function () {
-	    openDownload();
+		// download lexicon
+		$("#openDownload").off("click");
+		$("#openDownload").on("click", function () {
+			openDownload();
 
-	    $(".settingsIcon").addClass("change");
-    
-	    $("#settingsPopup").hide();
-	});
+			$(".settingsIcon").addClass("change");
+		
+			$("#settingsPopup").hide();
+		});
     }
 }
 
+// show help text
 $(function () {
     $(".openHelp").on("click", function () {
 	openPageDescription();

@@ -254,9 +254,8 @@ async function loadHelp() {
 
 let bildtemaWords;
 
-// CG: THE FUNCTION BELOW LOADS ALL DETAIL PICTURES
-// CG: IT IS RUN ONLY ONCE, AS YOU OPEN THE APP
-
+/* --------- LOAD ALL DETAIL PICTURES --------- */
+/* --------- RUN ONLY ONCE, AS YOU OPEN THE APP --------- */
 /* CG ADD START */
 async function loadBildtema() {
 	// creates arrays of words and images
@@ -288,7 +287,7 @@ async function loadBildtema() {
 		let value = words[key];		// actual word string
 
 		// normalize lemma (strip article + trailing parentheses)
-		let splitvalue = value.split(" ");
+		/*let splitvalue = value.split(" ");
 		if (splitvalue.length == 2) {
 			if (splitvalue[0] == "en" || splitvalue[0] == "ett") {
 				value = splitvalue[1];
@@ -296,7 +295,21 @@ async function loadBildtema() {
 			}
 		} else {
 			value = value.replace(/\([^)]+\)$/, "");
+		}*/
+
+		// remove parenthetical content
+		let normalized = value.replace(/\s*\([^)]*\)\s*/g, " ");
+		// split
+		normalized = normalized.trim().split(/\s+/);
+		// remove en/ett
+		if (normalized.length > 1) {
+			normalized = normalized.map(s => s.trim()).filter(s => s !== "en" && s !== "ett");
 		}
+		value = normalized.join(" ");
+		// remove comma
+		value = value.replace(/,/g, ""); 
+		// ignore case
+		value = value.toLowerCase();
 
 		// create array of normalized lemmas and images
 		let urls = imageurls[key];
@@ -378,14 +391,14 @@ async function loadBildtema() {
 
 function unAbbreviatePoS(str) {
     if(PoSnames.hasOwnProperty(str)) { // most common case
-	return PoSnames[str];
+		return PoSnames[str];
     }
     if(str.indexOf(".") > 2) {
-	let res = str;
-	for(const abbr in PoSnames) {
-	    res = res.replace(abbr, PoSnames[abbr]);
-	}
-	return res;
+		let res = str;
+		for(const abbr in PoSnames) {
+			res = res.replace(abbr, PoSnames[abbr]);
+		}
+		return res;
     }
     return str;
 }
@@ -393,20 +406,20 @@ function unAbbreviatePoS(str) {
 function appendWithSeparator(parent, elements, separator) {
     let first = true;
     for (const element of elements) {
-	if (first) {
-	    first = false;
-	} else {
-	    parent.appendChild(separator.cloneNode(true));
-	}
-	parent.appendChild(element);
+		if (first) {
+			first = false;
+		} else {
+			parent.appendChild(separator.cloneNode(true));
+		}
+		parent.appendChild(element);
     }
 }
 
 function getSeparatorForLang(lang) {
     if (languageDir[lang] == "rtl") {
-	return "\u060C ";
+		return "\u060C ";
     } else {
-	return ", "
+		return ", "
     }
 }
 
@@ -435,75 +448,101 @@ window.onpopstate = function(event) {
 // Calls the Lexin service with the currently selected options.
 // ----------------------------------------------------------------------
 
+/* --------- PREPARE & CALL SEARCH --------- */
 async function callLexin(pushPreviousState) {
-    
+	// normalize query
     let w = $("#searchQuery").val();
     w = w.replace(/\s*$/, "").replace(/^\s*/, "");
+
     let lexicons = getSelectedLexicon();
     let tf = "both";
 
+	// ensure at least 1 lexicon result
     if(lexicons.length < 1) {
-	lexicons.push("swe");
+		lexicons.push("swe");
     }
     
+	// save previous url
     if(pushPreviousState) {
-	const urlBefore = window.location;
-	history.pushState({'word':w, 'languages':lexicons}, '', urlBefore);
+		const urlBefore = window.location;
+		history.pushState({'word':w, 'languages':lexicons}, '', urlBefore);
     }
     
+	// upload current url
     const urlNow = window.location.protocol + '//' + window.location.host + window.location.pathname
 	  + "?languages=" + encodeURIComponent(lexicons)
 	  + "&word=" + w;
     history.replaceState({'word':w, 'languages':lexicons}, '', urlNow);
     
+	// clear results
     $("#resultsDiv").html("");
 
+	// fetch search results
     if(w && w != "") {
-	$("#resultsDiv").html("<p class='loadingIndicator'>Slår upp " + w + ", var god vänta...</p>");
+		$("#resultsDiv").html("<p class='loadingIndicator'>Slår upp " + w + ", var god vänta...</p>");
 
-        let requestedLanguages = new Set(lexicons);
+		let requestedLanguages = new Set(lexicons);
 
-	if(settings.add_swedish_results.val) {
-	    requestedLanguages.add("swe");
-	}
+		if(settings.add_swedish_results.val) {
+			requestedLanguages.add("swe");
+		}
 
-	return await fetchNext(requestedLanguages);
+		return await fetchNext(requestedLanguages);
     }
 }
 
 let permbartop;
 
+/* --------- FETCH JSON OBJECT FROM KTH API --------- */
 class LexinService {
     backendServer;
     getJson;
 
     constructor() {
+		// base url
         this.backendServer = "https://lexin.nada.kth.se/lexin/service";
-	this.getJson = async function(direction, lang, word) {
-	    const url = lexinService.backendServer + "?searchinfo=" + direction + ",swe_" + lang + "," + encodeURIComponent(word) + "&output=JSON";
-	    //HB 250613
-	    //BUG in api: \ is replaced by \u005c everywhere (?)
-	    //simple fix here is to get text instead of json and replace it back..
-	    //not sure if it will work in every case fixes the current bug
-	    //TODO: remove this when the api is back in order!
 
-	    //this is the old and correct call
-	    //return await $.get(url);
+		// build rest of url
+		// return json object
+		this.getJson = async function(direction, lang, word) {
+			console.log("CG query: \"" + word + "\"");
+			console.log("CG query encoded: \"" + encodeURIComponent(word) + "\"");
 
-	    //this is the temporary bugfix
-	    let res = await $.get(url, null, null, "text");
-	    res = res.replaceAll("\\u005c","\\");
-	    return JSON.parse(res);
-	    //end of the temporary bugfix
-	}
+			const url = lexinService.backendServer + "?searchinfo=" + direction + ",swe_" + lang + "," + encodeURIComponent(word) + "&output=JSON";
+
+			// CG ADD REGEX TEST
+			/*const regex = new RegExp(`^${word}$`, "i");
+			const word2 = String(regex);
+			console.log("CG query regexed: \"" + word2 + "\"");
+			const url = lexinService.backendServer + "?searchinfo=" + direction + ",swe_" + lang + "," + encodeURIComponent(word2) + "&output=JSON";*/
+
+			//HB 250613
+			//BUG in api: \ is replaced by \u005c everywhere (?)
+			//simple fix here is to get text instead of json and replace it back..
+			//not sure if it will work in every case fixes the current bug
+			//TODO: remove this when the api is back in order!
+
+			//this is the old and correct call
+			//return await $.get(url);
+
+			//this is the temporary bugfix
+			let res = await $.get(url, null, null, "text");
+			res = res.replaceAll("\\u005c","\\");
+			return JSON.parse(res);
+			//end of the temporary bugfix
+
+		}
     }
 }
 
 let lexinService = new LexinService();
 
+/* --------- WRITE HERE --------- */
 async function fetchNext(requestedLanguages) {
+	// get query
     let w = $("#searchQuery").val();
 
+	// exit if empty query
     if (!w) {
         return;
     }
@@ -511,52 +550,58 @@ async function fetchNext(requestedLanguages) {
     let fetchedLanguages = {};
 
     for(const l of requestedLanguages) {
-	let d = l;
-	let tf = "both";
-	
-	try {
-	    let data;
-            let dbServerValue = await dbServer.promise;
-	    if (dbServerValue) {
-		let downloadedMetadataEntries = await dbServerValue.metadata.query("lang").only(d).execute();
-		if (downloadedMetadataEntries.length && downloadedMetadataEntries[0].status == "active") {
-		    let metadata = downloadedMetadataEntries[0];
-		    let entries = await dbServerValue.entries.query("search").only(w).execute();
-		    let filtered_entries = entries.filter(entry => entry.lang == d)
-		    if (filtered_entries.length) {
-			data = {Status:"found", Result:filtered_entries, Wordbase:metadata.wordbase}
-		    } else {
-			data = {Status: "no matching"}
-		    }
-		    console.log("using downloaded dictionary", d, w, data);
-		} else {
-		    data = await lexinService.getJson(tf, d, w);
+		let d = l;
+		let tf = "both";
+		
+		// fetch search result entries
+		// use local database if possible, else fallback to api
+		try {
+			let data;
+			let dbServerValue = await dbServer.promise;
+
+			if (dbServerValue) {
+				let downloadedMetadataEntries = await dbServerValue.metadata.query("lang").only(d).execute();
+				if (downloadedMetadataEntries.length && downloadedMetadataEntries[0].status == "active") {
+					let metadata = downloadedMetadataEntries[0];
+					let entries = await dbServerValue.entries.query("search").only(w).execute();
+					let filtered_entries = entries.filter(entry => entry.lang == d)
+					if (filtered_entries.length) {
+						data = {Status:"found", Result:filtered_entries, Wordbase:metadata.wordbase}
+					} else {
+						data = {Status: "no matching"}
+					}
+					console.log("using downloaded dictionary", d, w, data);
+				}
+				else {
+					data = await lexinService.getJson(tf, d, w);
+				}
+			} 
+			else {
+				data = await lexinService.getJson(tf, d, w);
+			}
+			
+			let convertedData = addOneJSON(d, data);
+			fetchedLanguages[d] = {'w':w, 'lang':d, 'data':convertedData};
+		} catch(error) {
+			console.log("error", error);
 		}
-	    } else {
-		data = await lexinService.getJson(tf, d, w);
-	    }
-	    
-	    let convertedData = addOneJSON(d, data);
-            fetchedLanguages[d] = {'w':w, 'lang':d, 'data':convertedData};
-	} catch(error) {
-	    console.log("error", error);
-	}
     }
 
     w = w.replace(/\s*$/, "").replace(/^\s*/, "");
+
+	// set language order
     let lexicons = getSelectedLexicon();
-
     let translatedLanguages = Object.keys(fetchedLanguages).filter(lang => lang != "swe");
-
     let firstLexicon = ["swe", ...lexicons].find(lexicon => fetchedLanguages[lexicon]?.data);
 
+	// no data fetched
     if (!firstLexicon) {
         let errorDiv = document.createElement('div');
         errorDiv.className = "errorReport";
         errorDiv.textContent = "Problem med att kontakta Lexin.";
-	$("#resultsDiv").empty().append(errorDiv);
-	console.log("WARNING: Problem calling the Lexin service: ");
-	console.log(JSON.stringify(fetchedLanguages, null, 2));
+		$("#resultsDiv").empty().append(errorDiv);
+		console.log("WARNING: Problem calling the Lexin service: ");
+		console.log(JSON.stringify(fetchedLanguages, null, 2));
         return;
     }
 
@@ -564,20 +609,22 @@ async function fetchNext(requestedLanguages) {
     let restLexicons = Object.keys(fetchedLanguages).filter(lang => lang != firstLexicon);
     let data = fetchedLanguages[d].data;
     
+	// merge search results of several languages
     for(const lang of restLexicons) {
         let fetchedLanguage = fetchedLanguages[lang];
-	if(fetchedLanguage?.w == w
-	   && fetchedLanguage.data?.Result
-	   && fetchedLanguage.data?.Status == "found"
-	  ) {
-	    if (data?.Status != "found") {
-		data = fetchedLanguage.data;
-	    } else {
-		data.Result = concatResults(data.Result, fetchedLanguage.data.Result);
-	    }
-	}
+		if(fetchedLanguage?.w == w
+			&& fetchedLanguage.data?.Result
+			&& fetchedLanguage.data?.Status == "found"
+		) {
+			if (data?.Status != "found") {
+			data = fetchedLanguage.data;
+			} else {
+			data.Result = concatResults(data.Result, fetchedLanguage.data.Result);
+			}
+		}
     }
 
+	// generate html results
     var html = printJSON(w, data, translatedLanguages.length > 1);
     $("#resultsDiv").html(html);
     
@@ -586,11 +633,12 @@ async function fetchNext(requestedLanguages) {
     // console.log(html);
     // console.log(JSON.stringify(data, null, 2));
     
+	// jump to top of page
     setTimeout(() => {
-	if ($(window).scrollTop() >= permbartop) {
-	    $(window).scrollTop(permbartop);
-	}
-	$("#searchQuery").blur();
+		if ($(window).scrollTop() >= permbartop) {
+			$(window).scrollTop(permbartop);
+		}
+		$("#searchQuery").blur();
     }, 100);
 
     return data;
@@ -660,7 +708,7 @@ function copyProps(from, to, props, lang, init) {
     }
 }
 
-
+/* --------- STRUCTURE SEARCH RESULT ACCORDING TO LSL3/LSL4--------- */
 function addOneJSON(lang, data) {
     let convertedData = {Result:[], Status: data.Status};
 
@@ -669,41 +717,41 @@ function addOneJSON(lang, data) {
     }
 
     for(let res of data.Result ?? []) {
-	let props = {};
-	let lsl = LSLversion(data);
-	if(lsl == "LSL3") {
-	    props = LSL3props;
-	}
-	if(lsl == "LSL4") {
-	    props = LSL4props;
-	}
+		let props = {};
+		let lsl = LSLversion(data);
+		if(lsl == "LSL3") {
+			props = LSL3props;
+		}
+		if(lsl == "LSL4") {
+			props = LSL4props;
+		}
 
-	if(lsl == "LSL4" && res.Lexeme !== undefined) {
-            for (let lexeme of res.Lexeme) {
-	        let newres = {};
+		if(lsl == "LSL4" && res.Lexeme !== undefined) {
+			for (let lexeme of res.Lexeme) {
+				let newres = {};
 
-                let resCopy = Object.assign({}, res);
-                resCopy.Lexeme = [lexeme];
+				let resCopy = Object.assign({}, res);
+				resCopy.Lexeme = [lexeme];
 
-	        copyProps(resCopy, newres, props, lang, 1);
+				copyProps(resCopy, newres, props, lang, 1);
 
-	        newres.VariantID = lexeme.VariantID;
-	        newres.lang = lang;
-	        newres.lsl = lsl;
+				newres.VariantID = lexeme.VariantID;
+				newres.lang = lang;
+				newres.lsl = lsl;
 
-                convertedData.Result.push(newres);
-            }
-        } else {
-	    let newres = {};
+				convertedData.Result.push(newres);
+			}
+			} else {
+				let newres = {};
 
-	    copyProps(res, newres, props, lang, 1);
+				copyProps(res, newres, props, lang, 1);
 
-	    newres.VariantID = res.VariantID;	    
-	    newres.lang = lang;
-	    newres.lsl = lsl;
+				newres.VariantID = res.VariantID;	    
+				newres.lang = lang;
+				newres.lsl = lsl;
 
-            convertedData.Result.push(newres);
-        }
+				convertedData.Result.push(newres);
+			}
     }
 
     return convertedData;
@@ -781,84 +829,101 @@ function concatResults(res1, res2) {
 // display the search results.
 // ----------------------------------------------------------------------
 function printJSON(word, res, moreThanOneLanguage) {
-    
     var html = document.createElement('div');
 
+	// no answer
     if(!res) {
-	html.className = 'errorReport';
-	html.textContent = "Fick inget svar från Lexin.";
-    } else if(res.Status == "? Internal error") {
-	html.className = 'errorReport';
-	html.textContent = "Problem med Lexins server.";
-    } else if(res.Status == "? Incorrect dictionary") {
-	html.className = 'errorReport';
-	html.textContent = "Det valda lexikonet finns inte längre.";
-    } else if(res.Status == "? Unvalid characters in the word") {
-	html.className = 'errorReport';
-	html.textContent = "Felaktiga tecken i ordet.";
-    } else if(res.Status == "no unique matching") {
-	html.className = 'errorReport';
-	html.innerHTML = "<p>Felstavat ord? Mer än ett liknande möjligt ord.</p>";
+		html.className = 'errorReport';
+		html.textContent = "Fick inget svar från Lexin.";
+    } 
+	// internal error
+	else if(res.Status == "? Internal error") {
+		html.className = 'errorReport';
+		html.textContent = "Problem med Lexins server.";
+    } 
+	// unavailable dictionary
+	else if(res.Status == "? Incorrect dictionary") {
+		html.className = 'errorReport';
+		html.textContent = "Det valda lexikonet finns inte längre.";
+    } 
+	// unvalid characters
+	else if(res.Status == "? Unvalid characters in the word") {
+		html.className = 'errorReport';
+		html.textContent = "Felaktiga tecken i ordet.";
+    } 
+	// try to correct word, several possible words, e.g. "hundd"
+	else if(res.Status == "no unique matching") {
+		html.className = 'errorReport';
+		html.innerHTML = "<p>Felstavat ord? Mer än ett liknande möjligt ord.</p>";
 
-	if(res.Corrections?.length > 0) {
-	    let langs = getSelectedLexicon();
-	    let sp = document.createElement('span');
-	    sp.textContent = "Rättningsförslag: ";
-	    let ul = document.createElement('ul');
-	    for(let correction of res.Corrections) {
-		var li = document.createElement('li');
-		var w = correction;
+		// show correction suggestions
+		if(res.Corrections?.length > 0) {
+			console.log("CG rättningsförslag: ", res.Corrections);
 
-		var aElem = getLinkElemToSearch(w);
-		aElem.textContent = w;
-		li.appendChild(aElem);
+			let langs = getSelectedLexicon();
+			let sp = document.createElement('span');
+			sp.textContent = "Rättningsförslag: ";
+			let ul = document.createElement('ul');
 
-		ul.appendChild(li);
-	    }
-	    html.appendChild(sp);
-	    html.appendChild(ul);
-	}
-    } else if(res.Status == "no matching") {
-	html.className = 'errorReport';
-	html.textContent = "Ordet gick inte att hitta i ordlistan.";
-    } else if(res.Status == "found" || res.Status == "corrected") {
+			for(let correction of res.Corrections) {
+				var li = document.createElement('li');
+				var w = correction;
 
-	if(res.Status == "corrected") {
-	    var corr = document.createElement('div');
-	    corr.className = 'correction';
-	    if(res?.Result?.[0]?.Value) {
-		for(let correctedWord of Object.values(res.Result[0].Value)) {
-		    corr.textContent = "Ordet " + word + " finns inte i lexikonet, men ordet " + correctedWord + " finns.";
+				var aElem = getLinkElemToSearch(w);
+				aElem.textContent = w;
+				li.appendChild(aElem);
 
-		    word = correctedWord; // treat this as the query for relevance etc. purposes
-		    
-		    break;
+				ul.appendChild(li);
+			}
+			html.appendChild(sp);
+			html.appendChild(ul);
 		}
-	    }
-            assignLang(corr, "swe");
-	    
-	    html.appendChild(corr);
-	}
-        assignLang(html, "swe");
+    } 
+	// no matching
+	else if(res.Status == "no matching") {
+		html.className = 'errorReport';
+		html.textContent = "Ordet gick inte att hitta i ordlistan.";
+    } 
+	// try to correct word, single possible word, e.g. "möndighet"
+	else if(res.Status == "found" || res.Status == "corrected") {
 
-	let results = res.Result;
-	results = rankSearchResults(results, word);
+		if(res.Status == "corrected") {
+			var corr = document.createElement('div');
+			corr.className = 'correction';
+			if(res?.Result?.[0]?.Value) {
+				for(let correctedWord of Object.values(res.Result[0].Value)) {
+					// CG ADD - remove "|" from suggested word
+					const correctedWord2 = correctedWord.replace(/\|/g, "");
 
-	let baseForms = getBaseform(results, word);
-	
-	var uElem = document.createElement('ul');
-	uElem.className = 'resultList';
-        assignLang(uElem, "swe");
-	for(let result of results) {
-            let resultNodes = getOneResult(result, result.lang, baseForms, moreThanOneLanguage);
-            for (const node of resultNodes) {
-	        var li = document.createElement('li');
-	        li.appendChild(node);
-	        uElem.appendChild(li);
-            }
-	}
-	
-	html.appendChild(uElem);
+					// CG CHANGE - from correctedWord to correctedWord2
+					corr.textContent = "Ordet \"" + word + "\" finns inte i lexikonet, men ordet \"" + correctedWord2 + "\" finns.";
+					word = correctedWord; // treat this as the query for relevance etc. purposes
+					break;
+				}
+			}
+			
+			assignLang(corr, "swe");
+			html.appendChild(corr);
+		}
+
+		assignLang(html, "swe");
+		let results = res.Result;
+		results = rankSearchResults(results, word);
+		let baseForms = getBaseform(results, word);
+		
+		var uElem = document.createElement('ul');
+		uElem.className = 'resultList';
+		assignLang(uElem, "swe");
+		for(let result of results) {
+				let resultNodes = getOneResult(result, result.lang, baseForms, moreThanOneLanguage);
+				for (const node of resultNodes) {
+					var li = document.createElement('li');
+					li.appendChild(node);
+					uElem.appendChild(li);
+				}
+		}
+		
+		html.appendChild(uElem);
     }
     return html;
 }
@@ -2757,6 +2822,8 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 			word = word.replace(/\|/g, "");
 
 			word = word.replace(/\s+\(\d+\)$/, "");
+			
+			console.log("CG sökord bild: \"" + word + "\"");
 
 			// CG CHANGE - THIS FIXES THE "WRONG DETAIL PIC ERROR"
 			for(var i = 0; i < ill.length; i++) {
@@ -2768,13 +2835,13 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 				let urls = bildtemaWords[word+"|"+page+"|"+subpage];		// CG: new key, includes pages 
 				for (let url of urls || []) {
 					addBildtemaInlineDetail(url, pictures);					// CG: detail picture
-					console.log("CG " + word + " detaljbild " + url);
+					console.log("CG " + word + " detaljbild: " + url);
 				}
 			}
 
 			for(var i = 0; i < ill.length; i++) {
 				addBildtemaInline(ill[i], pictures);						// CG: overview picture
-				console.log("CG " + word + " översiktsbild " + ill[i]);
+				console.log("CG " + word + " översiktsbild: " + ill[i]);
 			}
 		}
 		if(!pictures.style.display || pictures.style.display == 'none') {
@@ -2850,20 +2917,32 @@ function addBildtemaInline(url, parent) {
     inlineImg.className = 'inlineImage';
     inlineImg.style.width = "100%";
     parent.appendChild(inlineImg);
+
     let cleanurl = url.replace("bildetema.html", "bildetema-clean.html");
     let parsedUrl = new URL(url);
     let urlParams = parsedUrl.searchParams;
     let page = urlParams.get("page");
     let subpage = urlParams.get("subpage");
     if (subpage == null) {
-	subpage = 1;
+		subpage = 1;
     }
+
     //console.log("page", page, "subpage", subpage);
     inlineImg.innerHTML='<img src="/bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
+
+	// add external Bildtema link
     let link = $("<a></a>");
     link.attr("href", url);
     link.text("Visa i Bildteman");
     $(parent).append(link);
+
+	// CG ADD - FIX "DISABLE BILDTEMA" BUG
+	link.addClass("bildtemaLink");
+	$(".bildtemaLink").
+	condShow(settings.btlink.val);
+
+	// open link in new tab
+	link.attr("target", "_blank");
 }
 
 function addBildtemaInlineDetail(url, parent) {
@@ -4815,96 +4894,118 @@ function getCycles(js) {
 
 let multilangDisplay = "none";
 
+/* --------- TURN ON SINGLE/MULTIPLE LANGUAGE SETTING --------- */
 function multiLangOrNot() {
+	// show several languages
     if (settings.multiple_languages.val) {
-	if (multilangDisplay == "multi") {
-	    return;
-	}
-    } else {
-	if (multilangDisplay == "single") {
-	    return;
-	}
+		// current display already shows that?
+		if (multilangDisplay == "multi") {
+			return;
+		}
+    } 
+	// show single language
+	else {
+		// current display already shows that?
+		if (multilangDisplay == "single") {
+			return;
+		}
     }
+
     let lc = $(".select-wrapper");
     $(".multilang-wrapper").remove();
+
+	// turn on several languages
     if(settings.multiple_languages.val) {
-	lc.css("display", "none");
-	let multilangchoicebutton = $("<div class='multilang-wrapper'><button id='multiLanguageChoiceButton'>Välj språk</button></div>");
-	lc.after(multilangchoicebutton);
-	let multilangchoice = $("#multilangchoice");
+		// hide single language dropdown
+		lc.css("display", "none");
 
-	let columnwrapper = $("<div class='multilangcolumnwrapper'></div>");
-	
-	let languages = $("#languageChoice").children("option").map((i, e) => {
-	    let langcode = $(e).attr("value");
-	    let langname = $(e).text();
-	    return {code:langcode,name:langname}
-	}).get();
-	let halfway = (languages.length-1) / 2 + 1;
-	let firsthalf = languages.slice(0, halfway);
-	let secondhalf = languages.slice(halfway);
-	for (let langhalf of [firsthalf, secondhalf]) {
-	    let column = $("<div class='multilangcolumn'></div>");
-	    for (let lang of langhalf) {
-		let langcheckbox = $("<input type='checkbox' name='multilangchoice'>");
-		langcheckbox.attr("value", lang.code);
-		langcheckbox.attr("id", "multilangchoice-" + lang.code);
-		let langcheckbox_wrapper = $("<div class='langcheckboxWrapper'>	  	  	  </div>");
-		langcheckbox_wrapper.append(langcheckbox);
-		let langcheckbox_label = $("<label>Avledningar</label>");
-		langcheckbox_label.attr("for", "multilangchoice-" + lang.code);
-		langcheckbox_wrapper.append(langcheckbox_label);
-		langcheckbox_label.text(lang.name);
-	    
-		column.append(langcheckbox_wrapper);
-	    }
-	    columnwrapper.append(column)
-	}
-	$(multilangchoice).append(columnwrapper);
-	$("#theForm").append(multilangchoice);
-	multilangchoicebutton.click((e) => {
-	    let active = multilangchoice.is(":visible");
-	    dismissSettings();
-	    if (active) {
-		$("#multilangchoice").hide();
-		e.preventDefault();
-		return;
-	    }
-	    
-	    $(".settingsIcon").addClass("change");
-	    $("#multilangchoice").show();
-	    e.preventDefault();
+		// add new button
+		let multilangchoicebutton = $("<div class='multilang-wrapper'><button id='multiLanguageChoiceButton'>Välj språk</button></div>");
+		lc.after(multilangchoicebutton);
 
-	});
-	let selectedLanguages = [$("#languageChoice")[0].value];
-	setMultilangchoice(selectedLanguages);
-	multilangDisplay = "multi";
-    } else {
-	// TODO: what do we do if there is more than one selected language?
-	let selectedLanguages = getMultilangchoice();
-	if (selectedLanguages.length > 0) {
-	    $("#languageChoice")[0].value = selectedLanguages[0];
-	} else {
-	    $("#languageChoice")[0].value = "swe";
-	}
+		let multilangchoice = $("#multilangchoice");
+		let columnwrapper = $("<div class='multilangcolumnwrapper'></div>");
+		
+		// build language array
+		let languages = $("#languageChoice").children("option").map((i, e) => {
+			let langcode = $(e).attr("value");
+			let langname = $(e).text();
+			return {code:langcode,name:langname}
+		}).get();
 
-	lc.css("display", "block");
-	$("#multilangchoice").empty();
-	multilangDisplay = "single";
+		// divide language options into two columns
+		let halfway = (languages.length-1) / 2 + 1;
+		let firsthalf = languages.slice(0, halfway);
+		let secondhalf = languages.slice(halfway);
+		for (let langhalf of [firsthalf, secondhalf]) {
+			let column = $("<div class='multilangcolumn'></div>");
+			for (let lang of langhalf) {
+				let langcheckbox = $("<input type='checkbox' name='multilangchoice'>");
+				langcheckbox.attr("value", lang.code);
+				langcheckbox.attr("id", "multilangchoice-" + lang.code);
+				let langcheckbox_wrapper = $("<div class='langcheckboxWrapper'>	  	  	  </div>");
+				langcheckbox_wrapper.append(langcheckbox);
+				let langcheckbox_label = $("<label>Avledningar</label>");
+				langcheckbox_label.attr("for", "multilangchoice-" + lang.code);
+				langcheckbox_wrapper.append(langcheckbox_label);
+				langcheckbox_label.text(lang.name);
+				column.append(langcheckbox_wrapper);
+			}
+			columnwrapper.append(column)
+		}
+
+		// insert language options on page
+		$(multilangchoice).append(columnwrapper);
+		$("#theForm").append(multilangchoice);
+
+		// clicking "choose language" (SE: "Välj språk") button 
+		multilangchoicebutton.click((e) => {
+			let active = multilangchoice.is(":visible");
+			dismissSettings();
+			if (active) {
+				$("#multilangchoice").hide();
+				e.preventDefault();
+				return;
+			}
+			
+			$(".settingsIcon").addClass("change");
+			$("#multilangchoice").show();
+			e.preventDefault();
+		});
+
+		let selectedLanguages = [$("#languageChoice")[0].value];
+		setMultilangchoice(selectedLanguages);
+		multilangDisplay = "multi";
+    } 
+	// turn on single language
+	else {
+		// TODO: what do we do if there is more than one selected language?
+		let selectedLanguages = getMultilangchoice();
+		if (selectedLanguages.length > 0) {
+			$("#languageChoice")[0].value = selectedLanguages[0];
+		} else {
+			$("#languageChoice")[0].value = "swe";
+		}
+
+		lc.css("display", "block");
+		$("#multilangchoice").empty();
+		multilangDisplay = "single";
     }
 }
 
+/* --------- CHECK WHICH LANGUAGES ARE CHECKED --------- */
 function getMultilangchoice() {
     let lexicons = [];
 
     for (let langchoicewrapper of $("#multilangchoice .multilangcolumn").children(".langcheckboxWrapper")) {
-	let langchoice = $(langchoicewrapper).find("input");
-	let langcode = $(langchoice).attr("value");
-	if (langchoice[0].checked) {
-	    //		console.log(langcode);
-	    lexicons.push(langcode);
-	}
+		let langchoice = $(langchoicewrapper).find("input");
+		let langcode = $(langchoice).attr("value");
+		if (langchoice[0].checked) {
+			// console.log(langcode);
+			lexicons.push(langcode);
+		}
     }
+
     return lexicons;
 }
 
@@ -5086,33 +5187,31 @@ function calculateScore(js, word, lang) {
     return score;
 }
 
+/* --------- DETERMINE ORDER OF SEARCH RESULTS --------- */
 function rankSearchResults(results, searchQuery) {
     // 0 Rank exact match first
     // 1 Rank matches with search term in Inflections second
     // 2 Rank matches with search term in Translation next
     // 3 Rank matches that are themselves compound words with the search term as one part next, as the last part
-
     // 4 Rank matches that are themselves compound words with the search term as one part next, not as the last part
-
     // 5 Rank matches with Compounds examples with the search term next
     // 6 Rank matches with the search term in idioms or examples next
-    // Anything else
+    // 7 Anything else
 
     let scores = [];
     let word = cleanWord(searchQuery);
     for(let r = 0; r < results.length; r++) {
-	var js = results[r];
-
-	let lang = results[r].lang;
-	
-	if(js) {
-            let score = calculateScore(js, word, lang);
-	    scores.push({'v':score, 'obj':js});
-	}
+		var js = results[r];
+		let lang = results[r].lang;
+		
+		if(js) {
+			let score = calculateScore(js, word, lang);
+			scores.push({'v':score, 'obj':js});
+		}
     }
 
     for(const score of scores) {
-//        console.log("score", score.v, score.obj.Value, score.obj.lang);
+	//        console.log("score", score.v, score.obj.Value, score.obj.lang);
     }
     scores.sort((a, b) => {
         if (b.v < a.v) {
@@ -5389,9 +5488,9 @@ function openPageDescription(elem) {
 
 $.fn.condShow = function(shouldBeShown) {
     if (shouldBeShown) {
-	this.show();
+		this.show();
     } else {
-	this.hide();
+		this.hide();
     }
 };
 
@@ -5401,6 +5500,7 @@ $.fn.condShow = function(shouldBeShown) {
 // Set the initial show()/hide() status of dynamically created
 // elements.
 // ----------------------------------------------------------------------
+
 function initialShowHide() {
     // lemma list triggers
     /* // Turn off for now
@@ -5413,42 +5513,83 @@ function initialShowHide() {
     }
     */
     
+	// SE: Avledningar
     $(".derivation").
 	condShow(settings.derivations.val);
+
+	// SE: Bilder
     $(".ill").
 	condShow(settings.illustrations.val);
+
+	// SE: Bildtema - THIS DOES NOT DO ANYTHING ATM
     $(".ims").
 	condShow(settings.im.val);
+
+	// CG ADD - FIX "DISABLE BILDTEMA" BUG
+    $(".bildtemaLink").
+	condShow(settings.btlink.val);
+
+	// SE: Böjning
     $(".inflections").
 	condShow(settings.inflections.val);
+
+	// SE: Definition
     $(".meaning").
 	condShow(settings.definition.val);
+
+	// SE: Exempel
     $(".examples").
 	condShow(settings.examples.val);
+
+	// SE: Förkortningar
     $(".abbr").
 	condShow(settings.abbr.val);
+
+	// SE: Konstruktioner
     $(".gramInfo").
 	condShow(settings.constructions.val);
+
+	// SE: Motsatser
     $(".antonym").
 	condShow(settings.antonyms.val);
+
+	// SE: Ordklass
     $(".PoS").
 	condShow(settings.pos.val);
+
+	// SE: Sammansättningar
     $(".compounds").
 	condShow(settings.compounds.val);
+
+	// SE: Svenska kommentarer
     $(".comment_se").
 	condShow(settings.comments_se.val);
+
+	// SE: Synonymer till översättningar
     $(".synonyms").
 	condShow(settings.synonyms.val);
+
+	// SE: Uppslagsord
     $(".matchingWord").
 	condShow(settings.word.val);
-    $(".pronunciation").
-	condShow(settings.pron.val);
+
+	// SE: Uttal
+    $(".pronunciation").			// class name
+	condShow(settings.pron.val);	// settings name
+
+	// SE: Uttryck
     $(".idioms").
 	condShow(settings.expressions.val);
+
+	// SE: Variantform
     $(".alt_form").
 	condShow(settings.alt.val);
+
+	// SE: Översättning
     $(".translation").
 	condShow(settings.translation.val);
+
+	// SE: Översättningskommentarer
     $(".comment_tr").
 	condShow(settings.comments_other.val);
 
@@ -5596,7 +5737,6 @@ var settings = {
     'clickable_headings':{'text':'Gör rubriker klickbara för att öppna hjälptext.', 'val':1},
     'add_swedish_results':{'text':'Lägg till enspråkiga svenska resultat vid sökning i tvåspråkiga lexikon.', 'val':0},
     
-    
     'completion':{'text':'Visa kompletteringsförslag under sökrutan.', 'val':1},
     'keyb_se':{'text':'Visa alltid svenskt tangentbord med å, ä, ö.', 'val':0},
     'keyb_other':{'text':'Visa alltid tangentbord för språk med andra skrivtecken.', 'val':0},
@@ -5618,6 +5758,10 @@ var settings = {
     'synonyms':{'text':'synonymer till översättningar', 'val':1},
     'word':{'text':'uppslagsord', 'val':1},
     'pron':{'text':'uttal', 'val':1},
+
+	// CG ADD - FIX "DISABLE BILDTEMA LINK" BUG
+	'btlink':{'text':'bildtemalänk', 'val':1},
+
     'expressions':{'text':'uttryck', 'val':1},
     'alt':{'text':'variantform', 'val':1},
     'translation':{'text':'översättning', 'val':1},
@@ -5700,7 +5844,7 @@ window.onbeforeunload = function (event) {
 // --------------------------------------------------------------------
 function registerPartsselectionUpdate(selector, settingsName) {
     $(document).on("lexin_settingsupdate_" + settingsName, function () {
-	$(selector).condShow(settings[settingsName].val);
+		$(selector).condShow(settings[settingsName].val);
     });
 }
 
@@ -5788,6 +5932,10 @@ $(document).ready(function() {
     registerPartsselectionUpdate(".synonyms", "synonyms");
     registerPartsselectionUpdate(".matchingWord", "word");
     registerPartsselectionUpdate(".pronunciation", "pron");
+
+	// CG ADD - FIX "DISABLE BILDTEMA LINK" BUG
+	registerPartsselectionUpdate(".bildtemaLink", "btlink");
+
     registerPartsselectionUpdate(".idioms", "expressions");
     registerPartsselectionUpdate(".alt_form", "alt");
     registerPartsselectionUpdate(".translation", "translation");

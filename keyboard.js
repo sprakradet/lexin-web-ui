@@ -8,24 +8,29 @@
 // Show the Swedish keyboard
 // --------------------------------------------------------------------
 function keyboardUpdate() {
+	// show åäö
     if (settings.keyb_se.val) {
-	$("#keybSE").show();
-	for (const id of ["keybsweå", "keybsweä", "keybsweö"]) {
-	    $("#" + id).off("click.keyboardPress");
-	    $("#" + id).on("click.keyboardPress", function (event) {
-		keyboardPress(this, event);
-	    });
-	}
-    } else {
-	$("#keybSE").hide();
+		$("#keybSE").show();
+		for (const id of ["keybsweå", "keybsweä", "keybsweö"]) {
+			$("#" + id).off("click.keyboardPress");
+			$("#" + id).on("click.keyboardPress", function (event) {
+				keyboardPress(this, event);
+			});
+		}
+    } 
+	// hide åäö
+	else {
+		$("#keybSE").hide();
     }
 
+	// show keyboard for other languages
     if (settings.keyb_other.val) {
-	$("#keybTrans").show();
-
-	updateKeyboardLanguage();
-    } else {
-	$("#keybTrans").hide();
+		$("#keybTrans").show();
+		updateKeyboardLanguage();
+    } 
+	// hide keyboard for other languages
+	else {
+		$("#keybTrans").hide();
     }
 }
 
@@ -45,6 +50,7 @@ function keybExpandSwe(elem) {
 // --------------------------------------------------------------------
 var currentlyGeneratedKeyboards = [];
 
+// Ethiopic languages keyboard
 function generateGeezKeyboard(lang, layout, outerDiv) {
     let consonantDiv = document.createElement('div');
     outerDiv.appendChild(consonantDiv);
@@ -93,42 +99,42 @@ function generateGeezKeyboard(lang, layout, outerDiv) {
 // --------------------------------------------------------------------
 function generateKeysForLang(lang, clearOld) {
     if(clearOld || !currentlyGeneratedKeyboards.includes(lang)) {
+		var keybDiv = $("#keybTrans")[0];
+		
+		if(clearOld) {
+			currentlyGeneratedKeyboards = [];
+			keybDiv.innerHTML = null;
+		}
 
-	var keybDiv = $("#keybTrans")[0];
-	
-	if(clearOld) {
-	    currentlyGeneratedKeyboards = [];
-	    keybDiv.innerHTML = null;
-	}
+		let div = document.createElement('div');
+		keybDiv.appendChild(div);
+		
+		if(keybLayouts.hasOwnProperty(lang) && keybLayouts[lang].layout != []) {
+			var lay = keybLayouts[lang].layout;
 
-	let div = document.createElement('div');
-	keybDiv.appendChild(div);
-	
-	if(keybLayouts.hasOwnProperty(lang) && keybLayouts[lang].layout != []) {
-	    var lay = keybLayouts[lang].layout;
-
-            if (lang === "am" || lang === "ti") {
-                generateGeezKeyboard(lang, lay, div);
-            } else {
-	        for(const row of lay) {
-		    for(const c of row) {
-		        var btn = document.createElement('button');
-		        btn.className = 'keyboardKeyButton';
-		        btn.innerText = c;
-		        btn.title = "Mata in " + c;
-		        btn.type = "button";
-		        btn.onclick = function() { keyboardPress(this); };
-
-		        div.appendChild(btn);
-		    }
-	        }
-            }
-	}
-	
-	currentlyGeneratedKeyboards.push(lang);
+			// Ethiopic languages
+			if (lang === "am" || lang === "ti") {
+				generateGeezKeyboard(lang, lay, div);
+			} 
+			// other languages
+			else {
+				for(const row of lay) {
+					for(const c of row) {
+						var btn = document.createElement('button');
+						btn.className = 'keyboardKeyButton';
+						btn.innerText = c;
+						btn.title = "Mata in " + c;
+						btn.type = "button";
+						btn.onclick = function() { keyboardPress(this); };
+						div.appendChild(btn);
+					}
+				}
+			}
+		}
+		
+		currentlyGeneratedKeyboards.push(lang);
     }
 }
-
 
 // --------------------------------------------------------------------
 // Show the non-Swedish keyboard. Build a new keyboard if necessary
@@ -136,13 +142,12 @@ function generateKeysForLang(lang, clearOld) {
 // there are other ways to get here too).
 // --------------------------------------------------------------------
 function keybExpandTrans(elem) {
-    var kb = document.getElementById("keybTrans");
-    if (kb.style.display === "block") {
-	kb.style.display = "none";	
-    } else {
-	kb.style.display = "block";
-
-	updateKeyboardLanguage();
+	var kb = document.getElementById("keybTrans");
+	if (kb.style.display === "block") {
+		kb.style.display = "none";	
+	} else {
+		kb.style.display = "block";
+		updateKeyboardLanguage();
     }
 }
 
@@ -244,43 +249,47 @@ function geezVowelButton(elem) {
 // string in such an array gets one button.
 // --------------------------------------------------------------------
 const keybLayouts = {
-    "sq":{'name':"Albanskt", 'layout':[['ç', 'ë', 'é']]},
+    "sq":{'name':"Albanskt", 'layout':[
+		['ç', 'ë', 'é']
+	]},
+
     "am":{'name':"Amhariskt", 'layout':[
-	['ሀ','ሁ','ሂ','ሃ','ሄ','ህ','ሆ'],
-	['ለ','ሉ','ሊ','ላ','ሌ','ል','ሎ','ሏ'],
-	['ሐ','ሑ','ሒ','ሓ','ሔ','ሕ','ሖ','ሗ'],
-	['መ','ሙ','ሚ','ማ','ሜ','ም','ሞ','ሟ'],
-	['ሠ','ሡ','ሢ','ሣ','ሤ','ሥ','ሦ','ሧ'],
-	['ረ','ሩ','ሪ','ራ','ሬ','ር','ሮ','ሯ'],
-	['ሰ','ሱ','ሲ','ሳ','ሴ','ስ','ሶ','ሷ'],
-	['ሸ','ሹ','ሺ','ሻ','ሼ','ሽ','ሾ','ሿ'],
-	['ቀ','ቁ','ቂ','ቃ','ቄ','ቅ','ቆ','ቈ','ቊ','ቋ','ቌ','ቍ'],
-	['በ','ቡ','ቢ','ባ','ቤ','ብ','ቦ','ቧ'],
-	['ቨ','ቩ','ቪ','ቫ','ቬ','ቭ','ቮ','ቯ'],
-	['ተ','ቱ','ቲ','ታ','ቴ','ት','ቶ','ቷ'],
-	['ቸ','ቹ','ቺ','ቻ','ቼ','ች','ቾ','ቿ'],
-	['ኀ','ኁ','ኂ','ኃ','ኄ','ኅ','ኆ','ኈ','ኊ','ኋ','ኌ','ኍ'],
-	['ነ','ኑ','ኒ','ና','ኔ','ን','ኖ','ኗ'],
-	['ኘ','ኙ','ኚ','ኛ','ኜ','ኝ','ኞ','ኟ'],
-	['አ','ኡ','ኢ','ኣ','ኤ','እ','ኦ','ኧ'],
-	['ከ','ኩ','ኪ','ካ','ኬ','ክ','ኮ','ኰ','ኲ','ኳ','ኴ','ኵ'],
-	['ኸ','ኹ','ኺ','ኻ','ኼ','ኽ','ኾ','ዀ','ዂ','ዃ','ዄ','ዅ'],
-	['ወ','ዉ','ዊ','ዋ','ዌ','ው','ዎ'],
-	['ዐ','ዑ','ዒ','ዓ','ዔ','ዕ','ዖ'],
-	['ዘ','ዙ','ዚ','ዛ','ዜ','ዝ','ዞ','ዟ'],
-	['ዠ','ዡ','ዢ','ዣ','ዤ','ዥ','ዦ','ዧ'],
-	['የ','ዩ','ዪ','ያ','ዬ','ይ','ዮ'],
-	['ደ','ዱ','ዲ','ዳ','ዴ','ድ','ዶ','ዷ'],
-	['ጀ','ጁ','ጂ','ጃ','ጄ','ጅ','ጆ','ጇ'],
-	['ገ','ጉ','ጊ','ጋ','ጌ','ግ','ጎ','ጐ','ጒ','ጓ','ጔ','ጕ'],
-	['ጠ','ጡ','ጢ','ጣ','ጤ','ጥ','ጦ','ጧ'],
-	['ጨ','ጩ','ጪ','ጫ','ጬ','ጭ','ጮ','ጯ'],
-	['ጰ','ጱ','ጲ','ጳ','ጴ','ጵ','ጶ','ጷ'],
-	['ጸ','ጹ','ጺ','ጻ','ጼ','ጽ','ጾ','ጿ'],
-	['ፀ','ፁ','ፂ','ፃ','ፄ','ፅ','ፆ'],
-	['ፈ','ፉ','ፊ','ፋ','ፌ','ፍ','ፎ','ፏ'],
-	['ፐ','ፑ','ፒ','ፓ','ፔ','ፕ','ፖ','ፗ']
-]},
+		['ሀ','ሁ','ሂ','ሃ','ሄ','ህ','ሆ'],
+		['ለ','ሉ','ሊ','ላ','ሌ','ል','ሎ','ሏ'],
+		['ሐ','ሑ','ሒ','ሓ','ሔ','ሕ','ሖ','ሗ'],
+		['መ','ሙ','ሚ','ማ','ሜ','ም','ሞ','ሟ'],
+		['ሠ','ሡ','ሢ','ሣ','ሤ','ሥ','ሦ','ሧ'],
+		['ረ','ሩ','ሪ','ራ','ሬ','ር','ሮ','ሯ'],
+		['ሰ','ሱ','ሲ','ሳ','ሴ','ስ','ሶ','ሷ'],
+		['ሸ','ሹ','ሺ','ሻ','ሼ','ሽ','ሾ','ሿ'],
+		['ቀ','ቁ','ቂ','ቃ','ቄ','ቅ','ቆ','ቈ','ቊ','ቋ','ቌ','ቍ'],
+		['በ','ቡ','ቢ','ባ','ቤ','ብ','ቦ','ቧ'],
+		['ቨ','ቩ','ቪ','ቫ','ቬ','ቭ','ቮ','ቯ'],
+		['ተ','ቱ','ቲ','ታ','ቴ','ት','ቶ','ቷ'],
+		['ቸ','ቹ','ቺ','ቻ','ቼ','ች','ቾ','ቿ'],
+		['ኀ','ኁ','ኂ','ኃ','ኄ','ኅ','ኆ','ኈ','ኊ','ኋ','ኌ','ኍ'],
+		['ነ','ኑ','ኒ','ና','ኔ','ን','ኖ','ኗ'],
+		['ኘ','ኙ','ኚ','ኛ','ኜ','ኝ','ኞ','ኟ'],
+		['አ','ኡ','ኢ','ኣ','ኤ','እ','ኦ','ኧ'],
+		['ከ','ኩ','ኪ','ካ','ኬ','ክ','ኮ','ኰ','ኲ','ኳ','ኴ','ኵ'],
+		['ኸ','ኹ','ኺ','ኻ','ኼ','ኽ','ኾ','ዀ','ዂ','ዃ','ዄ','ዅ'],
+		['ወ','ዉ','ዊ','ዋ','ዌ','ው','ዎ'],
+		['ዐ','ዑ','ዒ','ዓ','ዔ','ዕ','ዖ'],
+		['ዘ','ዙ','ዚ','ዛ','ዜ','ዝ','ዞ','ዟ'],
+		['ዠ','ዡ','ዢ','ዣ','ዤ','ዥ','ዦ','ዧ'],
+		['የ','ዩ','ዪ','ያ','ዬ','ይ','ዮ'],
+		['ደ','ዱ','ዲ','ዳ','ዴ','ድ','ዶ','ዷ'],
+		['ጀ','ጁ','ጂ','ጃ','ጄ','ጅ','ጆ','ጇ'],
+		['ገ','ጉ','ጊ','ጋ','ጌ','ግ','ጎ','ጐ','ጒ','ጓ','ጔ','ጕ'],
+		['ጠ','ጡ','ጢ','ጣ','ጤ','ጥ','ጦ','ጧ'],
+		['ጨ','ጩ','ጪ','ጫ','ጬ','ጭ','ጮ','ጯ'],
+		['ጰ','ጱ','ጲ','ጳ','ጴ','ጵ','ጶ','ጷ'],
+		['ጸ','ጹ','ጺ','ጻ','ጼ','ጽ','ጾ','ጿ'],
+		['ፀ','ፁ','ፂ','ፃ','ፄ','ፅ','ፆ'],
+		['ፈ','ፉ','ፊ','ፋ','ፌ','ፍ','ፎ','ፏ'],
+		['ፐ','ፑ','ፒ','ፓ','ፔ','ፕ','ፖ','ፗ']
+	]},
+	
     "ar":{'name':"Arabiskt",
 	  'layout':[
 	      ['،',
@@ -332,66 +341,85 @@ const keybLayouts = {
 	       'ْ',
 	       'پ']
 	  ]},
-    "az":{'name':"Azerbajdzjanskt", 'layout':[['ç','ə','ǧ','ı','ö','ş','ü']]},
-    "bs":{'name':"Bosniskt", 'layout':[['č', 'ć', 'đ', 'š', 'ž']]},
-    "el":{'name':"Grekiskt", 'layout':[['α','β','γ','δ','ε','ζ','η','θ'], ['ι','κ','λ','μ','ν','ξ','ο','π'], ['ρ','ς','σ','τ','υ','φ','χ','ψ'], ['ω']]},
-    "hr":{'name':"Kroatiskt", 'layout':[['č','ć','đ','š','ž']]},
-    "ku":{'name':"Kurdiskt (kurmanji)", 'layout':[['ç','ê','î','ş','û']]},
+
+    "az":{'name':"Azerbajdzjanskt", 'layout':[
+		['ç','ə','ǧ','ı','ö','ş','ü']
+	]},
+
+    "bs":{'name':"Bosniskt", 'layout':[
+		['č', 'ć', 'đ', 'š', 'ž']
+	]},
+
+    "el":{'name':"Grekiskt", 'layout':[
+		['α','β','γ','δ','ε','ζ','η','θ'], 
+		['ι','κ','λ','μ','ν','ξ','ο','π'], 
+		['ρ','ς','σ','τ','υ','φ','χ','ψ'], 
+		['ω']
+	]},
+
+    "hr":{'name':"Kroatiskt", 'layout':[
+		['č','ć','đ','š','ž']
+	]},
+
+    "ku":{'name':"Kurdiskt (kurmanji)", 'layout':[
+		['ç','ê','î','ş','û']
+	]},
+
     "ps":{'name':"Pashto", 'layout':[
-	['ث',
-	 'ټ',
-	 'ت',
-	 'پ',
-	 'ب',
-	 'أ',
-	 'ا',
-	 'آ'],
-	['ذ',
-	 'ډ',
-	 'د',
-	 'ځ',
-	 'څ',
-	 'خ',
-	 'ح',
-	 'چ'],
-	['ج',
-	 'ښ',
-	 'ش',
-	 'س',
-	 'ړ',
-	 'ږ',
-	 'ژ',
-	 'ز'],
-	['ر',
-	 'غ',
-	 'ع',
-	 'ظ',
-	 'ط',
-	 'ض',
-	 'ص',
-	 'ڼ'],
-	['ن',
-	 'م',
-	 'ل',
-	 'ګ',
-	 'ک',
-	 'ق',
-	 'ف',
-	 'ئ'],
-	['ې',
-	 'ى',
-	 'ي',
-	 'ۍ',
-	 'ه',
-	 'ۀ',
-	 'و',
-	 'ُ'],
-	['َ',
-	 'ِ',
-	 'ٓ']
+		['ث',
+		'ټ',
+		'ت',
+		'پ',
+		'ب',
+		'أ',
+		'ا',
+		'آ'],
+		['ذ',
+		'ډ',
+		'د',
+		'ځ',
+		'څ',
+		'خ',
+		'ح',
+		'چ'],
+		['ج',
+		'ښ',
+		'ش',
+		'س',
+		'ړ',
+		'ږ',
+		'ژ',
+		'ز'],
+		['ر',
+		'غ',
+		'ع',
+		'ظ',
+		'ط',
+		'ض',
+		'ص',
+		'ڼ'],
+		['ن',
+		'م',
+		'ل',
+		'ګ',
+		'ک',
+		'ق',
+		'ف',
+		'ئ'],
+		['ې',
+		'ى',
+		'ي',
+		'ۍ',
+		'ه',
+		'ۀ',
+		'و',
+		'ُ'],
+		['َ',
+		'ِ',
+		'ٓ']
     ]},
-    "fa":{'name':"Persiskt",
-	  'layout':[
+
+    "fa":{'name':"Persiskt", 'layout':[
 	      ['ب',
 	       'ا',
 	       'أ',
@@ -437,12 +465,28 @@ const keybLayouts = {
 	       'ً',
 	       'ْ',
 	       'َ']
-	      ]},
-    "ru":{'name':"Ryskt", 'layout':[['а','б','в','г','д','е','ж','з'], ['и','й','к','л','м','н','о','п'],['р','с','т','у','ф','х','ц','ч'],['ш','щ','ъ','ы','ь','э','ю','я'],['ё']]},
-    "sr":{'name':"Serbiskt (latinskt)", 'layout':[['č','ć','đ','ş','š','ž']]},
-    "sr":{'name':"Serbiskt (kyrilliskt)", 'layout':[['а','б','в','г','д','е','ж','з'],['и','к','л','м','н','о','п','р'],['с','т','у','ф','х','ц','ч','ш'],['ђ','ј','љ','њ','ћ','џ']]},
-    "ckb":{'name':"Kurdiskt (sorani)",
-	   'layout':[
+	    ]},
+
+    "ru":{'name':"Ryskt", 'layout':[
+		['а','б','в','г','д','е','ж','з'], 
+		['и','й','к','л','м','н','о','п'],
+		['р','с','т','у','ф','х','ц','ч'],
+		['ш','щ','ъ','ы','ь','э','ю','я'],
+		['ё']
+	]},
+
+    "sr":{'name':"Serbiskt (latinskt)", 'layout':[
+		['č','ć','đ','ş','š','ž']
+	]},
+
+    "sr":{'name':"Serbiskt (kyrilliskt)", 'layout':[
+		['а','б','в','г','д','е','ж','з'],
+		['и','к','л','м','н','о','п','р'],
+		['с','т','у','ф','х','ц','ч','ш'],
+		['ђ','ј','љ','њ','ћ','џ']
+	]},
+
+    "ckb":{'name':"Kurdiskt (sorani)", 'layout':[
 	       ['ت',
 		'پ',
 		'ب',
@@ -477,44 +521,55 @@ const keybLayouts = {
 		'ی'],
 	       ['وو',
 		'ۆ']
-	   ]},
+	]},
+
     "ti":{'name':"Tigrinskt", 'layout':[
-	['ሀ','ሁ','ሂ','ሃ','ሄ','ህ','ሆ'],
-	['ለ','ሉ','ሊ','ላ','ሌ','ል','ሎ'],
-	['ሐ','ሑ','ሒ','ሓ','ሔ','ሕ','ሖ'],
-	['መ','ሙ','ሚ','ማ','ሜ','ም','ሞ'],
-	['ረ','ሩ','ሪ','ራ','ሬ','ር','ሮ'],
-	['ሰ','ሱ','ሲ','ሳ','ሴ','ስ','ሶ'],
-        ['ሸ','ሹ','ሺ','ሻ','ሼ','ሽ','ሾ'],
-	['ቀ','ቁ','ቂ','ቃ','ቄ','ቅ','ቆ','ቈ','ቊ','ቋ','ቌ','ቍ'],
-	['ቐ','ቑ','ቒ','ቓ','ቔ','ቕ','ቖ','ቘ','ቚ','ቛ','ቜ','ቝ'],
-	['በ','ቡ','ቢ','ባ','ቤ','ብ','ቦ'],
-        ['ቨ','ቩ','ቪ','ቫ','ቬ','ቭ','ቮ'],
-	['ተ','ቱ','ቲ','ታ','ቴ','ት','ቶ'],
-	['ቸ','ቹ','ቺ','ቻ','ቼ','ች','ቾ'],
-	['ነ','ኑ','ኒ','ና','ኔ','ን','ኖ'],
-	['ኘ','ኙ','ኚ','ኛ','ኜ','ኝ','ኞ'],
-        ['አ','ኡ','ኢ','ኣ','ኤ','እ','ኦ'],
-	['ከ','ኩ','ኪ','ካ','ኬ','ክ','ኮ','ኰ','ኲ','ኳ','ኴ','ኵ'],
-	['ኸ','ኹ','ኺ','ኻ','ኼ','ኽ','ኾ','ዀ','ዂ','ዃ','ዄ','ዅ'],
-	['ወ','ዉ','ዊ','ዋ','ዌ','ው','ዎ'],
-	['ዐ','ዑ','ዒ','ዓ','ዔ','ዕ','ዖ'],
-	['ዘ','ዙ','ዚ','ዛ','ዜ','ዝ','ዞ'],
-        ['ዠ','ዡ','ዢ','ዣ','ዤ','ዥ','ዦ'],
-	['የ','ዩ','ዪ','ያ','ዬ','ይ','ዮ'],
-	['ደ','ዱ','ዲ','ዳ','ዴ','ድ','ዶ'],
-	['ጀ','ጁ','ጂ','ጃ','ጄ','ጅ','ጆ'],
-	['ገ','ጉ','ጊ','ጋ','ጌ','ግ','ጎ','ጐ','ጒ','ጓ','ጔ','ጕ'],
-	['ጠ','ጡ','ጢ','ጣ','ጤ','ጥ','ጦ'],
-	['ጨ','ጩ','ጪ','ጫ','ጬ','ጭ','ጮ'],
-	['ጰ','ጱ','ጲ','ጳ','ጴ','ጵ','ጶ'],
-        ['ጸ','ጹ','ጺ','ጻ','ጼ','ጽ','ጾ'],
-        ['ፀ','ፁ','ፂ','ፃ','ፄ','ፅ','ፆ'],
-	['ፈ','ፉ','ፊ','ፋ','ፌ','ፍ','ፎ'],
-	['ፐ','ፑ','ፒ','ፓ','ፔ','ፕ','ፖ']
+		['ሀ','ሁ','ሂ','ሃ','ሄ','ህ','ሆ'],
+		['ለ','ሉ','ሊ','ላ','ሌ','ል','ሎ'],
+		['ሐ','ሑ','ሒ','ሓ','ሔ','ሕ','ሖ'],
+		['መ','ሙ','ሚ','ማ','ሜ','ም','ሞ'],
+		['ረ','ሩ','ሪ','ራ','ሬ','ር','ሮ'],
+		['ሰ','ሱ','ሲ','ሳ','ሴ','ስ','ሶ'],
+			['ሸ','ሹ','ሺ','ሻ','ሼ','ሽ','ሾ'],
+		['ቀ','ቁ','ቂ','ቃ','ቄ','ቅ','ቆ','ቈ','ቊ','ቋ','ቌ','ቍ'],
+		['ቐ','ቑ','ቒ','ቓ','ቔ','ቕ','ቖ','ቘ','ቚ','ቛ','ቜ','ቝ'],
+		['በ','ቡ','ቢ','ባ','ቤ','ብ','ቦ'],
+			['ቨ','ቩ','ቪ','ቫ','ቬ','ቭ','ቮ'],
+		['ተ','ቱ','ቲ','ታ','ቴ','ት','ቶ'],
+		['ቸ','ቹ','ቺ','ቻ','ቼ','ች','ቾ'],
+		['ነ','ኑ','ኒ','ና','ኔ','ን','ኖ'],
+		['ኘ','ኙ','ኚ','ኛ','ኜ','ኝ','ኞ'],
+			['አ','ኡ','ኢ','ኣ','ኤ','እ','ኦ'],
+		['ከ','ኩ','ኪ','ካ','ኬ','ክ','ኮ','ኰ','ኲ','ኳ','ኴ','ኵ'],
+		['ኸ','ኹ','ኺ','ኻ','ኼ','ኽ','ኾ','ዀ','ዂ','ዃ','ዄ','ዅ'],
+		['ወ','ዉ','ዊ','ዋ','ዌ','ው','ዎ'],
+		['ዐ','ዑ','ዒ','ዓ','ዔ','ዕ','ዖ'],
+		['ዘ','ዙ','ዚ','ዛ','ዜ','ዝ','ዞ'],
+			['ዠ','ዡ','ዢ','ዣ','ዤ','ዥ','ዦ'],
+		['የ','ዩ','ዪ','ያ','ዬ','ይ','ዮ'],
+		['ደ','ዱ','ዲ','ዳ','ዴ','ድ','ዶ'],
+		['ጀ','ጁ','ጂ','ጃ','ጄ','ጅ','ጆ'],
+		['ገ','ጉ','ጊ','ጋ','ጌ','ግ','ጎ','ጐ','ጒ','ጓ','ጔ','ጕ'],
+		['ጠ','ጡ','ጢ','ጣ','ጤ','ጥ','ጦ'],
+		['ጨ','ጩ','ጪ','ጫ','ጬ','ጭ','ጮ'],
+		['ጰ','ጱ','ጲ','ጳ','ጴ','ጵ','ጶ'],
+			['ጸ','ጹ','ጺ','ጻ','ጼ','ጽ','ጾ'],
+			['ፀ','ፁ','ፂ','ፃ','ፄ','ፅ','ፆ'],
+		['ፈ','ፉ','ፊ','ፋ','ፌ','ፍ','ፎ'],
+		['ፐ','ፑ','ፒ','ፓ','ፔ','ፕ','ፖ']
     ]},
-    "tr":{'name':"Turkiskt", 'layout':[['ı','ö','ü','ç','ğ','ş']]},
-    "uk":{'name':"Ukrainskt",'layout':[['а','б','в','г','ґ','д','е','є'], ['ж','з','и','і','ї','й','к','л'], ['м','н','о','п','р','с','т','у'], ['ф','х','ц','ч','ш','щ','ь','ю'], ['я']]}
+
+    "tr":{'name':"Turkiskt", 'layout':[
+		['ı','ö','ü','ç','ğ','ş']
+	]},
+
+    "uk":{'name':"Ukrainskt",'layout':[
+		['а','б','в','г','ґ','д','е','є'], 
+		['ж','з','и','і','ї','й','к','л'], 
+		['м','н','о','п','р','с','т','у'], 
+		['ф','х','ц','ч','ш','щ','ь','ю'], 
+		['я']
+	]}
 };
 
 // --------------------------------------------------------------------
@@ -522,47 +577,51 @@ const keybLayouts = {
 // the field completely if this language has no keyboard support.
 // --------------------------------------------------------------------
 function updateKeyboardLanguage() {
+	// keyboard function turned off
     if(!settings.keyb_other.val) {
-	return false;
+		return false;
     }
     
     let langs = getSelectedLexicon();
-
     let first = true;
     let changed = false;
     let hits = 0;
     
+	// check which keyboards are needed
     for(let l = 0; l < langs.length; l++) {
-	let lang = langs[l];
-	let langc = languageMap[lang];
-    
-	if(keybLayouts.hasOwnProperty(langc) && keybLayouts[langc].layout != []) {
-	    if(!currentlyGeneratedKeyboards.includes(langc)) {
-		changed = true;
-		break;
-	    } else {
-		hits++;
-	    }
-	}
+		let lang = langs[l];
+		let langc = languageMap[lang];
+		
+		if(keybLayouts.hasOwnProperty(langc) && keybLayouts[langc].layout != []) {
+			if(!currentlyGeneratedKeyboards.includes(langc)) {
+				changed = true;
+				break;
+			} else {
+				hits++;
+			}
+		}
     }
 
+	// rebuild keyboards if necessary
     if(changed || hits != currentlyGeneratedKeyboards.length) { // some keyboard no longer needed, or some needed on not already built
-	for(let l = 0; l < langs.length; l++) {
-	    let lang = langs[l];
-	    let langc = languageMap[lang];
-	    
-	    if(first) {
-		first = false;
-		generateKeysForLang(langc, true);
-	    } else {
-		generateKeysForLang(langc, false);
-	    }
-	}
+		for(let l = 0; l < langs.length; l++) {
+			let lang = langs[l];
+			let langc = languageMap[lang];
+			
+			if(first) {
+				first = false;
+				generateKeysForLang(langc, true);
+			} else {
+				generateKeysForLang(langc, false);
+			}
+		}
     }
+
+	// show/hide keyboard container
     if(currentlyGeneratedKeyboards.length > 0) {
-	$("#transKeybWrapper")[0].style.display = "block";
+		$("#transKeybWrapper")[0].style.display = "block";
     } else {
-	$("#transKeybWrapper")[0].style.display = "none";
+		$("#transKeybWrapper")[0].style.display = "none";
     }
 }
 
@@ -575,18 +634,26 @@ function updateKeyboardLanguage() {
 // --------------------------------------------------------------------
 
 $(document).ready(function() {
+	// change in single language mode
     $("#languageChoice").change(function(e) {
-	updateKeyboardLanguage();
-	e.preventDefault();
+		updateKeyboardLanguage();
+		e.preventDefault();
+    });
+
+	// CG ADD - change in multiple language mode
+	$("#multilangchoice").change(function(e) {
+		updateKeyboardLanguage();
+		e.preventDefault();
     });
 
     updateKeyboardLanguage();
 
+	// user toggles keyboard on
     $(document).on("lexin_settingsupdate_keyb_se", function () {
-	keyboardUpdate();
+		keyboardUpdate();
     });
     $(document).on("lexin_settingsupdate_keyb_other", function () {
-	keyboardUpdate();
+		keyboardUpdate();
     });
 });
 

@@ -32,24 +32,31 @@ function closeSavedWords() {
 // --------------------------------------------------------------------
 // Save the latest search query to the savedWords array.
 // --------------------------------------------------------------------
-function savedWordsSaveCurrentWord(elem) {
+function savedWordsSaveCurrentWord(elem, id) {
     if(savedWords) {
-	var cw = $("#searchQuery").val();
+		var cw = $("#searchQuery").val();
 
-	if(!savedWords.includes(cw)) {
-	    savedWords.push(cw);
-    
-	    var uElem = getULfromSavedWords();
-	    
-	    var parentDiv = $("#savedWordsList")[0];
-	    parentDiv.innerHTML = null;
-	    parentDiv.appendChild(uElem);
+		if(!savedWords.includes(cw)) {
+			savedWords.push(cw);
+		
+			var uElem = getULfromSavedWords();
+			
+			var parentDiv = $("#savedWordsList")[0];
+			parentDiv.innerHTML = null;
+			parentDiv.appendChild(uElem);
 
-	    updateSaveCurrentButton();
-	    
-	    saveToLocalStorage();
-	}
+			updateSaveCurrentButton();
+			
+			saveToLocalStorage();
+		}
     }
+
+	// CG ADD
+	const msg = document.getElementById(id);
+	msg.classList.add("show");      // fade in
+	setTimeout(() => {
+		msg.classList.remove("show"); // fade out
+	}, 4000);  // fade out starts after 4s
 }
 
 // --------------------------------------------------------------------
@@ -73,7 +80,7 @@ function getULfromSavedWords() {
 	    deleteBtn.title = "Ta bort " + w;
 	    deleteBtn.className = "removeOneSavedWordButton";
 	    deleteBtn.onclick = function () {
-		removeOneSavedWord(w);
+			removeOneSavedWord(w);
 	    };
 		
 	    var liElem = document.createElement('li');
@@ -91,15 +98,20 @@ function getULfromSavedWords() {
 // --------------------------------------------------------------------
 function savedWordsSortWords(elem) {
     if(savedWords) {
-	savedWords.sort();
-	
-	var uElem = getULfromSavedWords();
-	
-	var parentDiv = $("#savedWordsList")[0];
-	parentDiv.innerHTML = null;
-	parentDiv.appendChild(uElem);
+		savedWords.sort();
 
-	saveToLocalStorage();
+		// CG ADD ignore case
+		savedWords.sort((a, b) => {
+            return a.toLowerCase().localeCompare(b.toLowerCase());
+        });
+		
+		var uElem = getULfromSavedWords();
+		
+		var parentDiv = $("#savedWordsList")[0];
+		parentDiv.innerHTML = null;
+		parentDiv.appendChild(uElem);
+
+		saveToLocalStorage();
     }
 }
 
@@ -123,6 +135,17 @@ function removeOneSavedWord(word) {
     parentDiv.appendChild(uElem);
 
     saveToLocalStorage();
+
+	// CG ADD
+	var cw = $("#searchQuery").val();
+	var btn = $("#savedWordsSaveCurrent")[0];		// used
+    var btn2 = $("#savedWordsSaveCurrentWrd")[0];	// not used?
+	if (cw == word) {
+		btn.disabled = false;
+		btn2.disabled = false;
+		btn.title = "Spara senaste uppslagning";
+		btn2.title = "Spara senaste uppslagning";
+	} 
 
     return savedWords;
 }
@@ -170,18 +193,31 @@ function savedWordsSearchAll(elem) {
 function updateSaveCurrentButton() {
     var cw = $("#searchQuery").val();
 
-    var btn = $("#savedWordsSaveCurrent")[0];
-    var btn2 = $("#savedWordsSaveCurrentWrd")[0];
+    var btn = $("#savedWordsSaveCurrent")[0];		// used
+    var btn2 = $("#savedWordsSaveCurrentWrd")[0];	// not used?
 
     btn.innerText = "Spara \"" + cw + "\"";
     btn2.innerText = "Spara \"" + cw + "\"";
 
-    if(savedWords && savedWords.includes(cw)) {
-	btn.disabled = true;
-	btn2.disabled = true;
-    } else {
-	btn.disabled = false;
-	btn2.disabled = false;
+	// search already saved
+    if((savedWords && savedWords.includes(cw))) {
+		btn.disabled = true;
+		btn2.disabled = true;
+		btn.title = "Uppslagningen är redan sparad";
+		btn2.title = "Uppslagningen är redan sparad";
+    } 
+	// search is empty
+	else if (cw == "") {
+		btn.disabled = true;
+		btn2.disabled = true;
+		btn.title = "Uppslagningen är tom";
+		btn2.title = "Uppslagningen är tom";
+	}
+	else {
+		btn.disabled = false;
+		btn2.disabled = false;
+		btn.title = "Spara senaste uppslagning";
+		btn2.title = "Spara senaste uppslagning";
     }
 }
 

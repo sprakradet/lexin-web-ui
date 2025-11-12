@@ -37,6 +37,10 @@
     color: white;
 }
 
+.savedWordsList a:hover {
+    text-decoration: underline;
+}
+
 .savedWordsList {
     list-style-type: none;
 }
@@ -53,6 +57,19 @@
     margin: 0.2em .8em 0.1em 1em;
     border: none;
     border-radius: 0.3em;
+    cursor: pointer;
+}
+
+/* CG highlight on hover */
+.saveWordsButton:hover {
+    background-color: #3FD695;
+}
+
+/* CG disable design */
+.saveWordsButton:disabled {
+    background-color: #BFCED0;
+    color: #415558;
+    cursor: not-allowed;
 }
 
 .removeOneSavedWordButton {
@@ -63,4 +80,20 @@
     padding-left: .2em;
     padding-right: .2em;
     text-align: center;
+}
+
+.removeOneSavedWordButton .savedWordsList a:hover {
+    text-decoration: underline;
+}
+
+/* --------- CG ADD BELOW --------- */ 
+
+.saveMessage {
+  margin-left: 10px;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.saveMessage.show {
+  opacity: 1;
 }

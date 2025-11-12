@@ -10,6 +10,7 @@ html {
 .content {
     background-color: white;
     min-height: 100vh;
+    border-radius: 5px;
 }
 
 body {
@@ -112,6 +113,7 @@ form#theForm2 input#searchQuery {
     box-sizing: border-box;
     padding-right: 1.5em;
     padding-left: 0.2em;
+    border-radius: 5px;
 }
 
 main {
@@ -132,6 +134,7 @@ select#languageChoice {
     padding-bottom: 2px;
     width: 100%;
     max-width: 20em;
+    cursor: pointer;
 }
 
 select {
@@ -175,8 +178,13 @@ select {
     border-radius: 5px;
     border-color: transparent;
     background-color: white;
+    cursor: pointer;
 }
 
+/* CG highlight on hover */
+#multiLanguageChoiceButton:hover {
+    background-color: #3FD695;
+}
 
 .logo {
 }
@@ -450,7 +458,7 @@ select {
 }
 
 .pronunciation {
-
+    /*display: inline !important;*/
 }
 
 .alt_form {
@@ -467,6 +475,7 @@ select {
     background-size: contain;
     background-position: center;
     margin: auto;
+    cursor: pointer;
 }
 
 .soundFiles button {
@@ -479,12 +488,24 @@ select {
     color: black;
 }
 
+/* ------ PARTS SELECTION ------ */
+
 .partsselectionBox {
     margin: 0.3em 0;
 }
 
 .partsselectionBox * {
     vertical-align: middle;
+}
+
+/* CG highlight on hover */
+.partsselectionCheckbox:hover {
+    cursor: pointer;
+}
+
+/* CG highlight on hover */
+.partsselectionLabel:hover {
+    cursor: pointer;
 }
 
 .longClickLink {
@@ -503,6 +524,12 @@ select {
 .makeClickableHeadingsStandOut {
     /* color: green; */
     /* text-decoration: underline; */
+}
+
+/* CG text highlight on hover */
+.makeClickableHeadingsStandOut:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 a:any-link {
@@ -583,6 +610,7 @@ div[dir=rtl] {
     vertical-align: baseline;
     height: 1em;
     padding-left: 0.5em;
+    cursor: pointer;
 }
 
 .expandGraminfoIcon {
@@ -656,29 +684,49 @@ footer .lp-icon {
     margin-left: .8rem;
 }
 
+/* --------- HIGH CONTRAST MODE --------- */
+
 @media (prefers-contrast: more) {
     .wordInfo {
-	background-color: transparent;
-	border: solid black;
-	border-width: 1px 0px;
+        background-color: transparent;
+        border: solid black;
+        border-width: 1px 0px;
     }
+
     a:any-link {
-	color: black;
-	text-decoration-color: black;
+        /*color: black;*/
+        color: CanvasText;
+        text-decoration-color: black;
     }
+
     .graminfoExplanation {
-	background-color: white;
-	padding: 1em;
-	margin: 0.5em 0;
-	border: 1px solid black;
+        background-color: white;
+        padding: 1em;
+        margin: 0.5em 0;
+        border: 1px solid black;
     }
 
     .cueWord {
-	opacity: 1;
-	font-style: italic;
+        opacity: 1;
+        font-style: italic;
     }
 
     .expandGraminfoIcon {
-	opacity: 1;
+	    opacity: 1;
     }
 }
+
+/* CG ADD */
+input[type="checkbox"] {
+  accent-color: #3FD695;
+}
+
+/* --------- URLS --------- */
+
+.footerLink:hover {
+  background-color: #16323A !important;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+

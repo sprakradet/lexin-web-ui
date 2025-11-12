@@ -1,6 +1,7 @@
+/* --------- DOWNLOAD SETTINGS VIEW --------- */
+
 .downloadPopup {
     display: none;
-
     background-color: rgb(28, 63, 73);
     color: white;
     margin: 0 1em 1em 1em;
@@ -10,26 +11,71 @@
     margin-right: max(env(safe-area-inset-right), 1em);
 }
 
+/* --------- LANGUAGE SELECT BAR --------- */
+
 #selectDownloadLanguages {
     font: inherit;
     vertical-align: middle;
     padding-left: 0.5em;
     padding-right: 1.5em;
     padding-bottom: 2px;
-    width: 100%;
-    max-width: 30em;
+    /*width: 100%;*/
+    /*max-width: 30em;*/
+
+    /* align with download button */
+    flex:1;
+    width:auto;
+    max-width:none;
+    padding: 0 1.5em 0 0.5em;
+    cursor: pointer;
 }
+
+/* --------- PROGRESS BAR --------- */
 
 #downloadProgress {
     margin: 1em 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 0.5em;
+    /*height:20px;*/
 }
 
 .downloadProgressLang {
     align-self: center;
 }
+
+.progressWrapper {
+    align-self: center;
+/*    height: 2em;*/
+}
+
+progress {
+    border-radius: 5px;
+    height: 2em;
+    width: 100%;
+    height: 19px;
+}
+
+/* empty part of progress bar */
+progress::-webkit-progress-bar {        /* Chrome, Safari, Edge */
+    background-color: rgb(215,233,236);
+    border-radius: 5px;
+}
+
+/* filled part of progress bar */
+progress::-webkit-progress-value {      /* Chrome, Safari, Edge */
+    /*background-color: rgb(28, 63, 73);*/
+    background-color: #3FD695;
+    border-radius: 5px;
+    border: 2px rgb(215,233,236) solid;
+}
+progress::-moz-progress-bar {           /* Firefox */
+    background-color: #3FD695;
+    border-radius: 5px;
+    border: 2px rgb(215,233,236) solid;
+}
+
+/* --------- DOWNLOAD BUTTON --------- */
 
 .downloadStartButton {
     background-color: #D7E9EC;
@@ -38,9 +84,17 @@
     padding: 0.1em .5em 0.2em 0.5em;
     border: none;
     border-radius: 0.3em;
-    margin: 1em 0 2em auto;
+    /*margin: 1em 0 2em auto;*/
+    margin: 0;
     display: block;
+    cursor: pointer;
 }
+
+.downloadStartButton:hover {
+    background-color: #3FD695;
+}
+
+/* --------- REMOVE BUTTON --------- */
 
 .removeDownloadButton {
     background-color: rgba(0,0,0,0);
@@ -59,24 +113,38 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    cursor: pointer;
 }
 
-.progressWrapper {
-    align-self: center;
-/*    height: 2em;*/
+/* CG ADD BELOW */
+
+/* handle elements next to each other */
+.downloadControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-progress {
-    border-radius: 1px;
-    height: 2em;
-    width: 100%;
+.download-controls select,
+.download-controls .downloadStartButton{
+  font: inherit;
+  height: 2.25rem;
+  box-sizing: border-box;
 }
-progress::-webkit-progress-bar {
-    background-color: rgb(215,233,236);
-    border-radius: 1px;
+
+.downloadFailedButton {
+    background-color: #D7E9EC;
+    color: black;
+    font: inherit;
+    padding: 0.1em .5em 0.2em 0.5em;
+    border: none;
+    border-radius: 0.3em;
+    /*margin: 1em 0 2em auto;*/
+    margin: 0;
+    display: block;
+    cursor: pointer;
 }
-progress::-webkit-progress-value {
-    background-color: rgb(28, 63, 73);
-    border-radius: 1px;
-    border: 2px rgb(215,233,236) solid;
+
+.downloadFailedButton:hover {
+    background-color: #3FD695;
 }

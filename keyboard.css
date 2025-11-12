@@ -19,10 +19,17 @@
     background-color: #f0f0f0;
     border: 1px #afafaf;
     appearance: none;
+    border-radius: 5px;
+}
+
+.keyboardKeyButton:hover {
+    cursor: pointer;
+    background-color: #3FD695;
 }
 
 .keyboardKeyButton:disabled {
     opacity: 50%;
+    pointer-events: none;
 }
 
 .geezVowels, .geezConsonants {
