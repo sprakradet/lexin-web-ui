@@ -6059,10 +6059,12 @@ if (typeof exports !== 'undefined') {
 }
 
 /* --------- CG ADD POPUP FUNCTIONALITY BELOW --------- */
+
 function showPopup() {
   document.getElementById('popup').style.display = 'block';
   document.body.classList.add("modal-open");
 }
+
 function closePopup() {
   document.getElementById('popup').style.display = 'none';
   document.body.classList.remove("modal-open");

@@ -743,13 +743,12 @@ input[type="checkbox"] {
     border:1px solid #ccc; 
     box-shadow:0 0 10px rgba(0,0,0,0.2);
     width: 300px;
-
     font-family: "Noto Sans",sans-serif;
     font-size: 16px;
     font-weight: normal;
 }
 
-.feedbackTitle {
+.popupTitle {
     font-weight: bold;
     margin-bottom: 8px;
     margin-top: 20px;
@@ -764,4 +763,47 @@ body.modal-open #popup {
   pointer-events: auto;
 }
 
+.sendButton {
+    background-color: #D7E9EC;
+    color: black;
+    font: inherit;
+    padding: 0.1em .5em 0.2em 0.5em;
+    margin: 0.2em .8em 0.1em 1em;
+    border: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+}
 
+.sendButton:hover {
+    background-color: #3FD695;
+}
+
+.closeButton {
+    background-color: lightgray;
+    color: black;
+    font: inherit;
+    padding: 0.1em .5em 0.2em 0.5em;
+    margin: 0.2em .8em 0.1em 1em;
+    border: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    background-color: gray;
+}
+
+.popupButtons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;  
+}
+
+/* --------- PHONE --------- */
+
+@media screen and (max-width: 375px) {
+    .popup {
+        width: 70%;
+    }
+}
