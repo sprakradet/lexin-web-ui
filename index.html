@@ -312,26 +312,24 @@
 		<!-- CG ADD FEEDBACK POPUP -->
 		<div id="popup" class="popup">
 			<form id="theForm3">
+
 				<div class="feedbackTitle">Hjälpte svaret dig?</div>
+				<label><input type="radio" name="feedback" value="yes">Ja</label>
+				<label style="margin-left:10px;"><input type="radio" name="feedback" value="no">Nej</label>
 				<br>
-				<label>
-					<input type="radio" name="feedback" value="yes">Ja
-				</label>
-				<label style="margin-left:10px;">
-					<input type="radio" name="feedback" value="no">Nej
-				</label>
-				<br>
+
 				<label for="comment">
 					<div class="feedbackTitle">Kommentar (valfritt):</div>
-					<br>
-					<textarea id="comment" name="comment" rows="4" cols="30" placeholder="skriv din kommentar här"></textarea>
+					<textarea id="comment" name="comment" placeholder="skriv din kommentar här" style="width:95%; max-width: 95%; min-height: 100px; max-height: 500px;"></textarea>
 				</label>
 				<br>
-				<label for="username">
+
+				<label for="mailaddress">
 					<div class="feedbackTitle">Mejladress (valfritt):</div>
-					<input type="text" id="username" name="username" placeholder="skriv din mejladress här" style="width:95%; padding:5px;">
+					<input type="text" id="mailaddress" name="mailaddress" placeholder="skriv din mejladress här" style="width:95%; padding:5px;">
 				</label>
 			</form>
+			
 			<button>Skicka in</button>
 			<button onclick="closePopup()">Close</button>
 		</div>

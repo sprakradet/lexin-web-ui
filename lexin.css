@@ -732,14 +732,18 @@ input[type="checkbox"] {
 /* --------- FEEDBACK --------- */
 
 .popup {
-    display:none; 
-    position:fixed; 
-    top:50%; left:50%; 
+    display: none; 
+    position: fixed; 
+    top: 50%;
+    left: 50%; 
     transform:translate(-50%, -50%);
     background:white; 
     padding:20px; 
+    padding-bottom: 40px;
     border:1px solid #ccc; 
     box-shadow:0 0 10px rgba(0,0,0,0.2);
+    width: 300px;
+
     font-family: "Noto Sans",sans-serif;
     font-size: 16px;
     font-weight: normal;
@@ -747,6 +751,8 @@ input[type="checkbox"] {
 
 .feedbackTitle {
     font-weight: bold;
+    margin-bottom: 8px;
+    margin-top: 20px;
 }
 
 body.modal-open {
