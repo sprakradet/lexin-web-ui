@@ -505,8 +505,8 @@ class LexinService {
 		// build rest of url
 		// return json object
 		this.getJson = async function(direction, lang, word) {
-			console.log("CG query: \"" + word + "\"");
-			console.log("CG query encoded: \"" + encodeURIComponent(word) + "\"");
+			//console.log("CG query: \"" + word + "\"");
+			//console.log("CG query encoded: \"" + encodeURIComponent(word) + "\"");
 
 			const url = lexinService.backendServer + "?searchinfo=" + direction + ",swe_" + lang + "," + encodeURIComponent(word) + "&output=JSON";
 
@@ -6068,4 +6068,13 @@ function showPopup() {
 function closePopup() {
   document.getElementById('popup').style.display = 'none';
   document.body.classList.remove("modal-open");
+}
+
+function sendFeedback() {
+	console.log("CG FEEDBACK QUERY: " + $("#searchQuery").val());
+
+	let selectedLanguages = $("#languageChoice option:selected").map((i, e) => e.value).get();
+	for (let i = 0; i < selectedLanguages.length; i++) {
+    	console.log("Language:", selectedLanguages[i]);
+	}
 }
