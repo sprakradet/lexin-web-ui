@@ -6068,6 +6068,19 @@ function showPopup() {
 function closePopup() {
   document.getElementById('popup').style.display = 'none';
   document.body.classList.remove("modal-open");
+  document.querySelectorAll("#popup input[type='text']").forEach(el => el.value = "");
+  document.querySelectorAll("#popup textarea").forEach(el => el.value = "");
+  document.querySelectorAll("#popup input[type='radio']").forEach(el => el.checked = false);
+}
+
+let originalPopupHTML = "";
+
+document.addEventListener("DOMContentLoaded", () => {
+    originalPopupHTML = document.getElementById("popup").innerHTML;
+});
+
+function restorePopupContent() {
+    document.getElementById("popup").innerHTML = originalPopupHTML;
 }
 
 function sendFeedback() {
@@ -6080,4 +6093,11 @@ function sendFeedback() {
 		let label = $(`label[for='${lang.id}']`).text();
 		console.log("CG FEEBACK LANG: " + label);
 	});
+
+	document.getElementById("popup").innerHTML = "<div class='popupTitle' style='text-align: center;'>Tack för din återkoppling!</div>";
+
+	setTimeout(() => {
+        closePopup();
+        restorePopupContent();
+    }, 2000);
 }
