@@ -104,7 +104,7 @@
 					Spara senaste
 				</button>
 				<span id="saveMessage1" class="saveMessage">
-					Uppslagningen sparades!
+					Sparat!
 				</span> 
 				<div id="savedWordsList"></div>
 				<button class="saveWordsButton" id="savedWordsSort" title="Sortera sparade ord" onclick="savedWordsSortWords(this)" type="button">
@@ -158,7 +158,7 @@
 						Spara senaste
 					</button>
 					<span id="saveMessage2" class="saveMessage">
-						Uppslagningen sparades!
+						Sparat!
 					</span>
 				</div>
 				<div class="settingsMainItem">
@@ -307,8 +307,8 @@
 		</div>
 
 		<!-- CG ADD FEEDBACK BUTTON -->
-		<br>
-		<button type="button" onclick="showPopup()">Hjälpte svaret dig?</button>
+		<!--<br>
+		<button type="button" onclick="showPopup()">Hjälpte svaret dig?</button>-->
 
 		<!-- CG ADD FEEDBACK POPUP -->
 		<div id="popup" class="popup">
@@ -350,6 +350,11 @@
     </div>
 
     <div class="LexinExplanationsWrapper" id="LexinExplanationsWrapper"></div>
+
+	<!-- CG ADD FEEDBACK BUTTON -->
+	<button type="button" class="popupButton" onclick="showPopup()">
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M2 3h20v14H6l-4 4V3z"></path></svg>
+	</button>
 
     <footer>
 

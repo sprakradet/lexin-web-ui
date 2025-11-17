@@ -6071,10 +6071,13 @@ function closePopup() {
 }
 
 function sendFeedback() {
+	// current search word(s)
 	console.log("CG FEEDBACK QUERY: " + $("#searchQuery").val());
 
-	let selectedLanguages = $("#languageChoice option:selected").map((i, e) => e.value).get();
-	for (let i = 0; i < selectedLanguages.length; i++) {
-    	console.log("Language:", selectedLanguages[i]);
-	}
+	// current language(s)
+	let selectedLangs = $(".multilangcolumn input[name='multilangchoice']:checked").get();
+	selectedLangs.forEach(lang => {
+		let label = $(`label[for='${lang.id}']`).text();
+		console.log("CG FEEBACK LANG: " + label);
+	});
 }

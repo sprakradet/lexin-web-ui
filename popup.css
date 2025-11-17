@@ -60,6 +60,24 @@ form#theForm2 input.popupText {
 
 /* --------- BUTTONS --------- */
 
+.popupButton {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #3FD695;
+  color: white;
+  text-align: center;
+  font-size: 22px;
+  line-height: 60px;
+  z-index: 2000;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
 .popupButtons {
     margin-top: 30px;
     display: flex;
@@ -100,4 +118,8 @@ form#theForm2 input.popupText {
     .popup {
         width: 70%;
     }
+}
+
+@media screen and (max-width: 620px) {
+    
 }
