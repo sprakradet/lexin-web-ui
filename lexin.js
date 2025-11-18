@@ -146,8 +146,10 @@ const languageMap = {
     "pus":"ps",
     "per":"fa",
     "rus":"ru",
-    "srp":"sr",
-    "srp_cyrillic":"sr",
+    // "srp":"sr",			// CG REMOVE - FIX SERBIAN BUG
+	"srp":"srl",			// CG ADD - FIX SERBIAN BUG
+	// "srp_cyrillic":"sr", // CG REMOVE - FIX SERBIAN BUG
+    "srp_cyrillic":"src",	// CG ADD - FIX SERBIAN BUG
     "som":"so",
     "spa":"es",
     "swe":"sv",
@@ -170,8 +172,10 @@ const languageNames = {
     "ps":"pashto",
     "fa":"persiska",
     "ru":"ryska",
-    "sr":"serbiska (latinskt)",
-    "sr":"serbiska (kyrilliskt)",
+    // "sr":"serbiska (latinskt)",		// CG REMOVE - FIX SERBIAN BUG
+	"srl":"serbiska (latinskt)",			// CG ADD - FIX SERBIAN BUG
+    // "sr":"serbiska (kyrilliskt)",	// CG REMOVE - FIX SERBIAN BUG
+	"src":"serbiska (kyrilliskt)",		// CG ADD - FIX SERBIAN BUG
     "so":"somaliska",
     "es":"spanska",
     "sv":"svenska",
