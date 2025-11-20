@@ -2930,9 +2930,15 @@ function addBildtemaInline(url, parent) {
     //console.log("page", page, "subpage", subpage);
     inlineImg.innerHTML='<img src="/bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
 
-	// add external Bildtema link
+    // add external Bildtema link
+    //HB 251119 Change the link to point to this host instead of bildtema.isof.se    
     let link = $("<a></a>");
-    link.attr("href", url);
+    //HB 251119 link.attr("href", url);
+    console.log(url);
+    let localurl = url.replace("https://bildtema.isof.se/bildetema/bildetema-html5/", "/bildtema/");
+    link.attr("href", localurl);
+    console.log(localurl);
+    //end HB
     link.text("Visa i Bildteman");
     $(parent).append(link);
 
