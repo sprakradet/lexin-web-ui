@@ -6086,23 +6086,56 @@ function restorePopupContent() {
     document.getElementById("popup").innerHTML = originalPopupHTML;
 }
 
-/*function validateFeedback() {
+function isValidFeedback() {
+	let valid = true;
+
+	// check mandatory question
 	const buttons = document.querySelectorAll("input[name='feedback']");
     const checked = document.querySelector("input[name='feedback']:checked");
     const firstButton = buttons[0];
-
     if (!checked) {
         firstButton.setCustomValidity("Välj ett alternativ.");
         firstButton.reportValidity();
-        return false;
+        valid = false;
     }
+    else {
+		firstButton.setCustomValidity("");
+	}
 
-    // Clear error if valid
-    firstButton.setCustomValidity("");
-    return true;
-}*/
+	// check comment length
+	const firstComment = document.querySelector("textarea[name='comment']");
+	if (firstComment.value.length > 1000 ) {
+		firstComment.setCustomValidity("Texten är för lång. Du kan skriva max 1000 tecken.");
+        firstComment.reportValidity();
+        valid = false;
+    }
+    else {
+		firstComment.setCustomValidity("");
+	}
+
+	// check mail address format
+	const firstAddress = document.querySelectorAll("input[name='mailaddress']")[0];
+	const re = /\S+@\S+\.\S+/;
+	if (firstAddress.value != "" && !re.test(firstAddress.value)) {
+		firstAddress.setCustomValidity("Ange en giltig mejladress.");
+        firstAddress.reportValidity();
+        valid = false;
+    }
+    else {
+		firstAddress.setCustomValidity("");
+	}
+
+	if(!valid) {
+		return false;
+	}
+	return true;
+}
 
 async function sendFeedback() {
+	if (!isValidFeedback()) {
+    	return;
+	}
+
 	// current search word(s)
 	let query = $("#searchQuery").val();
 
