@@ -247,7 +247,8 @@ const PoSnames = {
 let helpElement;
 
 async function loadHelp() {
-    let help = await $.ajax({url:"https://lexin.se/help.html", dataType: "html", type: "GET"});
+    //HB 251120 let help = await $.ajax({url:"https://lexin.se/help.html", dataType: "html", type: "GET"});
+    let help = await $.ajax({url:"help.html", dataType: "html", type: "GET"});    
     let helpBody = new DOMParser().parseFromString(help, "text/html");
     helpElement = helpBody.getElementById("LexinExplanations");
 }
@@ -259,8 +260,10 @@ let bildtemaWords;
 /* CG ADD START */
 async function loadBildtema() {
 	// creates arrays of words and images
-    let words = await $.ajax({url:"https://lexin.se/all.json", dataType: "json", type: "GET"});
-    let images = await $.ajax({url:"https://lexin.se/images.json", dataType: "json", type: "GET"});
+    //HB 251120 let words = await $.ajax({url:"https://lexin.se/all.json", dataType: "json", type: "GET"});
+    //HB 251120 let images = await $.ajax({url:"https://lexin.se/images.json", dataType: "json", type: "GET"});
+    let words = await $.ajax({url:"all.json", dataType: "json", type: "GET"});
+    let images = await $.ajax({url:"images.json", dataType: "json", type: "GET"});
 
 	// get the first image of every word, creates an array of word ids and single images
     let imageurls = {};
