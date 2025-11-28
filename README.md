@@ -23,9 +23,12 @@ cd lexin
 git clone https://github.com/sprakradet/lexin-static-swe swe
 git clone https://github.com/sprakradet/lexin-json
 python3 build-dl.py
+git clone https://github.com/sprakradet/lexin-bildtema bildtema
 ```
 
 The `build-dl` script must be run whenever the lexin-json directory is updated. This generates copies of the dictionary files with unique names and builds the `lexin-downloadable.json` index file.
+
+The lexin-bildtema repository is currently private, waiting for license..
 
 ### File compression
 
