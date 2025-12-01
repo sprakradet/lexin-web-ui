@@ -6104,8 +6104,8 @@ function isValidFeedback() {
 
 	// check comment length
 	const firstComment = document.querySelector("textarea[name='comment']");
-	if (firstComment.value.length > 1000 ) {
-		firstComment.setCustomValidity("Texten är för lång. Du kan skriva max 1000 tecken.");
+	if (firstComment.value.length > 500 ) {
+		firstComment.setCustomValidity("Texten är för lång. Du kan skriva max 500 tecken.");
         firstComment.reportValidity();
         valid = false;
     }
@@ -6116,7 +6116,7 @@ function isValidFeedback() {
 	// check mail address format
 	const firstAddress = document.querySelectorAll("input[name='mailaddress']")[0];
 	const re = /\S+@\S+\.\S+/;
-	if (firstAddress.value != "" && !re.test(firstAddress.value)) {
+	if (firstAddress.value != "" && (!re.test(firstAddress.value) || firstAddress.value.length > 254)) {
 		firstAddress.setCustomValidity("Ange en giltig mejladress.");
         firstAddress.reportValidity();
         valid = false;
