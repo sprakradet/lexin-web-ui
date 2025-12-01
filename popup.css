@@ -48,14 +48,28 @@ body.modal-open #popup {
     padding: 5px;
 }
 
+form#theForm2 input.popupText {
+    width: 95%;
+}
+
+/* --------- TEXT --------- */
+
 .popupText {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-form#theForm2 input.popupText {
-    width: 95%;
+.gdprText {
+    text-decoration: none;
+}
+
+.gdprText:hover {
+    text-decoration: underline;
+}
+
+.gdprContent {
+    margin-top: 20px;
 }
 
 /* --------- BUTTONS --------- */
