@@ -6087,6 +6087,12 @@ function restorePopupContent() {
 }
 
 function isValidFeedback() {
+	// detect spam
+	const samplevalue = document.getElementById("samplefield").value.trim();
+    if (samplevalue !== "") {
+        return;
+    }
+
 	let valid = true;
 
 	// check mandatory question
