@@ -6088,9 +6088,10 @@ function restorePopupContent() {
 
 function isValidFeedback() {
 	// detect spam
-	const samplevalue = document.getElementById("samplefield").value.trim();
-    if (samplevalue !== "") {
-        return;
+	const phoneNumber = document.getElementById("phoneNumber").value.trim();
+    if (phoneNumber !== "") {
+		console.log("spam detected")
+        return false;
     }
 
 	let valid = true;
@@ -6175,6 +6176,7 @@ async function sendFeedback() {
 	const feedbackHelpful = document.querySelector("input[name='feedback']:checked")?.value || null;
 	const feedbackComment = document.getElementById("comment").value.trim();
 	const feedbackEmail = document.getElementById("mailaddress").value.trim();
+	const phoneNumber = document.getElementById("phoneNumber").value.trim();	// spam
 	const payload = {
 		is_helpful: feedbackHelpful,
 		comment: feedbackComment,
@@ -6182,7 +6184,8 @@ async function sendFeedback() {
 		languages: selectedLangsString,
 		query: query,
 		device: device,
-		browser: browser
+		browser: browser,
+		phone_number: phoneNumber												// spam
 	};
 
 	// post to api

@@ -135,7 +135,7 @@ form#theForm2 input.popupText {
 
 /* --------- HP --------- */
 
-.samplefield {
+.phoneNumber {
     position: absolute;
     left: -10000px;
     top: auto;
