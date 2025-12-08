@@ -6190,7 +6190,7 @@ async function sendFeedback() {
 
 	// post to api
 	try {
-		const response = await fetch("dummy_address", {
+		const response = await fetch("https://atlas.isof.se/flask_admin/api/feedback", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
