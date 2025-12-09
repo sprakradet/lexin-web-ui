@@ -9,6 +9,12 @@
     font-size: 0.5em;
     margin-left: max(env(safe-area-inset-left), 1em);
     margin-right: max(env(safe-area-inset-right), 1em);
+
+    /* CG ADD - move feedback button behind settings element */
+    position: relative;
+    z-index: 10;
+    margin-bottom: 0;
+    padding-bottom: 0.5em;
 }
 
 /* --------- LANGUAGE SELECT BAR --------- */
