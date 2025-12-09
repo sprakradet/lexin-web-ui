@@ -93,6 +93,7 @@ form#theForm2 input.popupText {
   display: inline-flex;
   align-items: center;   /* vertical center */
   justify-content: center;
+  z-index: 1;            /* move element behind settings/query elements */
 }
 
 .popupButton .popupIcon * {

@@ -9,6 +9,12 @@
     padding: 0.5em 0em 0 0em;
     margin-left: max(env(safe-area-inset-left), 0.5em);
     margin-right: max(env(safe-area-inset-right), 0.5em);
+
+    /* CG ADD - move feedback button behind settings element */
+    position: relative;
+    z-index: 10;
+    margin-bottom: 0;
+    padding-bottom: 0.5em;
 }
 
 /* --------- LIST ITEMS --------- */
