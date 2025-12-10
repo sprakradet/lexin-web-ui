@@ -6177,7 +6177,7 @@ async function sendFeedback() {
 	let query = $("#searchQuery").val();
 
 	// current language(s)
-	selectedLangsString = getLangChoice();
+	let selectedLangsString = getLangChoice();
 
 	// current user browser 
 	let browser = window.navigator.userAgent;
