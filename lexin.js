@@ -6138,6 +6138,36 @@ function isValidFeedback() {
 	return true;
 }
 
+function getLangChoice () {
+	let selectedLangsString = "";
+	const isMultilang = document.getElementById("multiple_languagesSet").checked;
+
+	// several languages chosen
+	if (isMultilang) {
+		let selectedLangs = $(".multilangcolumn input[name='multilangchoice']:checked").get();
+		selectedLangs.forEach(lang => {
+			let label = $(`label[for='${lang.id}']`).text();
+			if (!(lang === selectedLangs[0])) {
+				selectedLangsString = selectedLangsString + ",";
+			}
+			selectedLangsString = selectedLangsString + " " + label;
+		});
+		selectedLangsString = selectedLangsString.trim();
+	}
+	// single language chosen
+	else {
+		const selectedLang = document.getElementById("languageChoice");
+		selectedLangsString = selectedLang.options[selectedLang.selectedIndex].text;
+	}
+	
+	// no language chosen
+	if(selectedLangsString == "") {
+		selectedLangsString = "svenska";
+	}
+	
+	return selectedLangsString;
+}
+
 async function sendFeedback() {
 	if (!isValidFeedback()) {
     	return;
@@ -6147,16 +6177,7 @@ async function sendFeedback() {
 	let query = $("#searchQuery").val();
 
 	// current language(s)
-	let selectedLangsString = "";
-	let selectedLangs = $(".multilangcolumn input[name='multilangchoice']:checked").get();
-	selectedLangs.forEach(lang => {
-		let label = $(`label[for='${lang.id}']`).text();
-		if (!(lang === selectedLangs[0])) {
-			selectedLangsString = selectedLangsString + ",";
-		}
-		selectedLangsString = selectedLangsString + " " + label;
-	});
-	selectedLangsString = selectedLangsString.trim();
+	selectedLangsString = getLangChoice();
 
 	// current user browser 
 	let browser = window.navigator.userAgent;
