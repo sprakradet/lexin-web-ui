@@ -2795,6 +2795,13 @@ function getLinkElemToSearch(word) { // any language
 const langWithIllustration = {"sv":"swe", "fi":"fin", "sq":"sqi", "am":"amh", "ar":"ara", "bs":"bos", "el":"ell", "ku":"kmr", "fa":"far", "ru":"rus", "so":"som", "es":"spa", "ckb":"sdh", "ti":"tir", "tr":"tur"};
 
 function illustrationToHTML(parentElement, ill, lang, langList, show) {
+
+    //HB 251215
+    console.log("HB ill: "+ill);
+    console.log("HB lang: "+lang);
+    console.log("HB langList: "+langList);
+    console.log("HB show: "+show);
+    
     let outerWrap = document.createElement('div');
     if(!show) {
 	outerWrap.className = 'notRelevant';
@@ -2843,7 +2850,7 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 			}
 
 			for(var i = 0; i < ill.length; i++) {
-				addBildtemaInline(ill[i], pictures);						// CG: overview picture
+			    addBildtemaInline(ill[i], pictures, langList);						// CG: overview picture
 				console.log("CG " + word + " översiktsbild: " + ill[i]);
 			}
 		}
@@ -2896,7 +2903,8 @@ function getPictureIcon() {
     let im = document.createElement('div');
     im.className = 'picWrap';
     let icon = document.createElement('img');
-    icon.src = '/images.svg';
+    //HB icon.src = '/images.svg';
+    icon.src = 'images.svg';
     icon.className = 'picIcon';
     icon.title = "Öppna sida med bilder";
     im.appendChild(icon);
@@ -2913,7 +2921,7 @@ function getPictureIcon() {
 // bildtema web site inside a div element.
 // TODO: This does not work very well. The size of the div should be set to something better. The placement of the div is not great either.
 // ----------------------------------------------------------------------
-function addBildtemaInline(url, parent) {
+function addBildtemaInline(url, parent, lang) {
     let inlineImg = document.createElement('div');
     inlineImg.style.display = 'block';
     inlineImg.innerHTML = "";
@@ -2931,15 +2939,18 @@ function addBildtemaInline(url, parent) {
     }
 
     //console.log("page", page, "subpage", subpage);
-    inlineImg.innerHTML='<img src="/bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
+    //HB inlineImg.innerHTML='<img src="/bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
+    inlineImg.innerHTML='<img src="bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
 
     // add external Bildtema link
     //HB 251119 Change the link to point to this host instead of bildtema.isof.se    
     let link = $("<a></a>");
     //HB 251119 link.attr("href", url);
     console.log(url);
-    let localurl = url.replace("https://bildtema.isof.se/bildetema/bildetema-html5/", "/bildtema/");
-    link.attr("href", localurl);
+    //HB let localurl = url.replace("https://bildtema.isof.se/bildetema/bildetema-html5/", "/bildtema/");
+    let localurl = url.replace("https://bildtema.isof.se/bildetema/bildetema-html5/", "bildtema/");
+    //let lang = "ara"
+    link.attr("href", localurl+"&language="+lang);
     console.log(localurl);
     //end HB
     link.text("Visa i Bildteman");
@@ -2964,7 +2975,8 @@ function addBildtemaInlineDetail(url, parent) {
     $(inlineImg).css("text-align", "center");
 //    inlineImg.style.height = "123px";
     parent.appendChild(inlineImg);
-    inlineImg.innerHTML='<img src="/bilder/' + url + '" style=""></object>';
+    //HB inlineImg.innerHTML='<img src="/bilder/' + url + '" style=""></object>';
+    inlineImg.innerHTML='<img src="bilder/' + url + '" style=""></object>';
 }
 
 
