@@ -27,6 +27,7 @@ body.modal-open #popup {
     font-family: "Noto Sans",sans-serif;
     font-size: 16px;
     font-weight: normal;
+    z-index: 2;
 }
 
 .popupTitle {
