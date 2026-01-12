@@ -48,21 +48,75 @@
     <link rel="stylesheet" href="/lemmalist.css">
     <script type="text/javascript" src="/lemmalist.js"></script>
 
-    <!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="https://matomo.isof.se/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '118']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
+	<!-- Matomo -->
+	<script>
+		var _paq = window._paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+			var u="https://matomo.isof.se/";
+			_paq.push(['setTrackerUrl', u+'matomo.php']);
+			_paq.push(['setSiteId', '118']);
+			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+		})();
+	</script>
+	<!-- End Matomo Code -->
+
+	<!-- Matomo SPA -->
+	<script>
+		(function () {
+			let previousUrl = window.location.pathname + window.location.search;
+
+			// create unique page title
+			function buildPageTitle() {
+				const params = new URLSearchParams(window.location.search);
+				const word = params.get("word") || "";
+				const languages = params.get("languages") || "";
+				let title = "Lexin";
+				if (word && languages) {
+					title += " - Sök: " + word + " (" + languages + ")";
+				}
+				return title;
+			}
+
+			// send data to Matomo if url changed
+			function trackMatomoPageView() {
+				const newUrl = window.location.pathname + window.location.search;
+				if (newUrl === previousUrl) {
+					return;
+				} 
+
+				// send data to Matomo
+				_paq.push(['setReferrerUrl', previousUrl]);
+				_paq.push(['setCustomUrl', newUrl]);
+				_paq.push(['setDocumentTitle', buildPageTitle()]);
+				_paq.push(['trackPageView']);
+
+				previousUrl = newUrl;
+			}
+
+			// check back/forward buttons
+			window.addEventListener("popstate", trackMatomoPageView);
+
+			// check url changes
+			const pushState = history.pushState;
+			history.pushState = function () {
+				pushState.apply(this, arguments);
+				trackMatomoPageView();
+			};
+
+			// check url changes
+			const replaceState = history.replaceState;
+			history.replaceState = function () {
+				replaceState.apply(this, arguments);
+				trackMatomoPageView();
+			};
+
+		})();
+	</script>
+	<!-- End Matomo SPA Code -->
 
   </head>
 
@@ -322,7 +376,7 @@
 			<input type="submit">
 		</div>
 
-		<div style="background-color: #FFCD00; font-size: 16px; margin: 5px; border-radius: 5px; padding: 5px; margin-top: 15px;">Vi har för närvarande tekniska problem och jobbar på att lösa dessa så fort som möjligt.</div>
+		<!--<div style="background-color: #FFCD00; font-size: 16px; margin: 5px; border-radius: 5px; padding: 5px; margin-top: 15px;">Vi har för närvarande tekniska problem och jobbar på att lösa dessa så fort som möjligt.</div>-->
 
 		<!-- CG ADD FEEDBACK POPUP -->
 		<div id="popup" class="popup">
