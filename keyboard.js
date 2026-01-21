@@ -475,11 +475,13 @@ const keybLayouts = {
 		['ё']
 	]},
 
-    "sr":{'name':"Serbiskt (latinskt)", 'layout':[
+    // "sr":{'name':"Serbiskt (latinskt)", 'layout':[		// CG REMOVE - FIX SERBIAN BUG
+	"srl":{'name':"Serbiskt (latinskt)", 'layout':[			// CG ADD - FIX SERBIAN BUG
 		['č','ć','đ','ş','š','ž']
 	]},
 
-    "sr":{'name':"Serbiskt (kyrilliskt)", 'layout':[
+    // "sr":{'name':"Serbiskt (kyrilliskt)", 'layout':[		// CG REMOVE - FIX SERBIAN BUG
+	"src":{'name':"Serbiskt (kyrilliskt)", 'layout':[		// CG ADD - FIX SERBIAN BUG
 		['а','б','в','г','д','е','ж','з'],
 		['и','к','л','м','н','о','п','р'],
 		['с','т','у','ф','х','ц','ч','ш'],

@@ -1,0 +1,159 @@
+/* --------- POPUP WINDOW FOCUS --------- */
+
+body.modal-open {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+body.modal-open #popup {
+  pointer-events: auto;
+}
+
+/* --------- POPUP --------- */
+
+.popup {
+    display: none; 
+    position: fixed; 
+    top: 50%;
+    left: 50%; 
+    transform:translate(-50%, -50%);
+    background:white; 
+    padding:20px; 
+    padding-bottom: 40px;
+    border:1px solid #ccc; 
+    border-radius: 5px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    width: 300px;
+    font-family: "Noto Sans",sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    z-index: 2;
+}
+
+.popupTitle {
+    font-weight: bold;
+    margin-bottom: 8px;
+    margin-top: 20px;
+}
+
+.popupTextarea {
+    width: 95%;
+    max-width: 95%;
+    min-height: 100px;
+    max-height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: "Noto Sans",sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 5px;
+}
+
+form#theForm2 input.popupText {
+    width: 95%;
+}
+
+/* --------- TEXT --------- */
+
+.popupText {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.gdprText {
+    text-decoration: none;
+}
+
+.gdprText:hover {
+    text-decoration: underline;
+}
+
+.gdprContent {
+    margin-top: 20px;
+}
+
+/* --------- BUTTONS --------- */
+
+.popupButton {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #3FD695;
+  color: white;
+  text-align: center;
+  font-size: 22px;
+  line-height: 60px;
+  z-index: 2000;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;   /* vertical center */
+  justify-content: center;
+  z-index: 1;            /* move element behind settings/query elements */
+}
+
+.popupButton .popupIcon * {
+  stroke-width: 1.5;
+}
+
+.popupButtons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;  
+}
+
+.sendButton,
+.closeButton {
+    color: black;
+    font: inherit;
+    padding: 0.1em .5em 0.2em 0.5em;
+    margin: 0.2em .8em 0.1em 1em;
+    border: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+}
+
+.sendButton {
+    background-color: #D7E9EC;
+}
+
+.sendButton:hover {
+    background-color: #3FD695;
+}
+
+.closeButton {
+    background-color: lightgray;
+}
+
+.closeButton:hover {
+    background-color: gray;
+}
+
+/* --------- HP --------- */
+
+.phoneNumber {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* --------- PHONE --------- */
+
+@media screen and (max-width: 375px) {
+    .popup {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    
+}

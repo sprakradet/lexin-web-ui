@@ -4,7 +4,10 @@
   <head>
 
     <meta charset="UTF-8">
+
     <link rel="stylesheet" href="lexin.css">
+	<link rel="stylesheet" href="popup.css">
+
     <meta name="theme-color" content="#1c3f49" />
     <title>Lexin</title>
 
@@ -46,6 +49,76 @@
 
     <link rel="stylesheet" href="lemmalist.css">
     <script type="text/javascript" src="lemmalist.js"></script>
+
+	<!-- Matomo -->
+	<script>
+		var _paq = window._paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+			var u="https://matomo.isof.se/";
+			_paq.push(['setTrackerUrl', u+'matomo.php']);
+			_paq.push(['setSiteId', '118']);
+			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+		})();
+	</script>
+	<!-- End Matomo Code -->
+
+	<!-- Matomo SPA -->
+	<script>
+		(function () {
+			let previousUrl = window.location.pathname + window.location.search;
+
+			// create unique page title
+			function buildPageTitle() {
+				const params = new URLSearchParams(window.location.search);
+				const word = params.get("word") || "";
+				const languages = params.get("languages") || "";
+				let title = "Lexin";
+				if (word && languages) {
+					title += " - Sök: " + word + " (" + languages + ")";
+				}
+				return title;
+			}
+
+			// send data to Matomo if url changed
+			function trackMatomoPageView() {
+				const newUrl = window.location.pathname + window.location.search;
+				if (newUrl === previousUrl) {
+					return;
+				} 
+
+				// send data to Matomo
+				_paq.push(['setReferrerUrl', previousUrl]);
+				_paq.push(['setCustomUrl', newUrl]);
+				_paq.push(['setDocumentTitle', buildPageTitle()]);
+				_paq.push(['trackPageView']);
+
+				previousUrl = newUrl;
+			}
+
+			// check back/forward buttons
+			window.addEventListener("popstate", trackMatomoPageView);
+
+			// check url changes
+			const pushState = history.pushState;
+			history.pushState = function () {
+				pushState.apply(this, arguments);
+				trackMatomoPageView();
+			};
+
+			// check url changes
+			const replaceState = history.replaceState;
+			history.replaceState = function () {
+				replaceState.apply(this, arguments);
+				trackMatomoPageView();
+			};
+
+		})();
+	</script>
+	<!-- End Matomo SPA Code -->
 
   </head>
 
@@ -103,7 +176,7 @@
 					Spara senaste
 				</button>
 				<span id="saveMessage1" class="saveMessage">
-					Uppslagningen sparades!
+					Sparat!
 				</span> 
 				<div id="savedWordsList"></div>
 				<button class="saveWordsButton" id="savedWordsSort" title="Sortera sparade ord" onclick="savedWordsSortWords(this)" type="button">
@@ -157,7 +230,7 @@
 						Spara senaste
 					</button>
 					<span id="saveMessage2" class="saveMessage">
-						Uppslagningen sparades!
+						Sparat!
 					</span>
 				</div>
 				<div class="settingsMainItem">
@@ -305,6 +378,51 @@
 			<input type="submit">
 		</div>
 
+		<!-- TEMP ERROR MESSAGE (this should only be enabled in case of temporary downtime) -->
+		<!--<div class="errorMessage">
+			<img src="/warning-icon.svg" class="warningIcon" alt="">
+			Just nu har vi tekniska problem. Vi jobbar på att lösa dessa så fort som möjligt.
+		</div>-->
+
+		<!-- CG ADD FEEDBACK POPUP -->
+		<div id="popup" class="popup">
+			<form id="theForm3">
+				
+				<!-- DEFAULT -->
+				<div class="popupTitle">Hittade du vad du sökte?</div>
+				<label><input type="radio" name="feedback" value="ja">Ja</label>
+				<label style="margin-left:10px;"><input type="radio" name="feedback" value="nej">Nej</label>
+				<br>
+				<label for="comment">
+					<div class="popupTitle">Kommentar (valfritt):</div>
+					<textarea id="comment" name="comment" placeholder="skriv din kommentar här" class="popupTextarea"></textarea>
+				</label>
+				<br>
+				<label for="mailaddress">
+					<div class="popupTitle">Mejladress (valfritt):</div>
+					<input type="text" id="mailaddress" name="mailaddress" placeholder="skriv din mejladress här" class="popupText">
+				</label>
+
+				<!-- HP -->
+				<div class="phoneNumber">
+					<label for="phoneNumber">Telefonnummer:</label>
+					<input type="text" id="phoneNumber" name="phoneNumber" autocomplete="off">
+    			</div>
+
+			</form>
+			
+			<div class="popupButtons">
+				<button class="sendButton" type="button" onclick="sendFeedback()">Skicka in</button>
+				<button class="closeButton" type="button" onclick="closePopup()">Stäng</button>
+			</div>
+
+			<div class="gdprContent">
+				<a href="https://www.isof.se/om-oss/om-webbplatsen/hantering-av-personuppgifter" target="_blank" rel="noopener noreferrer" class="gdprText">
+					Läs om hur vi hanterar dina personuppgifter.
+				</a>
+			</div>
+		</div>
+
     </form>
 
     <div class="content">
@@ -321,6 +439,11 @@
     </div>
 
     <div class="LexinExplanationsWrapper" id="LexinExplanationsWrapper"></div>
+
+	<!-- CG ADD FEEDBACK BUTTON -->
+	<button type="button" class="popupButton" onclick="showPopup()" aria-label="Lämna återkoppling">
+		<img src="/feedback-icon.svg" class="popupIcon" alt="">
+	</button>
 
     <footer>
 
