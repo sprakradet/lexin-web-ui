@@ -618,6 +618,7 @@ div[dir=rtl] {
     width: 1em;
     vertical-align: baseline;
     opacity: 0.5;
+    cursor: pointer;
 }
 
 .graminfoExplanationText {

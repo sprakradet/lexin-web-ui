@@ -135,7 +135,7 @@
 
 				<!-- LANGUAGE SELECT -->
 				<div class="select-wrapper">
-					<select id="languageChoice" name="languageChoice" title="Språkval">
+					<select id="languageChoice" name="languageChoice" aria-label="Språkval">
 						<option value="alb">albanska</option>
 						<option value="amh">amhariska</option>
 						<option value="ara">arabiska</option>
@@ -156,12 +156,12 @@
 						<option value="sdh">kurdiska (sorani)</option>
 						<option value="tir">tigrinska</option>
 						<option value="tur">turkiska</option>
-					<option value="ukr">ukrainska</option>
+						<option value="ukr">ukrainska</option>
 					</select>
 				</div>
 
 				<!-- SETTINGS ICON -->
-				<button title="Visa inställningar" class="settingsIcon" onclick="openCloseSettings(this)" type="button">
+				<button class="settingsIcon" onclick="openCloseSettings(this)" type="button" aria-label="Visa inställningar">
 					<div class="settingsBar1"></div>
 					<div class="settingsBar2"></div>
 					<div class="settingsBar3"></div>
@@ -191,7 +191,7 @@
 			<div id="downloadPopup" class="downloadPopup">
 				<h2>Ladda ner lexikon</h2>
 				<div class="downloadControls">
-					<select id="selectDownloadLanguages"></select>
+					<select id="selectDownloadLanguages" aria-label="Välj språk"></select>
 					<button class="downloadStartButton" type="button">
 						Ladda ner
 					</button>
@@ -236,25 +236,25 @@
 				<div class="settingsMainItem">
 					<button class="settingsNavigation" id="openSavedWords" type="button">
 						<span class="settingsNavigationText">Sparade ord</span>
-						<img src="submenu.svg" class="settingsNavigationIcon">
+						<img src="submenu.svg" class="settingsNavigationIcon" alt="">
 					</button>
 				</div>
 				<div class="settingsMainItem">
 					<button class="settingsNavigation" id="openPartsSelection" type="button">
 						<span class="settingsNavigationText">Välj delar av lexikontexten att visa</span>
-						<img src="submenu.svg" class="settingsNavigationIcon">
+						<img src="submenu.svg" class="settingsNavigationIcon" alt="">
 					</button>
 				</div>
 				<div class="settingsMainItem">
 					<button class="settingsNavigation" id="openDownload" type="button">
 						<span class="settingsNavigationText">Ladda ner lexikon</span>
-						<img src="submenu.svg" class="settingsNavigationIcon">
+						<img src="submenu.svg" class="settingsNavigationIcon" alt="">
 					</button>
 				</div>
 				<div class="settingsMainItem">
 					<button class="settingsNavigation openHelp" type="button">
 						<span class="settingsNavigationText">Hjälp</span>
-						<img src="submenu.svg" class="settingsNavigationIcon">
+						<img src="submenu.svg" class="settingsNavigationIcon" alt="">
 					</button>
 				</div>
 			</div>
@@ -364,8 +364,8 @@
     	<div>
 			<div class="keyboard" id="keybSE">
 				<button id="keybsweå" class="keyboardKeyButton" title="Mata in å" type="button">å</button>
-				<button id="keybsweä" class="keyboardKeyButton" title="Mata in ä" type="button" >ä</button>
-				<button id="keybsweö" class="keyboardKeyButton" title="Mata in ö" type="button" >ö</button>
+				<button id="keybsweä" class="keyboardKeyButton" title="Mata in ä" type="button">ä</button>
+				<button id="keybsweö" class="keyboardKeyButton" title="Mata in ö" type="button">ö</button>
 			</div>
 			<div id="transKeybWrapper">
 	  			<div class="keyboard" id="keybTrans"></div>
@@ -373,9 +373,9 @@
     	</div>
 
 		<!-- SEARCH FIELD -->
-		<div class="inputwrapper">
-			<input name="word" dir="auto" placeholder="Sök..." value="" id="searchQuery" autofocus autocorrect="off" autocapitalize="none" autocomplete="off">
-			<input type="submit">
+		<div role="search" class="inputwrapper">
+			<input name="word" dir="auto" placeholder="Sök..." value="" id="searchQuery" autofocus autocorrect="off" autocapitalize="none" autocomplete="off" aria-label="Sök">
+			<input type="submit" aria-label="Sök">
 		</div>
 
 		<!-- TEMP ERROR MESSAGE (this should only be enabled in case of temporary downtime) -->
@@ -418,7 +418,7 @@
 
 			<div class="gdprContent">
 				<a href="https://www.isof.se/om-oss/om-webbplatsen/hantering-av-personuppgifter" target="_blank" rel="noopener noreferrer" class="gdprText">
-					Läs om hur vi hanterar dina personuppgifter.
+					Läs om hur vi hanterar dina personuppgifter (öppnas i ny flik)
 				</a>
 			</div>
 		</div>
@@ -475,7 +475,7 @@
 
 		<!-- ISOF INFO -->
 		<div class="isoflogowrapper">
-			<img alt="​&quot;Vit" logotyp='" isof"="' src="logotyp-isof.svg">
+			<img alt="Institutet för språk och folkminnen" src="logotyp-isof.svg">
 		</div>
 		<ul class="signoff">
 			<li>

@@ -2049,6 +2049,7 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
     let exp = document.createElement('img');
     exp.src = "/disclosure.svg";
     exp.className = "expandGraminfoIcon";
+	exp.alt = "Visa alla konstruktioner";
 
     elem.appendChild(exp);
     elem.appendChild(textElem);
@@ -2282,6 +2283,7 @@ function addExpandResultElement() {
     let exp = document.createElement('img');
     exp.src = "/submenuBlack.svg";
     exp.className = "expandResultsIcon";
+	exp.alt = "Visa hela artikeln";
 
     exp.onclick = function() {
 	let p = $(this).closest('li');
@@ -2315,12 +2317,14 @@ function phoneticToHTML(parentElement, listenContainer, phonetics, show) {
 	    fElem.className = 'soundFiles';
 
 	    var listen = document.createElement('button');
-	    listen.title = "Lyssna på uttalet";
+	    //listen.title = "Lyssna på uttalet";
+		listen.setAttribute("aria-label", "Lyssna på uttalet");
 	    listen.onclick = function() {var a = new Audio(p.file); a.play(); return false;};
 	    listen.type = "button";
 
 	    var im = document.createElement('div');
 	    im.className = 'listenIcon';
+		im.setAttribute("aria-hidden", "true");
 	    listen.appendChild(im);
 
 	    listen.lang = BaseLanguageSwe;
@@ -2910,7 +2914,7 @@ function getPictureIcon() {
     //HB icon.src = '/images.svg';
     icon.src = 'images.svg';
     icon.className = 'picIcon';
-    icon.title = "Öppna sida med bilder";
+    icon.title = "Visa bilder";
     im.appendChild(icon);
 
     return im;
@@ -2957,7 +2961,7 @@ function addBildtemaInline(url, parent, lang) {
     link.attr("href", localurl+"&language="+lang);
     console.log(localurl);
     //end HB
-    link.text("Visa i Bildteman");
+    link.text("Visa i Bildteman (öppnas i ny flik)");
     $(parent).append(link);
 
 	// CG ADD - FIX "DISABLE BILDTEMA" BUG
