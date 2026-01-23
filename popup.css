@@ -97,6 +97,12 @@ form#theForm2 input.popupText {
   z-index: 1;            /* move element behind settings/query elements */
 }
 
+/* accessibility */
+.popupButton:focus-visible {
+  outline: 2px solid Highlight;
+  outline-offset: 3px;
+}
+
 .popupButton .popupIcon * {
   stroke-width: 1.5;
 }

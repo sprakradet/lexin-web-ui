@@ -1143,6 +1143,18 @@ function getInflections(w, js) {
     return res;
 }
 
+/* --------- MAKE ELEMENT FOCUSABLE/CLICKABLE FOR KEYBOARDS/SCREEN READERS --------- */
+function makeKeyboardClickable(elem) {
+	elem.setAttribute("tabindex", "0");
+	elem.setAttribute("role", "button");
+	elem.addEventListener("keydown", function (e) {
+		if (e.key === "Enter" || e.key === " ") {
+			e.preventDefault();
+			elem.click();
+		}
+	});
+}
+
 function createTextSpan(text, className, lang) {
     let elem = document.createElement('span');
     elem.textContent = text;
@@ -1152,6 +1164,12 @@ function createTextSpan(text, className, lang) {
     if (lang) {
         assignLang(elem, lang);
     }
+
+	// accessibility
+	if (className && className.toLowerCase().includes("clickable")) {
+		makeKeyboardClickable(elem);
+	}
+	
     return elem;    
 }
 
@@ -2049,6 +2067,9 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
     let exp = document.createElement('img');
     exp.src = "/disclosure.svg";
     exp.className = "expandGraminfoIcon";
+
+	// accessibility
+    makeKeyboardClickable(exp);
 	exp.alt = "Visa alla konstruktioner";
 
     elem.appendChild(exp);
@@ -2294,6 +2315,7 @@ function addExpandResultElement() {
     return exp;
 }
 
+/* --------- ARTICLE PART: LISTEN ICON (CLICKABLE) --------- */
 function phoneticToHTML(parentElement, listenContainer, phonetics, show) {
     let first = true;
     for(const p of phonetics) {
@@ -2352,12 +2374,17 @@ function phoneticToHTML(parentElement, listenContainer, phonetics, show) {
     }
 }
 
+/* --------- ARTICLE PART: "FÖRKORTNING" (CLICKABLE) --------- */
 function abbrToHTML(parentElement, ab, show) {
     var abElem = document.createElement('span');
     var head = document.createElement('span');
     var mid = document.createElement('span');
     head.textContent = "Förkortning";
     head.className = 'clickableHeading';
+
+	// accessibility
+	makeKeyboardClickable(head);
+
     mid.textContent = ": " + ab;
     abElem.appendChild(head);
     abElem.appendChild(mid);
@@ -2366,11 +2393,12 @@ function abbrToHTML(parentElement, ab, show) {
     abElem.className = 'abbr';
     abElem.appendChild(document.createElement('br'));
     if(!show) {
-	abElem.className += ' notRelevant';
+		abElem.className += ' notRelevant';
     }
     parentElement.appendChild(abElem);
 }
 
+/* --------- ARTICLE PART: INFLECTIONS --------- */
 function inflectionsToHTML(parentElement, infl, show) {
     var iElem = document.createElement('span');
     iElem.className = 'inflections';
@@ -2482,6 +2510,7 @@ function inflectionsToHTML(parentElement, infl, show) {
     parentElement.appendChild(iElem);
 }
 
+/* --------- ARTICLE PART: ? --------- */
 function altToHTML(parentElement, alt1, lang1, show) {
     var altElem = document.createElement('span');
     altElem.className = 'alt_form';
@@ -2490,6 +2519,10 @@ function altToHTML(parentElement, alt1, lang1, show) {
     }
     var head = document.createElement('span');
     head.className = 'clickableHeading';
+
+	// accessibility
+	makeKeyboardClickable(head);
+
     var mid = document.createElement('span');
     mid.textContent = ": ";
     if(alt1.length > 1) {
@@ -2519,6 +2552,7 @@ function altToHTML(parentElement, alt1, lang1, show) {
     parentElement.appendChild(altElem);
 }
 
+/* --------- ARTICLE PART: "MOTSATSER" (CLICKABLE) --------- */
 function antonymToHTML(parentElement, ant1, ant2, baseForms, showAll, moreThanOneLanguage) {
     let atLeastOne = showAll;
     let refWrap = document.createElement('div');
@@ -2534,6 +2568,10 @@ function antonymToHTML(parentElement, ant1, ant2, baseForms, showAll, moreThanOn
 
 	var head = document.createElement('span');
 	head.className = 'clickableHeading';
+
+	// accessibility
+	makeKeyboardClickable(head);
+
 	if(longest > 1) {
 	    head.textContent = "Motsatser";
 	} else if(longest == 1) {
@@ -2666,6 +2704,10 @@ function antonymToHTML(parentElement, ant1, ant2, baseForms, showAll, moreThanOn
 
 	var head = document.createElement('span');
 	head.className = 'clickableHeading';
+
+	// accessibility
+    makeKeyboardClickable(head);
+
 	if(ant1.length > 1) {
 	    head.textContent = "Motsatser";
 	} else if(ant1.length == 1) {
@@ -2825,6 +2867,10 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     tmp.lang = BaseLanguageSwe;
     tmp.dir = "ltr";
     tmp.className = 'imageLink';
+
+	// accessibility
+    makeKeyboardClickable(tmp);
+
     wrap.appendChild(tmp);
     let pictures = document.createElement('div');
     let picicon = getPictureIcon();
@@ -3142,6 +3188,11 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 			let im = document.createElement('img');
 			im.src = "video.svg";
 			im.className = 'vidIcon';
+
+			// accessibility
+    		makeKeyboardClickable(im);
+
+			im.alt = "Visa videon i Lexin";
 			imElem.appendChild(im);
 			
 			imElem.lang = BaseLanguageSwe;
@@ -3189,6 +3240,7 @@ function pluralize(number, singular, plural) {
     }
 }
 
+/* --------- ARTICLE PART: "SAMMANSÄTTNINGAR" (CLICKABLE) --------- */
 function compoundToHTML(parentElement, comps1, comps2, baseForms, showAll, moreThanOneLanguage) {
     let atLeastOne = showAll;
 	
@@ -3318,6 +3370,10 @@ function compoundToHTML(parentElement, comps1, comps2, baseForms, showAll, moreT
 	    head.textContent = "Sammansättning";
 	}
 	head.className = 'clickableHeading';
+
+	// accessibility
+    makeKeyboardClickable(head);
+
 	mid.textContent = ": ";
 	tmp.appendChild(head);
 	tmp.appendChild(mid);
@@ -3364,151 +3420,160 @@ function compoundToHTML(parentElement, comps1, comps2, baseForms, showAll, moreT
     }
 }
 
+/* --------- ARTICLE PART: "LISTEN ICON" (CLICKABLE) --------- */
 function examplesToHTML(parentElement, ex1, ex2, baseForms, showAll, moreThanOneLanguage) {
     let atLeastOne = showAll;
 	
     if(ex2) {
-	const longest = Math.max(ex1.length, ex2.length);
+		const longest = Math.max(ex1.length, ex2.length);
 
-	var exElem = document.createElement('div');
-	exElem.className = 'examples';
+		var exElem = document.createElement('div');
+		exElem.className = 'examples';
 
-	var tmp = document.createElement('span');
-	var head = document.createElement('span');
-	var mid = document.createElement('span');
-	head.textContent = "Exempel";
-	mid.textContent = ": ";
-	head.className = 'clickableHeading';
-	tmp.appendChild(head);
-	tmp.appendChild(mid);
-	tmp.lang = BaseLanguageSwe;
-	tmp.dir = "ltr";
-	exElem.appendChild(tmp);
+		var tmp = document.createElement('span');
+		var head = document.createElement('span');
+		var mid = document.createElement('span');
+		head.textContent = "Exempel";
+		mid.textContent = ": ";
+		head.className = 'clickableHeading';
 
-	var uElem = document.createElement('ul');
-	uElem.className = 'exampleList';
-	exElem.appendChild(uElem);
+		// accessibility
+		makeKeyboardClickable(head);
 
-	for(var cc = 0; cc < longest; cc++) {
-	    var eli = document.createElement('li');
-	    let show = showAll;
-	    
-	    if(cc < ex1.length) {
-		let prevTexts = [];
+		tmp.appendChild(head);
+		tmp.appendChild(mid);
+		tmp.lang = BaseLanguageSwe;
+		tmp.dir = "ltr";
+		exElem.appendChild(tmp);
 
-		for(const lang in ex1[cc]) {
-		    let thisText = ex1[cc][lang];
+		var uElem = document.createElement('ul');
+		uElem.className = 'exampleList';
+		exElem.appendChild(uElem);
 
-		    if(!prevTexts.includes(thisText)) {
-			if(prevTexts.length > 0) {
-			    let tmp = document.createElement('span');
-			    tmp.textContent = ", ";
-			    eli.appendChild(tmp);
+		for(var cc = 0; cc < longest; cc++) {
+			var eli = document.createElement('li');
+			let show = showAll;
+			
+			if(cc < ex1.length) {
+			let prevTexts = [];
+
+			for(const lang in ex1[cc]) {
+				let thisText = ex1[cc][lang];
+
+				if(!prevTexts.includes(thisText)) {
+				if(prevTexts.length > 0) {
+					let tmp = document.createElement('span');
+					tmp.textContent = ", ";
+					eli.appendChild(tmp);
+				}
+				prevTexts.push(thisText);
+				let left = makeWordsClickable(thisText);
+				left.lang = BaseLanguageSwe;
+				left.dir = "ltr";
+
+				eli.appendChild(left);
+
+				if(showAll || relevant(thisText, baseForms)) {
+					show = 1;
+					atLeastOne = 1;
+				}
+				}
 			}
-			prevTexts.push(thisText);
-			let left = makeWordsClickable(thisText);
-			left.lang = BaseLanguageSwe;
-			left.dir = "ltr";
-
-			eli.appendChild(left);
-
-			if(showAll || relevant(thisText, baseForms)) {
-			    show = 1;
-			    atLeastOne = 1;
+			let tmp = document.createElement('span');
+				tmp.textContent = " \u2014 ";
+				tmp.dir = "ltr";
+			eli.appendChild(tmp);
 			}
-		    }
+			if(cc < ex2.length) {
+			for(let lang in ex2[cc]) {
+
+				if(moreThanOneLanguage) {
+				eli.appendChild(createLanguageIndidator(lang));
+				}
+				
+				var right = document.createElement('span');
+				right.textContent = ex2[cc][lang] + " "; // TODO: make foreign language words clickable too?
+						assignLang(right, lang);
+						right.className = 'translatedExample';
+				eli.appendChild(right);
+
+				if(showAll || relevant(ex2[cc][lang], baseForms)) {
+				show = 1;
+				atLeastOne = 1;
+				}
+			}
+			}
+			if(!show) {
+			eli.className += ' notRelevant';
+			}
+			
+			uElem.appendChild(eli);
 		}
-		let tmp = document.createElement('span');
-	        tmp.textContent = " \u2014 ";
-	        tmp.dir = "ltr";
-		eli.appendChild(tmp);
-	    }
-	    if(cc < ex2.length) {
-		for(let lang in ex2[cc]) {
-
-		    if(moreThanOneLanguage) {
-			eli.appendChild(createLanguageIndidator(lang));
-		    }
-		    
-		    var right = document.createElement('span');
-		    right.textContent = ex2[cc][lang] + " "; // TODO: make foreign language words clickable too?
-                    assignLang(right, lang);
-                    right.className = 'translatedExample';
-		    eli.appendChild(right);
-
-		    if(showAll || relevant(ex2[cc][lang], baseForms)) {
-			show = 1;
-			atLeastOne = 1;
-		    }
-		}
-	    }
-	    if(!show) {
-		eli.className += ' notRelevant';
-	    }
-	    
-	    uElem.appendChild(eli);
-	}
-	
-	if(!atLeastOne) {
-	    exElem.className += ' notRelevant';
-	}
-	parentElement.appendChild(exElem);
-
-    } else { // no translations
-	var exElem = document.createElement('div');
-	exElem.className = 'examples';
-
-	var tmp = document.createElement('span');
-	var head = document.createElement('span');
-	var mid = document.createElement('span');
-	head.textContent = "Exempel";
-	mid.textContent = ": ";
-	head.className = 'clickableHeading';
-	tmp.appendChild(head);
-	tmp.appendChild(mid);
-	tmp.lang = BaseLanguageSwe;
-	tmp.dir = "ltr";
-	exElem.appendChild(tmp);
-
-	var uElem = document.createElement('ul');
-	uElem.className = 'exampleList';
-	exElem.appendChild(uElem);
-	
-	for(var cc = 0; cc < ex1.length; cc++) {
-	    let show = 0;
-
-	    var eli = document.createElement('li');
-	    let first = 1;
-	    for(const lang in ex1[cc]) {
-		let spn = undefined;
-		if(first) {
-		    first = 0;
-		    spn = makeWordsClickable(ex1[cc][lang]);
-		} else {
-		    spn = makeWordsClickable(" \u2014 " + ex1[cc][lang]);
-		}
-		eli.appendChild(spn);
-		spn.lang = BaseLanguageSwe;
-		spn.dir = "ltr";
 		
-		if(showAll || relevant(ex1[cc][lang], baseForms)) {
-		    show = 1;
-		    atLeastOne = 1;
+		if(!atLeastOne) {
+			exElem.className += ' notRelevant';
 		}
-	    }
-	    uElem.appendChild(eli);
-	    if(!show) {
-		eli.className += ' notRelevant';
-	    }
-	}
-	
-	if(!atLeastOne) {
-	    exElem.className += ' notRelevant';
-	}
-	parentElement.appendChild(exElem);
+		parentElement.appendChild(exElem);
+    } else { // no translations
+		var exElem = document.createElement('div');
+		exElem.className = 'examples';
+
+		var tmp = document.createElement('span');
+		var head = document.createElement('span');
+		var mid = document.createElement('span');
+		head.textContent = "Exempel";
+		mid.textContent = ": ";
+		head.className = 'clickableHeading';
+
+		// accessibility
+		makeKeyboardClickable(head);
+
+		tmp.appendChild(head);
+		tmp.appendChild(mid);
+		tmp.lang = BaseLanguageSwe;
+		tmp.dir = "ltr";
+		exElem.appendChild(tmp);
+
+		var uElem = document.createElement('ul');
+		uElem.className = 'exampleList';
+		exElem.appendChild(uElem);
+		
+		for(var cc = 0; cc < ex1.length; cc++) {
+			let show = 0;
+
+			var eli = document.createElement('li');
+			let first = 1;
+			for(const lang in ex1[cc]) {
+			let spn = undefined;
+			if(first) {
+				first = 0;
+				spn = makeWordsClickable(ex1[cc][lang]);
+			} else {
+				spn = makeWordsClickable(" \u2014 " + ex1[cc][lang]);
+			}
+			eli.appendChild(spn);
+			spn.lang = BaseLanguageSwe;
+			spn.dir = "ltr";
+			
+			if(showAll || relevant(ex1[cc][lang], baseForms)) {
+				show = 1;
+				atLeastOne = 1;
+			}
+			}
+			uElem.appendChild(eli);
+			if(!show) {
+			eli.className += ' notRelevant';
+			}
+		}
+		
+		if(!atLeastOne) {
+			exElem.className += ' notRelevant';
+		}
+		parentElement.appendChild(exElem);
     }
 }
 
+/* --------- ARTICLE PART: "UTTRYCK" (CLICKABLE) --------- */
 function idiomsToHTML(parentElement, id1, id2, baseForms, showAll, moreThanOneLanguage) {
     let atLeastOne = showAll;
 	
@@ -3526,6 +3591,10 @@ function idiomsToHTML(parentElement, id1, id2, baseForms, showAll, moreThanOneLa
 	head.textContent = "Uttryck";
 	mid.textContent = ": ";
 	head.className = 'clickableHeading';
+
+	// accessibility
+    makeKeyboardClickable(head);
+
 	tmp.appendChild(head);
 	tmp.appendChild(mid);
 	tmp.lang = BaseLanguageSwe;
@@ -3721,6 +3790,7 @@ function relevant(text, baseForms) {
     return 0;
 }
 
+/* --------- ARTICLE PART: "AVLEDNINGAR" (CLICKABLE) --------- */
 function derToHTML(parentElement, der1, der2, baseForms, showAll, moreThanOneLanguage) {
     let atLeastOne = 0;
 	
@@ -3736,6 +3806,10 @@ function derToHTML(parentElement, der1, der2, baseForms, showAll, moreThanOneLan
 
 	var head = document.createElement('span');
 	head.className = 'clickableHeading';
+
+	// accessibility
+    makeKeyboardClickable(head);
+
 	var mid = document.createElement('span');
 	if(longest > 1) {
 	    head.textContent = "Avledningar";
@@ -3829,6 +3903,10 @@ function derToHTML(parentElement, der1, der2, baseForms, showAll, moreThanOneLan
 
 	var head = document.createElement('span');
 	head.className = 'clickableHeading';
+
+	// accessibility
+    makeKeyboardClickable(head);
+
 	var mid = document.createElement('span');
 	if(der1.length > 1) {
 	    head.textContent = "Avledningar";
@@ -3944,6 +4022,7 @@ function makeWordsClickable(text, allWords) {
     return res;
 }
 
+/* --------- ARTICLE PART: "FÖRKLARING" (CLICKABLE) --------- */
 function explToHTML(parentElement, ex1, ex2, baseForms, showAll) {
     let show = showAll;
     if(ex2) {
@@ -3957,6 +4036,10 @@ function explToHTML(parentElement, ex1, ex2, baseForms, showAll) {
 	head.lang = BaseLanguageSwe;
 	head.dir = "ltr";
 	head.className = 'clickableHeading';
+
+	// accessibility
+    makeKeyboardClickable(head);
+
 	wrap.appendChild(head);
 
 	var mid = document.createElement('span');
@@ -4040,6 +4123,9 @@ function explToHTML(parentElement, ex1, ex2, baseForms, showAll) {
 	head.lang = BaseLanguageSwe;
 	head.dir = "ltr";
 	head.className = 'clickableHeading';
+
+	// accessibility
+    makeKeyboardClickable(head);
 
 	let mid = document.createElement('span');
 	mid.textContent = ": ";
@@ -5413,8 +5499,6 @@ function openPageDescription(elem) {
 	document.body.appendChild(relevantExplanationElement);
     } 
 
-
-
     if(elem) {
 	if(elem.className.indexOf('clickableHeading') >= 0) {
 
@@ -5622,24 +5706,36 @@ function initialShowHide() {
     $(".comment_tr").
 	condShow(settings.comments_other.val);
 
-
-//    if(settings.expand.val) {
-//	$(".notRelevant").show();
-//    } else {
+	//    if(settings.expand.val) {
+	//	$(".notRelevant").show();
+	//    } else {
 	$(".notRelevant").hide();
-//    }
+	//    }
     
+	// ordklass
     $(".PoS").addClass("clickableHeading");
+	$(".PoS").each(function () {
+		makeKeyboardClickable(this);
+	});
+
+	// transkription
     $(".phonetic").addClass("clickableHeading");
+	$(".phonetic").each(function () {
+		makeKeyboardClickable(this);
+	});
+
+	// övrigt
     $(".referenceHead").addClass("clickableHeading");
+	$(".referenceHead").each(function () {
+		makeKeyboardClickable(this);
+	});
 
     if(settings.clickable_headings.val) {
-	$(".clickableHeading").addClass('makeClickableHeadingsStandOut');
-	
-	$(".clickableHeading").off('click');
-	$(".clickableHeading").on('click', function () {
-	    openPageDescription(this);
-	});
+		$(".clickableHeading").addClass('makeClickableHeadingsStandOut');
+		$(".clickableHeading").off('click');
+		$(".clickableHeading").on('click', function () {
+			openPageDescription(this);
+		});
     }
     
     if(settings.clickable_words.val && false) { /* Turn off for now */
@@ -6089,9 +6185,22 @@ if (typeof exports !== 'undefined') {
 
 /* --------- CG ADD POPUP FUNCTIONALITY BELOW --------- */
 
+let lastFocusedElement = null;
+
 function showPopup() {
+  // accessibility (tab focus)
+  lastFocusedElement = document.activeElement;
+
   document.getElementById('popup').style.display = 'block';
   document.body.classList.add("modal-open");
+
+  // accessibility (tab focus)
+  const firstFocusable = popup.querySelector(
+    'input:not([tabindex="-1"]), textarea, button, [tabindex]:not([tabindex="-1"])'
+  );
+  if (firstFocusable) {
+    firstFocusable.focus();
+  }
 }
 
 function closePopup() {
@@ -6100,6 +6209,11 @@ function closePopup() {
   document.querySelectorAll("#popup input[type='text']").forEach(el => el.value = "");
   document.querySelectorAll("#popup textarea").forEach(el => el.value = "");
   document.querySelectorAll("#popup input[type='radio']").forEach(el => el.checked = false);
+
+  // accessibility (tab focus)
+  if (lastFocusedElement) {
+    lastFocusedElement.focus();
+  }
 }
 
 let originalPopupHTML = "";
