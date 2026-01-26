@@ -107,6 +107,11 @@ form#theForm2 input.popupText {
   stroke-width: 1.5;
 }
 
+/* remove button when help view shown */
+body.help-open .popupButton {
+    display: none;
+}
+
 .popupButtons {
     margin-top: 30px;
     display: flex;
@@ -164,8 +169,3 @@ form#theForm2 input.popupText {
     
 }
 
-/* --------- REMOVE BUTTON WHEN HELP VIEW SHOWN --------- */
-
-body.help-open .popupButton {
-    display: none;
-}

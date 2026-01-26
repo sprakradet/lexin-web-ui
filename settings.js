@@ -8,11 +8,20 @@
 function openCloseSettings(elem) {
     if ($(elem).hasClass("change")) {
 		dismissSettings();
+
+		// accessibility
+		$(elem).attr("aria-label", "Visa inställningar");
+      	$(elem).attr("aria-expanded", "false");
+
     } else {
 		$("#settingsPopup").show();
 		$(elem).addClass("change");
 		showSettings();
 		updateSaveCurrentButton();
+
+		// accessibility
+		$(elem).attr("aria-label", "Stäng inställningar");
+      	$(elem).attr("aria-expanded", "true");
     }
 }
 

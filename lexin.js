@@ -2304,7 +2304,10 @@ function addExpandResultElement() {
     let exp = document.createElement('img');
     exp.src = "/submenuBlack.svg";
     exp.className = "expandResultsIcon";
+
+	// accessibility
 	exp.alt = "Visa hela artikeln";
+	makeKeyboardClickable(exp);
 
     exp.onclick = function() {
 	let p = $(this).closest('li');
@@ -2854,12 +2857,13 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     
     let outerWrap = document.createElement('div');
     if(!show) {
-	outerWrap.className = 'notRelevant';
+		outerWrap.className = 'notRelevant';
     }
     parentElement.appendChild(outerWrap);
     if(ill.length == 0) {
-	return;
+		return;
     }
+
     var wrap = document.createElement('div');
     wrap.className = 'ill';
     var tmp = document.createElement('span');
@@ -2898,13 +2902,13 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 
 				let urls = bildtemaWords[word+"|"+page+"|"+subpage];		// CG: new key, includes pages 
 				for (let url of urls || []) {
-					addBildtemaInlineDetail(url, pictures);					// CG: detail picture
+					addBildtemaInlineDetail(url, pictures, word);					// CG: detail picture
 					console.log("CG " + word + " detaljbild: " + url);
 				}
 			}
 
 			for(var i = 0; i < ill.length; i++) {
-			    addBildtemaInline(ill[i], pictures, langList);						// CG: overview picture
+			    addBildtemaInline(ill[i], pictures, langList, word);						// CG: overview picture
 				console.log("CG " + word + " översiktsbild: " + ill[i]);
 			}
 		}
@@ -2975,7 +2979,7 @@ function getPictureIcon() {
 // bildtema web site inside a div element.
 // TODO: This does not work very well. The size of the div should be set to something better. The placement of the div is not great either.
 // ----------------------------------------------------------------------
-function addBildtemaInline(url, parent, lang) {
+function addBildtemaInline(url, parent, lang, word) {
     let inlineImg = document.createElement('div');
     inlineImg.style.display = 'block';
     inlineImg.innerHTML = "";
@@ -2994,7 +2998,7 @@ function addBildtemaInline(url, parent, lang) {
 
     //console.log("page", page, "subpage", subpage);
     //HB inlineImg.innerHTML='<img src="/bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
-    inlineImg.innerHTML='<img src="bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
+    inlineImg.innerHTML='<img src="bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;" alt="' + word + ', bildtema">';
 
     // add external Bildtema link
     //HB 251119 Change the link to point to this host instead of bildtema.isof.se    
@@ -3019,7 +3023,7 @@ function addBildtemaInline(url, parent, lang) {
 	link.attr("target", "_blank");
 }
 
-function addBildtemaInlineDetail(url, parent) {
+function addBildtemaInlineDetail(url, parent, word) {
     let inlineImg = document.createElement('div');
     inlineImg.style.display = 'block';
     inlineImg.innerHTML = "";
@@ -3027,10 +3031,10 @@ function addBildtemaInlineDetail(url, parent) {
     inlineImg.style.width = "100%";
     inlineImg.style.margin = "1em 0";
     $(inlineImg).css("text-align", "center");
-//    inlineImg.style.height = "123px";
+	//    inlineImg.style.height = "123px";
     parent.appendChild(inlineImg);
     //HB inlineImg.innerHTML='<img src="/bilder/' + url + '" style=""></object>';
-    inlineImg.innerHTML='<img src="bilder/' + url + '" style=""></object>';
+    inlineImg.innerHTML='<img src="bilder/' + url + '" style="" alt="' + word + '"></object>';
 }
 
 
@@ -3229,6 +3233,10 @@ function loadAndShowHideVideo(elem, url) {
 		let vid = document.createElement('video');
 		vid.controls = true;
 		vid.src = url;
+
+		// accessibility
+		vid.setAttribute('aria-label', $("#searchQuery").val() + ', verbfilm');
+
 		cont.appendChild(vid);
 
 		// add link for opening in new tab
@@ -5506,39 +5514,47 @@ var relevantExplanationElement = null;
 function openPageDescription(elem) {
     
     if(!relevantExplanationElement) {
-	relevantExplanationElement = document.createElement('div');
-	relevantExplanationElement.className = 'LexinExplanationsWrapper';
+		relevantExplanationElement = document.createElement('div');
+		relevantExplanationElement.className = 'LexinExplanationsWrapper';
 
-	let inner = document.createElement('div');
-	inner.className = 'LexinExplanations';
+		let inner = document.createElement('div');
+		inner.className = 'LexinExplanations';
 
+		// feedback button helper
+		function closeHelpPopup() {
+			relevantExplanationElement.style.display = "none";
+			document.body.classList.remove("help-open");
+		}
 
-	inner.onclick = function(event) {
-	    relevantExplanationElement.style.display = "none";
-	}
+		inner.onclick = function(event) {
+			closeHelpPopup();
+		}
 
-	inner.onkeydown = function(event) {
-	    if (event.key == "Escape") {
-		relevantExplanationElement.style.display = "none";
-	    }
-	}
+		inner.onkeydown = function(event) {
+			if (event.key == "Escape") {
+				closeHelpPopup();
+			}
+		}
 
-	relevantExplanationElement.onclick = function(event) {
-	    relevantExplanationElement.style.display = "none";
-	}
+		relevantExplanationElement.onclick = function(event) {
+			closeHelpPopup();
+		}
 
-	relevantExplanationElement.onkeydown = function(event) {
-	    if (event.key == "Escape") {
-		relevantExplanationElement.style.display = "none";
-	    }
-	}
-	
-	relevantExplanationElement.style.top = 0;
-	inner.style.height = "100%";
+		relevantExplanationElement.onkeydown = function(event) {
+			if (event.key == "Escape") {
+				closeHelpPopup();
+			}
+		}
+		
+		relevantExplanationElement.style.top = 0;
+		inner.style.height = "100%";
 
-	relevantExplanationElement.appendChild(inner);
-	document.body.appendChild(relevantExplanationElement);
+		relevantExplanationElement.appendChild(inner);
+		document.body.appendChild(relevantExplanationElement);
     } 
+
+	// feedback button helper
+  	document.body.classList.add("help-open");
 
     if(elem) {
 	if(elem.className.indexOf('clickableHeading') >= 0) {
@@ -5584,7 +5600,7 @@ function openPageDescription(elem) {
 	    }
 	    relevantExplanationElement.style.display = 'block';
 	    inner.focus();
-	    $(inner).prepend('<button title="Stäng" class="closeHelp" type="button">	  <img src="/closebutton.svg">	</button>');
+	    $(inner).prepend('<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng">	  <img src="/closebutton.svg">	</button>');
 
 	    return;
 	} else { // not 'clickableHeading'
