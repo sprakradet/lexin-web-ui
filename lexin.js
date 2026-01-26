@@ -2863,7 +2863,7 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     var wrap = document.createElement('div');
     wrap.className = 'ill';
     var tmp = document.createElement('span');
-    tmp.textContent = "Bild";
+    tmp.textContent = "Bild:";
     tmp.lang = BaseLanguageSwe;
     tmp.dir = "ltr";
     tmp.className = 'imageLink';
@@ -3164,19 +3164,19 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 			let wrap =  document.createElement('div');
 			let hElem = document.createElement('span');
 			hElem.className = 'referenceHead';
-			hElem.textContent = "Video: ";
+			hElem.textContent = "Video:";
 			hElem.lang = BaseLanguageSwe;
 			hElem.dir = "ltr";
 			
-			let tElem = document.createElement('a');
+			/*let tElem = document.createElement('a');
 			tElem.className = 'referenceInfo';
 			tElem.href = ref.val;
 			tElem.textContent = "Visa film";
 			tElem.lang = BaseLanguageSwe;
-			tElem.dir = "ltr";
+			tElem.dir = "ltr";*/
 			
 			wrap.appendChild(hElem);
-			wrap.appendChild(tElem);
+			/*wrap.appendChild(tElem);*/
 
 			// Inlinde the videos when clicked
 			let imElem = document.createElement('div');
@@ -3207,28 +3207,40 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
     }
 }
 
+/* --------- DISPLAY VIDEO INLINE --------- */
 function loadAndShowHideVideo(elem, url) {
     let children = elem.parentElement.children;
     let seen = 0;
-    for(let c = 0; c < children.length; c++) {
-	if(children[c].className == "vidContainer") {
-	    seen = 1;
-	    if(children[c].style.display == 'none') {
-		children[c].style.display = 'block';
-	    } else {
-		children[c].style.display = 'none';
-	    }
-	}
-    }
-    if(!seen) {
-	let cont = document.createElement('div');
-	cont.className = "vidContainer";
-	let vid = document.createElement('video');
-	vid.controls = true;
-	vid.src = url;
-	cont.appendChild(vid);
 
-	elem.parentElement.appendChild(cont);
+    for(let c = 0; c < children.length; c++) {
+		if(children[c].className == "vidContainer") {
+			seen = 1;
+			if(children[c].style.display == 'none') {
+				children[c].style.display = 'block';
+			} else {
+				children[c].style.display = 'none';
+			}
+		}
+	}
+
+    if(!seen) {
+		let cont = document.createElement('div');
+		cont.className = "vidContainer";
+		let vid = document.createElement('video');
+		vid.controls = true;
+		vid.src = url;
+		cont.appendChild(vid);
+
+		// add link for opening in new tab
+		let link = document.createElement('a');
+		link.href = url;
+		link.textContent = "Visa i Verbfilmer (öppnas i ny flik)";
+		link.target = "_blank";
+		link.rel = "noopener noreferrer";
+
+		cont.appendChild(link);
+
+		elem.parentElement.appendChild(cont);
     }
 }
 
@@ -5461,6 +5473,35 @@ function reOrderResultsWithSeeReferences(ls) {
     return res;
 }
 
+/* --------- DESIGN "SHOW MORE" ELEMENTS ON HELP PAGE --------- */
+function initHelpOpenMoreInfo() {
+  const elements = document.querySelectorAll(".helpOpenMoreInfo");
+
+  elements.forEach(elem => {
+    const targetId = elem.getAttribute("data-target");
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    // accessibility
+    elem.setAttribute("tabindex", "0");
+    elem.setAttribute("role", "button");
+    elem.setAttribute("aria-expanded", "false");
+	elem.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        elem.click();
+      }
+    });
+
+    // open container
+    elem.addEventListener("click", function () {
+      const isOpen = target.style.display === "block";
+      target.style.display = isOpen ? "none" : "block";
+      elem.setAttribute("aria-expanded", String(!isOpen));
+    });
+  });
+}
+
 var relevantExplanationElement = null;
 function openPageDescription(elem) {
     
@@ -5563,24 +5604,34 @@ function openPageDescription(elem) {
     
     let explDiv = $("#LexinExplanationsWrapper")[0];
     $("#LexinExplanationsWrapper").empty().append(helpElement);
+	initHelpOpenMoreInfo();
     explDiv.style.display = 'block';
+
+	// feedback button helper
+	document.body.classList.add("help-open");
 
     if(!explDiv.onkeydown) {
 	explDiv.onkeydown = function(event) {
 	    if (event.key == "Escape") {
-		explDiv.style.display = "none";
-		if(searchBar) {
-		    searchBar.style.display = 'block';
-		}
+			explDiv.style.display = "none";
+
+			if(searchBar) {
+				searchBar.style.display = 'block';
+			}
 	    }
 	}
     }
 
+	// close explanations view
     $(".LexinExplanations button.closeHelp").click(() => {
-	explDiv.style.display = "none";
-	if(searchBar) {
-	    searchBar.style.display = 'block';
-	}
+		explDiv.style.display = "none";
+
+		// feedback button helper
+		document.body.classList.remove("help-open");
+
+		if(searchBar) {
+			searchBar.style.display = 'block';
+		}
     });
     
     let anchor = $("#LexinExplanations")[0];

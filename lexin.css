@@ -333,7 +333,7 @@ select {
 }
 
 .imageLink {
-    font-variant: small-caps;
+    /*font-variant: small-caps;*/
     cursor: pointer;
 }
 
@@ -576,13 +576,22 @@ a:any-link {
     padding: 0;
     margin-left: .5em;
     vertical-align: bottom;
+    cursor: pointer;
 }    
 
 .vidContainer {
     margin-top: .5em;
     margin-bottom: .5em;
-    display: block;
-}    
+    /*display: block;*/
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.vidContainer video {
+    width: 100%;
+}
 
 span[dir=rtl] {
     display: inline-block;

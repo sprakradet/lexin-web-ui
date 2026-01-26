@@ -277,8 +277,11 @@
 	  <li>Lång vokal och lång konsonant visas med ":"</li>
 	  <li>Betoning (tryck) visas med " ̣" under vokalen</li>
 	</ul>
-	<p class="helpOpenMoreInfo" onclick="let d = getElementById('merUttal'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
+	<!--<p class="helpOpenMoreInfo" onclick="let d = getElementById('merUttal'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
 	  Visa mer information om uttal &gt;
+	</p>-->
+	<p class="helpOpenMoreInfo" data-target="merUttal">
+		Visa mer information om uttal &gt;
 	</p>
 
 	<!-- SUBCHAPTER: UTTAL (EXPANDED) -->
@@ -494,9 +497,12 @@
           riktiga ordklasser men används när uppslagsordet är förled
           eller efterled till sammansatta ord.
 	</p>
-	<p class="helpOpenMoreInfo" onclick="let d = getElementById('merPoS'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
+	<!--<p class="helpOpenMoreInfo" onclick="let d = getElementById('merPoS'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
 	  Visa mer information om ordklasser &gt;
-	</p>
+	</p>-->
+	<p class="helpOpenMoreInfo" data-target="merPoS">
+        Visa mer information om ordklasser &gt;
+    </p>
 
 	<!-- SUBCHAPTER: ORDKLASS (EXPANDED)-->
 	<div id="merPoS" class="helpMoreInfo">
@@ -617,9 +623,12 @@
 	<p> Om ett ord tillhör en ordklass som har böjningsformer men
 	  där just detta ord inte kan böjas står det <em>oböjligt</em>
 	  där böjningformerna brukar anges.</p>
-	<p class="helpOpenMoreInfo" onclick="let d = getElementById('merInfl'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
+	<!--<p class="helpOpenMoreInfo" onclick="let d = getElementById('merInfl'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
 	  Visa mer information om böjningsformer &gt;
-	</p>
+	</p>-->
+	<p class="helpOpenMoreInfo" data-target="merInfl">
+        Visa mer information om böjningsformer &gt;
+    </p>
 
 	<!-- SUBCHAPTER: BÖJNINGSFORMER (EXPANDED) -->
 	<div id="merInfl" class="helpMoreInfo">
@@ -673,8 +682,11 @@
 	    adjektiv föredrar många också att komparera med mer och
 	    mest.
 	  </p>
-	  <p class="helpOpenMoreInfo" onclick="let d = getElementById('merAdjektiv'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
+	  <!--<p class="helpOpenMoreInfo" onclick="let d = getElementById('merAdjektiv'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
 	    <a id="adjektivListaAnchor" name="adjektivlista">Visa oregelbundna adjektiv &gt;
+	  </p>-->
+	  <p class="helpOpenMoreInfo" data-target="merAdjektiv">
+        <a id="adjektivListaAnchor" name="adjektivlista">Visa oregelbundna adjektiv &gt;
 	  </p>
 	  <!-- SUBSUBSUBCHAPTER: BÖJNINGSFORMER (EXPANDED) - ADJEKTIV (EXPANDED)-->
 	  <div id="merAdjektiv" class="helpMoreInfo">
@@ -808,9 +820,12 @@
 	    oregelbundna verb och deras böjning. Du hittar dem i en
 	    tabell här:
 	  </p>
-	  <p class="helpOpenMoreInfo" onclick="let d = getElementById('merOregelbundnaVerb'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
+	  <!--<p class="helpOpenMoreInfo" onclick="let d = getElementById('merOregelbundnaVerb'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
 	    Visa oregelbundna verb  &gt;
-	  </p>
+	  </p>-->
+	  <p class="helpOpenMoreInfo" data-target="merOregelbundnaVerb">
+        Visa oregelbundna verb  &gt;
+      </p>
 	  <!-- SUBSUBSUBCHAPTER: BÖJNINGSFORMER (EXPANDED) - VERB (EXPANDED)-->
 	  <div id="merOregelbundnaVerb" class="helpMoreInfo">
 	    <p>Oregelbundna verb:</p>
@@ -992,9 +1007,12 @@
 	  och <em>båt</em>). Ibland förklaras ord också med ett
 	  motsatsord (en <em>antonym</em>).
 	</p>
-	<p class="helpOpenMoreInfo" onclick="let d = getElementById('merOrdf'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
+	<!--<p class="helpOpenMoreInfo" onclick="let d = getElementById('merOrdf'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
 	  Visa mer information om ordförklaringar &gt;
-	</p>
+	</p>-->
+	<p class="helpOpenMoreInfo" data-target="merOrdf">
+        Visa mer information om ordförklaringar &gt;
+    </p>
 	<!-- SUBCHAPTER: ORDFÖRKLARING (EXPANDED)-->
 	<div id="merOrdf" class="helpMoreInfo">
 	  <p>
@@ -1039,9 +1057,12 @@
 	  Det finns två typer av kommentarer, grammatikkommentarer och
 	  stilkommentarer.
 	</p>
-	<p class="helpOpenMoreInfo" onclick="let d = getElementById('merKommentar'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
+	<!--<p class="helpOpenMoreInfo" onclick="let d = getElementById('merKommentar'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
 	  Visa mer information om kommentarer &gt;
-	</p>
+	</p>-->
+	<p class="helpOpenMoreInfo" data-target="merKommentar">
+        Visa mer information om kommentarer &gt;
+    </p>
 	<!-- SUBCHAPTER: KOMMENTARER (EXPANDED)-->
 	<div id="merKommentar" class="helpMoreInfo">
 	  <!-- SUBSUBCHAPTER: KOMMENTARER (EXPANDED) - GRAMMATIKKOMMENTAR -->
@@ -1252,9 +1273,12 @@
 	  sammansatta ord där uppslagsordet ingår som en del, och
 	  fasta uttryck (idiom) där ordet används.
 	</p>
-	<p class="helpOpenMoreInfo" onclick="let d = getElementById('merExempel'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
+	<!--<p class="helpOpenMoreInfo" onclick="let d = getElementById('merExempel'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
 	  Visa mer information om språkexempel &gt;
-	</p>
+	</p>-->
+	<p class="helpOpenMoreInfo" data-target="merExempel">
+        Visa mer information om språkexempel &gt;
+    </p>
 	<!-- SUBCHAPTER: SPRÅKEXEMPEL (EXPANDED) -->
 	<div id="merExempel" class="helpMoreInfo">
 	  <p> Det finns tre sorters språkexempel: sammansättningar, fria fraser och meningar, och idiom (fasta uttryck). Låt oss
@@ -1435,9 +1459,12 @@
 	  finnas satsdelar som <em>subjekt</em> och <em>objekt</em>. Det
 	  finns även ord som beskriver betydelse, t.ex. <em>TID</em>
 	  och <em>PLATS</em>.
-	<p class="helpOpenMoreInfo" onclick="let d = getElementById('merGraminfo'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
+	<!--<p class="helpOpenMoreInfo" onclick="let d = getElementById('merGraminfo'); d.style.display != 'block' ? d.style.display = 'block' : d.style.display = 'none'; return false;">
 	  Visa mer information om grammatiska konstruktioner &gt;
-	</p>
+	</p>-->
+	<p class="helpOpenMoreInfo" data-target="merGraminfo">
+        Visa mer information om grammatiska konstruktioner &gt;
+    </p>
 	<!-- SUBCHAPTER: GRAMMATISKA KONSTRUKTIONER (EXPANDED) -->
 	<div id="merGraminfo" class="helpMoreInfo">
 	  <p> Vi ser först på verbet <em>sover</em>. En typisk mening är <em>Anders sover</em>, men vi kan inte tänka oss en

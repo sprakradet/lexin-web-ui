@@ -163,3 +163,9 @@ form#theForm2 input.popupText {
 @media screen and (max-width: 620px) {
     
 }
+
+/* --------- REMOVE BUTTON WHEN HELP VIEW SHOWN --------- */
+
+body.help-open .popupButton {
+    display: none;
+}

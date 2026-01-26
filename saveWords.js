@@ -67,28 +67,40 @@ function getULfromSavedWords() {
     uElem.className = "savedWordsList";
     
     if(savedWords && savedWords.length && savedWords.length > 0) {
-	var langs = getSelectedLexicon();
+		var langs = getSelectedLexicon();
 
-	for(var ww = 0; ww < savedWords.length; ww++) {
-	    const w = savedWords[ww];
-	    
-	    var aElem = getLinkElemToSearch(w);
-	    aElem.innerText = w;
+		for(var ww = 0; ww < savedWords.length; ww++) {
+			const w = savedWords[ww];
+			
+			var aElem = getLinkElemToSearch(w);
+			aElem.innerText = w;
 
-	    let deleteBtn = document.createElement('div');
-	    deleteBtn.innerHTML = "&times;";
-	    deleteBtn.title = "Ta bort " + w;
-	    deleteBtn.className = "removeOneSavedWordButton";
-	    deleteBtn.onclick = function () {
-			removeOneSavedWord(w);
-	    };
-		
-	    var liElem = document.createElement('li');
-	    liElem.appendChild(aElem);
-	    liElem.appendChild(deleteBtn);
-	    
-	    uElem.appendChild(liElem);
-	}
+			let deleteBtn = document.createElement('div');
+			deleteBtn.innerHTML = "&times;";
+			deleteBtn.title = "Ta bort " + w;
+			deleteBtn.className = "removeOneSavedWordButton";
+
+			// accessibility
+			deleteBtn.setAttribute("aria-label", "Ta bort " + w);
+			deleteBtn.setAttribute("tabindex", "0");
+			deleteBtn.setAttribute("role", "button");
+			deleteBtn.addEventListener("keydown", function (e) {
+				if (e.key === "Enter" || e.key === " ") {
+					e.preventDefault();
+					deleteBtn.click();
+				}
+			});
+
+			deleteBtn.onclick = function () {
+				removeOneSavedWord(w);
+			};
+			
+			var liElem = document.createElement('li');
+			liElem.appendChild(aElem);
+			liElem.appendChild(deleteBtn);
+			
+			uElem.appendChild(liElem);
+		}
     }
     return uElem;
 }

@@ -18,13 +18,6 @@ async function openDownload() {
     var h = document.getElementById("downloadPopup");
     h.style.display = "block";
 
-	// CG REMOVE 2025-09-25 - download works
-    /*let testVersionDiv = document.createElement('div');
-    testVersionDiv.className = "testVersionInfo";
-    testVersionDiv.textContent = "Nedladdning av lexikon är inte fullt fungerande ännu, men du får gärna prova att ladda ner lexikon och testa.";
-    $(".testVersionInfo").remove();
-    $(h).prepend(testVersionDiv);*/
-
 	// get dictionaries
     downloadableDictionaries = await $.ajax({url:"lexin-downloadable.json", datatype: "json", type:"GET"});
     downloadableDictionariesDict = _.object(_.map(downloadableDictionaries, e => [e.lang, e]));
