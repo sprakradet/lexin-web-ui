@@ -261,7 +261,6 @@ let bildtemaWords;
 
 /* --------- LOAD ALL DETAIL PICTURES --------- */
 /* --------- RUN ONLY ONCE, AS YOU OPEN THE APP --------- */
-/* CG ADD START */
 async function loadBildtema() {
 	// creates arrays of words and images
     //HB 251120 let words = await $.ajax({url:"https://lexin.se/all.json", dataType: "json", type: "GET"});
@@ -274,8 +273,6 @@ async function loadBildtema() {
     for (let image of images) {
 		let id = image.id;
 		let urls = image.images;
-
-		// CG ADD
 		let page = image.page;
 		let subpage = image.subpage;
 
@@ -283,26 +280,13 @@ async function loadBildtema() {
 			if (!imageurls[id]) {
 				imageurls[id] = [];
 			}
-			// CG CHANGE
 			imageurls[id].push(urls[0]+"|"+page+"|"+subpage);	// add image to word id, e.g. "w325_a": ["26/6/images/Bitmap15.png"]
 		}
     }
     
-	// CG CHANGE - THIS FIXES THE "WRONG DETAIL PIC ERROR"
     bildtemaWords = {};
 	for (let key of Object.keys(words)) {	
 		let value = words[key];		// actual word string
-
-		// normalize lemma (strip article + trailing parentheses)
-		/*let splitvalue = value.split(" ");
-		if (splitvalue.length == 2) {
-			if (splitvalue[0] == "en" || splitvalue[0] == "ett") {
-				value = splitvalue[1];
-				value = value.replace(/\([^)]+\)$/, "");
-			}
-		} else {
-			value = value.replace(/\([^)]+\)$/, "");
-		}*/
 
 		// remove parenthetical content
 		let normalized = value.replace(/\s*\([^)]*\)\s*/g, " ");
@@ -322,7 +306,6 @@ async function loadBildtema() {
 		let urls = imageurls[key];
 
 		if (urls) {
-			//CG CHANGE
 			for (let url of urls) {
 				const parts = String(url).split("|");     // ["26/6/images/Bitmap15.png","26","6"]
 				const compositeKey = value+"|"+parts[1]+"|"+parts[2];
@@ -335,66 +318,6 @@ async function loadBildtema() {
 		}
     }
 }
-/* CG ADD END */
-
-/* CG REMOVE START */
-/*async function loadBildtema() {
-	// creates arrays of words and images
-    let words = await $.ajax({url:"https://lexin.se/all.json", dataType: "json", type: "GET"});
-    let images = await $.ajax({url:"https://lexin.se/images.json", dataType: "json", type: "GET"});
-
-	// get the first image of every word, creates an array of word ids and single images
-    let imageurls = {};
-    for (let image of images) {
-		let id = image.id;
-		let urls = image.images;
-
-		if (urls && urls.length) {
-			if (!imageurls[id]) {
-				imageurls[id] = [];
-			}
-			imageurls[id].push(urls[0]);	// add image to word id, e.g. "w325_a": ["26/6/images/Bitmap15.png"]
-		}
-    }
-    
-	// CG ADD
-	//bildtemawords = imageurls;
-	
-    bildtemaWords = {};
-	for (let key of Object.keys(words)) {	
-		let value = words[key];		// actual word string
-
-		// normalize lemma (strip article + trailing parentheses)
-		let splitvalue = value.split(" ");
-		if (splitvalue.length == 2) {
-			if (splitvalue[0] == "en" || splitvalue[0] == "ett") {
-				value = splitvalue[1];
-				value = value.replace(/\([^)]+\)$/, "");
-			}
-		} else {
-			value = value.replace(/\([^)]+\)$/, "");
-		}
-
-		// create array of normalized lemmas and images
-		let urls = imageurls[key];
-
-		if (urls) {
-			if (!bildtemaWords[value]) {
-				bildtemaWords[value] = [];
-			}
-			for (let url of urls) {
-				bildtemaWords[value].push(url);		// add link to lemma
-			}
-
-			/* CG ADD START */
-			/*if(value == "fluga") {
-				console.log("CG fluga link: " + bildtemaWords[value])
-			}*/
-			/* CG ADD END */
-		/*}
-    }
-}*/
-/* CG REMOVE END */
 
 function unAbbreviatePoS(str) {
     if(PoSnames.hasOwnProperty(str)) { // most common case
@@ -512,16 +435,10 @@ class LexinService {
 		// build rest of url
 		// return json object
 		this.getJson = async function(direction, lang, word) {
-			//console.log("CG query: \"" + word + "\"");
-			//console.log("CG query encoded: \"" + encodeURIComponent(word) + "\"");
+			// console.log("CG query: \"" + word + "\"");
+			// console.log("CG query encoded: \"" + encodeURIComponent(word) + "\"");
 
 			const url = lexinService.backendServer + "?searchinfo=" + direction + ",swe_" + lang + "," + encodeURIComponent(word) + "&output=JSON";
-
-			// CG ADD REGEX TEST
-			/*const regex = new RegExp(`^${word}$`, "i");
-			const word2 = String(regex);
-			console.log("CG query regexed: \"" + word2 + "\"");
-			const url = lexinService.backendServer + "?searchinfo=" + direction + ",swe_" + lang + "," + encodeURIComponent(word2) + "&output=JSON";*/
 
 			//HB 250613
 			//BUG in api: \ is replaced by \u005c everywhere (?)
@@ -865,7 +782,7 @@ function printJSON(word, res, moreThanOneLanguage) {
 
 		// show correction suggestions
 		if(res.Corrections?.length > 0) {
-			console.log("CG rättningsförslag: ", res.Corrections);
+			// console.log("CG rättningsförslag: ", res.Corrections);
 
 			let langs = getSelectedLexicon();
 			let sp = document.createElement('span');
@@ -1255,7 +1172,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 	    if(js.Phonetic) {
 		ps = getPhonetic(js.Phonetic);
 	    } else if(js.Alternate) {
-		// Todo: Is this actually correct JSON? Sometimes the
+		// TODO: Is this actually correct JSON? Sometimes the
 		// Phonetic info is only in the Alternate field, so
 		// for now we need this.
                 let phonetic = Object.values(js.Alternate).flatMap(alternates => alternates.map(alternate => alternate.Phonetic))[0]
@@ -1460,7 +1377,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 					let trEl = createTranslationSpan();
 					for(let translang of trans[lang]) {
 					    if(translang.Content) {
-						trEl.textContent += translang.Content + " "; // Todo: clickable translati
+						trEl.textContent += translang.Content + " "; // TODO: clickable translati
 					    }
 					}
 					el.appendChild(trEl);
@@ -1474,7 +1391,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 
 				    var cm = document.createElement('span');
 				    cm.className = 'comment';		    
-				    cm.textContent = " (" + targ.com[lang].join(", ") + ") "; // Todo: clickable translations?
+				    cm.textContent = " (" + targ.com[lang].join(", ") + ") "; // TODO: clickable translations?
                                     // assignLang(cm, lang);
 				    
 				    wrap.appendChild(cm);
@@ -1633,7 +1550,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 
 					    var cm = document.createElement('span');
 					    cm.className = 'comment';		    
-					    cm.textContent = " " + targCyc.com[lang].join(", "); // Todo: clickable translations?
+					    cm.textContent = " " + targCyc.com[lang].join(", "); // TODO: clickable translations?
 					    
 					    wrap.appendChild(cm);
 
@@ -1662,7 +1579,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 						    let translationNodes = [];
 						    for(let translation of translations[lang]) {
 							if(translation.Content) {
-							    translationNodes.push(createTextSpan(translation.Content + "\n")); // Todo: clickable translations?
+							    translationNodes.push(createTextSpan(translation.Content + "\n")); // TODO: clickable translations?
 							}
 						    }
 						    let separator = createTextSpan(getSeparatorForLang(lang));
@@ -1913,7 +1830,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 			}
 			
 			let trEl = document.createElement('span');
-			trEl.textContent = translations[lang] + " "; // Todo: clickable translations?
+			trEl.textContent = translations[lang] + " "; // TODO: clickable translations?
                         assignLang(trEl, lang);
 			
 			el.appendChild(trEl);
@@ -1925,7 +1842,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 
 			    var cm = document.createElement('span');
 			    cm.className = 'comment';		    
-			    cm.textContent = " (" + targ.com[lang].join(", ") + ") "; // Todo: clickable translations?
+			    cm.textContent = " (" + targ.com[lang].join(", ") + ") "; // TODO: clickable translations?
                             assignLang(cm, lang);
 
 			    wrap.appendChild(cm);
@@ -1940,7 +1857,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 			
 
 			if(targ.syn?.[lang]?.length) {
-			    let synEl = createTextSpan(" (" + targ.syn[lang].join(", ") + ") ", 'synonyms', lang); // Todo: clickable translations?
+			    let synEl = createTextSpan(" (" + targ.syn[lang].join(", ") + ") ", 'synonyms', lang); // TODO: clickable translations?
 			    if(!showAll) {
 				synEl.className += ' notRelevant';
 			    } else {
@@ -2115,14 +2032,14 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
 
 function handleSmallCaps(text) {
     let outerSpan = document.createElement('span');
-//    console.log("handleSmallCaps", text);
+	//    console.log("handleSmallCaps", text);
     outerSpan.append(document.createElement('span'));
     for (const s of text) {
         let innerSpan = s.expandedValue();
         if (s.spaceBefore) {
             outerSpan.lastElementChild.append(" ");
         }
-//        console.log("handleSmallCaps", innerSpan.className, outerSpan.childElementCount, outerSpan.lastElementChild.className, outerSpan.innerHTML, innerSpan.firstElementChild);
+		//        console.log("handleSmallCaps", innerSpan.className, outerSpan.childElementCount, outerSpan.lastElementChild.className, outerSpan.innerHTML, innerSpan.firstElementChild);
         if (innerSpan.className == "" && outerSpan.childElementCount > 1 && outerSpan.lastElementChild.className == "") {
             outerSpan.lastElementChild.append(" ");
             outerSpan.lastElementChild.append(innerSpan.firstChild);
@@ -2142,7 +2059,7 @@ function handleSmallCaps(text) {
         }
     }
     outerSpan.append(document.createElement('span'));
-//    console.log("handleSmallCaps result", outerSpan);
+	//    console.log("handleSmallCaps result", outerSpan);
     return outerSpan;
 }
 
@@ -2171,7 +2088,7 @@ function expandSlashes(text) {
 		section.shift()
 		section[0].spaceBefore = true;
             }
-	    //        console.log("expandSlashes", section, section.map(e => e.stringValue()).join(""));
+	    	//        console.log("expandSlashes", section, section.map(e => e.stringValue()).join(""));
             let tmp = expandSlashesInner(section)
             res = res.concat(tmp);
 	}
@@ -2880,7 +2797,6 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     let picicon = getPictureIcon();
     tmp.appendChild(picicon);
 
-	/* CG ADD START */
 	tmp.onclick = () => {
 		if($(pictures).find(".inlineImage").length == 0) {
 			let li = $(parentElement).closest(".entryContent").closest("li");
@@ -2891,7 +2807,7 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 
 			word = word.replace(/\s+\(\d+\)$/, "");
 			
-			console.log("CG sökord bild: \"" + word + "\"");
+			// console.log("CG sökord bild: \"" + word + "\"");
 
 			// CG CHANGE - THIS FIXES THE "WRONG DETAIL PIC ERROR"
 			for(var i = 0; i < ill.length; i++) {
@@ -2900,16 +2816,16 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 				let page = urlParams.get("page");
     			let subpage = urlParams.get("subpage");
 
-				let urls = bildtemaWords[word+"|"+page+"|"+subpage];		// CG: new key, includes pages 
+				let urls = bildtemaWords[word+"|"+page+"|"+subpage];				// CG: new key, includes pages 
 				for (let url of urls || []) {
 					addBildtemaInlineDetail(url, pictures, word);					// CG: detail picture
-					console.log("CG " + word + " detaljbild: " + url);
+					// console.log("CG " + word + " detaljbild: " + url);
 				}
 			}
 
 			for(var i = 0; i < ill.length; i++) {
-			    addBildtemaInline(ill[i], pictures, langList, word);						// CG: overview picture
-				console.log("CG " + word + " översiktsbild: " + ill[i]);
+			    addBildtemaInline(ill[i], pictures, langList, word);				// CG: overview picture
+				// console.log("CG " + word + " översiktsbild: " + ill[i]);
 			}
 		}
 		if(!pictures.style.display || pictures.style.display == 'none') {
@@ -2919,39 +2835,6 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 		}
 		return false;
     };
-	/* CG ADD END */
-
-	/* CG REMOVE START */
-	// load images on click
-    /*tmp.onclick = () => {
-		if($(pictures).find(".inlineImage").length == 0) {
-			let li = $(parentElement).closest(".entryContent").closest("li");
-			let word = li.find(".matchingWord").text().trim();
-
-			// CG ADD - THIS FIXES THE "DETAIL PIC NOT SHOWN ERROR"
-			word = word.replace(/\|/g, "");
-
-			word = word.replace(/\s+\(\d+\)$/, "");
-			//console.log("li", li, word);
-			let urls = bildtemaWords[word];					// CG: here the picture for current lemma is looked up
-			//console.log("CG " + word + " " + urls);
-			for (let url of urls || []) {
-				addBildtemaInlineDetail(url, pictures);		// CG: detail picture
-				console.log("CG " + word + " detaljbild " + url);
-			}
-			for(var i = 0; i < ill.length; i++) {
-				addBildtemaInline(ill[i], pictures);		// CG: overview picture
-				console.log("CG " + word + " översiktsbild " + ill[i]);
-			}
-		}
-		if(!pictures.style.display || pictures.style.display == 'none') {
-			pictures.style.display = 'block';
-		} else {
-			pictures.style.display = 'none';
-		}
-		return false;
-    };*/
-	/* CG REMOVE END */
 
     wrap.append(pictures);
     outerWrap.appendChild(wrap);
@@ -2977,7 +2860,8 @@ function getPictureIcon() {
 // Make the "parent" element clickable, and when clicked it displays
 // the bildtema image at "url". This is done by loading the whole
 // bildtema web site inside a div element.
-// TODO: This does not work very well. The size of the div should be set to something better. The placement of the div is not great either.
+// TODO: This does not work very well. The size of the div should be set
+// to something better. The placement of the div is not great either.
 // ----------------------------------------------------------------------
 function addBildtemaInline(url, parent, lang, word) {
     let inlineImg = document.createElement('div');
@@ -3247,16 +3131,16 @@ function loadAndShowHideVideo(elem, url) {
 		link.rel = "noopener noreferrer";
 
 		cont.appendChild(link);
-
 		elem.parentElement.appendChild(cont);
     }
 }
 
+/* --------- SET NUMERUS FORM --------- */
 function pluralize(number, singular, plural) {
     if (number == 1) {
-	return singular;
+		return singular;
     } else {
-	return plural;
+		return plural;
     }
 }
 
@@ -3802,7 +3686,7 @@ function relevant(text, baseForms) {
 	
 	for(let bf = 0; bf < baseForms.length; bf++) {
 	    if(cleanText.indexOf(baseForms[bf]) >= 0) {
-		// Todo: maybe this should be improved, only allowing substring matches if a compound marker is present and only match full words otherwise?
+		// TODO: maybe this should be improved, only allowing substring matches if a compound marker is present and only match full words otherwise?
 		return 1;
 	    }
 	}
@@ -3974,6 +3858,7 @@ function derToHTML(parentElement, der1, der2, baseForms, showAll, moreThanOneLan
     }
 }
 
+/* --------- MAKE ARTICLE PARTS CLICKABLE --------- */
 function makeWordsClickable(text, allWords) {
     let res = document.createElement('span');
 
@@ -3981,21 +3866,19 @@ function makeWordsClickable(text, allWords) {
     let p = text.indexOf("<i>");
     let p2 = text.indexOf("</i>");
     if(p >= 0 && p2 > p) {
-	let head = text.substring(0, p);
-	let mid = text.substring(p + 3, p2);
-	let tail = text.substring(p2 + 4);
-	let headEl = makeWordsClickable(head, allWords);
-        let midEl = makeWordsClickable(mid, allWords);
-	let tailEl = makeWordsClickable(tail, allWords);
-	res = headEl;
-        midEl.style.fontStyle = 'italic';
-	res.appendChild(midEl);
-	res.appendChild(tailEl);
+		let head = text.substring(0, p);
+		let mid = text.substring(p + 3, p2);
+		let tail = text.substring(p2 + 4);
+		let headEl = makeWordsClickable(head, allWords);
+		let midEl = makeWordsClickable(mid, allWords);
+		let tailEl = makeWordsClickable(tail, allWords);
+		res = headEl;
+		midEl.style.fontStyle = 'italic';
+		res.appendChild(midEl);
+		res.appendChild(tailEl);
     } else if(text) {
 	const words = text.split(/\s/);
-	
 	let lastPos = 0;
-
 	let unclickable = "";
 	
 	for(let i = 0; i < words.length; i++)  {
@@ -4925,7 +4808,7 @@ function getGraminfo(js, w) {
 // getGramcom(js)
 // ----------------------------------------------------------------------
 // Grammar related comment (?)
-// Todo: This field can have HTML code such as <i> inside.
+// TODO: This field can have HTML code such as <i> inside.
 // ----------------------------------------------------------------------
 function getGramcom(js) {
     var res = {};
@@ -5921,7 +5804,7 @@ function touchStart(e, word) {
 // ----------------------------------------------------------------------
 // Settings
 // ----------------------------------------------------------------------
-// Todo: maybe this should be in settings.js?
+// TODO: maybe this should be in settings.js?
 // ----------------------------------------------------------------------
 var settings = {
     'multiple_languages':{'text':'Sök på flera språk samtidigt.', 'val':0},
@@ -5964,7 +5847,7 @@ var settings = {
 // savedWords
 // ----------------------------------------------------------------------------------
 // Search queries saved by the user using the "Save Word"
-// option. Todo: maybe this should be in saveWords.js
+// option. TODO: maybe this should be in saveWords.js
 // ----------------------------------------------------------------------------------
 var savedWords = [];
 
@@ -6194,32 +6077,15 @@ $(document).ready(function() {
 
 		schema: {
 		    entries: {
-			
-			// CG REMOVE
 			key: {keyPath: 'id', autoIncrement: true},
-
-			// CG ADD
-			//key: { keyPath: 'lang' },
-
 			indexes: {
 			    lang: {},
-
-				// CG REMOVE
 			    langid: {keyPath: ['lang', 'ID']},
-
-				// CG ADD
-				//lang_ID_VariantID: { keyPath: ['lang','ID','VariantID'], unique: true },
-
 			    search: {keyPath: 'index', multiEntry:true}
 			}
 		    },
 		    metadata: {
-				// CG REMOVE
 				key: {keyPath: 'id', autoIncrement: true},
-
-				// CG ADD
-				//key: { keyPath: 'lang' },
-
 				indexes: {
 					lang: {}
 				}
@@ -6248,190 +6114,4 @@ if (typeof exports !== 'undefined') {
     exports.settings = settings
     exports.flags = flags;
     exports.lexinService = lexinService;
-}
-
-/* --------- CG ADD POPUP FUNCTIONALITY BELOW --------- */
-
-let lastFocusedElement = null;
-
-function showPopup() {
-  // accessibility (tab focus)
-  lastFocusedElement = document.activeElement;
-
-  document.getElementById('popup').style.display = 'block';
-  document.body.classList.add("modal-open");
-
-  // accessibility (tab focus)
-  const firstFocusable = popup.querySelector(
-    'input:not([tabindex="-1"]), textarea, button, [tabindex]:not([tabindex="-1"])'
-  );
-  if (firstFocusable) {
-    firstFocusable.focus();
-  }
-}
-
-function closePopup() {
-  document.getElementById('popup').style.display = 'none';
-  document.body.classList.remove("modal-open");
-  document.querySelectorAll("#popup input[type='text']").forEach(el => el.value = "");
-  document.querySelectorAll("#popup textarea").forEach(el => el.value = "");
-  document.querySelectorAll("#popup input[type='radio']").forEach(el => el.checked = false);
-
-  // accessibility (tab focus)
-  if (lastFocusedElement) {
-    lastFocusedElement.focus();
-  }
-}
-
-let originalPopupHTML = "";
-document.addEventListener("DOMContentLoaded", () => {
-    originalPopupHTML = document.getElementById("popup").innerHTML;
-});
-
-function restorePopupContent() {
-    document.getElementById("popup").innerHTML = originalPopupHTML;
-}
-
-function isValidFeedback() {
-	// detect spam
-	const phoneNumber = document.getElementById("phoneNumber").value.trim();
-    if (phoneNumber !== "") {
-		console.log("spam detected")
-        return false;
-    }
-
-	let valid = true;
-
-	// check mandatory question
-	const buttons = document.querySelectorAll("input[name='feedback']");
-    const checked = document.querySelector("input[name='feedback']:checked");
-    const firstButton = buttons[0];
-    if (!checked) {
-        firstButton.setCustomValidity("Välj ett alternativ.");
-        firstButton.reportValidity();
-        valid = false;
-    }
-    else {
-		firstButton.setCustomValidity("");
-	}
-
-	// check comment length
-	const firstComment = document.querySelector("textarea[name='comment']");
-	if (firstComment.value.length > 500 ) {
-		firstComment.setCustomValidity("Texten är för lång. Du kan skriva max 500 tecken.");
-        firstComment.reportValidity();
-        valid = false;
-    }
-    else {
-		firstComment.setCustomValidity("");
-	}
-
-	// check mail address format
-	const firstAddress = document.querySelectorAll("input[name='mailaddress']")[0];
-	const re = /\S+@\S+\.\S+/;
-	if (firstAddress.value != "" && (!re.test(firstAddress.value) || firstAddress.value.length > 254)) {
-		firstAddress.setCustomValidity("Ange en giltig mejladress.");
-        firstAddress.reportValidity();
-        valid = false;
-    }
-    else {
-		firstAddress.setCustomValidity("");
-	}
-
-	if(!valid) {
-		return false;
-	}
-	return true;
-}
-
-function getLangChoice () {
-	let selectedLangsString = "";
-	const isMultilang = document.getElementById("multiple_languagesSet").checked;
-
-	// several languages chosen
-	if (isMultilang) {
-		let selectedLangs = $(".multilangcolumn input[name='multilangchoice']:checked").get();
-		selectedLangs.forEach(lang => {
-			let label = $(`label[for='${lang.id}']`).text();
-			if (!(lang === selectedLangs[0])) {
-				selectedLangsString = selectedLangsString + ",";
-			}
-			selectedLangsString = selectedLangsString + " " + label;
-		});
-		selectedLangsString = selectedLangsString.trim();
-	}
-	// single language chosen
-	else {
-		const selectedLang = document.getElementById("languageChoice");
-		selectedLangsString = selectedLang.options[selectedLang.selectedIndex].text;
-	}
-	
-	// no language chosen
-	if(selectedLangsString == "") {
-		selectedLangsString = "svenska";
-	}
-	
-	return selectedLangsString;
-}
-
-async function sendFeedback() {
-	if (!isValidFeedback()) {
-    	return;
-	}
-
-	// current search word(s)
-	let query = $("#searchQuery").val();
-
-	// current language(s)
-	let selectedLangsString = getLangChoice();
-
-	// current user browser 
-	let browser = window.navigator.userAgent;
-
-	// current user device
-	const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(browser);
-	let device = "dator";
-	if(isMobile) {
-		device = "mobil";
-	}
-
-	// prepare data
-	const feedbackHelpful = document.querySelector("input[name='feedback']:checked")?.value || null;
-	const feedbackComment = document.getElementById("comment").value.trim();
-	const feedbackEmail = document.getElementById("mailaddress").value.trim();
-	const phoneNumber = document.getElementById("phoneNumber").value.trim();	// spam
-	const payload = {
-		is_helpful: feedbackHelpful,
-		comment: feedbackComment,
-		email_address: feedbackEmail,
-		languages: selectedLangsString,
-		query: query,
-		device: device,
-		browser: browser,
-		phone_number: phoneNumber												// spam
-	};
-
-	// post to api
-	try {
-		const response = await fetch("https://atlas.isof.se/flask_admin/api/feedback", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify(payload)
-    	});
-		if (!response.ok) {
-			console.error("Ett fel uppstod med responsen:", response.status);
-			return;
-		}
-	} catch(error) {
-		console.log("Ett fel uppstod med fetchen:", error);
-	}
-
-	// close window & reset form
-	document.getElementById("popup").innerHTML = "<div class='popupTitle' style='text-align: center;'>Tack för din återkoppling!</div>";
-	setTimeout(() => {
-        closePopup();
-        restorePopupContent();
-    }, 2000);
 }
