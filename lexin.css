@@ -334,7 +334,6 @@ select {
 
 .imageLink {
     /*font-variant: small-caps;*/
-    cursor: pointer;
 }
 
 .compounds {
@@ -569,6 +568,7 @@ a:any-link {
     margin-right: .2em;
     border: 1px solid black;
     vertical-align: bottom;
+    cursor: pointer;
 }    
 
 .vidIcon {
@@ -632,6 +632,11 @@ div[dir=rtl] {
 
 .graminfoExplanationText {
     margin-left: 0.5em;
+    cursor: pointer;
+}
+
+.graminfoExplanationText:hover {
+    text-decoration: underline;
 }
 
 .expandGraminfoIcon.expanded {

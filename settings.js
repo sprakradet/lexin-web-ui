@@ -12,7 +12,6 @@ function openCloseSettings(elem) {
 		// accessibility
 		$(elem).attr("aria-label", "Visa inställningar");
       	$(elem).attr("aria-expanded", "false");
-
     } else {
 		$("#settingsPopup").show();
 		$(elem).addClass("change");

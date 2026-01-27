@@ -1965,27 +1965,34 @@ function restoreListeners(org, copy) {
     }
 }
 
-
 // replace w1/w2/w3 ... with three sentences
 // replace & with our main word
 // replace ngn and ngt with någon and något
 // replace a, b, X, Y, with något, någon
 function addExpandGramInfo(constructionsList, word, lsl4) {
+	// preview construction text
     let txt = "<" + constructionsList.map(text => text.map(e => e.stringValue()).join("")).join(", ") + ">";
     let elem = document.createElement('div');
     let textElem = document.createElement('span');
     textElem.className = "graminfoExplanationText";
     textElem.textContent = txt;
 
+	// full construction text
     let explanations = document.createElement('div');
     explanations.style.display = 'none';
     explanations.className = "graminfoExplanation";
 
+	// clicking full construction text doesn't do anything
+	explanations.onclick = function (event) {
+		event.stopPropagation();
+	};
+
+	// open/close icon
     let exp = document.createElement('img');
     exp.src = "/disclosure.svg";
     exp.className = "expandGraminfoIcon";
 
-	// accessibility
+	// accessibility open/close icon
     makeKeyboardClickable(exp);
 	exp.alt = "Visa alla konstruktioner";
 
@@ -1993,14 +2000,21 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
     elem.appendChild(textElem);
     elem.appendChild(explanations);
     
+	// on open/close icon click
     elem.onclick = function () {
-	if(explanations.style.display == 'none') {
-            $(exp).addClass("expanded");
-	    explanations.style.display = 'block';
-	} else {
-            $(exp).removeClass("expanded");
-	    explanations.style.display = 'none';
-	}
+		if(explanations.style.display == 'none') {
+			$(exp).addClass("expanded");
+			explanations.style.display = 'block';
+
+			// accessibility open/close icon
+			exp.alt = "Stäng alla konstruktioner";
+		} else {
+			$(exp).removeClass("expanded");
+			explanations.style.display = 'none';
+
+			// accessibility open/close icon
+			exp.alt = "Visa alla konstruktioner";
+		}
     }
 
     let ul = document.createElement('ul');
@@ -2009,21 +2023,21 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
     for (const constructions of constructionsList) {
         let vec = expandSlashes(constructions);
         for(const expandedConstruction of vec) {
-	    let tmp = handleSmallCaps(expandedConstruction);
-	    let tmpstr = tmp.textContent.replace(/^\s*/, "").replace(/\s*$/, ""); // TODO: maybe we should strip leading and trailing space in the handleSmallCaps() instead?
-	    if(!alreadySeen.hasOwnProperty(tmpstr)) {
-		alreadySeen[tmpstr] = 1;
-		
-		let li = document.createElement('li');
-		li.appendChild(tmp);
-		ul.appendChild(li);
-	    }
+			let tmp = handleSmallCaps(expandedConstruction);
+			let tmpstr = tmp.textContent.replace(/^\s*/, "").replace(/\s*$/, ""); // TODO: maybe we should strip leading and trailing space in the handleSmallCaps() instead?
+			if(!alreadySeen.hasOwnProperty(tmpstr)) {
+				alreadySeen[tmpstr] = 1;
+				
+				let li = document.createElement('li');
+				li.appendChild(tmp);
+				ul.appendChild(li);
+			}
         }
     }
     if (lsl4) {
-	explanations.textContent = "ngn = en person, ngt = en sak";
+		explanations.textContent = "ngn = en person, ngt = en sak";
     } else {
-	explanations.textContent = "A/B = en person, x/y = en sak";
+		explanations.textContent = "A/B = en person, x/y = en sak";
     }
     explanations.appendChild(ul);
     
@@ -2764,6 +2778,7 @@ function getLinkElemToSearch(word) { // any language
 // ----------------------------------------------------------------------
 const langWithIllustration = {"sv":"swe", "fi":"fin", "sq":"sqi", "am":"amh", "ar":"ara", "bs":"bos", "el":"ell", "ku":"kmr", "fa":"far", "ru":"rus", "so":"som", "es":"spa", "ckb":"sdh", "ti":"tir", "tr":"tur"};
 
+/* --------- DISPLAY DETAIL/OVERVIEW PICTURES --------- */
 function illustrationToHTML(parentElement, ill, lang, langList, show) {
 
     //HB 251215
@@ -2781,23 +2796,29 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 		return;
     }
 
+	// article category container
     var wrap = document.createElement('div');
     wrap.className = 'ill';
+
+	// article category text
     var tmp = document.createElement('span');
     tmp.textContent = "Bild:";
     tmp.lang = BaseLanguageSwe;
     tmp.dir = "ltr";
     tmp.className = 'imageLink';
-
-	// accessibility
-    makeKeyboardClickable(tmp);
-
     wrap.appendChild(tmp);
+
+	// picture icon
     let pictures = document.createElement('div');
     let picicon = getPictureIcon();
+	const iconImg = picicon.querySelector("img"); 
+	iconImg.alt = "Visa bild i Lexin";
     tmp.appendChild(picicon);
 
-	tmp.onclick = () => {
+	// accessibility
+    makeKeyboardClickable(picicon);
+
+	picicon.onclick = () => {
 		if($(pictures).find(".inlineImage").length == 0) {
 			let li = $(parentElement).closest(".entryContent").closest("li");
 			let word = li.find(".matchingWord").text().trim();
@@ -2828,10 +2849,14 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 				// console.log("CG " + word + " översiktsbild: " + ill[i]);
 			}
 		}
+
+		const iconImg = picicon.querySelector("img"); 
 		if(!pictures.style.display || pictures.style.display == 'none') {
 			pictures.style.display = 'block';
+			iconImg.alt = "Stäng bild";
 		} else {
 			pictures.style.display = 'none';
+			iconImg.alt = "Visa bild i Lexin";
 		}
 		return false;
     };
@@ -2840,6 +2865,7 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     outerWrap.appendChild(wrap);
 }
 
+/* --------- DISPLAY PICTURE ICON --------- */
 function getPictureIcon() {
     let im = document.createElement('div');
     im.className = 'picWrap';
@@ -2849,10 +2875,8 @@ function getPictureIcon() {
     icon.className = 'picIcon';
     icon.title = "Visa bilder";
     im.appendChild(icon);
-
     return im;
 }
-
 
 // ----------------------------------------------------------------------
 // function addBildtemaInline(url, parent)
@@ -3049,45 +3073,55 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 			refWrap.appendChild(tElem);
 
 		    } else if(ref.type == "animation") {
-			let wrap =  document.createElement('div');
-			let hElem = document.createElement('span');
-			hElem.className = 'referenceHead';
-			hElem.textContent = "Video:";
-			hElem.lang = BaseLanguageSwe;
-			hElem.dir = "ltr";
-			
-			/*let tElem = document.createElement('a');
-			tElem.className = 'referenceInfo';
-			tElem.href = ref.val;
-			tElem.textContent = "Visa film";
-			tElem.lang = BaseLanguageSwe;
-			tElem.dir = "ltr";*/
-			
-			wrap.appendChild(hElem);
-			/*wrap.appendChild(tElem);*/
+				let wrap =  document.createElement('div');
+				let hElem = document.createElement('span');
 
-			// Inlinde the videos when clicked
-			let imElem = document.createElement('div');
-			imElem.className = 'picWrap';
-			
-			imElem.title = "Titta på videoklippet";
-			imElem.onclick = function() { loadAndShowHideVideo(this, ref.val); return false;};
-			
-			let im = document.createElement('img');
-			im.src = "video.svg";
-			im.className = 'vidIcon';
+				// article category 
+				hElem.className = 'referenceHead';
+				hElem.textContent = "Video:";
+				hElem.lang = BaseLanguageSwe;
+				hElem.dir = "ltr";
+				
+				/*let tElem = document.createElement('a');
+				tElem.className = 'referenceInfo';
+				tElem.href = ref.val;
+				tElem.textContent = "Visa film";
+				tElem.lang = BaseLanguageSwe;
+				tElem.dir = "ltr";*/
+				
+				wrap.appendChild(hElem);
+				/*wrap.appendChild(tElem);*/
 
-			// accessibility
-    		makeKeyboardClickable(im);
+				// inline the video when clicked
+				let imElem = document.createElement('div');
+				imElem.className = 'picWrap';
+				imElem.title = "Visa videon i Lexin";
+				imElem.onclick = function () {
+					const wasOpen = this.parentElement.querySelector(".vidContainer") &&
+									this.parentElement.querySelector(".vidContainer").style.display !== "none";
 
-			im.alt = "Visa videon i Lexin";
-			imElem.appendChild(im);
-			
-			imElem.lang = BaseLanguageSwe;
-			imElem.dir = "ltr";
+					loadAndShowHideVideo(this, ref.val);
 
-			wrap.appendChild(imElem);
-			refWrap.appendChild(wrap);
+					// accessibility
+					im.alt = wasOpen ? "Visa videon i Lexin" : "Stäng videon";
+
+					return false;
+				};
+				
+				// video icon
+				let im = document.createElement('img');
+				im.src = "video.svg";
+				im.className = 'vidIcon';
+
+				// accessibility video icon
+				makeKeyboardClickable(im);
+				im.alt = "Visa videon i Lexin";
+
+				imElem.appendChild(im);
+				imElem.lang = BaseLanguageSwe;
+				imElem.dir = "ltr";
+				wrap.appendChild(imElem);
+				refWrap.appendChild(wrap);
 		    }
 		}
 	    }
