@@ -171,36 +171,6 @@
 
       		</div>
 
-			<!-- SAVED WORDS VIEW -->
-			<div id="saveWordPopup" class="saveWordPopup">
-				<h2>Sparade ord</h2>
-				<button class="saveWordsButton" id="savedWordsSaveCurrentWrd" title="Spara senaste uppslagning" onclick="savedWordsSaveCurrentWord(this, 'saveMessage1')" type="button">
-					Spara senaste
-				</button>
-				<span id="saveMessage1" class="saveMessage">
-					Sparat!
-				</span> 
-				<div id="savedWordsList"></div>
-				<button class="saveWordsButton" id="savedWordsSort" title="Sortera sparade ord" onclick="savedWordsSortWords(this)" type="button">
-					Sortera orden
-				</button>
-				<button class="saveWordsButton" id="savedWordsClear" title="Rensa sparade ord" onclick="savedWordsClearWords(this)" type="button">
-					Rensa listan
-				</button>
-			</div>
-
-			<!-- LEXICON D0WNLOAD VIEW -->
-			<div id="downloadPopup" class="downloadPopup">
-				<h2>Ladda ner lexikon</h2>
-				<div class="downloadControls">
-					<select id="selectDownloadLanguages" aria-label="Välj språk"></select>
-					<button class="downloadStartButton" type="button">
-						Ladda ner
-					</button>
-				</div>
-				<div id="downloadProgress"></div>
-			</div>
-
 			<!-- CHECKBOX VIEW -->
 			<div id="settingsPopup" class="settingsPopup">
 				<div class="settingsMainItem">
@@ -261,15 +231,34 @@
 				</div>
 			</div>
 
+			<!-- SAVED WORDS VIEW -->
+			<div id="saveWordPopup" class="saveWordPopup">
+				<h2>Sparade ord</h2>
+				<button class="saveWordsButton" id="savedWordsSaveCurrentWrd" title="Spara senaste uppslagning" onclick="savedWordsSaveCurrentWord(this, 'saveMessage1')" type="button">
+					Spara senaste
+				</button>
+				<span id="saveMessage1" class="saveMessage">
+					Sparat!
+				</span> 
+				<div id="savedWordsList"></div>
+				<button class="saveWordsButton" id="savedWordsSort" title="Sortera sparade ord" onclick="savedWordsSortWords(this)" type="button">
+					Sortera orden
+				</button>
+				<button class="saveWordsButton" id="savedWordsClear" title="Rensa sparade ord" onclick="savedWordsClearWords(this)" type="button">
+					Rensa listan
+				</button>
+			</div>
+
 			<!-- LEXICON PARTS VIEW -->
-			<div id="partsselection">
+			<div role="list" id="partsselection">
 				<h2>Välj delar av lexikontexten att visa</h2>
 				<p>Visa följande delar av lexikontexten:</p>
-				<div class="partsselectionBox">
+
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="derivationsSet" name="derivationsSet" value="settings_derivations">
 					<label class="partsselectionLabel" for="derivationsSet">Avledningar</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="illustrationsSet" name="illustrationsSet" value="settings_illustrations">
 					<label class="partsselectionLabel" for="illustrationsSet">Bilder</label>
 				</div>
@@ -283,75 +272,87 @@
 				-->
 
 				<!-- CG ADD - FIX "DISABLE BILDTEMA" BUG -->
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="btlinkSet" name="btlinkSet" value="settings_btlink">
 					<label class="partsselectionLabel" for="btlinkSet">Bildtema</label>
 				</div>
 
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="inflectionsSet" name="inflectionsSet" value="settings_inflections">
 					<label class="partsselectionLabel" for="inflectionsSet">Böjning</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="definitionSet" name="definitionSet" value="settings_definition">
 					<label class="partsselectionLabel" for="definitionSet">Definition</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="examplesSet" name="examplesSet" value="settings_examples">
 					<label class="partsselectionLabel" for="examplesSet">Exempel</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="abbrSet" name="abbrSet" value="settings_abbr">
 					<label class="partsselectionLabel" for="abbrSet">Förkortningar</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="constructionsSet" name="constructionsSet" value="settings_constructions">
 					<label class="partsselectionLabel" for="constructionsSet">Konstruktioner</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="antonymsSet" name="antonymsSet" value="settings_antonyms">
 					<label class="partsselectionLabel" for="antonymsSet">Motsatser</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="posSet" name="posSet" value="settings_pos">
 					<label class="partsselectionLabel" for="posSet">Ordklass</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="compoundsSet" name="compoundsSet" value="settings_compounds">
 					<label class="partsselectionLabel" for="compoundsSet">Sammansättningar</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="comments_seSet" name="comments_seSet" value="settings_comments_se">
 					<label class="partsselectionLabel" for="comments_seSet">Svenska kommentarer</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="synonymsSet" name="synonymsSet" value="settings_synonyms">
 					<label class="partsselectionLabel" for="synonymsSet">Synonymer till översättningar</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="wordSet" name="wordSet" value="settings_word">
 					<label class="partsselectionLabel" for="wordSet">Uppslagsord</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="pronSet" name="pronSet" value="settings_pron">
 					<label class="partsselectionLabel" for="pronSet">Uttal</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="expressionsSet" name="expressionsSet" value="settings_expressions">
 					<label class="partsselectionLabel" for="expressionsSet">Uttryck</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="altSet" name="altSet" value="settings_alt">
 					<label class="partsselectionLabel" for="altSet">Variantform</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="translationSet" name="translationSet" value="settings_translation">
 					<label class="partsselectionLabel" for="translationSet">Översättning</label>
 				</div>
-				<div class="partsselectionBox">
+				<div role="listitem" class="partsselectionBox">
 					<input type="checkbox" class="partsselectionCheckbox" id="comments_otherSet" name="comments_otherSet" value="settings_comments_other">
 					<label class="partsselectionLabel" for="comments_otherSet">Översättningskommentarer</label>
 				</div>
+			</div>
+
+			<!-- LEXICON D0WNLOAD VIEW -->
+			<div id="downloadPopup" class="downloadPopup">
+				<h2>Ladda ner lexikon</h2>
+				<div class="downloadControls">
+					<select id="selectDownloadLanguages" aria-label="Välj språk"></select>
+					<button class="downloadStartButton" type="button">
+						Ladda ner
+					</button>
+				</div>
+				<div id="downloadProgress"></div>
 			</div>
 
 			<div id="multilangchoice"></div>
@@ -386,66 +387,65 @@
 			Just nu har vi tekniska problem. Vi jobbar på att lösa dessa så fort som möjligt.
 		</div>-->
 
-		<!-- CG ADD FEEDBACK POPUP -->
-		<div id="popup" class="popup">
-			<form id="theForm3">
-				
-				<!-- DEFAULT -->
-				<div class="popupTitle">Hittade du vad du sökte?</div>
-				<label><input type="radio" name="feedback" value="ja">Ja</label>
-				<label style="margin-left:10px;"><input type="radio" name="feedback" value="nej">Nej</label>
-				<br>
-				<label for="comment">
-					<div class="popupTitle">Kommentar (valfritt):</div>
-					<textarea id="comment" name="comment" placeholder="skriv din kommentar här" class="popupTextarea"></textarea>
-				</label>
-				<br>
-				<label for="mailaddress">
-					<div class="popupTitle">Mejladress (valfritt):</div>
-					<input type="text" id="mailaddress" name="mailaddress" placeholder="skriv din mejladress här" class="popupText">
-				</label>
-
-				<!-- HP -->
-				<div class="phoneNumber">
-					<label for="phoneNumber">Telefonnummer:</label>
-					<input type="text" id="phoneNumber" name="phoneNumber" autocomplete="off" tabindex="-1">
-    			</div>
-
-			</form>
-			
-			<div class="popupButtons">
-				<button class="sendButton" type="button" onclick="sendFeedback()">Skicka in</button>
-				<button class="closeButton" type="button" onclick="closePopup()">Stäng</button>
-			</div>
-
-			<div class="gdprContent">
-				<a href="https://www.isof.se/om-oss/om-webbplatsen/hantering-av-personuppgifter" target="_blank" rel="noopener noreferrer" class="gdprText">
-					Läs om hur vi hanterar dina personuppgifter (öppnas i ny flik)
-				</a>
-			</div>
-		</div>
-
     </form>
 
+	<!-- SEARCH RESULTS -->
     <div class="content">
 		<main>
 			<div class="resultsAndLemmasContainer">
 				<div id="lemmaListWrapper" class="lemmaListWrapper">
-					<button onclick="let d = getElementById('lemmaListWrapper'); d.style.display = 'none'; return false;">Stäng Lemmalista</button>
+					<!-- <button onclick="let d = getElementById('lemmaListWrapper'); d.style.display = 'none'; return false;">Stäng Lemmalista</button>-->
 					<div id="lemmaList" class="lemmaList"></div>
 				</div>
 				<div id="resultsDiv" aria-live="polite"></div>
 			</div>
 		</main>
-
     </div>
-
     <div class="LexinExplanationsWrapper" id="LexinExplanationsWrapper"></div>
 
 	<!-- CG ADD FEEDBACK BUTTON -->
 	<button type="button" class="popupButton" onclick="showPopup()" aria-label="Lämna återkoppling">
 		<img src="/feedback-icon.svg" class="popupIcon" alt="">
 	</button>
+
+	<!-- CG ADD FEEDBACK POPUP -->
+	<div id="popup" class="popup">
+		<form id="theForm3">
+			
+			<!-- DEFAULT FIELDS -->
+			<div class="popupTitle">Hittade du vad du sökte?</div>
+			<label><input type="radio" name="feedback" value="ja">Ja</label>
+			<label style="margin-left:10px;"><input type="radio" name="feedback" value="nej">Nej</label>
+			<br>
+			<label for="comment">
+				<div class="popupTitle">Kommentar (valfritt):</div>
+				<textarea id="comment" name="comment" placeholder="skriv din kommentar här" class="popupTextarea"></textarea>
+			</label>
+			<br>
+			<label for="mailaddress">
+				<div class="popupTitle">Mejladress (valfritt):</div>
+				<input type="text" id="mailaddress" name="mailaddress" placeholder="skriv din mejladress här" class="popupText">
+			</label>
+
+			<!-- HP FIELD -->
+			<div class="phoneNumber" aria-hidden="true">
+				<label for="phoneNumber">Telefonnummer:</label>
+				<input type="text" id="phoneNumber" name="phoneNumber" autocomplete="off" tabindex="-1">
+			</div>
+
+		</form>
+		
+		<div class="popupButtons">
+			<button class="sendButton" type="button" onclick="sendFeedback()">Skicka in</button>
+			<button class="closeButton" type="button" onclick="closePopup()">Stäng</button>
+		</div>
+
+		<div class="gdprContent">
+			<a href="https://www.isof.se/om-oss/om-webbplatsen/hantering-av-personuppgifter" target="_blank" rel="noopener noreferrer" class="gdprText">
+				Läs om hur vi hanterar dina personuppgifter (öppnas i ny flik)
+			</a>
+		</div>
+	</div>
 
     <footer>
 

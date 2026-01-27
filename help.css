@@ -153,6 +153,12 @@
     margin-left: 5em;
 }
 
+/* --------- TABLES --------- */
+
+th {
+  text-align: left;
+}
+
 /* --------- CLOSE POPUP ICON --------- */
 
 .closeHelp {

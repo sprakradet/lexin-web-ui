@@ -2873,7 +2873,7 @@ function getPictureIcon() {
     //HB icon.src = '/images.svg';
     icon.src = 'images.svg';
     icon.className = 'picIcon';
-    icon.title = "Visa bilder";
+    icon.title = "Visa bild i Lexin";
     im.appendChild(icon);
     return im;
 }
@@ -5707,7 +5707,7 @@ function initialShowHide() {
 	$(".phonetic").each(function () {
 		makeKeyboardClickable(this);
 	});
-
+	
 	// övrigt
     $(".referenceHead").addClass("clickableHeading");
 	$(".referenceHead").each(function () {
