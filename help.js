@@ -2,7 +2,7 @@
 // Shows the Help text.
 // --------------------------------------------------------------------
 
-
+/* --------- HELP PAGE: EXEMPEL --------- */
 function openHelpExamples(inner) {
     inner.innerHTML = `
 	<h3>Språkexempel</h3>
@@ -17,6 +17,7 @@ function openHelpExamples(inner) {
         `;
 }
 
+/* --------- HELP PAGE: IDIOM --------- */
 function openHelpIdioms(inner) {
     inner.innerHTML = `
 	<h3>Språkexempel, Idiom ("Uttryck")</h3>
@@ -38,15 +39,16 @@ function openHelpIdioms(inner) {
 	  hittar förklaringen i en ordbok. Hittar man idiomet <em>lovar
 	  guld och gröna skogar</em> i
 	  artikeln <em>lovar</em>, <em>guld</em>, <em>grön</em>
-	  eller <em>skog</em>? I Lexin hittar informationen i alla fyra artiklarna. Det
-	  bör spara en del tid och energi.
+	  eller <em>skog</em>? I Lexin hittar informationen i alla fyra artiklarna. 
+	  Det bör spara en del tid och energi.
 	</p>
         `;
 }
 
+/* --------- HELP PAGE: SAMMANSÄTTNINGAR --------- */
 function openHelpComps(inner) {
     inner.innerHTML = `
-	<h3>Språkexempel, Sammansättningar</h3>
+	<h3>Språkexempel, Sammansättning</h3>
 
 	<p>
 	  Språkexempel visar hur uppslagsordet kan
@@ -57,68 +59,110 @@ function openHelpComps(inner) {
 	</p>
         <h4>Sammansättningar</h4>
         <p>
-          När man gör en sammansättning av två eller flera ord på svenska ändras ofta något litet.
-          T.ex. "skog" + "dunge" blir "skog<strong>s</strong>dunge". Mycket ofta
-          lägger man till ett <em>s</em> som i det här fallet. Andra exempel är <em>berg<strong>s</strong></em>-<em>trakt</em>, <em>dag<strong>s</strong></em>-<em>resa</em>).
+          När man gör en sammansättning av två eller flera ord på svenska 
+		  ändras ofta något litet. T.ex. "skog" + "dunge" blir
+		  "skog<strong>s</strong>dunge". Mycket ofta
+          lägger man till ett <em>s</em> som i det här fallet. Andra exempel är
+		  <em>berg<strong>s</strong></em>-<em>trakt</em>, 
+		  <em>dag<strong>s</strong></em>-<em>resa</em>).
         </p><p>
-          Om det första ordet är ett substantiv och slutar på <em>a</em> eller <em>e</em> är det vanligt att den vokalen försvinner: 
-          "flicka" + "grupp" blir <em>flick</em>-<em>grupp</em>, "skola" + "klass" blir <em>skol</em>-<em>klass</em>.
+          Om det första ordet är ett substantiv och slutar på <em>a</em> eller 
+		  <em>e</em> är det vanligt att den vokalen försvinner: 
+          "flicka" + "grupp" blir <em>flick</em>-<em>grupp</em>, 
+		  "skola" + "klass" blir <em>skol</em>-<em>klass</em>.
        </p>
        `;
 }
 
+/* --------- HELP PAGE: ANVNÄNDNING --------- */
 function openHelpUse(inner) {
     inner.innerHTML = `
-       <p>Användningskommentarer ger information om hur ett ord används eller begränsningar av sammanhang ordet kan användas i.</p>
+		<h3>Användning</h3>
+
+       <p>Användningskommentarer ger information om hur ett ord används eller 
+	   begränsningar av sammanhang ordet kan användas i.</p>
        `;
 }
 
+/* --------- HELP PAGE: AVLEDNINGAR --------- */
 function openHelpDer(inner) {
     inner.innerHTML = `
-       <p>Avledningar är ord gjorda av ett annat ord genom att lägga till en förstavelse eller en ändelse, till exempel "allergi" och "allergiker" (en person som har en allergi), eller "jogga" och "joggning" (när man joggar).</p>
+		<h3>Avledning</h3>
+
+       <p>Avledningar är ord gjorda av ett annat ord genom att lägga till en 
+	   förstavelse eller en ändelse, till exempel "allergi" och "allergiker" 
+	   (en person som har en allergi), eller "jogga" och "joggning" (när man 
+	   joggar).</p>
        `;
 }
 
+/* --------- HELP PAGE: FÖRTKORTNINGAR --------- */
 function openHelpAbbr(inner) {
     inner.innerHTML = `
-       <p>"Förkortning" visar det vedertagna sättet att förkorta ordet, t.ex. "dr" i stället för "doktor", "kg" i stället för "kilogram", eller "SVT" i stället för "Sveriges Television".</p>
+		<h3>Förkortning</h3>
+
+       <p>"Förkortning" visar det vedertagna sättet att förkorta ordet, t.ex. 
+	   "dr" i stället för "doktor", "kg" i stället för "kilogram", eller "SVT" 
+	   i stället för "Sveriges Television".</p>
        `;
 }
 
+/* --------- HELP PAGE: UPPSLAGSORD --------- */
 function openHelpVar(inner) {
     inner.innerHTML = `
+	<h3>Uppslagsord</h3>
+
 	<p> Ett uppslagsord kan följas av en alternativform. 
 	  Ofta är det en annan form som har samma uttal men annan
 	  stavning, t.ex. <em>sjal</em> och <em>schal</em>
 	  eller <em>i dag</em> och <em>idag</em>. Det kan också vara
 	  en talspråksvariant, t.ex. <em>sedan</em>
 	  och <em>sen</em>. Den första formen är huvudformen och
-	  den form som rekommenderas. Uttal och böjningsformer gäller
+	  den form som rekommenderas. Uttal och böjningsformer gäller 
 	  uppslagsordet, inte alternativformen.
        </p>
        `;
 }
 
+/* --------- HELP PAGE: AVSTAVNNG --------- */
 function openHelpHyp(inner) {
     inner.innerHTML = `
-       <p> Vissa ord ändras när de avstavas. Sammansatta ord med tre likadana konsonanter i rad skrivs som två, men när ordet avstavas skrivs alla tre ut igen, t.ex. "äggula" som avstavas "ägg-gula" eller "Halland" som avstavas "Hall-land".</p>
+		<h3>Avstavning</h3>
+
+       <p> Vissa ord ändras när de avstavas. Sammansatta ord med tre likadana 
+	   konsonanter i rad skrivs som två, men när ordet avstavas skrivs alla tre 
+	   ut igen, t.ex. "äggula" som avstavas "ägg-gula" eller "Halland" som 
+	   avstavas "Hall-land".</p>
        `;
 }
 
+/* --------- HELP PAGE: SE --------- */
 function openHelpSee(inner) {
     inner.innerHTML = `
-       <p>"Se"-referenser hänvisar till ordet som en förkortning står för (t.ex. "AD, Se: Arbetsdomstolen") eller normalformen för en talspråklig variant (t.ex. "sen, Se: sedan").</p>
+		<h3>"Se"-referens</h3>
+
+       <p>"Se"-referenser hänvisar till ordet som en förkortning står för 
+	   (t.ex. "AD, Se: Arbetsdomstolen") eller normalformen för en talspråklig
+	   variant (t.ex. "sen, Se: sedan").</p>
        `;
 }
 
+/* --------- HELP PAGE: JÄMFÖR --------- */
 function openHelpCompare(inner) {
     inner.innerHTML = `
-       <p>"Jämför"-referenser visar liknande ord, t.ex. "förstaspråk" och "andraspråk" och för partikelverb som både kan skrivas ihop och isär med liknande betydelse, t.ex. "hålla av" och "avhållen".</p >
+		<h3>Jämförelse</h3>
+
+       <p>"Jämför"-referenser visar liknande ord, t.ex. "förstaspråk" och 
+	   "andraspråk" och för partikelverb som både kan skrivas ihop och isär 
+	   med liknande betydelse, t.ex. "hålla av" och "avhållen".</p >
        `;
 }
 
+/* --------- HELP PAGE: MOTSATS --------- */
 function openHelpAnt(inner) {
     inner.innerHTML = `
+		<h3>Motsats</h3>
+
        <p>
        Ibland förklaras ord med ett motsatsord (en <em>antonym</em>).
        </p>
@@ -132,9 +176,11 @@ function openHelpAnt(inner) {
        `;
 }
 
+/* --------- HELP PAGE: GRAMMATISKA KONSTRUKTIONER --------- */
 function openHelpConstr(inner) {
     inner.innerHTML = `
 	<h3>Grammatiska konstruktioner</h3>
+
 	<p>
 	  Alla verb i ordboken - utom de som bara förekommer i
 	  idiom - har mönster som visar hur verbet används.
@@ -185,8 +231,10 @@ function openHelpConstr(inner) {
        `;
 }
 
+/* --------- HELP PAGE: SAKUPPLYSNING --------- */
 function openHelpSakuppl(inner) {
     inner.innerHTML = `<h3>Sakupplysning ("Förklaring")</h3>
+
 	<p>
 	  En sakupplysning är en längre förklaring. Lexin innehåller
 	  sakupplysningar till många "samhällsord".
@@ -205,13 +253,15 @@ function openHelpSakuppl(inner) {
 	</p>`;
 }
 
+/* --------- HELP PAGE: ORDKLASS --------- */
 function openHelpPoS(inner, pos) {
     inner.innerHTML = `<h3>Ordklass</h3>
+
 	<p>
           Ord tillhör en ordklass, t.ex. substantiv eller verb.
           Ordklasser som förekommer i Lexin är: substantiv, adjektiv,
-          verb, adverb, preposition, pronomen, konjunktion, interjektion, räkneord,
-          namn, artikel, infinitivmärke och förkortning.
+          verb, adverb, preposition, pronomen, konjunktion, interjektion,
+		  räkneord, namn, artikel, infinitivmärke och förkortning.
           Det finns också två
           klasser <em>förled</em> och <em>efterled</em> som inte är
           riktiga ordklasser men som används när uppslagsordet är förled
@@ -220,9 +270,11 @@ function openHelpPoS(inner, pos) {
 	</p>`;
 }
 
+/* --------- HELP PAGE: UTTAL --------- */
 function openHelpPhon(inner, phon) {
     let html = `
 	<h3>Uttal</h3>
+
 	<p> Uttal visas med både <em>fonetisk skrift</em>,
 	  t.ex. <strong>` + phon + `</strong>, och med en ljudfil du kan
 	  lyssna på.</p>
@@ -261,17 +313,20 @@ function openHelpPhon(inner, phon) {
     inner.innerHTML = html;
 }
 
-
+/* --------- HELP PAGE: VIDEO --------- */
 function openHelpVideo(inner) {
     inner.innerHTML = `
        <h3>Video</h3>
-       <p>Klicka på "Visa film" för att se ett videoklipp som visar vad ordet betyder.</p>
-       <p>Klicka på ikonen <img src="/video.svg" class="vidIcon"/> för att ladda videon och visa den i Lexin.</p>
+
+       <p>Klicka på "Visa film" för att se ett videoklipp som visar vad ordet
+	   betyder.</p>
+       <p>Klicka på ikonen <img src="/video.svg" class="vidIcon"/> för att ladda
+	   videon och visa den i Lexin.</p>
        `;
 }
 
 /* --------- FIX LINK BUG (LINK SHOULD NOT JUMP TO TOP OF PAGE) --------- */
-document.addEventListener('click', (e) => {
+/*document.addEventListener('click', (e) => {
 	// find in-page link
 	const link = e.target.closest('a[href^="#"]');
 	if (!link) return;
@@ -300,4 +355,38 @@ document.addEventListener('click', (e) => {
 
 	// update url
 	history.pushState(null, '', `#${encodeURIComponent(id)}`);
-});
+});/
+
+/*const container = document.querySelector('#LexinExplanations.LexinExplanations');
+
+if (container) {
+  container.addEventListener('click', (e) => {
+    // find in-page link inside this container
+    const link = e.target.closest('a[href^="#"]');
+    if (!link || !container.contains(link)) return;
+
+    // ignore dummy links
+    const href = link.getAttribute('href');
+    if (!href || href === '#' || href === '#!') return;
+
+    // get element
+    const id = decodeURIComponent(href.slice(1));
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    // stop default anchor behavior
+    e.preventDefault();
+
+    // scroll to correct part of page
+    target.scrollIntoView({ block: 'start' });
+
+    // accessibility: set focus
+    if (!target.hasAttribute('tabindex')) {
+      target.setAttribute('tabindex', '-1');
+    }
+    target.focus({ preventScroll: true });
+
+    // update url
+    history.pushState(null, '', `#${encodeURIComponent(id)}`);
+  });
+}*/

@@ -2241,9 +2241,9 @@ function addExpandResultElement() {
 	makeKeyboardClickable(exp);
 
     exp.onclick = function() {
-	let p = $(this).closest('li');
-	let des = p.find('.notRelevant');
-	des.toggle();
+		let p = $(this).closest('li');
+		let des = p.find('.notRelevant');
+		des.toggle();
     }
 
     return exp;
@@ -2782,10 +2782,10 @@ const langWithIllustration = {"sv":"swe", "fi":"fin", "sq":"sqi", "am":"amh", "a
 function illustrationToHTML(parentElement, ill, lang, langList, show) {
 
     //HB 251215
-    console.log("HB ill: "+ill);
-    console.log("HB lang: "+lang);
-    console.log("HB langList: "+langList);
-    console.log("HB show: "+show);
+    //console.log("HB ill: "+ill);
+    //console.log("HB lang: "+lang);
+    //console.log("HB langList: "+langList);
+    //console.log("HB show: "+show);
     
     let outerWrap = document.createElement('div');
     if(!show) {
@@ -2873,7 +2873,7 @@ function getPictureIcon() {
     //HB icon.src = '/images.svg';
     icon.src = 'images.svg';
     icon.className = 'picIcon';
-    icon.title = "Visa bild i Lexin";
+    //icon.title = "Visa bild i Lexin";
     im.appendChild(icon);
     return im;
 }
@@ -3095,7 +3095,7 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 				// inline the video when clicked
 				let imElem = document.createElement('div');
 				imElem.className = 'picWrap';
-				imElem.title = "Visa videon i Lexin";
+				//imElem.title = "Visa videon i Lexin";
 				imElem.onclick = function () {
 					const wasOpen = this.parentElement.querySelector(".vidContainer") &&
 									this.parentElement.querySelector(".vidContainer").style.display !== "none";
