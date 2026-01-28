@@ -269,3 +269,35 @@ function openHelpVideo(inner) {
        <p>Klicka på ikonen <img src="/video.svg" class="vidIcon"/> för att ladda videon och visa den i Lexin.</p>
        `;
 }
+
+/* --------- FIX LINK BUG (LINK SHOULD NOT JUMP TO TOP OF PAGE) --------- */
+document.addEventListener('click', (e) => {
+	// find in-page link
+	const link = e.target.closest('a[href^="#"]');
+	if (!link) return;
+
+	// ignore dummy links
+	const href = link.getAttribute('href');
+	if (!href || href === '#' || href === '#!') return;
+
+	// get element
+	const id = decodeURIComponent(href.slice(1));
+	const target = document.getElementById(id);
+	if (!target) return; 
+
+	// stop buggy scroll behaviour
+	e.preventDefault();
+	e.stopPropagation();
+
+	// scroll to correct part of page
+	target.scrollIntoView({ block: 'start' });
+
+	// accessibility: set focus
+	if (!target.hasAttribute('tabindex')) {
+		target.setAttribute('tabindex', '-1');
+	}
+	target.focus({ preventScroll: true });
+
+	// update url
+	history.pushState(null, '', `#${encodeURIComponent(id)}`);
+});

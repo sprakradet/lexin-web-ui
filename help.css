@@ -173,6 +173,24 @@ th {
     float: right;
     margin-left: 1em;
     /*color: rgb(28, 63, 73);*/
+    
+}
+
+.closeHelpToC {
+    float: none;
+    margin-left: 1em;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* --------- TABLE OF CONTENTS --------- */
+
+.tableOfContents{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* --------- (CG ADD) HIGH CONTRAST MODE SETTINGS --------- */
@@ -182,3 +200,4 @@ th {
         color: CanvasText;
     }
 }
+

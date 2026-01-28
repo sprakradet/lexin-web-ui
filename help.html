@@ -7,29 +7,57 @@
 
     <div class="LexinExplanations" id="LexinExplanations">
 
-	<!-- MENU (not working atm)-->
-	<div class="helpMenu">
+	<!-- MENU (not working atm) -->
+	<!--<div class="helpMenu">
 	  <a href="#sprak">Hur man använder Lexin</a>
 	  <a href="#resultatBeskr">Vad betyder sökresultaten?</a>
 	  <a href="#omLexin">Information om Lexin</a>
-	</div>
+	</div>-->
+
+	<!-- NEW MENU -->
+	<nav aria-labelledby="tableOfContents">
+		<div class="tableOfContents">
+			<h2 id="tableOfContents">Hjälp – Innehåll</h2>
+
+			<!-- CLOSE BUTTON -->
+			<button class="closeHelp closeHelpToC" type="button" aria-label="Stäng">
+				<img src="closebutton.svg" alt="">
+			</button>
+		</div>
+
+		<ul>
+			<li><a href="#sprak">Språk</a></li>
+			<li><a href="#bild">Bilder</a></li>
+			<li><a href="#video">Videoklipp</a></li>
+			<li><a href="#ljud">Ljud</a></li>
+			<li><a href="#uttalKort">Uttal</a></li>
+			<li><a href="#klicka">Klicka på ord</a></li>
+			<li><a href="#tangentbord">Tangentbord</a></li>
+			<li><a href="#sparaOrd">Spara ord</a></li>
+			<li><a href="#soktips">Andra söktips</a></li>
+			<li><a href="#laddaNer">Ladda ner lexikon</a></li>
+			<li><a href="#resultatBeskr">Vad betyder sökresultaten?</a></li>
+			<li><a href="#omLexin">Om Lexin</a></li>
+		</ul>
+	</nav>
 	
 	<!-- CLOSE BUTTON -->
-	<button class="closeHelp" type="button" aria-label="Stäng">
+	<!--<button class="closeHelp" type="button" aria-label="Stäng">
 	  <img src="closebutton.svg" alt="">
-	</button>
+	</button>-->
 
 	<!-- CHAPTER: SPRÅK -->
-	<h2><a id="sprakAnchor" name="sprak"/>Språk</h2>
+	<!--<h2><a id="sprakAnchor" name="sprak"/>Språk</h2>-->
+	<h2 id="sprak">Språk</h2>
 	<div class="helpImageContainer" width="400px">
 	  <img class="helpImageBase" src="helpImages/helpLanguage.png" alt=""></img>
 	</div>
 	<ul>
-	  <li>Välj språk längst upp, t.ex. spanska.</li>
+	  <li>Välj språk längst upp på sidan i rullistan "Språkval", t.ex. spanska.</li>
 	  <li>Du kan slå upp ord på flera språk genom att
 	    öppna "Visa inställningar" (knappen med tre streck uppe
 	    till höger, "&#x2261;") och klicka på "Sök på flera språk
-	    samtidigt". I listan kan du nu välja flera språk,
+	    samtidigt". Med knappen "Välj språk" kan du nu välja flera språk,
 	    genom att klicka på
 	    dem. Om du använder en mobil trycker du på de språk du vill välja.</li>
 	  <li>För att alltid få sökresultaten från den svenska ordboken, som
@@ -38,7 +66,8 @@
 	</ul>
 	
 	<!-- CHAPTER: BILDER -->
-	<h2><a id="bildAnchor" name="bild"/>Bilder</h2>
+	<!--<h2><a id="bildAnchor" name="bild"/>Bilder</h2>-->
+	<h2 id="bild">Bilder</h2>
 	<div class="helpImageContainer" width="400px">
 	  <img class="helpImageBase" src="helpImages/helpBild.png" alt=""></img>
 	</div>
@@ -55,7 +84,8 @@
 	</ul>
 	
 	<!-- CHAPTER: VIDEOKLIPP -->
-	<h2><a id="videoAnchor" name="video"/>Videoklipp</h2>
+	<!--<h2><a id="videoAnchor" name="video"/>Videoklipp</h2>-->
+	<h2 id="video">Videoklipp</h2>
 	<div class="helpImageContainer" width="400px">
 	  <img class="helpImageBase" src="helpImages/helpVideo1.png" alt=""></img>
 	</div>
@@ -69,7 +99,8 @@
 	</ul>
 
 	<!-- CHAPTER: LJUD -->
-	<h2><a id="ljudAnchor" name="ljud"/>Ljud</h2>
+	<!--<h2><a id="ljudAnchor" name="ljud"/>Ljud</h2>-->
+	<h2 id="ljud">Ljud</h2>
 	<div class="helpImageContainer" width="400px">
 	  <img class="helpImageBase" src="helpImages/helpLjud.png" alt=""></img>
 	</div>
@@ -79,7 +110,8 @@
 	</ul>
 	
 	<!-- CHAPTER: UTTAL -->
-	<h2><a id="uttalKortAnchor" name="uttalKort"/>Uttal</h2>
+	<!--<h2><a id="uttalKortAnchor" name="uttalKort"/>Uttal</h2>-->
+	<h2 id="uttalKort">Uttal</h2>
 	<ul>
 	  <li>Uttalet beskrivs också med fonetisk skrift, t.ex. "idag [ida:g] eller [ida:]".</li>
 	  <li>Kolon ":" betyder att ljudet före ska vara ett långt ljud.</li>
@@ -91,7 +123,8 @@
 	</ul>
 	
 	<!-- CHAPTER: KLICKA PÅ ORD -->
-	<h2>Klicka på ord</h2>
+	<!--<h2>Klicka på ord</h2>-->
+	<h2 id="klicka">Klicka på ord</h2>
 	<ul>
 	  <!--<li>Ord i texten som du inte förstår kan du dubbelklicka
 	    på för att slå upp ordet.</li>
@@ -101,13 +134,14 @@
 	    du öppna inställningar (knappen med tre streck "&#x2261;") och
 	    välja bort "Klickbara ord".</li>-->
 	  <li>Rubriker i förklaringarna kan du klicka på för att öppna
-	    hjälpsidor. Om du inte vill att rubriker ska öppna hjälpsidor
-	    kan du öppna "Visa inställningar" (knappen
-	    "&#x2261;") och välja bort "Klickbara rubriker".</li>
+	    hjälpsidor. Om du inte vill att vissa rubriker ska öppna hjälpsidor
+	    kan du öppna "Visa inställningar" (knappen "&#x2261;")
+		och välja bort "Klickbara rubriker".</li>
 	</ul>
 
 	<!-- CHAPTER: TANGENTBORD -->
-	<h2>Tangentbord</h2>
+	<!--<h2>Tangentbord</h2>-->
+	<h2 id="tangentbord">Tangentbord</h2>
 	<div class="helpImageContainer" width="400px">
 	  <img class="helpImageBase" src="helpImages/helpKeyboardSwe.png" alt=""></img>
 	</div>
@@ -129,7 +163,8 @@
 	</ul>
 
 	<!-- CHAPTER: SPARA ORD -->
-	<h2>Spara ord</h2>
+	<!--<h2>Spara ord</h2>-->
+	<h2 id="sparaOrd">Spara ord</h2>
 	<div class="helpImageContainer" width="400px">
 	  <img class="helpImageBase" src="helpImages/helpSaveWords1.png" alt=""></img>
 	</div>
@@ -139,9 +174,9 @@
 	<ul>
 	  <li>Du kan spara ord du har slagit upp.</li>
 	  <li>Öppna "Visa inställningar" (knappen med tre streck,
-	    "&#x2261;"). Där finns en knapp för att "Spara" ord.</li>
+	    "&#x2261;"). Där finns en "Spara"-knapp.</li>
 	  <li>För att se de ord du har sparat kan du klicka på "Sparade
-	    ord" under knappen.</li>
+	    ord" under "Spara"-knappen.</li>
 	  <li>Du kan slå upp ett sparat ord genom att klicka på ordet i
 	    listan.</li>
 	  <li>Du kan sortera alla sparade ord i bokstavsordning med
@@ -151,7 +186,8 @@
 	</ul>
 
 	<!-- CHAPTER: ANDRA SÖKTIPS -->
-	<h2>Andra söktips</h2>
+	<!--<h2>Andra söktips</h2>-->
+	<h2 id="soktips">Andra söktips</h2>
 	<ul>
 	  <li>För att få fram sammansatta ord gör du så här:
 	    Skriv <em>regn-</em> så får du fram alla ord med förledet
@@ -167,18 +203,20 @@
 	</ul>
 	
 	<!-- CHAPTER: LADDA NER LEXIKON -->
-	<h2>Ladda ned lexikon (Lexin offline)</h2>
+	<!--<h2>Ladda ned lexikon (Lexin offline)</h2>-->
+	<h2 id="laddaNer">Ladda ner lexikon (Lexin offline)</h2>
 	<div class="helpImageContainer" width="400px">
 	  <img class="helpImageBase" src="helpImages/helpDownload1.png" alt=""></img>
 	</div>
 	<ul>
-	  <li>Du kan ladda ned ett eller flera lexikon från Lexin.</li>
-	  <li>När du har laddat ned ett lexikon kan du använda Lexin
+	  <li>Du kan ladda ner ett eller flera lexikon från Lexin.</li>
+	  <li>När du har laddat ner ett lexikon kan du använda Lexin
 	    utan att ha tillgång till Internet.</li>
 	</ul>
 
 	<!-- CHAPTER: VAD BETYDER SÖKRESULTATEN? -->
-	<h2><a id="resultatBeskrAnchor" name="resultatBeskr"/>Vad betyder sökresultaten?</h2>
+	<!--<h2><a id="resultatBeskrAnchor" name="resultatBeskr"/>Vad betyder sökresultaten?</h2>-->
+	<h2 id="resultatBeskr">Vad betyder sökresultaten?</h2>
 	<p>
 	  Den svenska ordboken har ett annat innehåll än de
 	  tvåspråkiga ordböckerna. De tvåspråkiga ordböckerna innehåller
@@ -197,9 +235,9 @@
 	  <a href="#ordklassbeteckning">ordklass</a>.
 	  Ofta finns det också
 	  <a href="#oversattning">översättning</a>,
-	  <a href="#grammatikkommentar">grammatikkommentarer</a>,
+	  <a href="#kommentar">grammatikkommentarer</a>,
 	  <a href="#ordforklaring">ordförklaringar</a>,
-	  <a href="#stilkommentar">stilkommentarer</a>,
+	  <a href="#kommentar">stilkommentarer</a>,
 	  <a href="#sakupplysning">sakupplysningar</a>,
 	  <a href="#syntaxmarkering">grammatiska konstruktioner</a>
 	  och
@@ -230,7 +268,8 @@
 	</p>
 	
 	<!-- SUBCHAPTER: UPPSLAGSORD -->
-	<h3><a id="uppslagsordAnchor" name="uppslagsord"/>Uppslagsord</h3>
+	<!--<h3><a id="uppslagsordAnchor" name="uppslagsord"/>Uppslagsord</h3>-->
+	<h3 id="uppslagsord">Uppslagsord</h3>
 	<p>Ett uppslagsord är normalt ett ord men det kan också vara
 	  ett uttryck med flera ord. Exempel på sådana uppslagsord är
 	  partikelverb (t.ex. <em>tycker om</em>) och samhällsord
@@ -263,7 +302,8 @@
 	</p>
 	
 	<!-- SUBCHAPTER: UTTAL-->
-	<h3><a id="uttalAnchor" name="uttal"/>Uttal</h3>
+	<!--<h3><a id="uttalAnchor" name="uttal"/>Uttal</h3>-->
+	<h3 id="uttal">Uttal</h2>
 	<p>Lexin togs fram för att underlätta inlärningen av svenska för
 	  personer som har flyttat till Sverige.
 	  Därför finns information om uttal bara för de svenska
@@ -487,7 +527,8 @@
 	</div>
 	
 	<!-- SUBCHAPTER: ORDKLASS-->
-	<h3><a id="ordklassbeteckningAnchor" name="ordklassbeteckning"/>Ordklass</h3>
+	<!--<h3><a id="ordklassbeteckningAnchor" name="ordklassbeteckning"/>Ordklass</h3>-->
+	<h3 id="ordklassbeteckning">Ordklass</h3>
 	<p> Ord tillhör en ordklass, t.ex. substantiv eller verb. De
           ordklasser som förekommer i ordböckerna är: substantiv, adjektiv,
           verb, adverb, preposition, pronomen, konjunktion, interjektion, räkneord,
@@ -610,7 +651,8 @@
 	</div>
 	
 	<!-- SUBCHAPTER: BÖJNINGSFORMER -->
-	<h3><a id="ordbojningAnchor" name="ordbojning"/>Böjningsformer</h3>
+	<!--<h3><a id="ordbojningAnchor" name="ordbojning"/>Böjningsformer</h3>-->
+	<h3 id="ordbojning">Böjningsformer</h3>
 	<p>
 	  För olika ordklasser visas olika
 	  böjningsformer. Böjningsformer som är enkla att förstå,
@@ -998,7 +1040,8 @@
 	</div>
 	
 	<!-- SUBCHAPTER: ORDFÖRKLARING -->
-	<h3><a id="ordforklaringAnchor" name="ordforklaring"/>Ordförklaring</h3>
+	<!--<h3><a id="ordforklaringAnchor" name="ordforklaring"/>Ordförklaring</h3>-->
+	<h3 id="ordforklaring">Ordförklaring</h3>
 	<p>
 	  En förklaring kan vara en definition eller en
 	  omskrivning. Det kan också vara en synonym (ett ord som
@@ -1051,7 +1094,8 @@
 	</div>
 
 	<!-- SUBCHAPTER: KOMMENTARER -->
-	<h3><a id="stilkommentarAnchor" name="stilkommentar"/><a id="grammatikkommentarAnchor" name="grammatikkommentar"/><a id="kommentarAnchor" name="kommentar"/>Kommentarer</h3>
+	<!--<h3><a id="stilkommentarAnchor" name="stilkommentar"/><a id="grammatikkommentarAnchor" name="grammatikkommentar"/><a id="kommentarAnchor" name="kommentar"/>Kommentarer</h3>-->
+	<h3 id="kommentar">Kommentarer</h3>
 	<p>
 	  Det finns två typer av kommentarer, grammatikkommentarer och
 	  stilkommentarer.
@@ -1250,7 +1294,8 @@
 	</div>
 
 	<!-- SUBCHAPTER: ÖVERSÄTTNING -->
-	<h3><a id="oversattningAnchor" name="oversattning"/>Översättning</h3>
+	<!--<h3><a id="oversattningAnchor" name="oversattning"/>Översättning</h3>-->
+	<h3 id="oversattning">Översättning</h3>
 	<p>
 	  Det finns oftast en översättning av uppslagsordet. Det kan
 	  finnas synonymer till översättningen också.
@@ -1264,7 +1309,8 @@
 	</p>
 
 	<!-- SUBCHAPTER: SPRÅKEXEMPEL -->
-	<h3><a id="sammansattAnchor" name="sammansatt"/><a id="idiomAnchor" name="idiom"/><a id="sprakexempelAnchor" name="sprakexempel"/>Språkexempel</h3>
+	<!--<h3><a id="sammansattAnchor" name="sammansatt"/><a id="idiomAnchor" name="idiom"/><a id="sprakexempelAnchor" name="sprakexempel"/>Språkexempel</h3>-->
+	<h3 id="sprakexempel">Språkexempel</h3>
 	<p>
 	  Till många uppslagsord finns det exempel på hur ordet kan
 	  användas. Det finns tre sorters exempel, fria fraser och
@@ -1408,7 +1454,8 @@
 	</div>
 	    
 	<!-- SUBCHAPTER: SAKUPPLYSNING -->
-	<h3><a id="sakupplysningAnchor" name="sakupplysning"/>Sakupplysning ("Förklaring")</h3>
+	<!--<h3><a id="sakupplysningAnchor" name="sakupplysning"/>Sakupplysning ("Förklaring")</h3>-->
+	<h3 id="sakupplysning">Sakupplysning ("Förklaring")</h3>
 	<p>
 	  En sakupplysning är en längre förklaring. Lexin innehåller
 	  sakupplysningar till många av de ord som här kallas
@@ -1426,7 +1473,8 @@
 	</p>
 	
 	<!-- SUBCHAPTER: GRAMMATISKA KONSTRUKTIONER -->
-	<h3><a id="syntaxmarkeringAnchor" name="syntaxmarkering"/>Grammatiska konstruktioner</h3>
+	<!--<h3><a id="syntaxmarkeringAnchor" name="syntaxmarkering"/>Grammatiska konstruktioner</h3>-->
+	<h3 id="syntaxmarkering">Grammatiska konstruktioner</h3>
 	<p>
 	  Alla verb i ordboken - utom de verb som bara förekommer i
 	  idiom - har mönster som visar hur verbet används.
@@ -1863,7 +1911,8 @@ person och verbet skriver kan ha ett objekt som i så fall är en sak (t.ex. en 
 	</div>
 
 	<!-- SUBCHAPTER: BILDER OCH FILMER -->
-	<h3>Bilder och filmer</h3>
+	<!--<h3>Bilder och filmer</h3>-->
+	<h3 id="bildOchVideo">Bilder och filmer</h3>
 	<p>
 	  En mycket viktig roll i Lexin spelar bilderna, där nära 2000 av svenskans mest centrala ord
 	  förklaras på det absolut snabbaste sättet. På de artiklar som är länkade till bilder, t.ex. <em>barn</em>,
@@ -1888,7 +1937,8 @@ person och verbet skriver kan ha ett objekt som i så fall är en sak (t.ex. en 
 	</p>
 
 	<!-- SUBCHAPTER: PARTIKELVERB -->
-	<h3>Partikelverb</h3>
+	<!--<h3>Partikelverb</h3>-->
+	<h3 id="partikelverb">Partikelverb</h3>
 	<p>
 	  En väldigt viktig och komplicerad typ av verb i svenskan är de s.k. partikelverben, t.ex. bokar
 	  av, tycker om, skriver in, kommer till och håller på. Det är de korta orden av, om, in, till och
@@ -2031,8 +2081,9 @@ person och verbet skriver kan ha ett objekt som i så fall är en sak (t.ex. en 
 	  utkommit för sina kompisar</em>.
 	</p>
 	
-	<!-- SUBCHAPTER: OM LEXIN -->
-	<h3><a id="omLexinAnchor" name="omLexin"/>Om Lexin</h3>
+	<!-- SUBCHAPTER: OM LEXIN --> 
+	<!--<h3><a id="omLexinAnchor" name="omLexin"/>Om Lexin</h3>-->
+	<h2 id="omLexin">Om Lexin</h2>
 	<p>
 	  På webbplatsen som du just nu är inne på finns dels en helt
 	  svenskspråkig Lexinordbok, dels ett stort antal tvåspråkiga
@@ -2065,7 +2116,8 @@ person och verbet skriver kan ha ett objekt som i så fall är en sak (t.ex. en 
 	</p>
 
 	<!-- SUBCHAPTER: DE TVÅSPRÅKIGA ORDBÖCKERNA -->
-	<h3>De tvåspråkiga ordböckerna</h3>
+	<!--<h3>De tvåspråkiga ordböckerna</h3>-->
+	<h3 id="tvasprakigaOrdbocker">De tvåspråkiga ordböckerna</h3>
 	<p>
 	  Alla de tvåspråkiga ordböckerna innehåller Lexin som en del, eventuellt med vissa
 	  strykningar. Det nya är förstås att de svenska uppslagsorden översätts till ett annat språk. Den
