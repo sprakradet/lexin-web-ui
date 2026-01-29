@@ -115,7 +115,7 @@
 /* --------- IMAGES --------- */
 
 .helpImageContainer {
-    width: 400px;
+    /*width: 400px;*/
     margin-bottom: 2em;
 }
 
@@ -157,6 +157,17 @@
 
 th {
   text-align: left;
+}
+
+.tableScroll {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tableScroll table {
+  width: max-content; /* table can be wider than viewport */
+  border-collapse: collapse;
 }
 
 /* --------- CLOSE POPUP ICON --------- */

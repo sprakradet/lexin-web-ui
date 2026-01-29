@@ -32,13 +32,15 @@
 // 
 // entryContent, the main (large) text content of a search result
 // 
-// errorReport, when the call to Lexin failed, the error message is shown in this class
+// errorReport, when the call to Lexin failed, the error message is shown in 
+// this class
 // 
 // exampleList, list of example sentences and expressions
 // 
 // examples, items in the exampleList
 // 
-// explanation, longer explanation of words that may be specific to Swedish culture/society
+// explanation, longer explanation of words that may be specific to Swedish 
+// culture/society
 // 
 // gramInfo, grammar info
 // 
@@ -79,7 +81,8 @@
 // listenPronunciation, tag for the icons when there are several
 // possible pronunciations for a word.
 // 
-// longClickLink, a class for words that should allow long-click (mobile) and double-click (PC)
+// longClickLink, a class for words that should allow long-click (mobile) and 
+// double-click (PC)
 // 
 // matchingWord, the word itself
 // 
@@ -1065,13 +1068,16 @@ function makeKeyboardClickable(elem) {
 	elem.setAttribute("tabindex", "0");
 	elem.setAttribute("role", "button");
 	elem.addEventListener("keydown", function (e) {
+		console.log("CG: ran function")
 		if (e.key === "Enter" || e.key === " ") {
+			console.log("CG: found button")
 			e.preventDefault();
 			elem.click();
 		}
 	});
 }
 
+/* --------- CREATE TEXT SPAN IN ARTICLE --------- */
 function createTextSpan(text, className, lang) {
     let elem = document.createElement('span');
     elem.textContent = text;
@@ -1084,6 +1090,9 @@ function createTextSpan(text, className, lang) {
 
 	// accessibility
 	if (className && className.toLowerCase().includes("clickable")) {
+		if (text =="Avstavning") {
+			console.log("CG ran clickable for Avstavning")
+		}
 		makeKeyboardClickable(elem);
 	}
 	

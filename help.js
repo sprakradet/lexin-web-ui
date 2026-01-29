@@ -217,7 +217,6 @@ function openHelpConstr(inner) {
 	    tycker om att spela fotboll</em>.
 	</p>
 
-
 	<p> Mönster för verb är till för att visa möjliga sätt att
 	  använda verbet utan att ge språkexempel för varje
 	  möjlighet. Det kan finnas fler möjligheter,
@@ -318,15 +317,15 @@ function openHelpVideo(inner) {
     inner.innerHTML = `
        <h3>Video</h3>
 
-       <p>Klicka på "Visa film" för att se ett videoklipp som visar vad ordet
+       <p>För vissa ord kan du se ett videoklipp som visar vad ordet 
 	   betyder.</p>
-       <p>Klicka på ikonen <img src="/video.svg" class="vidIcon"/> för att ladda
-	   videon och visa den i Lexin.</p>
+	   <p>Klicka på videoikonen <img src="/video.svg" class="vidIcon"/ alt=""> 
+	   "Visa videon i Lexin" för att ladda videon och visa den i Lexin.</p>
        `;
 }
 
 /* --------- FIX LINK BUG (LINK SHOULD NOT JUMP TO TOP OF PAGE) --------- */
-/*document.addEventListener('click', (e) => {
+document.addEventListener('click', (e) => {
 	// find in-page link
 	const link = e.target.closest('a[href^="#"]');
 	if (!link) return;
@@ -355,7 +354,7 @@ function openHelpVideo(inner) {
 
 	// update url
 	history.pushState(null, '', `#${encodeURIComponent(id)}`);
-});/
+})
 
 /*const container = document.querySelector('#LexinExplanations.LexinExplanations');
 

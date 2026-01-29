@@ -174,3 +174,15 @@ body.help-open .popupButton {
     
 }
 
+/* landscape orientation */
+@media (max-height: 476px) {
+  .popup {
+    top: 16px;
+    transform: translateX(-50%);
+    max-height: calc(100vh - 92px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    width: min(300px, calc(100vw - 32px));
+  }
+}
+
