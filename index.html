@@ -201,9 +201,7 @@
 					<button class="saveWordsButton" id="savedWordsSaveCurrent" title="Spara senaste uppslagning" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
 						Spara senaste
 					</button>
-					<span id="saveMessage2" class="saveMessage">
-						Sparat!
-					</span>
+					<span id="saveMessage2" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> 
 				</div>
 				<div class="settingsMainItem">
 					<button class="settingsNavigation" id="openSavedWords" type="button">
@@ -237,9 +235,7 @@
 				<button class="saveWordsButton" id="savedWordsSaveCurrentWrd" title="Spara senaste uppslagning" onclick="savedWordsSaveCurrentWord(this, 'saveMessage1')" type="button">
 					Spara senaste
 				</button>
-				<span id="saveMessage1" class="saveMessage">
-					Sparat!
-				</span> 
+				<span id="saveMessage1" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> 
 				<div id="savedWordsList"></div>
 				<button class="saveWordsButton" id="savedWordsSort" title="Sortera sparade ord" onclick="savedWordsSortWords(this)" type="button">
 					Sortera orden

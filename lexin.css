@@ -402,7 +402,8 @@ select {
 
 .cueWord {
     font-weight: 400;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
+    color: #505050;
 }
 
 .inflections {
@@ -577,6 +578,7 @@ a:any-link {
     margin-left: .5em;
     vertical-align: bottom;
     cursor: pointer;
+    border: 1px solid black;
 }    
 
 .vidContainer {
@@ -626,7 +628,7 @@ div[dir=rtl] {
     height: 1em;
     width: 1em;
     vertical-align: baseline;
-    opacity: 0.5;
+    opacity: 0.6;
     cursor: pointer;
 }
 

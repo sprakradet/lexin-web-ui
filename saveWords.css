@@ -97,7 +97,8 @@
 .saveMessage {
   margin-left: 10px;
   opacity: 0;
-  transition: opacity 0.25s;
+  /*transition: opacity 0.25s;*/
+  transition: opacity 150ms ease;
 }
 
 .saveMessage.show {

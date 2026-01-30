@@ -51,12 +51,20 @@ function savedWordsSaveCurrentWord(elem, id) {
 		}
     }
 
-	// CG ADD
+	// show saved message
 	const msg = document.getElementById(id);
-	msg.classList.add("show");      // fade in
-	setTimeout(() => {
-		msg.classList.remove("show"); // fade out
-	}, 4000);  // fade out starts after 4s
+	msg.textContent = "";
+  	msg.textContent = "Sparat!";
+
+	// fade in
+	msg.classList.add("show");
+
+	// fade out
+	clearTimeout(msg._hideTimer);
+		msg._hideTimer = setTimeout(() => {
+		msg.classList.remove("show");
+		setTimeout(() => { msg.textContent = ""; }, 200);
+	}, 3000);
 }
 
 // --------------------------------------------------------------------
