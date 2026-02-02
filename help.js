@@ -324,6 +324,17 @@ function openHelpVideo(inner) {
        `;
 }
 
+/* --------- HELP PAGE: IMAGE --------- */
+function openHelpImage(inner) {
+    inner.innerHTML = `
+       <h3>Bild</h3>
+
+       <p>Många ord har bilder som hjälper till att förklara ordet. För att visa
+	   en bild, klicka på den lilla bildikonen "Visa bild i Lexin" bredvid 
+	   texten "Bild:".</p>
+       `;
+}
+
 /* --------- FIX LINK BUG (LINK SHOULD NOT JUMP TO TOP OF PAGE) --------- */
 document.addEventListener('click', (e) => {
 	// find in-page link

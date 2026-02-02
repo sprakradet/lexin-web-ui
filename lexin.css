@@ -256,6 +256,7 @@ select {
 
 .phonetic {
     font-size: 1.3em;
+    padding-right: 0.2em;
 }
 
 .soundFiles {
@@ -524,6 +525,8 @@ select {
 .makeClickableHeadingsStandOut {
     /* color: green; */
     /* text-decoration: underline; */
+    /*text-decoration: underline;*/
+    /*color: #33525B;*/
 }
 
 /* CG text highlight on hover */

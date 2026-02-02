@@ -198,7 +198,7 @@
 					<label class="settingsmenuLabel" for="keyb_otherSet">Tangentbord för andra språk</label><br/>
 				</div>
 				<div class="settingsMainButton">
-					<button class="saveWordsButton" id="savedWordsSaveCurrent" title="Spara senaste uppslagning" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
+					<button class="saveWordsButton" id="savedWordsSaveCurrent" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
 						Spara senaste
 					</button>
 					<span id="saveMessage2" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> 
@@ -232,15 +232,15 @@
 			<!-- SAVED WORDS VIEW -->
 			<div id="saveWordPopup" class="saveWordPopup">
 				<h2>Sparade ord</h2>
-				<button class="saveWordsButton" id="savedWordsSaveCurrentWrd" title="Spara senaste uppslagning" onclick="savedWordsSaveCurrentWord(this, 'saveMessage1')" type="button">
+				<button class="saveWordsButton" id="savedWordsSaveCurrentWrd" onclick="savedWordsSaveCurrentWord(this, 'saveMessage1')" type="button">
 					Spara senaste
 				</button>
 				<span id="saveMessage1" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> 
 				<div id="savedWordsList"></div>
-				<button class="saveWordsButton" id="savedWordsSort" title="Sortera sparade ord" onclick="savedWordsSortWords(this)" type="button">
+				<button class="saveWordsButton" id="savedWordsSort" onclick="savedWordsSortWords(this)" type="button">
 					Sortera orden
 				</button>
-				<button class="saveWordsButton" id="savedWordsClear" title="Rensa sparade ord" onclick="savedWordsClearWords(this)" type="button">
+				<button class="saveWordsButton" id="savedWordsClear" onclick="savedWordsClearWords(this)" type="button">
 					Rensa listan
 				</button>
 			</div>
@@ -362,9 +362,9 @@
 		<!-- KEYBOARD -->
     	<div>
 			<div class="keyboard" id="keybSE">
-				<button id="keybsweå" class="keyboardKeyButton" title="Mata in å" type="button">å</button>
-				<button id="keybsweä" class="keyboardKeyButton" title="Mata in ä" type="button">ä</button>
-				<button id="keybsweö" class="keyboardKeyButton" title="Mata in ö" type="button">ö</button>
+				<button id="keybsweå" class="keyboardKeyButton" type="button">å</button>
+				<button id="keybsweä" class="keyboardKeyButton" type="button">ä</button>
+				<button id="keybsweö" class="keyboardKeyButton" type="button">ö</button>
 			</div>
 			<div id="transKeybWrapper">
 	  			<div class="keyboard" id="keybTrans"></div>

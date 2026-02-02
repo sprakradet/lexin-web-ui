@@ -67,11 +67,11 @@ form#theForm2 input.popupText {
 }
 
 .gdprText {
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .gdprText:hover {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 .gdprContent {

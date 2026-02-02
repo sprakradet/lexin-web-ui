@@ -2270,7 +2270,7 @@ function phoneticToHTML(parentElement, listenContainer, phonetics, show) {
         first = false;
 	
 	if(p.ph != "") {
-	    wrap.appendChild(createTextSpan(" [" + p.ph + "] ", 'phonetic'));
+	    wrap.appendChild(createTextSpan(" [" + p.ph + "]", 'phonetic'));
 	    if(!show) {
 		wrap.className += ' notRelevant';
 	    }
@@ -5519,7 +5519,14 @@ function openPageDescription(elem) {
 		openHelpExamples(inner);
 	    } else if(elem.textContent.indexOf("Video") >= 0) {
 		openHelpVideo(inner);
-	    } else if(elem.textContent == 'referenceHead') {
+	    }
+		
+		// CG ADD - make "Bild" clickable
+		/*else if(elem.textContent.indexOf("Bild") >= 0) {
+		openHelpImage(inner);
+	    }*/
+		
+		else if(elem.textContent == 'referenceHead') {
 		console.log("openPageDescription: Element is an unknown type of clickableHeading", elem);
 	    } else {
 		console.log("openPageDescription: Element is an unknown type of clickableHeading", elem);

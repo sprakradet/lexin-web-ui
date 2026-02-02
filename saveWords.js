@@ -85,7 +85,7 @@ function getULfromSavedWords() {
 
 			let deleteBtn = document.createElement('div');
 			deleteBtn.innerHTML = "&times;";
-			deleteBtn.title = "Ta bort " + w;
+			/*deleteBtn.title = "Ta bort " + w;*/
 			deleteBtn.className = "removeOneSavedWordButton";
 
 			// accessibility
@@ -163,8 +163,8 @@ function removeOneSavedWord(word) {
 	if (cw == word) {
 		btn.disabled = false;
 		btn2.disabled = false;
-		btn.title = "Spara senaste uppslagning";
-		btn2.title = "Spara senaste uppslagning";
+		//btn.title = "Spara senaste uppslagning";
+		//btn2.title = "Spara senaste uppslagning";
 	} 
 
     return savedWords;
@@ -223,21 +223,21 @@ function updateSaveCurrentButton() {
     if((savedWords && savedWords.includes(cw))) {
 		btn.disabled = true;
 		btn2.disabled = true;
-		btn.title = "Uppslagningen är redan sparad";
-		btn2.title = "Uppslagningen är redan sparad";
+		//btn.title = "Uppslagningen är redan sparad";
+		//btn2.title = "Uppslagningen är redan sparad";
     } 
 	// search is empty
 	else if (cw == "") {
 		btn.disabled = true;
 		btn2.disabled = true;
-		btn.title = "Uppslagningen är tom";
-		btn2.title = "Uppslagningen är tom";
+		//btn.title = "Uppslagningen är tom";
+		//btn2.title = "Uppslagningen är tom";
 	}
 	else {
 		btn.disabled = false;
 		btn2.disabled = false;
-		btn.title = "Spara senaste uppslagning";
-		btn2.title = "Spara senaste uppslagning";
+		//btn.title = "Spara senaste uppslagning";
+		//btn2.title = "Spara senaste uppslagning";
     }
 }
 

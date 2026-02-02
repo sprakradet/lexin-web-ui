@@ -97,14 +97,15 @@
 /* --------- SHOW MORE TEXT --------- */
 
 .helpOpenMoreInfo {
-    font-weight: bold;
+    /*font-weight: bold;*/
     /*color: blue;*/
     color: #32525B;
     cursor: pointer;
+    text-decoration: underline;
 }
 
 .helpOpenMoreInfo:hover {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 .helpMoreInfo {
