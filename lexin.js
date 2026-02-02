@@ -2002,10 +2002,10 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
     exp.className = "expandGraminfoIcon";
 
 	// accessibility open/close icon
-    makeKeyboardClickable(exp);
+    makeKeyboardClickable(exp);	
 	exp.alt = "Visa alla konstruktioner";
 
-    elem.appendChild(exp);
+    elem.appendChild(exp);		
     elem.appendChild(textElem);
     elem.appendChild(explanations);
     

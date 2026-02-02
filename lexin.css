@@ -121,6 +121,8 @@ main {
     padding-bottom: 1em;
 }
 
+/* --------- SELECT SINGLE LANGUAGE --------- */
+
 select#languageChoice {
     font: inherit;
     margin-right: 0.84em;
@@ -141,6 +143,7 @@ select {
     border-radius: 5px;
     border-color: transparent;
 }
+
 
 .select-wrapper {
     position: relative;
@@ -163,6 +166,8 @@ select {
     pointer-events: none;
 }
 
+/* --------- SELECT MULTIPLE LANGUAGES --------- */
+
 .multilang-wrapper {
     position: relative;
     display: inline-block;
@@ -181,13 +186,16 @@ select {
     cursor: pointer;
 }
 
-/* CG highlight on hover */
 #multiLanguageChoiceButton:hover {
     background-color: #3FD695;
 }
 
+/* --------- LOGO (?) --------- */
+
 .logo {
 }
+
+/* --------- SEARCH FIELD --------- */
 
 #inputwrapper.animate {
     transition-property: all;
@@ -199,6 +207,8 @@ select {
     font-weight: bold;
     font-size: 1.3em;
 }
+
+/* --------- DOCUMENTATION --------- */
 
 .errorReport {
     padding: 0.5em 1em 0.5em 1em;
@@ -214,7 +224,6 @@ select {
     color: black;
 }
 
-
 .loadingIndicator {
     padding: 0.5em 1em 0.5em 1em;
     padding-left: max(env(safe-area-inset-left), 1em);
@@ -227,6 +236,8 @@ select {
     padding-right: max(env(safe-area-inset-right), 1em);
 }
 
+/* --------- SEARCH RESULT --------- */
+
 .resultList  {
     list-style-type: none;
     padding-inline-start: 0;
@@ -235,6 +246,8 @@ select {
 .resultList > li {
     margin-bottom: 2em;
 }
+
+/* --------- MAIN WORD INFO --------- */
 
 .wordInfo {
     background-color: rgb(215,233,236);
@@ -246,17 +259,19 @@ select {
     align-items: center;
 }
 
-.listenContainer {
-    display: flex;
-}
-
 .inflections {
 
 }
 
+/* --------- PHONETICS --------- */
+
+.listenContainer {
+    display: flex;
+}
+
 .phonetic {
     font-size: 1.3em;
-    padding-right: 0.2em;
+    margin-right: 0.2em;
 }
 
 .soundFiles {
@@ -265,9 +280,23 @@ select {
     align-items: center;
 }
 
+.soundFiles button {
+    appearance: none;
+    border: none;
+    background: none;
+    font: inherit;
+    margin: 0;
+    padding: 0.4em 0.5em 0.4em 0.8em;
+    color: black;
+}
+
 .listenPronunciation {
     font-size: 0.7em;
     margin-top: 0.4em;
+}
+
+.pronunciation {
+    /*display: inline !important;*/
 }
 
 .translation {
@@ -294,6 +323,14 @@ select {
 .referenceContainer {
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+.referenceContainer a {
+    font-weight: bold;
+}
+
+.referenceContainer a:hover {
+    background-color: #EBEEEF;
 }
 
 .referenceHead {
@@ -333,9 +370,6 @@ select {
 
 }
 
-.imageLink {
-    /*font-variant: small-caps;*/
-}
 
 .compounds {
     margin-top: 1em;
@@ -458,9 +492,7 @@ select {
 
 }
 
-.pronunciation {
-    /*display: inline !important;*/
-}
+
 
 .alt_form {
 
@@ -479,17 +511,7 @@ select {
     cursor: pointer;
 }
 
-.soundFiles button {
-    appearance: none;
-    border: none;
-    background: none;
-    font: inherit;
-    margin: 0;
-    padding: 0.4em 0.5em 0.4em 0.8em;
-    color: black;
-}
-
-/* ------ PARTS SELECTION ------ */
+/* ------ ARTICLE PARTS SELECTION ------ */
 
 .partsselectionBox {
     margin: 0.3em 0;
@@ -499,12 +521,10 @@ select {
     vertical-align: middle;
 }
 
-/* CG highlight on hover */
 .partsselectionCheckbox:hover {
     cursor: pointer;
 }
 
-/* CG highlight on hover */
 .partsselectionLabel:hover {
     cursor: pointer;
 }
@@ -512,6 +532,8 @@ select {
 .longClickLink {
 
 }
+
+/* ------ CLICKABLE ARTICLE PARTS ------ */
 
 .makeClickableStandOut {
     /* color: red; */
@@ -525,14 +547,14 @@ select {
 .makeClickableHeadingsStandOut {
     /* color: green; */
     /* text-decoration: underline; */
-    /*text-decoration: underline;*/
-    /*color: #33525B;*/
+    text-decoration: underline;
+    color: #33525B;
 }
 
-/* CG text highlight on hover */
 .makeClickableHeadingsStandOut:hover {
     cursor: pointer;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+    background-color: rgba(51, 82, 91, 0.1);
 }
 
 a:any-link {
@@ -551,15 +573,11 @@ a:any-link {
     font-weight: bold;
 }
 
-.graminfoExplanation {
-    background-color: #e0e0e0;
-    padding: 1em;
-    margin: 0.5em 0;
-}
-
 .metavariable {
     font-variant: small-caps;
 }
+
+/* --------- IMAGE --------- */
 
 .picWrap {
   display: inline-block;
@@ -575,6 +593,17 @@ a:any-link {
     cursor: pointer;
 }    
 
+.bildtemaLink:hover {
+    background-color: #EBEEEF;
+}
+
+.imageLink {
+    /*font-variant: small-caps;*/
+}
+
+
+/* --------- VIDEO --------- */
+
 .vidIcon {
     height: 1.5em;
     padding: 0;
@@ -587,11 +616,15 @@ a:any-link {
 .vidContainer {
     margin-top: .5em;
     margin-bottom: .5em;
-    /*display: block;*/
+    display: block;
 
-    display: flex;
-    flex-direction: column;
+    /*display: flex;
+    flex-direction: column;*/
     width: 100%;
+}
+
+.vidContainer a {
+    font-weight: normal;
 }
 
 .vidContainer video {
@@ -615,6 +648,8 @@ div[dir=rtl] {
     margin-right: 0.5em;
 }
 
+/* --------- CONSTRUCTIONS --------- */
+
 .gramInfo {
     margin-top: 1em;
     margin-bottom: 1em;
@@ -635,18 +670,29 @@ div[dir=rtl] {
     cursor: pointer;
 }
 
+.graminfoExplanation {
+    background-color: #e0e0e0;
+    padding: 1em;
+    margin: 0.5em 0;
+}
+
 .graminfoExplanationText {
     margin-left: 0.5em;
     cursor: pointer;
+    text-decoration: underline;
+    color: #33525B;
 }
 
 .graminfoExplanationText:hover {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+    background-color: #EBEEEF;
 }
 
 .expandGraminfoIcon.expanded {
   transform: rotate(90deg);
 }
+
+/* --------- FOOTER --------- */
 
 footer {
     margin: 0.5em auto;
@@ -704,6 +750,33 @@ footer .lp-icon {
     margin-left: .8rem;
 }
 
+.footerLink:hover {
+  background-color: #16323A !important;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+/* --------- TEMP ERROR MESSAGE --------- */
+
+.errorMessage {
+    background-color: #FFCD00;
+    border-radius: 5px; 
+    font-size: 16px;
+    padding: 5px;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;          /* align items */
+    align-items: center;    /* align items */
+    gap: 0.5rem;            /* align items */
+}
+
+.warningIcon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;         /* align items */
+}
+
 /* --------- HIGH CONTRAST MODE --------- */
 
 @media (prefers-contrast: more) {
@@ -736,36 +809,7 @@ footer .lp-icon {
     }
 }
 
-/* CG ADD */
 input[type="checkbox"] {
   accent-color: #3FD695;
 }
 
-/* --------- URLS --------- */
-
-.footerLink:hover {
-  background-color: #16323A !important;
-  padding-top: 7px;
-  padding-bottom: 7px;
-}
-
-/* --------- TEMP ERROR MESSAGE --------- */
-
-.errorMessage {
-    background-color: #FFCD00;
-    border-radius: 5px; 
-    font-size: 16px;
-    padding: 5px;
-    margin-top: 15px;
-    margin-left: 10px;
-    margin-right: 10px;
-    display: flex;          /* align items */
-    align-items: center;    /* align items */
-    gap: 0.5rem;            /* align items */
-}
-
-.warningIcon {
-    width: 36px;
-    height: 36px;
-    flex-shrink: 0;         /* align items */
-}

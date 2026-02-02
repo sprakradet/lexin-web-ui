@@ -102,10 +102,12 @@
     color: #32525B;
     cursor: pointer;
     text-decoration: underline;
+    /*display: inline-block;*/
 }
 
 .helpOpenMoreInfo:hover {
     /*text-decoration: underline;*/
+    background-color: #EBEEEF;
 }
 
 .helpMoreInfo {
@@ -203,6 +205,10 @@ th {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.LexinExplanations a:hover{
+  background-color: #EBEEEF;
 }
 
 /* --------- (CG ADD) HIGH CONTRAST MODE SETTINGS --------- */

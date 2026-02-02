@@ -88,6 +88,11 @@
     text-align: center;
 }
 
+.removeOneSavedWordButton:hover {
+    background-color: #3FD695;
+    color: #1C3F49;
+}
+
 .removeOneSavedWordButton .savedWordsList a:hover {
     text-decoration: underline;
 }
