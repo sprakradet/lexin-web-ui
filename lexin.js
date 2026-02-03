@@ -810,6 +810,9 @@ function printJSON(word, res, moreThanOneLanguage) {
 	else if(res.Status == "no matching") {
 		html.className = 'errorReport';
 		html.textContent = "Ordet gick inte att hitta i ordlistan.";
+
+		// accessibility
+		html.setAttribute("role", "status");
     } 
 	// try to correct word, single possible word, e.g. "möndighet"
 	else if(res.Status == "found" || res.Status == "corrected") {
@@ -824,6 +827,10 @@ function printJSON(word, res, moreThanOneLanguage) {
 
 					// CG CHANGE - from correctedWord to correctedWord2
 					corr.textContent = "Ordet \"" + word + "\" finns inte i lexikonet, men ordet \"" + correctedWord2 + "\" finns.";
+
+					// accessibility
+					corr.setAttribute("role", "status");
+					
 					word = correctedWord; // treat this as the query for relevance etc. purposes
 					break;
 				}
@@ -4981,7 +4988,7 @@ function multiLangOrNot() {
 		lc.css("display", "none");
 
 		// add new button
-		let multilangchoicebutton = $("<div class='multilang-wrapper'><button id='multiLanguageChoiceButton'>Välj språk</button></div>");
+		let multilangchoicebutton = $("<div class='multilang-wrapper'><button id='multiLanguageChoiceButton' aria-label='Välj flera språk att visa'>Välj språk</button></div>");
 		lc.after(multilangchoicebutton);
 
 		let multilangchoice = $("#multilangchoice");
@@ -5533,7 +5540,7 @@ function openPageDescription(elem) {
 	    }
 	    relevantExplanationElement.style.display = 'block';
 	    inner.focus();
-	    $(inner).prepend('<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng">	  <img src="/closebutton.svg">	</button>');
+	    $(inner).prepend('<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng infosidan">	  <img src="/closebutton.svg">	</button>');
 
 	    return;
 	} else { // not 'clickableHeading'

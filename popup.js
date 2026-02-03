@@ -62,10 +62,17 @@ function isValidFeedback() {
     if (!checked) {
         firstButton.setCustomValidity("Välj ett alternativ.");
         firstButton.reportValidity();
+
+		// accessibility
+  		buttons.forEach(btn => btn.setAttribute("aria-invalid", "true"));
+
         valid = false;
     }
     else {
 		firstButton.setCustomValidity("");
+
+		// accessibility
+  		buttons.forEach(btn => btn.removeAttribute("aria-invalid"));
 	}
 
 	// check comment length
@@ -73,22 +80,36 @@ function isValidFeedback() {
 	if (firstComment.value.length > 500 ) {
 		firstComment.setCustomValidity("Texten är för lång. Du kan skriva max 500 tecken.");
         firstComment.reportValidity();
+
+		// accessibility
+		firstComment.setAttribute("aria-invalid", "true");
+
         valid = false;
     }
     else {
 		firstComment.setCustomValidity("");
+
+		// accessibility
+		firstComment.removeAttribute("aria-invalid");
 	}
 
 	// check mail address format
 	const firstAddress = document.querySelectorAll("input[name='mailaddress']")[0];
 	const re = /\S+@\S+\.\S+/;
 	if (firstAddress.value != "" && (!re.test(firstAddress.value) || firstAddress.value.length > 254)) {
-		firstAddress.setCustomValidity("Ange en giltig mejladress.");
+		firstAddress.setCustomValidity("Ange en giltig mejladress, t.ex. namn@domän.se");
         firstAddress.reportValidity();
+
+		// accessibility
+		firstAddress.setAttribute("aria-invalid", "true");
+
         valid = false;
     }
     else {
 		firstAddress.setCustomValidity("");
+
+		// accessibility
+		firstAddress.removeAttribute("aria-invalid");
 	}
 
 	if(!valid) {

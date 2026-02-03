@@ -73,6 +73,9 @@
 		(function () {
 			let previousUrl = window.location.pathname + window.location.search;
 
+			// title in Lexin
+			let displayedPageTitle = "";
+
 			// create unique page title
 			function buildPageTitle() {
 				const params = new URLSearchParams(window.location.search);
@@ -82,6 +85,16 @@
 				if (word && languages) {
 					title += " - Sök: " + word + " (" + languages + ")";
 				}
+
+				// title in Lexin
+				if(word) {
+					displayedPageTitle = word + " - Lexin";
+				} 
+				else {
+					displayedPageTitle = "Lexin"
+				}
+				document.title = displayedPageTitle;
+
 				return title;
 			}
 
@@ -126,6 +139,9 @@
 
   <body>
 
+	<!-- SKIP LINK -->
+	<a href="#searchQuery" class="skipLink">Till sökrutan</a>
+
     <div id="inputDiv">
 
     	<form id="theForm">
@@ -137,7 +153,7 @@
 
 				<!-- LANGUAGE SELECT -->
 				<div class="select-wrapper">
-					<select id="languageChoice" name="languageChoice" aria-label="Språkval">
+					<select id="languageChoice" name="languageChoice" aria-label="Välj ett språk att visa">
 						<option value="alb">albanska</option>
 						<option value="amh">amhariska</option>
 						<option value="ara">arabiska</option>
@@ -343,7 +359,7 @@
 			<div id="downloadPopup" class="downloadPopup">
 				<h2>Ladda ner lexikon</h2>
 				<div class="downloadControls">
-					<select id="selectDownloadLanguages" aria-label="Välj språk"></select>
+					<select id="selectDownloadLanguages" aria-label="Välj språk att ladda ner"></select>
 					<button class="downloadStartButton" type="button">
 						Ladda ner
 					</button>
@@ -374,11 +390,11 @@
 		<!-- SEARCH FIELD -->
 		<div role="search" class="inputwrapper">
 			<input name="word" dir="auto" placeholder="Sök..." value="" id="searchQuery" autofocus autocorrect="off" autocapitalize="none" autocomplete="off" aria-label="Sök">
-			<input type="submit" aria-label="Sök">
+			<input type="submit" aria-label="Gör sökning">
 		</div>
 
 		<!-- TEMP ERROR MESSAGE (this should only be enabled in case of temporary downtime) -->
-		<!--<div class="errorMessage">
+		<!--<div class="errorMessage" role="alert">
 			<img src="/warning-icon.svg" class="warningIcon" alt="">
 			Just nu har vi tekniska problem. Vi jobbar på att lösa dessa så fort som möjligt.
 		</div>-->
@@ -405,7 +421,7 @@
 	</button>
 
 	<!-- CG ADD FEEDBACK POPUP -->
-	<div id="popup" class="popup">
+	<div id="popup" class="popup" role="dialog">
 		<form id="theForm3">
 			
 			<!-- DEFAULT FIELDS -->
@@ -432,8 +448,8 @@
 		</form>
 		
 		<div class="popupButtons">
+			<button class="closeButton" type="button" onclick="closePopup()" aria-label="Stäng återkoppling">Stäng</button>
 			<button class="sendButton" type="button" onclick="sendFeedback()">Skicka in</button>
-			<button class="closeButton" type="button" onclick="closePopup()">Stäng</button>
 		</div>
 
 		<div class="gdprContent">
