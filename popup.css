@@ -186,3 +186,13 @@ body.help-open .popupButton {
   }
 }
 
+/* --------- HIGH CONTRAST MODE --------- */
+
+@media (prefers-contrast: more) {
+    .popupButton {
+        background: ButtonFace;       /* system color */
+        border: 2px solid ButtonText; /* visible outline */
+        forced-color-adjust: none;    /* keep our choices */
+  }
+}
+

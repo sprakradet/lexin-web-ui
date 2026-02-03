@@ -247,13 +247,19 @@ select {
     font-size: 1.3em;
 }
 
-/* --------- DOCUMENTATION --------- */
+/* --------- NO SEARCH RESULT --------- */
 
 .errorReport {
     padding: 0.5em 1em 0.5em 1em;
     padding-left: max(env(safe-area-inset-left), 1em);
     padding-right: max(env(safe-area-inset-right), 1em);
 }
+
+.errorReport a:hover {
+    background-color: #EBEEEF;
+}
+
+/* --------- DOCUMENTATION --------- */
 
 .testVersionInfo {
     padding: 0.5em 1em 0.5em 1em;
@@ -311,6 +317,7 @@ select {
 .phonetic {
     font-size: 1.3em;
     margin-right: 0.2em;
+    margin-left: 0.2em;
 }
 
 .soundFiles {

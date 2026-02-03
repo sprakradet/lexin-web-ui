@@ -2277,7 +2277,7 @@ function phoneticToHTML(parentElement, listenContainer, phonetics, show) {
         first = false;
 	
 	if(p.ph != "") {
-	    wrap.appendChild(createTextSpan(" [" + p.ph + "]", 'phonetic'));
+	    wrap.appendChild(createTextSpan("[" + p.ph + "]", 'phonetic'));
 	    if(!show) {
 		wrap.className += ' notRelevant';
 	    }
