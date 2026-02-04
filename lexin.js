@@ -3997,7 +3997,7 @@ function explToHTML(parentElement, ex1, ex2, baseForms, showAll) {
 
 	var wrap = document.createElement('span');
 	var head = document.createElement('span');
-	head.textContent = "\u25C7 Förklaring";
+	head.textContent = "Förklaring";
 	head.lang = BaseLanguageSwe;
 	head.dir = "ltr";
 	head.className = 'clickableHeading';
@@ -4084,7 +4084,7 @@ function explToHTML(parentElement, ex1, ex2, baseForms, showAll) {
 
 	var wrap = document.createElement('span');	
 	var head = document.createElement('span');	
-	head.textContent = "\u25C7 Förklaring";
+	head.textContent = "Förklaring";
 	head.lang = BaseLanguageSwe;
 	head.dir = "ltr";
 	head.className = 'clickableHeading';
@@ -5472,8 +5472,15 @@ function openPageDescription(elem) {
 		}
 
 		inner.onclick = function(event) {
-			closeHelpPopup();
+			//closeHelpPopup();
+			e.stopPropagation();
 		}
+
+		// click close button to close (no other options except esc)
+		$(inner).on("click", ".closeHelp", function (e) {
+			e.stopPropagation();
+			closeHelpPopup();
+		});
 
 		inner.onkeydown = function(event) {
 			if (event.key == "Escape") {
@@ -5482,7 +5489,8 @@ function openPageDescription(elem) {
 		}
 
 		relevantExplanationElement.onclick = function(event) {
-			closeHelpPopup();
+			//closeHelpPopup();
+			e.stopPropagation();
 		}
 
 		relevantExplanationElement.onkeydown = function(event) {
@@ -5506,7 +5514,7 @@ function openPageDescription(elem) {
 
 	    let inner = relevantExplanationElement.children[0];
 	    
-	    if(elem.textContent == '\u25C7 Förklaring') {		
+	    if(elem.textContent == 'Förklaring') {		
 		openHelpSakuppl(inner);
 	    } else if(elem.className.indexOf('phonetic') >= 0) {
 		openHelpPhon(inner, elem.textContent);
