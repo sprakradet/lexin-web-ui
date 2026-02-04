@@ -10,7 +10,7 @@
     margin-left: max(env(safe-area-inset-left), 1em);
     margin-right: max(env(safe-area-inset-right), 1em);
 
-    /* CG ADD - move feedback button behind settings element */
+    /* move feedback button behind settings element */
     position: relative;
     z-index: 10;
     margin-bottom: 0;
@@ -52,7 +52,7 @@
 
 .progressWrapper {
     align-self: center;
-/*    height: 2em;*/
+    /*    height: 2em;*/
 }
 
 progress {
@@ -96,13 +96,9 @@ progress::-moz-progress-bar {           /* Firefox */
     cursor: pointer;
 }
 
-.downloadStartButton:hover {
-    background-color: #3FD695;
-}
-
 /* --------- REMOVE BUTTON --------- */
 
-.removeDownloadButton {
+/*.removeDownloadButton {
     background-color: rgba(0,0,0,0);
     color: black;
     font: inherit;
@@ -120,9 +116,46 @@ progress::-moz-progress-bar {           /* Firefox */
     background-size: contain;
     background-position: center;
     cursor: pointer;
+}*/
+
+.removeDownloadButton {
+    all: unset;
+    border: 1px solid;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: .5em;
+    padding-left: .4em;
+    padding-right: .4em;
+    text-align: center;
+    border-radius: 0.3em;
+
+    border-color: transparent;
+    background-color: #D7E9EC;
+    color: black;
 }
 
-/* CG ADD BELOW */
+/* accessibility */
+.removeDownloadButton:focus-visible {
+    outline: auto;
+    outline-offset: 3px;
+}
+
+/* --------- FAILED BUTTON --------- */
+
+.downloadFailedButton {
+    background-color: #D7E9EC;
+    color: black;
+    font: inherit;
+    padding: 0.1em .5em 0.2em 0.5em;
+    border: none;
+    border-radius: 0.3em;
+    /*margin: 1em 0 2em auto;*/
+    margin: 0;
+    display: block;
+    cursor: pointer;
+}
+
+/* --------- PAGE COMPONENTS --------- */
 
 /* handle elements next to each other */
 .downloadControls {
@@ -138,19 +171,20 @@ progress::-moz-progress-bar {           /* Firefox */
   box-sizing: border-box;
 }
 
-.downloadFailedButton {
-    background-color: #D7E9EC;
-    color: black;
-    font: inherit;
-    padding: 0.1em .5em 0.2em 0.5em;
-    border: none;
-    border-radius: 0.3em;
-    /*margin: 1em 0 2em auto;*/
-    margin: 0;
-    display: block;
-    cursor: pointer;
-}
+/* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
 
-.downloadFailedButton:hover {
-    background-color: #3FD695;
+@media (hover: hover) and (pointer: fine) {
+    .downloadStartButton:hover {
+        background-color: #3FD695;
+    }
+
+    .downloadFailedButton:hover {
+        background-color: #3FD695;
+    }
+
+    .removeDownloadButton:hover {
+        background-color: #3FD695;
+        color: #1C3F49;
+        border-color: #3FD695;
+    }
 }

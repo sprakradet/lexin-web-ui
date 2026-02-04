@@ -1,14 +1,13 @@
+/* --------- ICON (is this used?) --------- */ 
+
 .saveWordIcon {
   display: inline-block;
   cursor: pointer;
   border: 1;
-
   height: 46px;
-  
   position: absolute;
   right: 9em;
   top: 0.8em;
-
   background-color: transparent;
   border-color: white;
   color: white;
@@ -16,14 +15,14 @@
 
 .saveWordIcon.change {
     top: .65em;
-
     border-color: black;
     color: black;
 }
 
+/* --------- POPUP --------- */ 
+
 .saveWordPopup {
     display: none;
-
     background-color: rgb(28, 63, 73);
     color: white;
     margin: 0 1em 1em 1em;
@@ -32,12 +31,14 @@
     margin-left: max(env(safe-area-inset-left), 1em);
     margin-right: max(env(safe-area-inset-right), 1em);
 
-    /* CG ADD - move feedback button behind settings element */
+    /* move feedback button behind settings element */
     position: relative;
     z-index: 10;
     margin-bottom: 0;
     padding-bottom: 0.5em;
 }
+
+/* --------- WORD LIST --------- */ 
 
 .savedWordsList a {
     color: white;
@@ -55,6 +56,8 @@
     margin-top: .6em;
 }
 
+/* --------- SAVE BUTTON --------- */ 
+
 .saveWordsButton {
     background-color: #D7E9EC;
     color: black;
@@ -66,38 +69,34 @@
     cursor: pointer;
 }
 
-/* CG highlight on hover */
-.saveWordsButton:hover {
-    background-color: #3FD695;
-}
-
-/* CG disable design */
 .saveWordsButton:disabled {
     background-color: #BFCED0;
     color: #415558;
     cursor: not-allowed;
 }
 
+/* --------- REMOVE BUTTON --------- */ 
+
 .removeOneSavedWordButton {
     border: 1px solid;
     cursor: pointer;
     display: inline;
-    margin-left: .5em;
-    padding-left: .2em;
-    padding-right: .2em;
+    margin-left: .7em;
+    padding-left: .4em;
+    padding-right: .4em;
     text-align: center;
-}
+    border-radius: 0.3em;
 
-.removeOneSavedWordButton:hover {
-    background-color: #3FD695;
-    color: #1C3F49;
+    border-color: transparent;
+    background-color: #D7E9EC;
+    color: black;
 }
 
 .removeOneSavedWordButton .savedWordsList a:hover {
     text-decoration: underline;
 }
 
-/* --------- CG ADD BELOW --------- */ 
+/* --------- SAVE MESSAGE --------- */ 
 
 .saveMessage {
   margin-left: 10px;
@@ -108,4 +107,18 @@
 
 .saveMessage.show {
   opacity: 1;
+}
+
+/* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
+
+@media (hover: hover) and (pointer: fine) {
+    .saveWordsButton:hover {
+        background-color: #3FD695;
+    }
+
+    .removeOneSavedWordButton:hover {
+        background-color: #3FD695;
+        color: #1C3F49;
+        border-color: #3FD695;
+    }
 }

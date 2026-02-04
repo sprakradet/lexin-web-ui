@@ -2247,6 +2247,7 @@ function expandSlashesInner(text) {
         [[]]);
 }
 
+/* --------- EXPAND ARTICLE BUTTON --------- */
 function addExpandResultElement() {
     let exp = document.createElement('img');
     exp.src = "/submenuBlack.svg";
@@ -2259,7 +2260,18 @@ function addExpandResultElement() {
     exp.onclick = function() {
 		let p = $(this).closest('li');
 		let des = p.find('.notRelevant');
+
+		// accessibility
+		const isOpen = des.is(':visible');
+
 		des.toggle();
+
+		// accessibility
+        if (isOpen) {
+            exp.alt = "Visa hela artikeln";
+        } else {
+            exp.alt = "Stäng artikeln";
+        }
     }
 
     return exp;

@@ -118,12 +118,23 @@ function getULfromSavedWords() {
 // --------------------------------------------------------------------
 function savedWordsSortWords(elem) {
     if(savedWords) {
-		savedWords.sort();
+		/*savedWords.sort();
 
-		// CG ADD ignore case
+		// ignore case
 		savedWords.sort((a, b) => {
             return a.toLowerCase().localeCompare(b.toLowerCase());
         });
+
+		// sort according to swedish alphabet
+		savedWords.sort((a, b) =>
+            a.localeCompare(b, "sv", { sensitivity: "base" })
+        );*/
+
+		const collator = new Intl.Collator("sv", {
+			sensitivity: "base", // ignore case/accents
+			numeric: true        // sort numbers
+		});
+		savedWords.sort((a, b) => collator.compare(a, b));
 		
 		var uElem = getULfromSavedWords();
 		
@@ -175,17 +186,17 @@ function removeOneSavedWord(word) {
 // --------------------------------------------------------------------
 function savedWordsClearWords(elem) {
     if(savedWords && savedWords.length != 0) {
-	savedWords = [];
-	
-	var uElem = getULfromSavedWords();
-	
-	var parentDiv = $("#savedWordsList")[0];
-	parentDiv.innerHTML = null;
-	parentDiv.appendChild(uElem);
+		savedWords = [];
+		
+		var uElem = getULfromSavedWords();
+		
+		var parentDiv = $("#savedWordsList")[0];
+		parentDiv.innerHTML = null;
+		parentDiv.appendChild(uElem);
 
-	updateSaveCurrentButton();
+		updateSaveCurrentButton();
 
-	saveToLocalStorage();
+		saveToLocalStorage();
     }
 }
 

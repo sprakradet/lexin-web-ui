@@ -16,15 +16,10 @@
     height: 2.5em;
     font: inherit;
     font-size: 0.5em;
-    background-color: #f0f0f0;
+    background-color: #D7E9EC;
     border: 1px #afafaf;
     appearance: none;
     border-radius: 5px;
-}
-
-.keyboardKeyButton:hover {
-    cursor: pointer;
-    background-color: #3FD695;
 }
 
 .keyboardKeyButton:disabled {
@@ -34,4 +29,13 @@
 
 .geezVowels, .geezConsonants {
     margin-bottom: 5px;
+}
+
+/* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
+
+@media (hover: hover) and (pointer: fine) {
+    .keyboardKeyButton:hover {
+        cursor: pointer;
+        background-color: #3FD695;
+    }
 }

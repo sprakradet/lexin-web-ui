@@ -176,6 +176,7 @@ select#languageChoice {
     width: 100%;
     max-width: 20em;
     cursor: pointer;
+    background-color: #D7E9EC;
 }
 
 select {
@@ -221,12 +222,8 @@ select {
     vertical-align: middle;
     border-radius: 5px;
     border-color: transparent;
-    background-color: white;
+    background-color: #D7E9EC;
     cursor: pointer;
-}
-
-#multiLanguageChoiceButton:hover {
-    background-color: #3FD695;
 }
 
 /* --------- LOGO (?) --------- */
@@ -821,6 +818,14 @@ footer .lp-icon {
     width: 36px;
     height: 36px;
     flex-shrink: 0;         /* align items */
+}
+
+/* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
+
+@media (hover: hover) and (pointer: fine) {
+    #multiLanguageChoiceButton:hover {
+        background-color: #3FD695;
+    }
 }
 
 /* --------- HIGH CONTRAST MODE --------- */

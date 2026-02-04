@@ -71,7 +71,7 @@ form#theForm2 input.popupText {
 }
 
 .gdprText:hover {
-    /*text-decoration: underline;*/
+    background-color: #EBEEEF;
 }
 
 .gdprContent {
@@ -135,20 +135,13 @@ body.help-open .popupButton {
     cursor: pointer;
 }
 
-.sendButton {
+.sendButton { 
     background-color: #D7E9EC;
 }
 
-.sendButton:hover {
-    background-color: #3FD695;
-}
 
 .closeButton {
     background-color: lightgray;
-}
-
-.closeButton:hover {
-    background-color: gray;
 }
 
 /* --------- HP --------- */
@@ -184,6 +177,18 @@ body.help-open .popupButton {
     -webkit-overflow-scrolling: touch;
     width: min(300px, calc(100vw - 32px));
   }
+}
+
+/* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
+
+@media (hover: hover) and (pointer: fine) {
+    .sendButton:hover {
+        background-color: #3FD695;
+    }
+
+    .closeButton:hover {
+        background-color: gray;
+    }
 }
 
 /* --------- HIGH CONTRAST MODE --------- */

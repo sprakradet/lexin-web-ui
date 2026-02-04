@@ -97,12 +97,11 @@
 /* --------- SHOW MORE TEXT --------- */
 
 .helpOpenMoreInfo {
-    /*font-weight: bold;*/
-    /*color: blue;*/
     color: #32525B;
     cursor: pointer;
     text-decoration: underline;
     /*display: inline-block;*/
+    /*margin-top: -4px;*/
 }
 
 .helpOpenMoreInfo:hover {

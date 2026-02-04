@@ -88,8 +88,9 @@ function startDownload() {
 
 /* --------- AFTER DICTIONARY DOWNLOAD --------- */
 function setAsDownloaded(wrapper, lang) {
-	// show info text
-    wrapper.empty().append("Nedladdat <button class='removeDownloadButton' type='button' aria-label='Ta bort nedladdning'></button>");
+	// show info text + remove button
+    // wrapper.empty().append("Nedladdat <button class='removeDownloadButton' type='button' aria-label='Ta bort nedladdning'></button>");
+	wrapper.empty().append("Nedladdat <button class='removeDownloadButton' type='button' aria-label='Ta bort nedladdning'>&times;</button>");
 
 	// remove button event
     wrapper.find("button").click(async function () {
