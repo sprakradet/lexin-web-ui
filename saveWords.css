@@ -112,7 +112,7 @@
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
 
 @media (hover: hover) and (pointer: fine) {
-    .saveWordsButton:hover {
+    .saveWordsButton:not(:disabled):hover {
         background-color: #3FD695;
     }
 
