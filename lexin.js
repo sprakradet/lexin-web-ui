@@ -1249,11 +1249,12 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 		    posElem.className += ' notRelevant';
 		}
 
-                posElem.textContent = unAbbreviatePoS(Object.values(js.Type)[0]);
+        posElem.textContent = unAbbreviatePoS(Object.values(js.Type)[0]);
 
 		if(posElem.textContent != 'se') {
 		    posElem.appendChild(document.createElement('br'));
 		    wordInfoMain.appendChild(posElem);
+			wordInfoMain.appendChild(document.createElement('br'));
 		}
 	    }
 
@@ -2366,107 +2367,119 @@ function abbrToHTML(parentElement, ab, show) {
 function inflectionsToHTML(parentElement, infl, show) {
     var iElem = document.createElement('span');
     iElem.className = 'inflections';
+
+	// no inflections for this word
     if(!show) {
-	iElem.className = ' notRelevant';
+		iElem.className = ' notRelevant';
     }
 
+	// iterate through all inflection forms
     var txt = " (";
     for(var i = 0; i < infl.length; i++) {
-	if(i > 0) {
-	    txt += " \u00b7 ";
-	}
-	if(infl[i].s) {
-	    if(infl[i].s == "!" || infl[i].s == "(!)") {
-		txt += infl[i].c;
-		
-		iElem.appendChild(makeWordsClickable(txt));
-		txt = "";
-
-		let spec = document.createElement('span');
-		spec.className = 'cueWord';
-		spec.textContent = infl[i].s;
-		iElem.appendChild(spec);		
-	    } else {
-		if(txt != "") {
-		    iElem.appendChild(makeWordsClickable(txt + " "));
-		    txt = "";
-		}
-		let spec = document.createElement('span');
-		spec.className = 'cueWord';
-		spec.textContent = infl[i].s;
-		iElem.appendChild(spec);
-		
-		txt = "\u00a0" + infl[i].c;
-	    }
-	} else {
-	    txt += infl[i].c;
-	}
-	if(infl[i].a) {
-	    for(var aa = 0; aa < infl[i].a.length; aa++) {
-		let sp = "eller";
-		if(infl[i].a[aa].s) {
-		    sp = infl[i].a[aa].s;
-		}
-		
-		if(txt != "") {
-		    iElem.appendChild(makeWordsClickable(txt + " "));
-		    txt = "";
+		// add dot separator
+		if(i > 0) {
+			txt += " \u00b7 ";
 		}
 
-		let alt = document.createElement('span');
-		alt.className = 'orClass';
-		alt.textContent = " " + sp;
-		iElem.appendChild(alt);
-		
+		// special case: ?
 		if(infl[i].s) {
-		    if(infl[i].s == "!" || infl[i].s == "(!)") {
-			txt += " " + infl[i].a[aa].c;
-			
-			iElem.appendChild(makeWordsClickable(txt));
-			txt = "";
-			
-			let spec = document.createElement('span');
-			spec.className = 'cueWord';
-			spec.textContent = infl[i].s;
-			iElem.appendChild(spec);
+			if(infl[i].s == "!" || infl[i].s == "(!)") {
+				txt += infl[i].c;
+				iElem.appendChild(makeWordsClickable(txt));
+				txt = "";
 
-		    } else {
-			let spec = document.createElement('span');
-			spec.className = 'cueWord';
-			spec.textContent = " " + infl[i].s;
-			iElem.appendChild(spec);
-			
-			txt = " " + infl[i].a[aa].c;
-		    }
+				let spec = document.createElement('span');
+				spec.className = 'cueWord';
+				spec.textContent = infl[i].s;
+				iElem.appendChild(spec);		
+			} else {
+				if(txt != "") {
+					iElem.appendChild(makeWordsClickable(txt + " "));
+					txt = "";
+				}
+
+				let spec = document.createElement('span');
+				spec.className = 'cueWord';
+				spec.textContent = infl[i].s;
+				iElem.appendChild(spec);
+				txt = "\u00a0" + infl[i].c;
+			}
 		} else {
-		    txt = " " + infl[i].a[aa].c;
+			txt += infl[i].c;
 		}
-	    }
-	}
-	if(infl[i].ph) {
-	    let ph = infl[i].ph;
-	    let phText = "";
-	    for(let p = 0; p < ph.length; p++) {
-		if(ph[p].Content) {
-		    phText += ' [' + ph[p].Content + ']';
-		}		
-	    }
-	    if(phText != "") {
-		if(txt != "") {
-		    iElem.appendChild(makeWordsClickable(txt + " "));
-		    txt = "";
+
+		// special case: ?
+		if(infl[i].a) {
+			for(var aa = 0; aa < infl[i].a.length; aa++) {
+				let sp = "eller";
+				if(infl[i].a[aa].s) {
+					sp = infl[i].a[aa].s;
+				}
+				
+				if(txt != "") {
+					iElem.appendChild(makeWordsClickable(txt + " "));
+					txt = "";
+				}
+
+				let alt = document.createElement('span');
+				alt.className = 'orClass';
+				alt.textContent = " " + sp;
+				iElem.appendChild(alt);
+				
+				if(infl[i].s) {
+					if(infl[i].s == "!" || infl[i].s == "(!)") {
+					txt += " " + infl[i].a[aa].c;
+					iElem.appendChild(makeWordsClickable(txt));
+					txt = "";
+					
+					let spec = document.createElement('span');
+					spec.className = 'cueWord';
+					spec.textContent = infl[i].s;
+					iElem.appendChild(spec);
+					} else {
+						let spec = document.createElement('span');
+						spec.className = 'cueWord';
+						spec.textContent = " " + infl[i].s;
+						iElem.appendChild(spec);
+						txt = " " + infl[i].a[aa].c;
+					}
+				} else {
+					txt = " " + infl[i].a[aa].c;
+				}
+			}
 		}
-		let pel = document.createElement('span');
-		pel.className = 'clickableHeading';
-		pel.textContent = phText;
-		iElem.appendChild(pel);
-	    }
-	}
+
+		// special case: pronunciation
+		if(infl[i].ph) {
+			let ph = infl[i].ph;
+			let phText = "";
+
+			for(let p = 0; p < ph.length; p++) {
+				if(ph[p].Content) {
+					phText += ' [' + ph[p].Content + ']';
+				}		
+			}
+
+			if(phText != "") {
+				if(txt != "") {
+					iElem.appendChild(makeWordsClickable(txt + " "));
+					txt = "";
+				}
+				let pel = document.createElement('span');
+				pel.className = 'clickableHeading phonetic';
+
+				// accessibility
+				makeKeyboardClickable(pel);
+
+				pel.textContent = phText;
+				iElem.appendChild(pel);
+			}
+		}
     }
+
     txt += ") ";
     
     iElem.appendChild(makeWordsClickable(txt));
-
     iElem.lang = BaseLanguageSwe;
     iElem.dir = "ltr";
     iElem.appendChild(document.createElement('br'));
@@ -5052,6 +5065,13 @@ function multiLangOrNot() {
 			
 			$(".settingsIcon").addClass("change");
 			$("#multilangchoice").show();
+
+			// accessibility
+			const firstCheckbox = multilangchoice.find("input[type='checkbox']").get(0);
+			if (firstCheckbox) {
+				firstCheckbox.focus();
+			}
+
 			e.preventDefault();
 		});
 
@@ -5516,9 +5536,10 @@ function initHelpOpenMoreInfo() {
 
 /* --------- OPEN HELP PAGES --------- */
 var relevantExplanationElement = null;
+let lastHelpOpener = null;
 function openPageDescription(elem) {
 	// accessibility
-	const openerElement = document.activeElement;
+	lastHelpOpener = elem || document.activeElement;
 
 	// initiate help pages (run only once)
     if(!relevantExplanationElement) {
@@ -5542,31 +5563,38 @@ function openPageDescription(elem) {
 			event.stopPropagation();
 		}
 
-		// click close button to close (no other options except esc)
+		// click close button to close
 		$(inner).on("click", ".closeHelp", function (event) {
 			event.stopPropagation();
 			closeHelpPopup();
+
+			// accessibility
+			if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
+				lastHelpOpener.focus();
+			}
+
+			console.log("CG clicked");
 		});
 
 		// click esc to close
-		inner.onkeydown = function(event) {
+		/*inner.onkeydown = function(event) {
 			if (event.key == "Escape") {
 				closeHelpPopup();
 			}
-		}
+		}*/
 
 		// clicking page itself does nothing
-		relevantExplanationElement.onclick = function(event) {
+		/*relevantExplanationElement.onclick = function(event) {
 			//closeHelpPopup();
 			event.stopPropagation();
-		}
+		}*/
 
 		// click esc to close
-		relevantExplanationElement.onkeydown = function(event) {
+		/*relevantExplanationElement.onkeydown = function(event) {
 			if (event.key == "Escape") {
 				closeHelpPopup();
 			}
-		}
+		}*/
 		
 		relevantExplanationElement.style.top = 0;
 		inner.style.height = "100%";
@@ -5580,9 +5608,8 @@ function openPageDescription(elem) {
 	// feedback button helper
   	document.body.classList.add("help-open");
 
-	// elem
+	// specific help page
     if(elem) {
-		// specific help page
 		if(elem.className.indexOf('clickableHeading') >= 0) {
 			let inner = relevantExplanationElement.children[0];
 			
@@ -5631,7 +5658,7 @@ function openPageDescription(elem) {
 			relevantExplanationElement.style.display = 'block';
 			inner.focus();
 
-			// close button
+			// create close button
 			$(inner).prepend('<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng infosidan">	  <img src="/closebutton.svg">	</button>');
 
 			// accessibility
@@ -5642,7 +5669,6 @@ function openPageDescription(elem) {
 
 			return;
 		} 
-		// not clickable heading
 		else { 
 			console.log("openPageDescription: Element is not a clickableHeading", elem);
 		}
@@ -5651,17 +5677,14 @@ function openPageDescription(elem) {
 	else { 
 		console.log("openPageDescription: No element, open help page");
     }
-    // -----------------------------------------------------
-    // Not a clickable heading, so typically the Help button
-    // -----------------------------------------------------
-    
+
 	// hide search bar
     let searchBar = $("#theForm2")[0];
     if(searchBar) {
 		searchBar.style.display = 'none';
     }
     
-	// general help page
+	// add general help page
     let explDiv = $("#LexinExplanationsWrapper")[0];
     $("#LexinExplanationsWrapper").empty().append(helpElement);
 
@@ -5686,7 +5709,7 @@ function openPageDescription(elem) {
 		}
     }
 
-	// close help page
+	// close general help page
     $(".LexinExplanations button.closeHelp").click(() => {
 		explDiv.style.display = "none";
 
@@ -5709,8 +5732,13 @@ function openPageDescription(elem) {
     }
 
     explDiv.focus();
-}
 
+	// accessibility
+	const closeBtn = explDiv.querySelector(".closeHelp");
+	if (closeBtn) {
+		closeBtn.focus();
+	}
+}
 
 // ----------------------------------------------------------------------
 // jQuery.condShow(shouldBeShown)

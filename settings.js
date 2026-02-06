@@ -26,6 +26,11 @@ function openCloseSettings(elem) {
 
 function dismissSettings() {
     $(".settingsIcon").removeClass("change");
+
+	// accessibility
+	$(".settingsIcon").attr("aria-label", "Visa inställningar")
+  	$(".settingsIcon").attr("aria-expanded", "false");
+	
     $("#settingsPopup").hide();
     $("#saveWordPopup").hide();
     $("#partsselection").hide();
