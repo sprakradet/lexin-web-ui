@@ -3,36 +3,48 @@
 // ----------------------------------------------------------------------
 
 let lastFocusedElement = null;
+let popupTrapCleanup = null;
 
 /* --------- SHOW POPUP --------- */
 function showPopup() {
-  // accessibility (tab focus)
-  lastFocusedElement = document.activeElement;
+	const popup = document.getElementById('popup');
 
-  document.getElementById('popup').style.display = 'block';
-  document.body.classList.add("modal-open");
+	// accessibility (tab focus)
+	lastFocusedElement = document.activeElement;
 
-  // accessibility (tab focus)
-  const firstFocusable = popup.querySelector(
-    'input:not([tabindex="-1"]), textarea, button, [tabindex]:not([tabindex="-1"])'
-  );
-  if (firstFocusable) {
-    firstFocusable.focus();
-  }
+	popup.style.display = 'block';
+	document.body.classList.add("modal-open");
+
+	// accessibility (tab focus possible)
+	popup.setAttribute("tabindex", "-1");
+
+	// accessibility (start focus trap)
+	if (popupTrapCleanup) popupTrapCleanup();
+	popupTrapCleanup = trapFocus(popup);
+
+	// accessibility (focus first element)
+	const focusables = getFocusableElements(popup);
+	(focusables[0] || popup).focus();
 }
 
 /* --------- CLOSE POPUP --------- */
 function closePopup() {
-  document.getElementById('popup').style.display = 'none';
-  document.body.classList.remove("modal-open");
-  document.querySelectorAll("#popup input[type='text']").forEach(el => el.value = "");
-  document.querySelectorAll("#popup textarea").forEach(el => el.value = "");
-  document.querySelectorAll("#popup input[type='radio']").forEach(el => el.checked = false);
+	document.getElementById('popup').style.display = 'none';
+	document.body.classList.remove("modal-open");
+	document.querySelectorAll("#popup input[type='text']").forEach(el => el.value = "");
+	document.querySelectorAll("#popup textarea").forEach(el => el.value = "");
+	document.querySelectorAll("#popup input[type='radio']").forEach(el => el.checked = false);
 
-  // accessibility (tab focus)
-  if (lastFocusedElement) {
-    lastFocusedElement.focus();
-  }
+	// accessibility (stop focus trap)
+	if (popupTrapCleanup) {
+		popupTrapCleanup();
+		popupTrapCleanup = null;
+	}
+
+	// accessibility (restore focus)
+	if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+		lastFocusedElement.focus();
+	}
 }
 
 /* --------- RESTORE POPUP CONTENT --------- */

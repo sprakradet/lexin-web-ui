@@ -5534,14 +5534,15 @@ function initHelpOpenMoreInfo() {
   });
 }
 
-/* --------- OPEN HELP PAGES --------- */
+/* --------- OPEN/CLOSE HELP PAGES --------- */
 var relevantExplanationElement = null;
 let lastHelpOpener = null;
+let explanationTrapCleanup = null;
 function openPageDescription(elem) {
 	// accessibility
 	lastHelpOpener = elem || document.activeElement;
 
-	// initiate help pages (run only once)
+	// initiate specific help pages (run only once)
     if(!relevantExplanationElement) {
 		// wrapper 
 		relevantExplanationElement = document.createElement('div');
@@ -5557,44 +5558,23 @@ function openPageDescription(elem) {
 			document.body.classList.remove("help-open");
 		}
 
-		// clicking page itself does nothing
-		inner.onclick = function(event) {
-			//closeHelpPopup();
-			event.stopPropagation();
-		}
-
-		// click close button to close
+		// close specific help page
 		$(inner).on("click", ".closeHelp", function (event) {
 			event.stopPropagation();
+
+			// accessibility (stop focus trap)
+			if (explanationTrapCleanup) {
+				explanationTrapCleanup();
+				explanationTrapCleanup = null;
+			}
+
 			closeHelpPopup();
 
-			// accessibility
+			// accessibility (restore focus)
 			if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
 				lastHelpOpener.focus();
 			}
-
-			console.log("CG clicked");
 		});
-
-		// click esc to close
-		/*inner.onkeydown = function(event) {
-			if (event.key == "Escape") {
-				closeHelpPopup();
-			}
-		}*/
-
-		// clicking page itself does nothing
-		/*relevantExplanationElement.onclick = function(event) {
-			//closeHelpPopup();
-			event.stopPropagation();
-		}*/
-
-		// click esc to close
-		/*relevantExplanationElement.onkeydown = function(event) {
-			if (event.key == "Escape") {
-				closeHelpPopup();
-			}
-		}*/
 		
 		relevantExplanationElement.style.top = 0;
 		inner.style.height = "100%";
@@ -5655,13 +5635,27 @@ function openPageDescription(elem) {
 				console.log("openPageDescription: Element is an unknown type of clickableHeading", elem);
 			}
 
+			// display specific help page
 			relevantExplanationElement.style.display = 'block';
 			inner.focus();
+
+			// accessibility (make popup focusable)
+			if (!relevantExplanationElement.hasAttribute("tabindex")) {
+				relevantExplanationElement.setAttribute("tabindex", "-1");
+			}
+
+			// accessibility (start focus trap)
+			if (explanationTrapCleanup) explanationTrapCleanup();
+			explanationTrapCleanup = trapFocus(relevantExplanationElement);
+
+			// accessibility (move focus inside)
+			const focusables = getFocusableElements(relevantExplanationElement);
+			(focusables[0] || relevantExplanationElement).focus();
 
 			// create close button
 			$(inner).prepend('<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng infosidan">	  <img src="/closebutton.svg">	</button>');
 
-			// accessibility
+			// accessibility (first focus on close button)
 			const closeBtn = inner.querySelector(".closeHelp");
 			if (closeBtn) {
 				closeBtn.focus();
@@ -5693,6 +5687,19 @@ function openPageDescription(elem) {
 
     explDiv.style.display = 'block';
 
+	// accessibility (make popup focusable)
+	if (!explDiv.hasAttribute("tabindex")) {
+	explDiv.setAttribute("tabindex", "-1");
+	}
+
+	// accessibility (start focus trap)
+	if (explanationTrapCleanup) explanationTrapCleanup();
+	explanationTrapCleanup = trapFocus(explDiv);
+
+	// accessibility (move focus inside)
+	const focusables = getFocusableElements(explDiv);
+	(focusables[0] || explDiv).focus();
+
 	// feedback button helper
 	document.body.classList.add("help-open");
 
@@ -5720,10 +5727,16 @@ function openPageDescription(elem) {
 			searchBar.style.display = 'block';
 		}
 
-		// accessibility
-		if (openerElement && typeof openerElement.focus === "function") {
-			openerElement.focus();
-		}
+		// accessibility (stop focus trap)
+			if (explanationTrapCleanup) {
+				explanationTrapCleanup();
+				explanationTrapCleanup = null;
+			}
+
+		// accessibility (restore focus)
+		if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
+				lastHelpOpener.focus();
+			}
     });
     
     let anchor = $("#LexinExplanations")[0];
@@ -6311,4 +6324,67 @@ if (typeof exports !== 'undefined') {
     exports.settings = settings
     exports.flags = flags;
     exports.lexinService = lexinService;
+}
+
+/* --------- GET TAB FOCUSABLE ELEMENTS IN POPUP (accessibility) --------- */
+function getFocusableElements(container) {
+	return Array.from(container.querySelectorAll(
+		'a[href]:not([tabindex="-1"]), ' +									// link
+		'button:not([disabled]):not([tabindex="-1"]), ' +					// button
+		'input[type="radio"]:not([disabled]):not([tabindex="-1"]), ' +		// radio button
+		'input[type="email"]:not([disabled]):not([tabindex="-1"]), ' +		// mail input field
+		'textarea:not([disabled]):not([tabindex="-1"]), ' +					// text area field
+		'[tabindex]:not([tabindex="-1"])'  									// other clickables
+	)).filter(el => !el.hasAttribute("hidden") && el.offsetParent !== null);
+}
+
+/* --------- TRAP TAB FOCUS IN POPUP (accessibility) --------- */
+function trapFocus(modal) {
+	// tabbing
+	function onKeyDown(e) {
+		if (e.key !== "Tab") return;
+
+		// get all elements of popup
+		const focusables = getFocusableElements(modal);
+		if (focusables.length === 0) {
+			e.preventDefault();
+			modal.focus();
+			return;
+		}
+
+		// get first & last elements 
+		const first = focusables[0];
+		const last  = focusables[focusables.length - 1];
+
+		// if first element and tabs backwards, go to last element
+		if (e.shiftKey && document.activeElement === first) {
+			e.preventDefault();
+			last.focus();
+			return;
+		}
+
+		// if last element and tabs forwards, go to first element
+		if (!e.shiftKey && document.activeElement === last) {
+			e.preventDefault();
+			first.focus();
+			return;
+		}
+	}
+
+	// shift focus to popup if focus moves outside
+	function onFocusIn(e) {
+		if (!modal.contains(e.target)) {
+			const focusables = getFocusableElements(modal);
+			(focusables[0] || modal).focus();
+		}
+	}
+
+	modal.addEventListener("keydown", onKeyDown);
+	document.addEventListener("focusin", onFocusIn);
+
+	// avoid multiple event listeners
+	return () => {
+		modal.removeEventListener("keydown", onKeyDown);
+		document.removeEventListener("focusin", onFocusIn);
+	};
 }
