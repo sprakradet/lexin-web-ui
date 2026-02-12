@@ -6388,3 +6388,128 @@ function trapFocus(modal) {
 		document.removeEventListener("focusin", onFocusIn);
 	};
 }
+
+/* ----- CG TEST MULTILING BELOW - THIS DISPLAYS CANVAS AS IFRAME ----*/
+
+/* --------- CHECK IF CANVAS IS NOT EMPTY (bildtema multiling) --------- */
+/*function canvasHasPixels(c) {
+	const ctx = c.getContext("2d", { willReadFrequently: true });
+
+	// empty width/height means no content
+	const w = c.width, h = c.height;
+	if (!w || !h) return false;
+
+	// get sample of pixels i canvas
+	const samples = [
+		[0, 0],
+		[w >> 1, h >> 1],
+		[w - 1, 0],
+		[0, h - 1],
+		[w - 1, h - 1],
+	];
+
+	// check pixel sample
+	for (const [x, y] of samples) {
+		const { data } = ctx.getImageData(x, y, 1, 1);
+
+		// pixels not zero = content found
+		if (data[0] || data[1] || data[2] || data[3]) return true;
+	}
+
+	return false;
+}*/
+
+/* --------- LOAD BILDTEMA (bildtema multiling) --------- */
+/*document.addEventListener("DOMContentLoaded", () => {
+	const host = document.getElementById("canvasTest");
+	if (!host) return;
+
+	// create iframe
+	const outer = document.createElement("iframe");
+	outer.style.width = "100%";
+	outer.style.height = "700px";
+	outer.style.border = "0";
+	outer.src =
+		"/bildtema/bildetema.html?version=swedish&languages=swe,eng&language=fit&page=9&title=Bildtema%20html5-version&language_selector=simple&subpage=1&prev_page=overview&prev_language=swe";
+	
+	// append iframe to div
+	host.innerHTML = "";
+	host.appendChild(outer);
+
+	// add canvas in iframe
+	outer.onload = () => {
+		const outerDoc = outer.contentDocument;
+		if (!outerDoc) return;
+
+		const start = Date.now();
+		const timeoutMs = 30000;
+
+		const timer = setInterval(() => {
+		// 1) find inner iframe
+		const inner = outerDoc.getElementById("subCategory");
+		if (!inner) {
+			if (Date.now() - start > timeoutMs) {
+				clearInterval(timer);
+				console.error("Timed out: #subCategory not found");
+			}
+			return;
+		}
+
+		const innerDoc = inner.contentDocument;
+		if (!innerDoc) return; // not ready yet
+
+		// 2) find canvas
+		const canvas = innerDoc.getElementById("canvas");
+		if (!canvas) return;
+
+		// 3) wait until canvas ready
+		if (!canvasHasPixels(canvas)) return;
+
+		// 4) copy pixels
+		try {
+			const extracted = document.createElement("canvas");
+			extracted.width = canvas.width;
+			extracted.height = canvas.height;
+			extracted.style.backgroundColor = "white";
+			extracted.getContext("2d").drawImage(canvas, 0, 0);
+
+			// add canvas to iframe
+			host.innerHTML = "";
+			host.appendChild(extracted);
+
+			clearInterval(timer);
+
+			console.log("Canvas extracted!");
+
+		} catch (e) {
+			// wait if still drawing
+			if (Date.now() - start > timeoutMs) {
+				clearInterval(timer);
+				console.error("Timed out: could not copy canvas", e);
+			}
+		}
+		}, 300);
+	};	
+});*/
+
+/* --------- TEMP BILDTEMA BUTTON (bildtema multiling) --------- */
+/*document.addEventListener("DOMContentLoaded", () => {
+	const btn = document.getElementById("toggleCanvas");
+	const canvasDiv = document.getElementById("canvasTest");
+
+	// relevant elements missing
+	if (!btn || !canvasDiv) {
+		console.error("Missing #toggleCanvas or #canvasTest in the DOM");
+		return;
+	}
+
+	// hide/display bildtema
+	btn.addEventListener("click", () => {
+		const isHidden = getComputedStyle(canvasDiv).display === "none";
+		canvasDiv.style.display = isHidden ? "block" : "none";
+
+		//const isHidden = canvasDiv.style.visibility === "hidden";
+		//canvasDiv.style.visibility = isHidden ? "visible" : "hidden";
+		//canvasDiv.style.height = isHidden ? "700px" : "700px"; // keep height stable
+	});
+});*/

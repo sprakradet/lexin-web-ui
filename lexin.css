@@ -920,3 +920,12 @@ input[type="checkbox"] {
   accent-color: #3FD695;
 }
 
+/* ----- CG TEST ---*/
+/*#canvasTest {
+  height: 700px;
+  overflow: hidden;
+}
+#canvasTest.is-hidden {
+  visibility: hidden;
+  pointer-events: none;
+}*/
