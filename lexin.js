@@ -2945,9 +2945,69 @@ function addBildtemaInline(url, parent, lang, word) {
 		subpage = 1;
     }
 
-    //console.log("page", page, "subpage", subpage);
+	//console.log("page", page, "subpage", subpage);
     //HB inlineImg.innerHTML='<img src="/bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
     inlineImg.innerHTML='<img src="bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;" alt="' + word + ', bildtema">';
+
+	/* ------- NEW BILDTEMA (bildtema multiling) START -------- */
+
+	/*let bildtemaMultiling = document.createElement("div");
+	bildtemaMultiling.id = "canvasTest";
+	bildtemaMultiling.style.width = "100%";
+	parent.appendChild(bildtemaMultiling);
+
+	const host = document.getElementById("canvasTest");
+	if (!host) return;
+
+	// create iframe
+	const outer = document.createElement("iframe");
+	outer.style.width = "100%";
+	outer.style.height = "700px";
+	outer.style.border = "0";
+	
+	// single language chosen
+	const langSelector = document.getElementById("languageChoice");
+	let selectedLang = langSelector.options[langSelector.selectedIndex].value;
+
+	// replace language codes
+	const langMap = {per: "fas", gre: "ell", alb: "sqi"};
+	selectedLang = langMap[selectedLang] || selectedLang;
+	
+	// create url
+	//outer.src = "/bildtema/bildetema.html?version=swedish&languages=swe,eng&language=ara&page=11&title=Bildtema%20html5-version&language_selector=simple&subpage=1&prev_page=overview&prev_language=swe";
+	outer.src = "/bildtema/bildetema.html?version=swedish&languages=swe,eng&" +
+				"language=" + selectedLang +
+				"&page=" + page +
+				"&title=Bildtema%20html5-version&language_selector=simple&" +
+				"subpage=" + subpage +
+				"&prev_page=overview&prev_language=swe";
+
+	// remove menu bars
+	outer.onload = () => {
+		const doc = outer.contentDocument;
+		if (!doc) return;
+
+		// elements to remove
+		const idsToRemove = ["subCategory_bar", "category_bar"];
+		const classesToRemove = ["lexin-logo"];
+
+		// remove id elements
+		idsToRemove.forEach(id => {
+			doc.getElementById(id)?.remove();
+		});
+
+		// remove class elements
+		classesToRemove.forEach(className => {
+			doc.querySelectorAll("." + className).forEach(el => {
+			el.remove();
+			});
+		});
+	};
+	
+	host.innerHTML = "";
+	host.appendChild(outer);*/
+
+	/* ------- NEW BILDTEMA (bildtema multiling) END -------- */
 
     // add external Bildtema link
     //HB 251119 Change the link to point to this host instead of bildtema.isof.se    
@@ -6452,24 +6512,24 @@ function trapFocus(modal) {
 }*/
 
 /* --------- LOAD BILDTEMA (bildtema multiling) --------- */
-/*document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 	const host = document.getElementById("canvasTest");
 	if (!host) return;
 
 	// create iframe
 	const outer = document.createElement("iframe");
 	outer.style.width = "100%";
-	outer.style.height = "700px";
+	//outer.style.height = "700px";
 	outer.style.border = "0";
 	outer.src =
-		"/bildtema/bildetema.html?version=swedish&languages=swe,eng&language=fit&page=9&title=Bildtema%20html5-version&language_selector=simple&subpage=1&prev_page=overview&prev_language=swe";
+		"/bildtema/bildetema.html?version=swedish&languages=swe,eng&language=ara&page=11&title=Bildtema%20html5-version&language_selector=simple&subpage=1&prev_page=overview&prev_language=swe";
 	
 	// append iframe to div
 	host.innerHTML = "";
 	host.appendChild(outer);
 
 	// add canvas in iframe
-	outer.onload = () => {
+	/*outer.onload = () => {
 		const outerDoc = outer.contentDocument;
 		if (!outerDoc) return;
 
@@ -6521,8 +6581,8 @@ function trapFocus(modal) {
 			}
 		}
 		}, 300);
-	};	
-});*/
+	};	*/
+});
 
 /* --------- TEMP BILDTEMA BUTTON (bildtema multiling) --------- */
 /*document.addEventListener("DOMContentLoaded", () => {
