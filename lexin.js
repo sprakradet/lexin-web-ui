@@ -1077,9 +1077,7 @@ function makeKeyboardClickable(elem) {
 	elem.setAttribute("tabindex", "0");
 	elem.setAttribute("role", "button");
 	elem.addEventListener("keydown", function (e) {
-		console.log("CG: ran function")
 		if (e.key === "Enter" || e.key === " ") {
-			console.log("CG: found button")
 			e.preventDefault();
 			elem.click();
 		}
@@ -5539,11 +5537,50 @@ var relevantExplanationElement = null;
 let lastHelpOpener = null;
 let explanationTrapCleanup = null;
 function openPageDescription(elem) {
+	// close general help page
+	function closeGeneralHelpPage() {
+		explDiv.style.display = "none";
+
+		// feedback button helper
+		document.body.classList.remove("help-open");
+
+		if (searchBar) {
+			searchBar.style.display = "block";
+		}
+
+		// accessibility (stop focus trap)
+		if (explanationTrapCleanup) {
+			explanationTrapCleanup();
+			explanationTrapCleanup = null;
+		}
+
+		// accessibility (restore focus)
+		if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
+			lastHelpOpener.focus();
+		}
+	}
+
 	// accessibility
 	lastHelpOpener = elem || document.activeElement;
 
 	// initiate specific help pages (run only once)
     if(!relevantExplanationElement) {
+		// close specific help page
+		function closeSpecificHelpPage() {
+			// accessibility (stop focus trap)
+			if (explanationTrapCleanup) {
+				explanationTrapCleanup();
+				explanationTrapCleanup = null;
+			}
+
+			closeHelpPopup();
+
+			// accessibility (restore focus)
+			if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
+				lastHelpOpener.focus();
+			}
+		}
+
 		// wrapper 
 		relevantExplanationElement = document.createElement('div');
 		relevantExplanationElement.className = 'LexinExplanationsWrapper';
@@ -5559,7 +5596,7 @@ function openPageDescription(elem) {
 		}
 
 		// close specific help page
-		$(inner).on("click", ".closeHelp", function (event) {
+		/*$(inner).on("click", ".closeHelp", function (event) {
 			event.stopPropagation();
 
 			// accessibility (stop focus trap)
@@ -5573,6 +5610,22 @@ function openPageDescription(elem) {
 			// accessibility (restore focus)
 			if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
 				lastHelpOpener.focus();
+			}
+		});*/
+
+		// close specific help page on close button click
+		$(inner).on("click", ".closeHelp", function (event) {
+			event.stopPropagation();
+			closeSpecificHelpPage();
+		});
+
+		// close specific help on esc button click
+		document.addEventListener("keydown", function (event) {
+			// only do something if element is specific help page
+			if (!relevantExplanationElement || relevantExplanationElement.style.display !== "block") return;
+
+			if (event.key === "Escape") {
+				closeSpecificHelpPage();
 			}
 		});
 		
@@ -5703,41 +5756,20 @@ function openPageDescription(elem) {
 	// feedback button helper
 	document.body.classList.add("help-open");
 
-	// click esc to close
-    if(!explDiv.onkeydown) {
-		explDiv.onkeydown = function(event) {
-			if (event.key == "Escape") {
-				explDiv.style.display = "none";
+	// close general help on close button click
+	$(".LexinExplanations button.closeHelp").click(() => {
+		closeGeneralHelpPage();
+	});
 
-				if(searchBar) {
-					searchBar.style.display = 'block';
-				}
-			}
+	// close general help on esc button click
+	document.addEventListener("keydown", function (event) {
+		// only do something if element is general help page
+  		if (!explDiv || explDiv.style.display !== "block") return;
+
+		if (event.key === "Escape") {
+			closeGeneralHelpPage();
 		}
-    }
-
-	// close general help page
-    $(".LexinExplanations button.closeHelp").click(() => {
-		explDiv.style.display = "none";
-
-		// feedback button helper
-		document.body.classList.remove("help-open");
-
-		if(searchBar) {
-			searchBar.style.display = 'block';
-		}
-
-		// accessibility (stop focus trap)
-			if (explanationTrapCleanup) {
-				explanationTrapCleanup();
-				explanationTrapCleanup = null;
-			}
-
-		// accessibility (restore focus)
-		if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
-				lastHelpOpener.focus();
-			}
-    });
+	});
     
     let anchor = $("#LexinExplanations")[0];
     if(anchor) {

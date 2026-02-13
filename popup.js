@@ -47,6 +47,18 @@ function closePopup() {
 	}
 }
 
+/* --------- CLOSE POPUP ON ESC --------- */
+document.addEventListener("keydown", function (event) {
+	if (event.key === "Escape") {
+		// only do something if element is feedback popup
+		const popup = document.getElementById("popup");
+  		if (!popup || popup.style.display !== "block") return;
+
+		event.preventDefault();
+		closePopup();
+	}
+});
+
 /* --------- RESTORE POPUP CONTENT --------- */
 let originalPopupHTML = "";
 document.addEventListener("DOMContentLoaded", () => {
