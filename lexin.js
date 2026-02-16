@@ -2964,6 +2964,9 @@ function addBildtemaInline(url, parent, lang, word) {
 	outer.style.width = "100%";
 	outer.style.height = "700px";
 	outer.style.border = "0";
+
+	// accessibility (remove tabbing for now, wait until full accessibility update of bildtema)
+	outer.tabIndex = -1;		
 	
 	// single language chosen
 	const langSelector = document.getElementById("languageChoice");
@@ -2982,8 +2985,12 @@ function addBildtemaInline(url, parent, lang, word) {
 				"subpage=" + subpage +
 				"&prev_page=overview&prev_language=swe";
 
-	// remove menu bars
-	outer.onload = () => {
+	// hide until picture ready
+	outer.style.visibility = "hidden";
+	outer.style.pointerEvents = "none";*/
+	
+	// remove menu bars (OLD CODE)
+	/*outer.onload = () => {
 		const doc = outer.contentDocument;
 		if (!doc) return;
 
@@ -3002,12 +3009,102 @@ function addBildtemaInline(url, parent, lang, word) {
 			el.remove();
 			});
 		});
+
+		// picture ready, show
+		outer.style.visibility = "visible";
+  		outer.style.pointerEvents = "auto";
+
+		// remove loading icon 
+		loader.remove();
+	};*/
+
+	// remove menu bars + resize iframe to canvas height
+	/*outer.onload = () => {
+		const doc = outer.contentDocument;
+		if (!doc) return;
+
+		// elements to remove
+		const idsToRemove = ["subCategory_bar", "category_bar"];
+		const classesToRemove = ["lexin-logo"];
+
+		// remove id elements
+		idsToRemove.forEach(id => doc.getElementById(id)?.remove());
+
+		// remove class elements
+		classesToRemove.forEach(className => {
+			doc.querySelectorAll("." + className).forEach(el => el.remove());
+		});
+
+		// get inner iframe 
+		const inner = doc.getElementById("subCategory");
+		if (!inner) {
+			console.log("Inner iframe #subCategory not found");
+
+			// fallback
+			outer.style.visibility = "visible";
+			outer.style.pointerEvents = "auto";
+			loader.remove();
+			return;
+		}
+
+		// resize iframe
+		function resizeToCanvas() {
+			// get canvas
+			const innerDoc = inner.contentDocument;
+			const canvas = innerDoc?.getElementById("canvas");
+			if (!canvas) return false;
+
+			requestAnimationFrame(() => {
+				// resize
+				const r = canvas.getBoundingClientRect();
+				const needed = Math.ceil(r.top + r.height);
+				inner.style.height = needed + "px";
+				outer.style.height = needed + "px";
+				host.style.height = needed + "px";
+
+				// show iframe after loading + resizing finished
+				outer.style.visibility = "visible";
+				outer.style.pointerEvents = "auto";
+				loader.remove();
+			});
+
+			return true;
+		}
+
+		if (!resizeToCanvas()) {
+			inner.addEventListener("load", () => resizeToCanvas(), { once: true });
+		}
 	};
-	
+
 	host.innerHTML = "";
+	host.style.position = "relative";
+
+	// reduce iframe height while loading
+	host.style.overflow = "hidden";
+	host.style.height = "120px";
+
+	// show loading icon
+	const loader = document.createElement("div");
+	loader.className = "bt-loader";
+	const spinner = document.createElement("div");
+	spinner.className = "bt-spinner";
+
+	// loading icon rotation
+	if (!document.getElementById("spin-style")) {
+		const style = document.createElement("style");
+		style.id = "spin-style";
+		style.textContent = "@keyframes spin{to{transform:rotate(360deg)}}";
+		document.head.appendChild(style);
+	}
+	spinner.style.animation = "spin 0.8s linear infinite";
+
+	loader.appendChild(spinner);
+	host.appendChild(loader);
 	host.appendChild(outer);*/
 
 	/* ------- NEW BILDTEMA (bildtema multiling) END -------- */
+
+	$(parent).find(".bildtemaLink").remove(); 
 
     // add external Bildtema link
     //HB 251119 Change the link to point to this host instead of bildtema.isof.se    

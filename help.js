@@ -311,7 +311,7 @@ function openHelpPhon(inner, phon) {
 		html += '<li>Bågen "‿" mellan två konsonanter betyder att de två bokstäverna före och efter bågen "‿" smålter ihop till ett ljud. När "r" följs av d, t, n, l eller s, smälter ljuden ofta ihop till ett enda ljud.</li>';
     }
     if(phon.indexOf('²') >= 0) {
-		html += '<li>Den upphöjda tvåan "²" betyder <em>grav accent</em> (som också kallas "accent 2"). När det inte finns någon tvåa utan bara tryckmarkering, punkt " ̣" (eller ingen tryckmarkering alls), betyder det att ordet har akut accent</li>';
+		html += '<li>Den upphöjda tvåan "²" betyder <em>grav accent</em> (som också kallas "accent 2"). När det inte finns någon tvåa utan bara tryckmarkering, punkt " ̣" (eller ingen tryckmarkering alls), betyder det att ordet har akut accent.</li>';
     }
     if(phon.indexOf('ŋ') >= 0) {
 		html += '<li>Tecknet eng "ŋ" betyder <em>ng</em>-ljud, som i "lång", "dygn", eller "bank".</li>';
