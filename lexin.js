@@ -2929,12 +2929,12 @@ function getPictureIcon() {
 // to something better. The placement of the div is not great either.
 // ----------------------------------------------------------------------
 function addBildtemaInline(url, parent, lang, word) {
-    let inlineImg = document.createElement('div');
+    /*let inlineImg = document.createElement('div');
     inlineImg.style.display = 'block';
     inlineImg.innerHTML = "";
     inlineImg.className = 'inlineImage';
     inlineImg.style.width = "100%";
-    parent.appendChild(inlineImg);
+    parent.appendChild(inlineImg);*/
 
     let cleanurl = url.replace("bildetema.html", "bildetema-clean.html");
     let parsedUrl = new URL(url);
@@ -2947,11 +2947,41 @@ function addBildtemaInline(url, parent, lang, word) {
 
 	//console.log("page", page, "subpage", subpage);
     //HB inlineImg.innerHTML='<img src="/bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;">';
-    inlineImg.innerHTML='<img src="bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;" alt="' + word + ', bildtema">';
+    /*inlineImg.innerHTML='<img src="bilder/bildtema-' + page + '-' + subpage + '.png" style="width:100%;" alt="' + word + ', bildtema">';*/
 
 	/* ------- NEW BILDTEMA (bildtema multiling) START -------- */
 
-	/*let bildtemaMultiling = document.createElement("div");
+	// remove autoplay for category & subcategory sound files
+	function patchLocalPlaySounds(innerWindow) {
+		// start timeout clock
+		const start = performance.now();
+
+		// check repeatedly for 15 seconds
+		const t = setInterval(() => {
+			// wait until function "local_playSounds" exists
+			if (typeof innerWindow.local_playSounds !== "function") {
+				if (performance.now() - start > 15000) clearInterval(t);
+				return;
+			}
+			clearInterval(t);
+
+			// get function "local_playSounds"
+			const original = innerWindow.local_playSounds;
+
+			// replace content of function "local_playSounds"
+			innerWindow.local_playSounds = function(ids, mode) {
+				// only affect autoplay
+				if (mode === "init" && typeof ids === "string") {
+					// rename/empty sound files that start with c or s
+					ids = ids.replace(/c\d+/g, "").replace(/s\d+_\d+/g, "");
+					if (!ids) return;
+				}
+				return original.call(this, ids, mode);
+			};
+		}, 50);
+	}
+
+	let bildtemaMultiling = document.createElement("div");
 	bildtemaMultiling.id = "canvasTest";
 	bildtemaMultiling.style.width = "100%";
 	parent.appendChild(bildtemaMultiling);
@@ -2987,39 +3017,10 @@ function addBildtemaInline(url, parent, lang, word) {
 
 	// hide until picture ready
 	outer.style.visibility = "hidden";
-	outer.style.pointerEvents = "none";*/
-	
-	// remove menu bars (OLD CODE)
-	/*outer.onload = () => {
-		const doc = outer.contentDocument;
-		if (!doc) return;
-
-		// elements to remove
-		const idsToRemove = ["subCategory_bar", "category_bar"];
-		const classesToRemove = ["lexin-logo"];
-
-		// remove id elements
-		idsToRemove.forEach(id => {
-			doc.getElementById(id)?.remove();
-		});
-
-		// remove class elements
-		classesToRemove.forEach(className => {
-			doc.querySelectorAll("." + className).forEach(el => {
-			el.remove();
-			});
-		});
-
-		// picture ready, show
-		outer.style.visibility = "visible";
-  		outer.style.pointerEvents = "auto";
-
-		// remove loading icon 
-		loader.remove();
-	};*/
+	outer.style.pointerEvents = "none";
 
 	// remove menu bars + resize iframe to canvas height
-	/*outer.onload = () => {
+	outer.onload = () => {
 		const doc = outer.contentDocument;
 		if (!doc) return;
 
@@ -3045,6 +3046,11 @@ function addBildtemaInline(url, parent, lang, word) {
 			outer.style.pointerEvents = "auto";
 			loader.remove();
 			return;
+		}
+
+		// remove autoplay for category & subcategory sound files
+		if (inner?.contentWindow) {
+		patchLocalPlaySounds(inner.contentWindow);
 		}
 
 		// resize iframe
@@ -3100,7 +3106,7 @@ function addBildtemaInline(url, parent, lang, word) {
 
 	loader.appendChild(spinner);
 	host.appendChild(loader);
-	host.appendChild(outer);*/
+	host.appendChild(outer);
 
 	/* ------- NEW BILDTEMA (bildtema multiling) END -------- */
 
