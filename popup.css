@@ -198,6 +198,12 @@ body.help-open .popupButton {
         background: ButtonFace;       /* system color */
         border: 2px solid ButtonText; /* visible outline */
         forced-color-adjust: none;    /* keep our choices */
-  }
+    }
 }
 
+/* switch feedback icon colors to dynamic */
+@media (forced-colors: active) {
+    .popupButton .popupIcon {
+        content: url("/feedback-icon-high-contrast.svg");
+    }
+}
