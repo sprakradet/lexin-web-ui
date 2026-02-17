@@ -2919,6 +2919,70 @@ function getPictureIcon() {
     return im;
 }
 
+/* --------- REMOVE AUTOPLAY FOR BILDTEMA CATEGORY SOUND FILES --------- */
+function patchLocalPlaySounds(innerWindow) {
+	// start timeout clock
+	const start = performance.now();
+
+	// check repeatedly for 15 seconds
+	const t = setInterval(() => {
+		// wait until function "local_playSounds" exists
+		if (typeof innerWindow.local_playSounds !== "function") {
+			if (performance.now() - start > 15000) clearInterval(t);
+			return;
+		}
+		clearInterval(t);
+
+		// get function "local_playSounds"
+		const original = innerWindow.local_playSounds;
+
+		// replace content of function "local_playSounds"
+		innerWindow.local_playSounds = function(ids, mode) {
+			// only affect autoplay
+			if (mode === "init" && typeof ids === "string") {
+				// rename/empty sound files that start with c or s
+				ids = ids.replace(/c\d+/g, "").replace(/s\d+_\d+/g, "");
+				if (!ids) return;
+			}
+			return original.call(this, ids, mode);
+		};
+	}, 50);
+}
+
+/* --------- GET BILDTEMA URL --------- */
+function getBildTemaURL(selectedLang, page, subpage) {
+	const url = "/bildtema/bildetema.html?version=swedish&languages=swe,eng&" +
+				"language=" + selectedLang +
+				"&page=" + page +
+				"&title=Bildtema%20html5-version&language_selector=simple&" +
+				"subpage=" + subpage +
+				"&prev_page=overview&prev_language=swe";
+	return(url);
+}
+
+/* --------- CREATE BILDTEMA LANGUAGE SELECTOR --------- */
+function createBildtemaLangSelector(parent, languages) {
+	// create wrapper
+	const wrapper = document.createElement("div");
+	wrapper.className = "bildtemaLangSelectorWrapper";
+
+	// create selector
+	let bildtemaLangSelector = document.createElement("select");
+	bildtemaLangSelector.id = "bildtemaLangSelector";
+	bildtemaLangSelector.className = "bildtemaLangSelector";
+
+	// add language options
+	languages.forEach(lang => {
+		const option = document.createElement("option");
+		option.value = lang.value;
+		option.textContent = lang.label;
+		bildtemaLangSelector.appendChild(option);
+	});
+
+	wrapper.appendChild(bildtemaLangSelector);
+	parent.appendChild(wrapper);
+}
+
 // ----------------------------------------------------------------------
 // function addBildtemaInline(url, parent)
 // ----------------------------------------------------------------------
@@ -2951,36 +3015,34 @@ function addBildtemaInline(url, parent, lang, word) {
 
 	/* ------- NEW BILDTEMA (bildtema multiling) START -------- */
 
-	// remove autoplay for category & subcategory sound files
-	function patchLocalPlaySounds(innerWindow) {
-		// start timeout clock
-		const start = performance.now();
+	// create choose bildtema language button
+	/*const wrapper = document.createElement("div");
+	wrapper.className = "bildtemaLangSelectorWrapper";
+	let bildtemaLangSelector = document.createElement("select");
+	bildtemaLangSelector.id = "bildtemaLangSelector";
+	bildtemaLangSelector.className = "bildtemaLangSelector";
+	const languages = [
+		{ value: "swe", label: "svenska" },
+		{ value: "eng", label: "engelska" },
+		{ value: "ara", label: "grekiska" }
+	];
+	languages.forEach(lang => {
+		const option = document.createElement("option");
+		option.value = lang.value;
+		option.textContent = lang.label;
+		bildtemaLangSelector.appendChild(option);
+	});
+	wrapper.appendChild(bildtemaLangSelector);
+	parent.appendChild(wrapper);*/
 
-		// check repeatedly for 15 seconds
-		const t = setInterval(() => {
-			// wait until function "local_playSounds" exists
-			if (typeof innerWindow.local_playSounds !== "function") {
-				if (performance.now() - start > 15000) clearInterval(t);
-				return;
-			}
-			clearInterval(t);
+	const languages = [
+		{ value: "swe", label: "svenska" },
+		{ value: "eng", label: "engelska" },
+		{ value: "ara", label: "grekiska" }
+	];
+	createBildtemaLangSelector(parent, languages);
 
-			// get function "local_playSounds"
-			const original = innerWindow.local_playSounds;
-
-			// replace content of function "local_playSounds"
-			innerWindow.local_playSounds = function(ids, mode) {
-				// only affect autoplay
-				if (mode === "init" && typeof ids === "string") {
-					// rename/empty sound files that start with c or s
-					ids = ids.replace(/c\d+/g, "").replace(/s\d+_\d+/g, "");
-					if (!ids) return;
-				}
-				return original.call(this, ids, mode);
-			};
-		}, 50);
-	}
-
+	// create bildtema element
 	let bildtemaMultiling = document.createElement("div");
 	bildtemaMultiling.id = "canvasTest";
 	bildtemaMultiling.style.width = "100%";
@@ -3008,12 +3070,13 @@ function addBildtemaInline(url, parent, lang, word) {
 	
 	// create url
 	//outer.src = "/bildtema/bildetema.html?version=swedish&languages=swe,eng&language=ara&page=11&title=Bildtema%20html5-version&language_selector=simple&subpage=1&prev_page=overview&prev_language=swe";
-	outer.src = "/bildtema/bildetema.html?version=swedish&languages=swe,eng&" +
+	/*outer.src = "/bildtema/bildetema.html?version=swedish&languages=swe,eng&" +
 				"language=" + selectedLang +
 				"&page=" + page +
 				"&title=Bildtema%20html5-version&language_selector=simple&" +
 				"subpage=" + subpage +
-				"&prev_page=overview&prev_language=swe";
+				"&prev_page=overview&prev_language=swe";*/
+	outer.src = getBildTemaURL(selectedLang, page, subpage);
 
 	// hide until picture ready
 	outer.style.visibility = "hidden";
@@ -3084,6 +3147,8 @@ function addBildtemaInline(url, parent, lang, word) {
 
 	host.innerHTML = "";
 	host.style.position = "relative";
+	host.style.border = "2px solid #D7E9EC";
+	host.style.borderRadius = "5px";
 
 	// reduce iframe height while loading
 	host.style.overflow = "hidden";

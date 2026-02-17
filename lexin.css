@@ -884,8 +884,9 @@ footer .lp-icon {
     }
 }
 
-/* --------- BILDTEMA MULTILING LOADING BAR --------- */
+/* --------- BILDTEMA MULTILING --------- */
 
+/* loading bar */
 .bt-loader {
     position: absolute;
     inset: 0;
@@ -896,6 +897,7 @@ footer .lp-icon {
     z-index: 10;
 }
 
+/* loading bar */
 .bt-spinner {
     width: 40px;
     height: 40px;
@@ -903,6 +905,40 @@ footer .lp-icon {
     border-top: 4px solid #333;
     border-radius: 50%;
     animation: bt-spin 0.8s linear infinite;
+}
+
+.bildtemaLangSelector {
+    font: inherit;
+    float: right;
+    font-size: 1em;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    appearance: none;
+    padding-left: 0.5em;
+    padding-right: 1.5em;
+    padding-bottom: 2px;
+    width: 100%;
+    max-width: 192px;
+    cursor: pointer;
+    background-color: #D7E9EC;
+}
+
+.bildtemaLangSelectorWrapper {
+    position: relative;
+}
+
+.bildtemaLangSelectorWrapper:after {
+    content: '\0025BC';
+    font-family: Arial;
+    font-size: 0.9em;
+    line-height: 1;
+    color: black;
+    /*right: 0.87em;*/
+    right: 0.3em;
+    top: 0.5em;
+    padding: 0 0.6em 0 0;
+    position: absolute;
+    pointer-events: none;
 }
 
 /* --------- HIGH CONTRAST MODE --------- */
