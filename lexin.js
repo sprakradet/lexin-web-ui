@@ -2979,8 +2979,60 @@ function createBildtemaLangSelector(parent, languages) {
 		bildtemaLangSelector.appendChild(option);
 	});
 
+	// always save current chosen language to session storage
+	bildtemaLangSelector.addEventListener("change", (e) => {
+		const selectedLang = e.target.value;
+		if (!(sessionStorage.getItem("bildtemaLang") == selectedLang)) {
+			sessionStorage.setItem("bildtemaLang", selectedLang);
+			//reloadIframe(selectedLang);
+		}
+	});
+
 	wrapper.appendChild(bildtemaLangSelector);
 	parent.appendChild(wrapper);
+}
+
+/* --------- RETRIEVE USER'S CHOSEN LANGUAGE(S) --------- */
+function getLangChoiceCodes() {
+	let selectedLangCodes = [];
+	const isMultilang = document.getElementById("multiple_languagesSet").checked;
+
+	// several languages chosen
+	if (isMultilang) {
+		let selectedLangs = $(".multilangcolumn input[name='multilangchoice']:checked").get();
+		selectedLangs.forEach(lang => {
+			selectedLangCodes.push({
+				value: lang.value,
+				label: $(lang).siblings("label").text().trim()
+			});
+		});
+	}
+	// single language chosen
+	else {
+		const langSelector = document.getElementById("languageChoice");
+		const selectedOption = langSelector.options[langSelector.selectedIndex];
+		selectedLangCodes.push({
+			value: selectedOption.value,
+			label: selectedOption.text
+		});
+	}
+	
+	// no language chosen
+	if(selectedLangCodes.length === 0) {
+		selectedLangCodes.push({
+			value: "swe",
+			label: "svenska"
+		});
+	}
+	// add swedish if not added already
+	else if (!(selectedLangCodes.some(lang => lang.value === "swe"))) {
+		selectedLangCodes.push({
+			value: "swe",
+			label: "svenska"
+		});
+	}
+	
+	return selectedLangCodes;
 }
 
 // ----------------------------------------------------------------------
@@ -3015,31 +3067,8 @@ function addBildtemaInline(url, parent, lang, word) {
 
 	/* ------- NEW BILDTEMA (bildtema multiling) START -------- */
 
-	// create choose bildtema language button
-	/*const wrapper = document.createElement("div");
-	wrapper.className = "bildtemaLangSelectorWrapper";
-	let bildtemaLangSelector = document.createElement("select");
-	bildtemaLangSelector.id = "bildtemaLangSelector";
-	bildtemaLangSelector.className = "bildtemaLangSelector";
-	const languages = [
-		{ value: "swe", label: "svenska" },
-		{ value: "eng", label: "engelska" },
-		{ value: "ara", label: "grekiska" }
-	];
-	languages.forEach(lang => {
-		const option = document.createElement("option");
-		option.value = lang.value;
-		option.textContent = lang.label;
-		bildtemaLangSelector.appendChild(option);
-	});
-	wrapper.appendChild(bildtemaLangSelector);
-	parent.appendChild(wrapper);*/
-
-	const languages = [
-		{ value: "swe", label: "svenska" },
-		{ value: "eng", label: "engelska" },
-		{ value: "ara", label: "grekiska" }
-	];
+	// create bildtema language selector
+	const languages = getLangChoiceCodes()
 	createBildtemaLangSelector(parent, languages);
 
 	// create bildtema element
@@ -3069,13 +3098,6 @@ function addBildtemaInline(url, parent, lang, word) {
 	selectedLang = langMap[selectedLang] || selectedLang;
 	
 	// create url
-	//outer.src = "/bildtema/bildetema.html?version=swedish&languages=swe,eng&language=ara&page=11&title=Bildtema%20html5-version&language_selector=simple&subpage=1&prev_page=overview&prev_language=swe";
-	/*outer.src = "/bildtema/bildetema.html?version=swedish&languages=swe,eng&" +
-				"language=" + selectedLang +
-				"&page=" + page +
-				"&title=Bildtema%20html5-version&language_selector=simple&" +
-				"subpage=" + subpage +
-				"&prev_page=overview&prev_language=swe";*/
 	outer.src = getBildTemaURL(selectedLang, page, subpage);
 
 	// hide until picture ready
@@ -3149,6 +3171,7 @@ function addBildtemaInline(url, parent, lang, word) {
 	host.style.position = "relative";
 	host.style.border = "2px solid #D7E9EC";
 	host.style.borderRadius = "5px";
+	host.style.marginBottom = "0.5em";
 
 	// reduce iframe height while loading
 	host.style.overflow = "hidden";
