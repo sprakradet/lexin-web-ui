@@ -2960,6 +2960,32 @@ function getBildTemaURL(selectedLang, page, subpage) {
 	return(url);
 }
 
+/* --------- SET CHOSEN BILDTEMA LANGUAGE SELECTOR VALUE --------- */
+function syncBildtemaLangSelector(selector) {
+	if (!selector) return;
+
+	let storageKey = "bildtemaLang";
+	let fallback = "swe";
+	
+	// retrieve previously chosen language
+	let lang = sessionStorage.getItem(storageKey);
+	if (!(lang)) {
+		lang = fallback;
+	} 
+
+	// check that lang exists in selector
+	const exists = Array.from(selector.options).some(opt => opt.value === lang);
+
+	// else default to swedish
+	if (!exists) {
+		lang = fallback;
+		sessionStorage.setItem(storageKey, lang);
+	}
+
+	// set selector 
+	selector.value = lang;
+}
+
 /* --------- CREATE BILDTEMA LANGUAGE SELECTOR --------- */
 function createBildtemaLangSelector(parent, languages) {
 	// find selector
@@ -2976,6 +3002,9 @@ function createBildtemaLangSelector(parent, languages) {
 			option.textContent = lang.label;
 			existingSelector.appendChild(option);
 		});
+
+		// set chosen value
+		syncBildtemaLangSelector(existingSelector);
 
 		return;
 	}
@@ -2995,6 +3024,9 @@ function createBildtemaLangSelector(parent, languages) {
 		option.textContent = lang.label;
 		bildtemaLangSelector.appendChild(option);
 	});
+
+	// set chosen value
+	syncBildtemaLangSelector(bildtemaLangSelector);
 
 	// save chosen language
 	/*bildtemaLangSelector.addEventListener("change", (e) => {
@@ -3056,10 +3088,7 @@ function reloadBildtema(host, outer, loader, url) {
 	// reset loading state
 	outer.style.visibility = "hidden";
 	outer.style.pointerEvents = "none";
-
 	outer.style.height = "700px";
-
-	
 	host.style.overflow = "hidden";
 	host.style.height = "120px";
 
