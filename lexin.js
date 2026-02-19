@@ -3023,7 +3023,7 @@ function createBildtemaLangSelector(parent, languages) {
 
 	// create selector
 	let bildtemaLangSelector = document.createElement("select");
-	bildtemaLangSelector.id = "bildtemaLangSelector";
+	//bildtemaLangSelector.id = "bildtemaLangSelector";
 	bildtemaLangSelector.className = "bildtemaLangSelector";
 
 	// add language options
@@ -3128,12 +3128,20 @@ function addBildtemaInline(url, parent, lang, word) {
 	createBildtemaLangSelector(parent, languages);
 
 	// create bildtema element
-	let bildtemaMultiling = document.createElement("div");
+	/*let bildtemaMultiling = document.createElement("div");
 	bildtemaMultiling.id = "canvasTest";
 	bildtemaMultiling.style.width = "100%";
 	parent.appendChild(bildtemaMultiling);
 
-	const host = document.getElementById("canvasTest");
+	const host = document.getElementById("canvasTest");*/
+
+	let bildtemaMultiling = document.createElement("div");
+	bildtemaMultiling.className = "bildtemaMultiling";
+	bildtemaMultiling.style.width = "100%";
+	parent.appendChild(bildtemaMultiling);
+
+	const host = bildtemaMultiling; 
+
 	if (!host) return;
 
 	// create iframe
@@ -3146,7 +3154,8 @@ function addBildtemaInline(url, parent, lang, word) {
 	outer.tabIndex = -1;		
 	
 	// detect changes in bildtema lang selector
-	const bildtemaLangSelector = parent.querySelector("#bildtemaLangSelector");
+	//const bildtemaLangSelector = parent.querySelector("#bildtemaLangSelector");
+	const bildtemaLangSelector = parent.querySelector(".bildtemaLangSelector");
 	if (bildtemaLangSelector) {
 		bildtemaLangSelector.onchange = (e) => {
 			// get current lang
@@ -3157,7 +3166,6 @@ function addBildtemaInline(url, parent, lang, word) {
 				sessionStorage.setItem("bildtemaLang", selectedLang);
 
 				// update bildtema
-				//outer.src = getBildTemaURL(selectedLang, page, subpage);
 				url = getBildTemaURL(selectedLang, page, subpage);
 				reloadBildtema(host, outer, loader, url);
 			}		
@@ -3166,7 +3174,6 @@ function addBildtemaInline(url, parent, lang, word) {
 
 	// get/set bildtema lang
 	let selectedLang = sessionStorage.getItem("bildtemaLang");
-	console.log("-------> CG selected lang : " + selectedLang);
 	if (!(selectedLang)) {
 		selectedLang = "swe";
 	}
