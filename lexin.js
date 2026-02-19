@@ -2986,6 +2986,25 @@ function syncBildtemaLangSelector(selector) {
 	selector.value = lang;
 }
 
+/* --------- ADD OPTIONS TO BILDTEMA LANGUAGE SELECTOR --------- */
+function populateBildtemaLangSelector(selector, languages) {
+	const codeReplacement = {per: "fas", gre: "ell", alb: "sqi"};
+	const missingCodes = ["azj", "hrv", "pus", "srp", "srp_cyrillic", "ukr"];
+
+	// add available languages
+	languages.forEach(lang => {
+		if (!(missingCodes.includes(lang.value))) {
+			const option = document.createElement("option");
+			option.value = codeReplacement[lang.value] || lang.value;
+			option.textContent = lang.label;
+			selector.appendChild(option);
+		}
+	});
+
+	// set chosen value
+	syncBildtemaLangSelector(selector);
+}
+
 /* --------- CREATE BILDTEMA LANGUAGE SELECTOR --------- */
 function createBildtemaLangSelector(parent, languages) {
 	// find selector
@@ -2995,17 +3014,7 @@ function createBildtemaLangSelector(parent, languages) {
 	if (existingSelector) {
 		// update language options
 		existingSelector.innerHTML = "";
-
-		languages.forEach(lang => {
-			const option = document.createElement("option");
-			option.value = lang.value;
-			option.textContent = lang.label;
-			existingSelector.appendChild(option);
-		});
-
-		// set chosen value
-		syncBildtemaLangSelector(existingSelector);
-
+		populateBildtemaLangSelector(existingSelector, languages);
 		return;
 	}
 
@@ -3018,23 +3027,7 @@ function createBildtemaLangSelector(parent, languages) {
 	bildtemaLangSelector.className = "bildtemaLangSelector";
 
 	// add language options
-	languages.forEach(lang => {
-		const option = document.createElement("option");
-		option.value = lang.value;
-		option.textContent = lang.label;
-		bildtemaLangSelector.appendChild(option);
-	});
-
-	// set chosen value
-	syncBildtemaLangSelector(bildtemaLangSelector);
-
-	// save chosen language
-	/*bildtemaLangSelector.addEventListener("change", (e) => {
-		const selectedLang = e.target.value;
-		if (sessionStorage.getItem("bildtemaLang") !== selectedLang) {
-			sessionStorage.setItem("bildtemaLang", selectedLang);
-		}
-	});*/
+	populateBildtemaLangSelector(bildtemaLangSelector, languages);
 
 	wrapper.appendChild(bildtemaLangSelector);
 	parent.appendChild(wrapper);
