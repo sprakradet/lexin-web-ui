@@ -2962,7 +2962,24 @@ function getBildTemaURL(selectedLang, page, subpage) {
 
 /* --------- CREATE BILDTEMA LANGUAGE SELECTOR --------- */
 function createBildtemaLangSelector(parent, languages) {
-	// create wrapper
+	// find selector
+	let existingSelector = parent.querySelector("#bildtemaLangSelector");
+
+	// selector already exists
+	if (existingSelector) {
+		// update language options
+		existingSelector.innerHTML = "";
+
+		languages.forEach(lang => {
+			const option = document.createElement("option");
+			option.value = lang.value;
+			option.textContent = lang.label;
+			existingSelector.appendChild(option);
+		});
+
+		return;
+	}
+
 	const wrapper = document.createElement("div");
 	wrapper.className = "bildtemaLangSelectorWrapper";
 
@@ -2979,14 +2996,13 @@ function createBildtemaLangSelector(parent, languages) {
 		bildtemaLangSelector.appendChild(option);
 	});
 
-	// always save current chosen language to session storage
-	bildtemaLangSelector.addEventListener("change", (e) => {
+	// save chosen language
+	/*bildtemaLangSelector.addEventListener("change", (e) => {
 		const selectedLang = e.target.value;
-		if (!(sessionStorage.getItem("bildtemaLang") == selectedLang)) {
+		if (sessionStorage.getItem("bildtemaLang") !== selectedLang) {
 			sessionStorage.setItem("bildtemaLang", selectedLang);
-			//reloadIframe(selectedLang);
 		}
-	});
+	});*/
 
 	wrapper.appendChild(bildtemaLangSelector);
 	parent.appendChild(wrapper);
@@ -3035,6 +3051,24 @@ function getLangChoiceCodes() {
 	return selectedLangCodes;
 }
 
+/* --------- RELOAD BILDTEMA --------- */
+function reloadBildtema(host, outer, loader, url) {
+	// reset loading state
+	outer.style.visibility = "hidden";
+	outer.style.pointerEvents = "none";
+
+	outer.style.height = "700px";
+
+	
+	host.style.overflow = "hidden";
+	host.style.height = "120px";
+
+	if (!loader.isConnected) host.appendChild(loader);
+
+	// update url
+	outer.src = url;
+}
+
 // ----------------------------------------------------------------------
 // function addBildtemaInline(url, parent)
 // ----------------------------------------------------------------------
@@ -3068,7 +3102,7 @@ function addBildtemaInline(url, parent, lang, word) {
 	/* ------- NEW BILDTEMA (bildtema multiling) START -------- */
 
 	// create bildtema language selector
-	const languages = getLangChoiceCodes()
+	const languages = getLangChoiceCodes();
 	createBildtemaLangSelector(parent, languages);
 
 	// create bildtema element
@@ -3089,15 +3123,33 @@ function addBildtemaInline(url, parent, lang, word) {
 	// accessibility (remove tabbing for now, wait until full accessibility update of bildtema)
 	outer.tabIndex = -1;		
 	
-	// single language chosen
-	const langSelector = document.getElementById("languageChoice");
-	let selectedLang = langSelector.options[langSelector.selectedIndex].value;
+	// detect changes in bildtema lang selector
+	const bildtemaLangSelector = parent.querySelector("#bildtemaLangSelector");
+	if (bildtemaLangSelector) {
+		bildtemaLangSelector.onchange = (e) => {
+			// get current lang
+			const selectedLang = e.target.value;
 
-	// replace language codes
-	const langMap = {per: "fas", gre: "ell", alb: "sqi"};
-	selectedLang = langMap[selectedLang] || selectedLang;
-	
-	// create url
+			if (sessionStorage.getItem("bildtemaLang") !== selectedLang) {
+				// save new lang
+				sessionStorage.setItem("bildtemaLang", selectedLang);
+
+				// update bildtema
+				//outer.src = getBildTemaURL(selectedLang, page, subpage);
+				url = getBildTemaURL(selectedLang, page, subpage);
+				reloadBildtema(host, outer, loader, url);
+			}		
+		};
+	}
+
+	// get/set bildtema lang
+	let selectedLang = sessionStorage.getItem("bildtemaLang");
+	console.log("-------> CG selected lang : " + selectedLang);
+	if (!(selectedLang)) {
+		selectedLang = "swe";
+	}
+
+	// get bildtema
 	outer.src = getBildTemaURL(selectedLang, page, subpage);
 
 	// hide until picture ready
