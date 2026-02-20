@@ -3036,8 +3036,8 @@ function createBildtemaLangSelector(parent, languages) {
 /* --------- RETRIEVE USER'S CHOSEN LANGUAGE(S) --------- */
 function getLangChoiceCodes() {
 	let selectedLangCodes = [];
-	const isMultilang = document.getElementById("multiple_languagesSet").checked;
-
+	const isMultilang = settings["multiple_languages"]?.val === true;
+	
 	// several languages chosen
 	if (isMultilang) {
 		let selectedLangs = $(".multilangcolumn input[name='multilangchoice']:checked").get();

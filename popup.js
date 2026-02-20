@@ -145,7 +145,7 @@ function isValidFeedback() {
 /* --------- RETRIEVE USER'S CHOSEN LANGUAGE(S) --------- */
 function getLangChoice () {
 	let selectedLangsString = "";
-	const isMultilang = document.getElementById("multiple_languagesSet").checked;
+	const isMultilang = settings["multiple_languages"]?.val === true;
 
 	// several languages chosen
 	if (isMultilang) {
