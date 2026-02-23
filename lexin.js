@@ -2860,7 +2860,7 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     makeKeyboardClickable(picicon);
 
 	picicon.onclick = () => {
-		if($(pictures).find(".inlineImage").length == 0) {
+		if($(pictures).find(".inlineImage").length == 0 && (parentElement.querySelectorAll(":scope iframe.bildtemaIframe").length === 0)) {
 			let li = $(parentElement).closest(".entryContent").closest("li");
 			let word = li.find(".matchingWord").text().trim();
 
@@ -3300,10 +3300,37 @@ function addBildtemaInline(url, parent, lang, word) {
 	host.appendChild(loader);
 	host.appendChild(outer);
 
+	console.log("--------> CG antal element: " + parent.querySelectorAll(":scope > .bildtemaMultiling").length);
+	console.log("BILDTEMA INIT RUN", parent);
+	console.trace("who called init");
+
 	/* ------- NEW BILDTEMA (bildtema multiling) END -------- */
 
-	// remove duplicate links (bug)
-	//$(parent).find(".bildtemaLink").remove(); 
+	/*$(parent).find(".bildtemaLink").remove(); 
+
+    // add external Bildtema link
+    //HB 251119 Change the link to point to this host instead of bildtema.isof.se    
+    let link = $("<a></a>");
+    //HB 251119 link.attr("href", url);
+    console.log(url);
+    //HB let localurl = url.replace("https://bildtema.isof.se/bildetema/bildetema-html5/", "/bildtema/");
+    let localurl = url.replace("https://bildtema.isof.se/bildetema/bildetema-html5/", "bildtema/");
+    //let lang = "ara"
+    link.attr("href", localurl+"&language="+lang);
+    console.log(localurl);
+    //end HB
+    link.text("Visa i Bildteman (öppnas i ny flik)");
+    $(parent).append(link);
+
+	// CG ADD - FIX "DISABLE BILDTEMA" BUG
+	link.addClass("bildtemaLink");
+	$(".bildtemaLink").
+	condShow(settings.btlink.val);
+
+	// open link in new tab
+	link.attr("target", "_blank");*/
+
+	/* ------- NEW BILDTEMA LINK (bildtema multiling) START -------- */
 
     let link = $("<a></a>");
     
@@ -3311,7 +3338,6 @@ function addBildtemaInline(url, parent, lang, word) {
     link.attr("href", getBildTemaURL(selectedLang, page, subpage));
     link.text("Visa i Bildteman (öppnas i ny flik)");
     $(parent).append(link);
-	//host.append(link);
 
 	// CG ADD - FIX "DISABLE BILDTEMA" BUG
 	link.addClass("bildtemaLink");
@@ -3326,6 +3352,8 @@ function addBildtemaInline(url, parent, lang, word) {
 	outer.dataset.btId = btId;
 	link.addClass("bildtemaLink");
 	link.attr("data-bt-id", btId);
+
+	/* ------- NEW BILDTEMA LINK (bildtema multiling) END -------- */
 }
 
 function addBildtemaInlineDetail(url, parent, word) {
