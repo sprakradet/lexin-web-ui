@@ -3148,7 +3148,8 @@ function addBildtemaInline(url, parent, lang, word) {
 	outer.style.border = "0";
 
 	// accessibility (remove tabbing for now, wait until full accessibility update of bildtema)
-	outer.tabIndex = -1;		
+	outer.tabIndex = -1;
+	outer.title = "Bildtema med bilder som är relaterade till " + word;	
 	
 	// detect changes in bildtema lang selector
 	document.querySelectorAll(".bildtemaLangSelector").forEach(bildtemaLangSelector => {
