@@ -293,28 +293,41 @@ function openHelpPhon(inner, phon) {
 	<ul>`;
 
     if(phon.indexOf('ʃ') >= 0) {
-		html += '<li>Tecknet esh "ʃ" betyder <em>sje</em>-ljud, som i "sjunga" eller "7".</li>';
+		html += '<li>Tecknet esh "ʃ" betyder <em>sje</em>-ljud, som i "sjunga" '
+				+ 'eller "7".</li>';
     }
     if(phon.indexOf(':') >= 0) {
-		html += '<li>Tecknet kolon ":" betyder att ljudet före kolon ":" är långt, en lång vokal eller lång konsonant.</li>';
+		html += '<li>Tecknet kolon ":" betyder att ljudet före kolon ":" är '
+				+ 'långt, en lång vokal eller lång konsonant.</li>';
     }
     if(phon.indexOf('̣') >= 0) {
-		html += '<li>Tecknet punkt " ̣" betyder att betoning ("tryck") ska vara på stavelsen där punkt " ̣" finns.</li>';
+		html += '<li>Tecknet punkt " ̣" betyder att betoning ("tryck") ska vara '
+				+ 'på stavelsen där punkt " ̣" finns.</li>';
     }
     if(phon.indexOf('ç') >= 0) {
-		html += '<li>Tecknet cedilj-c "ç" betyder <em>tje</em>-ljud, som i "kikare", "kjol", eller "20".</li>';
+		html += '<li>Tecknet cedilj-c "ç" betyder <em>tje</em>-ljud, som i '
+				+ '"kikare", "kjol", eller "20".</li>';
     }
     if(phon.search('[aeiouyåäöAEIOUYÅÄÖ]‿[aeiouyåäöAEIOUYÅÄÖ]') >= 0) {
-		html += '<li>Bågen "‿" mellan två vokaler betyder <em>diftong</em>, att de två vokalerna flyter ihop som t.ex. i "automat".</li>';
+		html += '<li>Bågen "‿" mellan två vokaler betyder <em>diftong</em>, '
+				+ 'att de två vokalerna flyter ihop som t.ex. i "automat".</li>';
     }
     if(phon.search('[^aeiouyåäöAEIOUYÅÄÖ]‿[^aeiouyåäöAEIOUYÅÄÖ]') >= 0) {
-		html += '<li>Bågen "‿" mellan två konsonanter betyder att de två bokstäverna före och efter bågen "‿" smålter ihop till ett ljud. När "r" följs av d, t, n, l eller s, smälter ljuden ofta ihop till ett enda ljud.</li>';
+		html += '<li>Bågen "‿" mellan två konsonanter betyder att de två '
+				+ 'bokstäverna före och efter bågen "‿" smålter ihop till ett '
+				+ 'ljud. När "r" följs av d, t, n, l eller s, smälter ljuden '
+				+ 'ofta ihop till ett enda ljud.</li>';
     }
     if(phon.indexOf('²') >= 0) {
-		html += '<li>Den upphöjda tvåan "²" betyder <em>grav accent</em> (som också kallas "accent 2"). När det inte finns någon tvåa utan bara tryckmarkering, punkt " ̣" (eller ingen tryckmarkering alls), betyder det att ordet har akut accent.</li>';
+		html += '<li>Den upphöjda tvåan "²" betyder <em>grav accent</em> (som '
+				+ 'också kallas "accent 2"). När det inte finns någon tvåa '
+				+ 'utan bara tryckmarkering, punkt " ̣" (eller ingen '
+				+ 'tryckmarkering alls), betyder det att ordet har akut '
+				+ 'accent.</li>';
     }
     if(phon.indexOf('ŋ') >= 0) {
-		html += '<li>Tecknet eng "ŋ" betyder <em>ng</em>-ljud, som i "lång", "dygn", eller "bank".</li>';
+		html += '<li>Tecknet eng "ŋ" betyder <em>ng</em>-ljud, som i "lång", '
+				+ '"dygn", eller "bank".</li>';
     }
     
     html += `</ul>
@@ -380,3 +393,11 @@ document.addEventListener('click', (e) => {
 	// update url
 	history.pushState(null, '', `#${encodeURIComponent(id)}`);
 })
+
+/* --------- UP BUTTON JUMPS TO TOP OF PAGE --------- */
+function jumpToTopOfPage() {
+	window.scrollTo({
+		top: 0,
+		behavior: "smooth"
+	});
+}

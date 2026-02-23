@@ -324,10 +324,14 @@ async function loadBildtema() {
     }
 }
 
+/* --------- EXPAND ABBREVIATED PoS NAMES --------- */
 function unAbbreviatePoS(str) {
-    if(PoSnames.hasOwnProperty(str)) { // most common case
+	// single PoS (most common case)
+    if(PoSnames.hasOwnProperty(str)) {
 		return PoSnames[str];
     }
+
+	// several PoS (?)
     if(str.indexOf(".") > 2) {
 		let res = str;
 		for(const abbr in PoSnames) {
@@ -335,9 +339,11 @@ function unAbbreviatePoS(str) {
 		}
 		return res;
     }
+
     return str;
 }
 
+/* --------- CONCATINATE ELEMENTS --------- */
 function appendWithSeparator(parent, elements, separator) {
     let first = true;
     for (const element of elements) {
@@ -350,28 +356,33 @@ function appendWithSeparator(parent, elements, separator) {
     }
 }
 
+/* --------- GET SEPARATOR ELEMENTS --------- */
 function getSeparatorForLang(lang) {
+	// right-to-left langs
     if (languageDir[lang] == "rtl") {
 		return "\u060C ";
-    } else {
+    } 
+	// left-to-right langs
+	else {
 		return ", "
     }
 }
 
+/* --------- BROWSER HISTORY --------- */
 window.onpopstate = function(event) {
+	// get current search parameters
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-
     const inpLangs = urlParams.get('languages');
     const inpWord = urlParams.get('word');
     
     if(inpLangs && inpLangs.length > 0) {
-	setSelectedLexicon(inpLangs.split(","));
-	updateKeyboardLanguage();	
+		setSelectedLexicon(inpLangs.split(","));
+		updateKeyboardLanguage();	
     }
     if(inpWord) {
-	$("#searchQuery")[0].value = inpWord;
-//	callLexin();
+		$("#searchQuery")[0].value = inpWord;
+		//	callLexin();
     }
     
     callLexin(false);

@@ -212,25 +212,26 @@ th {
 /* --------- UP BUTTON --------- */
 
 .upButton {
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    background: #3FD695;
-    color: white;
-    text-align: center;
-    font-size: 22px;
-    line-height: 60px;
-    z-index: 2000;
-    cursor: pointer;
+    display: block;         /* horizontal centering */
+    margin-left: auto;      /* horizontal centering */
+    margin-right: auto;     /* horizontal centering */
+
+    color: black;
+    font: inherit;
+    padding: 0.1em .5em 0.2em 0.5em;
     border: none;
-    outline: none;
-    display: inline-flex;
-    align-items: center;   /* vertical center */
-    justify-content: center;
-    z-index: 1;            /* move element behind settings/query elements */
+    border-radius: 0.3em;
+    cursor: pointer;
+    background-color: #D7E9EC;
+    margin-top: 35px;
+}
+
+/* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
+
+@media (hover: hover) and (pointer: fine) {
+    .upButton:hover {
+        background-color: #3FD695;
+    }
 }
 
 /* --------- (CG ADD) HIGH CONTRAST MODE SETTINGS --------- */
@@ -240,4 +241,5 @@ th {
         color: CanvasText;
     }
 }
+
 
