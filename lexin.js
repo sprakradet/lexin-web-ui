@@ -3023,6 +3023,7 @@ function createBildtemaLangSelector(parent, languages) {
 
 	const wrapper = document.createElement("div");
 	wrapper.className = "bildtemaLangSelectorWrapper";
+	wrapper.style.marginTop = "15px";
 
 	// create selector
 	let bildtemaLangSelector = document.createElement("select");
@@ -3248,6 +3249,10 @@ function addBildtemaInline(url, parent, lang, word) {
 			const innerDoc = inner.contentDocument;
 			const canvas = innerDoc?.getElementById("canvas");
 			if (!canvas) return false;
+
+			// force background color in high contrast mode
+			canvas.style.forcedColorAdjust = "none";
+			canvas.style.backgroundColor = "white";
 
 			requestAnimationFrame(() => {
 				// resize
