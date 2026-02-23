@@ -3146,6 +3146,7 @@ function addBildtemaInline(url, parent, lang, word) {
 
 	// create iframe
 	const outer = document.createElement("iframe");
+	outer.className = "bildtemaIframe";
 	outer.style.width = "100%";
 	outer.style.height = "700px";
 	outer.style.border = "0";
@@ -3154,23 +3155,45 @@ function addBildtemaInline(url, parent, lang, word) {
 	outer.tabIndex = -1;		
 	
 	// detect changes in bildtema lang selector
-	//const bildtemaLangSelector = parent.querySelector("#bildtemaLangSelector");
-	const bildtemaLangSelector = parent.querySelector(".bildtemaLangSelector");
-	if (bildtemaLangSelector) {
-		bildtemaLangSelector.onchange = (e) => {
-			// get current lang
-			const selectedLang = e.target.value;
+	document.querySelectorAll(".bildtemaLangSelector").forEach(bildtemaLangSelector => {
+		if (bildtemaLangSelector) {
+			bildtemaLangSelector.onchange = (e) => {
+				// get current lang
+				const selectedLang = e.target.value;
 
-			if (sessionStorage.getItem("bildtemaLang") !== selectedLang) {
-				// save new lang
-				sessionStorage.setItem("bildtemaLang", selectedLang);
+				if (sessionStorage.getItem("bildtemaLang") !== selectedLang) {
+					// save new lang
+					sessionStorage.setItem("bildtemaLang", selectedLang);
 
-				// update bildtema
-				url = getBildTemaURL(selectedLang, page, subpage);
-				reloadBildtema(host, outer, loader, url);
-			}		
-		};
-	}
+					// set same lang to all selectors on page
+					const selectors = document.querySelectorAll(".bildtemaLangSelector");
+					selectors.forEach(s => {
+						if (s.value !== selectedLang) {
+							s.value = selectedLang;
+						}
+					});
+
+					// update all iframes on page
+					document.querySelectorAll(".bildtemaIframe").forEach(iframe => {
+						// get basic elements
+						const host = iframe.closest(".bildtemaMultiling");
+						const outer = iframe;
+						const loader = host.querySelector(".bt-loader");
+						loader.style.display = "";
+
+						// get url
+						let oldUrl = new URL(outer.src);
+						oldUrl.searchParams.set("language", selectedLang);
+						let newUrl = oldUrl.toString();
+						outer.src = newUrl;
+						console.log(newUrl);
+
+						reloadBildtema(host, outer, loader, newUrl);
+					});
+				}		
+			};
+		}
+	})
 
 	// get/set bildtema lang
 	let selectedLang = sessionStorage.getItem("bildtemaLang");
@@ -3210,7 +3233,7 @@ function addBildtemaInline(url, parent, lang, word) {
 			// fallback
 			outer.style.visibility = "visible";
 			outer.style.pointerEvents = "auto";
-			loader.remove();
+			loader.style.display = "none";
 			return;
 		}
 
@@ -3237,7 +3260,7 @@ function addBildtemaInline(url, parent, lang, word) {
 				// show iframe after loading + resizing finished
 				outer.style.visibility = "visible";
 				outer.style.pointerEvents = "auto";
-				loader.remove();
+				loader.style.display = "none";
 			});
 
 			return true;
