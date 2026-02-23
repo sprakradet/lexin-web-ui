@@ -2951,11 +2951,14 @@ function patchLocalPlaySounds(innerWindow) {
 
 /* --------- GET BILDTEMA URL --------- */
 function getBildTemaURL(selectedLang, page, subpage) {
-	const url = "/bildtema/bildetema.html?version=swedish&languages=swe,eng&" +
-				"language=" + selectedLang +
+	const codeReplacement = {per: "fas", gre: "ell", alb: "sqi"};
+	const selectedLangCorrected = codeReplacement[selectedLang] || selectedLang;
+
+	const url = "/bildtema/bildetema.html?version=swedish&languages=swe,eng" +
+				"&language=" + selectedLangCorrected +
 				"&page=" + page +
-				"&title=Bildtema%20html5-version&language_selector=simple&" +
-				"subpage=" + subpage +
+				"&title=Bildtema%20html5-version&language_selector=simple" +
+				"&subpage=" + subpage +
 				"&prev_page=overview&prev_language=swe";
 	return(url);
 }
@@ -3127,14 +3130,6 @@ function addBildtemaInline(url, parent, lang, word) {
 	const languages = getLangChoiceCodes();
 	createBildtemaLangSelector(parent, languages);
 
-	// create bildtema element
-	/*let bildtemaMultiling = document.createElement("div");
-	bildtemaMultiling.id = "canvasTest";
-	bildtemaMultiling.style.width = "100%";
-	parent.appendChild(bildtemaMultiling);
-
-	const host = document.getElementById("canvasTest");*/
-
 	let bildtemaMultiling = document.createElement("div");
 	bildtemaMultiling.className = "bildtemaMultiling";
 	bildtemaMultiling.style.width = "100%";
@@ -3187,6 +3182,11 @@ function addBildtemaInline(url, parent, lang, word) {
 						let newUrl = oldUrl.toString();
 						outer.src = newUrl;
 						console.log(newUrl);
+
+						// update "external" link
+						const btId = iframe.dataset.btId;
+						const link = document.querySelector(`a.bildtemaLink[data-bt-id="${btId}"]`);
+						if (link) link.href = newUrl;
 
 						reloadBildtema(host, outer, loader, newUrl);
 					});
@@ -3302,29 +3302,30 @@ function addBildtemaInline(url, parent, lang, word) {
 
 	/* ------- NEW BILDTEMA (bildtema multiling) END -------- */
 
-	$(parent).find(".bildtemaLink").remove(); 
+	// remove duplicate links (bug)
+	//$(parent).find(".bildtemaLink").remove(); 
 
-    // add external Bildtema link
-    //HB 251119 Change the link to point to this host instead of bildtema.isof.se    
     let link = $("<a></a>");
-    //HB 251119 link.attr("href", url);
-    console.log(url);
-    //HB let localurl = url.replace("https://bildtema.isof.se/bildetema/bildetema-html5/", "/bildtema/");
-    let localurl = url.replace("https://bildtema.isof.se/bildetema/bildetema-html5/", "bildtema/");
-    //let lang = "ara"
-    link.attr("href", localurl+"&language="+lang);
-    console.log(localurl);
-    //end HB
+    
+	// add link
+    link.attr("href", getBildTemaURL(selectedLang, page, subpage));
     link.text("Visa i Bildteman (öppnas i ny flik)");
     $(parent).append(link);
+	//host.append(link);
 
 	// CG ADD - FIX "DISABLE BILDTEMA" BUG
 	link.addClass("bildtemaLink");
-	$(".bildtemaLink").
-	condShow(settings.btlink.val);
+	$(".bildtemaLink").condShow(settings.btlink.val);
 
 	// open link in new tab
 	link.attr("target", "_blank");
+
+	// add unique id to find link again later
+	const btId = crypto.randomUUID();
+	host.dataset.btId = btId;
+	outer.dataset.btId = btId;
+	link.addClass("bildtemaLink");
+	link.attr("data-bt-id", btId);
 }
 
 function addBildtemaInlineDetail(url, parent, word) {
