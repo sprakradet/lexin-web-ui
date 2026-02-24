@@ -3142,13 +3142,13 @@ function addBildtemaInline(url, parent, lang, word) {
 	const languages = getLangChoiceCodes();
 	createBildtemaLangSelector(parent, languages);
 
+	// create bildtema element
 	let bildtemaMultiling = document.createElement("div");
 	bildtemaMultiling.className = "bildtemaMultiling";
 	bildtemaMultiling.style.width = "100%";
 	parent.appendChild(bildtemaMultiling);
 
 	const host = bildtemaMultiling; 
-
 	if (!host) return;
 
 	// create iframe
@@ -3158,7 +3158,7 @@ function addBildtemaInline(url, parent, lang, word) {
 	outer.style.height = "700px";
 	outer.style.border = "0";
 
-	// accessibility (remove tabbing for now, wait until full accessibility update of bildtema)
+	// accessibility
 	outer.tabIndex = -1;
 	outer.title = "Bildtema med bilder som är relaterade till " + word;	
 	
@@ -3214,7 +3214,7 @@ function addBildtemaInline(url, parent, lang, word) {
 		selectedLang = "swe";
 	}
 
-	// get bildtema
+	// get bildtema url
 	outer.src = getBildTemaURL(selectedLang, page, subpage);
 
 	// hide until picture ready
@@ -3252,7 +3252,7 @@ function addBildtemaInline(url, parent, lang, word) {
 
 		// remove autoplay for category & subcategory sound files
 		if (inner?.contentWindow) {
-		patchLocalPlaySounds(inner.contentWindow);
+			patchLocalPlaySounds(inner.contentWindow);
 		}
 
 		// resize iframe
@@ -3283,9 +3283,22 @@ function addBildtemaInline(url, parent, lang, word) {
 			return true;
 		}
 
+		// make canvas width adapt to screen
+		function changeCanvasWidth() {
+			const innerDoc = inner.contentDocument;
+			const canvas = innerDoc?.getElementById("canvas");
+			if (!canvas) return false;
+
+			canvas.style.width = "100%";
+			resizeToCanvas();
+		}
+
 		if (!resizeToCanvas()) {
 			inner.addEventListener("load", () => resizeToCanvas(), { once: true });
 		}
+
+		// resize canvas when screen width changes
+		window.addEventListener("resize", changeCanvasWidth, { passive: true });
 	};
 
 	host.innerHTML = "";
