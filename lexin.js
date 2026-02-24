@@ -2831,14 +2831,7 @@ function getLinkElemToSearch(word) { // any language
 const langWithIllustration = {"sv":"swe", "fi":"fin", "sq":"sqi", "am":"amh", "ar":"ara", "bs":"bos", "el":"ell", "ku":"kmr", "fa":"far", "ru":"rus", "so":"som", "es":"spa", "ckb":"sdh", "ti":"tir", "tr":"tur"};
 
 /* --------- DISPLAY DETAIL/OVERVIEW PICTURES --------- */
-function illustrationToHTML(parentElement, ill, lang, langList, show) {
-
-    //HB 251215
-    //console.log("HB ill: "+ill);
-    //console.log("HB lang: "+lang);
-    //console.log("HB langList: "+langList);
-    //console.log("HB show: "+show);
-    
+function illustrationToHTML(parentElement, ill, lang, langList, show) {    
     let outerWrap = document.createElement('div');
     if(!show) {
 		outerWrap.className = 'notRelevant';
@@ -2871,13 +2864,14 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     makeKeyboardClickable(picicon);
 
 	picicon.onclick = () => {
+		/*const existingIframe = parentElement.querySelector(":scope iframe.bildtemaIframe");
+		const isLoaded = existingIframe?.dataset.btState === "loaded";
+		console.log("-----------> CG IS LOADED " + isLoaded);
+		if ($(pictures).find(".inlineImage").length == 0 && !isLoaded)*/
 		if($(pictures).find(".inlineImage").length == 0 && (parentElement.querySelectorAll(":scope iframe.bildtemaIframe").length === 0)) {
 			let li = $(parentElement).closest(".entryContent").closest("li");
 			let word = li.find(".matchingWord").text().trim();
-
-			// CG ADD - THIS FIXES THE "DETAIL PIC NOT SHOWN ERROR"
 			word = word.replace(/\|/g, "");
-
 			word = word.replace(/\s+\(\d+\)$/, "");
 			
 			// console.log("CG sökord bild: \"" + word + "\"");
@@ -3106,6 +3100,54 @@ function reloadBildtema(host, outer, loader, url) {
 	outer.src = url;
 }
 
+/* --------- DETECT CHANGES IN BILDTEMA LANG SELECT --------- */
+function onBildtemaLanguageSelectChange() {
+	document.querySelectorAll(".bildtemaLangSelector").forEach(bildtemaLangSelector => {
+		if (bildtemaLangSelector) {
+			bildtemaLangSelector.onchange = (e) => {
+				// get current lang
+				const selectedLang = e.target.value;
+
+				if (sessionStorage.getItem("bildtemaLang") !== selectedLang) {
+					// save new lang
+					sessionStorage.setItem("bildtemaLang", selectedLang);
+
+					// set same lang to all selectors on page
+					const selectors = document.querySelectorAll(".bildtemaLangSelector");
+					selectors.forEach(s => {
+						if (s.value !== selectedLang) {
+							s.value = selectedLang;
+						}
+					});
+
+					// update all iframes on page
+					document.querySelectorAll(".bildtemaIframe").forEach(iframe => {
+						// get basic elements
+						const host = iframe.closest(".bildtemaMultiling");
+						const outer = iframe;
+						const loader = host.querySelector(".bt-loader");
+						loader.style.display = "";
+
+						// get url
+						let oldUrl = new URL(outer.src);
+						oldUrl.searchParams.set("language", selectedLang);
+						let newUrl = oldUrl.toString();
+						outer.src = newUrl;
+						console.log(newUrl);
+
+						// update "external" link
+						const btId = iframe.dataset.btId;
+						const link = document.querySelector(`a.bildtemaLink[data-bt-id="${btId}"]`);
+						if (link) link.href = newUrl;
+
+						reloadBildtema(host, outer, loader, newUrl);
+					});
+				}		
+			};
+		}
+	})
+}
+
 // ----------------------------------------------------------------------
 // function addBildtemaInline(url, parent)
 // ----------------------------------------------------------------------
@@ -3162,51 +3204,8 @@ function addBildtemaInline(url, parent, lang, word) {
 	outer.tabIndex = -1;
 	outer.title = "Bildtema med bilder som är relaterade till " + word;	
 	
-	// detect changes in bildtema lang selector
-	document.querySelectorAll(".bildtemaLangSelector").forEach(bildtemaLangSelector => {
-		if (bildtemaLangSelector) {
-			bildtemaLangSelector.onchange = (e) => {
-				// get current lang
-				const selectedLang = e.target.value;
-
-				if (sessionStorage.getItem("bildtemaLang") !== selectedLang) {
-					// save new lang
-					sessionStorage.setItem("bildtemaLang", selectedLang);
-
-					// set same lang to all selectors on page
-					const selectors = document.querySelectorAll(".bildtemaLangSelector");
-					selectors.forEach(s => {
-						if (s.value !== selectedLang) {
-							s.value = selectedLang;
-						}
-					});
-
-					// update all iframes on page
-					document.querySelectorAll(".bildtemaIframe").forEach(iframe => {
-						// get basic elements
-						const host = iframe.closest(".bildtemaMultiling");
-						const outer = iframe;
-						const loader = host.querySelector(".bt-loader");
-						loader.style.display = "";
-
-						// get url
-						let oldUrl = new URL(outer.src);
-						oldUrl.searchParams.set("language", selectedLang);
-						let newUrl = oldUrl.toString();
-						outer.src = newUrl;
-						console.log(newUrl);
-
-						// update "external" link
-						const btId = iframe.dataset.btId;
-						const link = document.querySelector(`a.bildtemaLink[data-bt-id="${btId}"]`);
-						if (link) link.href = newUrl;
-
-						reloadBildtema(host, outer, loader, newUrl);
-					});
-				}		
-			};
-		}
-	})
+	// update bildtema on lang select change
+	onBildtemaLanguageSelectChange();
 
 	// get/set bildtema lang
 	let selectedLang = sessionStorage.getItem("bildtemaLang");
@@ -3263,8 +3262,8 @@ function addBildtemaInline(url, parent, lang, word) {
 			if (!canvas) return false;
 
 			// force background color in high contrast mode
-			canvas.style.forcedColorAdjust = "none";
-			canvas.style.backgroundColor = "white";
+			canvas.style.forcedColorAdjust = "none"; 		// CG: move this code later ...
+			canvas.style.backgroundColor = "white";			// CG: move this code later ...
 
 			requestAnimationFrame(() => {
 				// resize
@@ -3278,6 +3277,8 @@ function addBildtemaInline(url, parent, lang, word) {
 				outer.style.visibility = "visible";
 				outer.style.pointerEvents = "auto";
 				loader.style.display = "none";
+
+				/*outer.dataset.btState = "loaded";*/
 			});
 
 			return true;
@@ -3329,10 +3330,6 @@ function addBildtemaInline(url, parent, lang, word) {
 	loader.appendChild(spinner);
 	host.appendChild(loader);
 	host.appendChild(outer);
-
-	console.log("--------> CG antal element: " + parent.querySelectorAll(":scope > .bildtemaMultiling").length);
-	console.log("BILDTEMA INIT RUN", parent);
-	console.trace("who called init");
 
 	/* ------- NEW BILDTEMA (bildtema multiling) END -------- */
 
