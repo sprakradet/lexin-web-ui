@@ -226,6 +226,18 @@ th {
     margin-top: 35px;
 }
 
+/* --------- TEXT FORMATTING --------- */
+
+.helpTextUpperSpace {
+  display: inline-block;
+  margin-top: 0.4em;
+}
+
+.helpTextIndent {
+  display: inline-block;
+  padding-left: 1em;
+}
+
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
 
 @media (hover: hover) and (pointer: fine) {

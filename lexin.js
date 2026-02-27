@@ -3042,6 +3042,7 @@ function createBildtemaLangSelector(parent, languages) {
 	let bildtemaLangSelector = document.createElement("select");
 	//bildtemaLangSelector.id = "bildtemaLangSelector";
 	bildtemaLangSelector.className = "bildtemaLangSelector";
+	bildtemaLangSelector.ariaLabel = "Välj språk för bildtema";
 
 	// add language options
 	populateBildtemaLangSelector(bildtemaLangSelector, languages);
