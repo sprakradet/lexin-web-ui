@@ -2864,11 +2864,17 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     makeKeyboardClickable(picicon);
 
 	picicon.onclick = () => {
-		/*const existingIframe = parentElement.querySelector(":scope iframe.bildtemaIframe");
-		const isLoaded = existingIframe?.dataset.btState === "loaded";
-		console.log("-----------> CG IS LOADED " + isLoaded);
-		if ($(pictures).find(".inlineImage").length == 0 && !isLoaded)*/
-		if($(pictures).find(".inlineImage").length == 0 && (parentElement.querySelectorAll(":scope iframe.bildtemaIframe").length === 0)) {
+		/*if($(pictures).find(".inlineImage").length == 0 && (parentElement.querySelectorAll(":scope iframe.bildtemaIframe").length === 0)) {*/
+
+			// remove everything from previous load
+			const existingFrame = parentElement.querySelector(".bildtemaMultiling");
+			if(existingFrame) {
+				parentElement.querySelectorAll(".inlineImage").forEach(el => el.remove());
+				parentElement.querySelectorAll(".bildtemaMultiling").forEach(el => el.remove());
+				parentElement.querySelectorAll(".bildtemaLangSelectorWrapper").forEach(el => el.remove());
+				parentElement.querySelectorAll(".bildtemaLink").forEach(el => el.remove());
+			}
+
 			let li = $(parentElement).closest(".entryContent").closest("li");
 			let word = li.find(".matchingWord").text().trim();
 			word = word.replace(/\|/g, "");
@@ -2876,7 +2882,7 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 			
 			// console.log("CG sökord bild: \"" + word + "\"");
 
-			// CG CHANGE - THIS FIXES THE "WRONG DETAIL PIC ERROR"
+			// add detail image
 			for(var i = 0; i < ill.length; i++) {
 				let parsedUrl = new URL(ill[i]);
 				let urlParams = parsedUrl.searchParams;
@@ -2890,11 +2896,13 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 				}
 			}
 
+			// add overview image
 			for(var i = 0; i < ill.length; i++) {
 			    addBildtemaInline(ill[i], pictures, langList, word);				// CG: overview picture
 				// console.log("CG " + word + " översiktsbild: " + ill[i]);
 			}
-		}
+		
+			/*}*/
 
 		const iconImg = picicon.querySelector("img"); 
 		if(!pictures.style.display || pictures.style.display == 'none') {
@@ -3277,8 +3285,6 @@ function addBildtemaInline(url, parent, lang, word) {
 				outer.style.visibility = "visible";
 				outer.style.pointerEvents = "auto";
 				loader.style.display = "none";
-
-				/*outer.dataset.btState = "loaded";*/
 			});
 
 			return true;
