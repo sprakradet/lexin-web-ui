@@ -324,6 +324,7 @@ select {
 
 .inflections {
     font-weight: 500;
+    display: block;
 }
 
 .inflections .clickableHeading.phonetic {
@@ -437,7 +438,7 @@ select {
 }
 
 .referenceContainer a:hover {
-    background-color: #EBEEEF;
+    background-color: rgba(51, 82, 91, 0.1);
 }
 
 .referenceHead {

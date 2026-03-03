@@ -49,17 +49,17 @@ function openHelpComps(inner) {
 	<h4>Sammansättningar</h4>
 	<p>
 		När man gör en sammansättning av två eller flera ord på svenska ändras 
-		ofta något litet. T.ex. "skog" + "dunge" blir 
-		"skog<strong>s</strong>dunge". Mycket ofta lägger man till ett 
+		ofta något litet. T.ex. <em>skog</em> + <em>dunge</em> blir 
+		<em>skog<strong>s</strong>dunge</em>. Mycket ofta lägger man till ett 
 		<em>s</em> som i det här fallet. Andra exempel är
 		<em>berg<strong>s</strong></em>-<em>trakt</em>, 
 		<em>dag<strong>s</strong></em>-<em>resa</em>.
 	</p>
 	<p>
 		Om det första ordet är ett substantiv och slutar på <em>a</em> eller 
-		<em>e</em> är det vanligt att den vokalen försvinner: "flicka" + "grupp" 
-		blir <em>flick</em>-<em>grupp</em>, "skola" + "klass" blir 
-		<em>skol</em>-<em>klass</em>.
+		<em>e</em> är det vanligt att den vokalen försvinner: <em>flicka</em> + 
+		<em>grupp</em> blir <em>flick</em>-<em>grupp</em>, <em>skola</em> + 
+		<em>klass</em> blir <em>skol</em>-<em>klass</em>.
 	</p>
        `;
 }
@@ -81,9 +81,9 @@ function openHelpDer(inner) {
 	<h3>Avledning</h3>
 	<p>
 		Avledningar är ord gjorda av ett annat ord genom att lägga till en 
-		förstavelse eller en ändelse, till exempel "allergi" och "allergiker" 
-		(en person som har en allergi), eller "jogga" och "joggning" (när man 
-		joggar).
+		förstavelse eller en ändelse, till exempel <em>allergi</em> och 
+		<em>allergiker</em> (en person som har en allergi), eller <en>jogga</em> 
+		och <em>joggning</em> (när man joggar).
 	</p>
        `;
 }
@@ -93,9 +93,10 @@ function openHelpAbbr(inner) {
     inner.innerHTML = `
 	<h3>Förkortning</h3>
 	<p>
-		"Förkortning" visar det vedertagna sättet att förkorta ordet, t.ex. "dr"
-		i stället för "doktor", "kg" i stället för "kilogram", eller "SVT" i 
-		stället för "Sveriges Television".
+		"Förkortning" visar det vedertagna sättet att förkorta ordet, 
+		t.ex. <em>dr</em> i stället för <em>doktor</em>, <em>kg</em> i stället 
+		för <em>kilogram</em>, eller <em>SVT</em> i stället för <em>Sveriges 
+		Television</em>.
 	</p>
        `;
 }
@@ -122,8 +123,8 @@ function openHelpHyp(inner) {
 	<p>
 		Vissa ord ändras när de avstavas. Sammansatta ord med tre likadana 
 		konsonanter i rad skrivs som två, men när ordet avstavas skrivs alla tre
-		ut igen, t.ex. "äggula" som avstavas "ägg-gula" eller "Halland" som 
-		avstavas "Hall-land".
+		ut igen, t.ex. <em>äggula</em> som avstavas <em>ägg-gula</em> eller 
+		<em>Halland</em> som avstavas <em>Hall-land</em>.
 	</p>
        `;
 }
@@ -134,8 +135,8 @@ function openHelpSee(inner) {
 	<h3>"Se"-referens</h3>
 	<p>
 		"Se"-referenser hänvisar till ordet som en förkortning står för (t.ex. 
-		"AD, Se: Arbetsdomstolen") eller normalformen för en talspråklig
-		variant (t.ex. "sen, Se: sedan").
+		<em>AD, Se: Arbetsdomstolen</em>) eller normalformen för en talspråklig
+		variant (t.ex. <em>sen, Se: sedan</em>).
 	</p>
        `;
 }
@@ -145,9 +146,10 @@ function openHelpCompare(inner) {
     inner.innerHTML = `
 	<h3>Jämförelse</h3>
 	<p>
-		"Jämför"-referenser visar liknande ord, t.ex. "förstaspråk" och 
-		"andraspråk" och för partikelverb som både kan skrivas ihop och isär med 
-		liknande betydelse, t.ex. "hålla av" och "avhållen".
+		"Jämför"-referenser visar liknande ord, t.ex. <em>förstaspråk</em> och 
+		<em>andraspråk</em> och för partikelverb som både kan skrivas ihop och 
+		isär med liknande betydelse, t.ex. <em>hålla av</em> och 
+		<em>avhållen</em>.
 	</p>
        `;
 }
@@ -293,8 +295,8 @@ function openHelpPhon(inner, phon) {
 	<ul>`;
 
     if(phon.indexOf('ʃ') >= 0) {
-		html += '<li>Tecknet esh "ʃ" betyder <em>sje</em>-ljud, som i "sjunga" '
-				+ 'eller "7".</li>';
+		html += '<li>Tecknet esh "ʃ" betyder <em>sje</em>-ljud, som i '
+				+ '<em>sjunga</em> eller <em>7</em>.</li>';
     }
     if(phon.indexOf(':') >= 0) {
 		html += '<li>Tecknet kolon ":" betyder att ljudet före kolon ":" är '
@@ -306,28 +308,30 @@ function openHelpPhon(inner, phon) {
     }
     if(phon.indexOf('ç') >= 0) {
 		html += '<li>Tecknet cedilj-c "ç" betyder <em>tje</em>-ljud, som i '
-				+ '"kikare", "kjol", eller "20".</li>';
+				+ '<em>kikare</em>, <em>kjol</em>, eller <em>20</em>.</li>';
     }
     if(phon.search('[aeiouyåäöAEIOUYÅÄÖ]‿[aeiouyåäöAEIOUYÅÄÖ]') >= 0) {
 		html += '<li>Bågen "‿" mellan två vokaler betyder <em>diftong</em>, '
-				+ 'att de två vokalerna flyter ihop som t.ex. i "automat".</li>';
+				+ 'att de två vokalerna flyter ihop som t.ex. i '
+				+ '<em>automat</em>.</li>';
     }
     if(phon.search('[^aeiouyåäöAEIOUYÅÄÖ]‿[^aeiouyåäöAEIOUYÅÄÖ]') >= 0) {
 		html += '<li>Bågen "‿" mellan två konsonanter betyder att de två '
 				+ 'bokstäverna före och efter bågen "‿" smålter ihop till ett '
-				+ 'ljud. När "r" följs av d, t, n, l eller s, smälter ljuden '
+				+ 'ljud. När <em>r</em> följs av <em>d</em>, <em>t</em>, '
+				+ '<em>n</em>, <em>l</em> eller <em>s</em>, smälter ljuden '
 				+ 'ofta ihop till ett enda ljud.</li>';
     }
     if(phon.indexOf('²') >= 0) {
 		html += '<li>Den upphöjda tvåan "²" betyder <em>grav accent</em> (som '
-				+ 'också kallas "accent 2"). När det inte finns någon tvåa '
-				+ 'utan bara tryckmarkering, punkt " ̣" (eller ingen '
+				+ 'också kallas <em>accent 2</em>). När det inte finns någon '
+				+ ' tvåa utan bara tryckmarkering, punkt " ̣" (eller ingen '
 				+ 'tryckmarkering alls), betyder det att ordet har akut '
 				+ 'accent.</li>';
     }
     if(phon.indexOf('ŋ') >= 0) {
-		html += '<li>Tecknet eng "ŋ" betyder <em>ng</em>-ljud, som i "lång", '
-				+ '"dygn", eller "bank".</li>';
+		html += '<li>Tecknet eng "ŋ" betyder <em>ng</em>-ljud, som i '
+				+ '<em>lång</em>, <em>dygn</em>, eller <em>bank</em>.</li>';
     }
     
     html += `</ul>

@@ -238,6 +238,11 @@ th {
   padding-left: 1em;
 }
 
+.helpTextIndentLarge {
+  display: inline-block;
+  padding-left: 2em;
+}
+
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
 
 @media (hover: hover) and (pointer: fine) {
