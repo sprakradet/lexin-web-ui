@@ -6838,3 +6838,129 @@ function trapFocus(modal) {
 		document.removeEventListener("focusin", onFocusIn);
 	};
 }
+
+/* --------- SHOW A NEW PAGE (POPUP STYLE) --------- */
+/* --------- SAME LOGIC AS LEXINEXPLANACTION ELEMENTS --------- */
+let genericPopupWrapper = null;
+let genericPopupTrapCleanup = null;
+let lastGenericOpener = null;
+let genericPopupEscListenerAdded = false;
+function openGenericPagePopup(content, openerElem = null) {
+	// focus restoration (accessibility)
+	lastGenericOpener = openerElem || document.activeElement;
+
+	// create wrappr
+	if (!genericPopupWrapper) {
+		genericPopupWrapper = document.createElement("div");
+		genericPopupWrapper.className = "LexinExplanationsWrapper";
+		genericPopupWrapper.style.top = 0;
+
+		const inner = document.createElement("div");
+		inner.className = "LexinExplanations";
+		inner.style.height = "100%";
+
+		// accessibiity
+		genericPopupWrapper.setAttribute("tabindex", "-1");
+
+		// close button
+		$(inner).on("click", ".closeHelp", function (event) {
+			event.stopPropagation();
+			closeGenericPagePopup();
+		});
+
+		// Prevent clicks inside from bubbling (optional)
+		inner.addEventListener("click", (event) => event.stopPropagation());
+		genericPopupWrapper.addEventListener("click", (event) => event.stopPropagation());
+
+		genericPopupWrapper.appendChild(inner);
+		document.body.appendChild(genericPopupWrapper);
+
+		// ESC handler: add once globally
+		if (!genericPopupEscListenerAdded) {
+		document.addEventListener("keydown", function (event) {
+			if (!genericPopupWrapper || genericPopupWrapper.style.display !== "block") return;
+			if (event.key === "Escape") {
+				event.preventDefault();
+				closeGenericPagePopup();
+			}
+		});
+		genericPopupEscListenerAdded = true;
+		}
+	}
+
+	const inner = genericPopupWrapper.querySelector(".LexinExplanations");
+
+	// Replace content
+	inner.innerHTML = ""; // clear
+
+	// Always prepend close button
+	inner.insertAdjacentHTML(
+		"afterbegin",
+		'<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng infosidan">' +
+		'<img src="/closebutton.svg" alt="">' +
+		"</button>"
+	);
+
+	// Insert provided content
+	// Accept HTMLElement, Document, or string
+	if (content) {
+		if (content instanceof HTMLElement) {
+			inner.appendChild(content.cloneNode(true));
+		} else if (content instanceof Document) {
+			// If it has a body, use body contents; else try documentElement
+			const nodes = content.body ? Array.from(content.body.childNodes) : Array.from(content.childNodes);
+			nodes.forEach((n) => inner.appendChild(n.cloneNode(true)));
+		} else if (typeof content === "string") {
+			inner.insertAdjacentHTML("beforeend", content);
+		} else {
+			inner.insertAdjacentHTML("beforeend", "<p>Fel: okänt innehåll.</p>");
+		}
+	}
+
+	// Show
+	genericPopupWrapper.style.display = "block";
+	document.body.classList.add("help-open"); // reuse your existing styling hook
+
+	// Start/refresh focus trap
+	if (genericPopupTrapCleanup) genericPopupTrapCleanup();
+	genericPopupTrapCleanup = trapFocus(genericPopupWrapper);
+
+	// Focus: first focusable should be close button
+	const closeBtn = inner.querySelector(".closeHelp");
+	if (closeBtn) {
+		closeBtn.focus();
+	} else {
+		// fallback
+		const focusables = getFocusableElements(genericPopupWrapper);
+		(focusables[0] || genericPopupWrapper).focus();
+	}
+	}
+
+	function closeGenericPagePopup() {
+	if (!genericPopupWrapper) return;
+
+	// Stop focus trap
+	if (genericPopupTrapCleanup) {
+		genericPopupTrapCleanup();
+		genericPopupTrapCleanup = null;
+	}
+
+	// Hide
+	genericPopupWrapper.style.display = "none";
+	document.body.classList.remove("help-open");
+
+	// Restore focus
+	if (lastGenericOpener && typeof lastGenericOpener.focus === "function") {
+		lastGenericOpener.focus();
+	}
+}
+
+async function openPageFromFile(url, opener) {
+	try {
+		const response = await fetch(url);
+		const html = await response.text();
+		openGenericPagePopup(html, opener);
+	} catch (e) {
+		console.error("Could not load page:", e);
+	}
+}
