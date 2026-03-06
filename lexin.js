@@ -6849,12 +6849,14 @@ function openGenericPagePopup(content, openerElem = null) {
 	// focus restoration (accessibility)
 	lastGenericOpener = openerElem || document.activeElement;
 
-	// create wrappr
+	// create wrapper
 	if (!genericPopupWrapper) {
+		// create wrapper
 		genericPopupWrapper = document.createElement("div");
 		genericPopupWrapper.className = "LexinExplanationsWrapper";
 		genericPopupWrapper.style.top = 0;
 
+		// create content 
 		const inner = document.createElement("div");
 		inner.className = "LexinExplanations";
 		inner.style.height = "100%";
@@ -6868,14 +6870,15 @@ function openGenericPagePopup(content, openerElem = null) {
 			closeGenericPagePopup();
 		});
 
-		// Prevent clicks inside from bubbling (optional)
+		// prevent clicks inside from bubbling 
 		inner.addEventListener("click", (event) => event.stopPropagation());
 		genericPopupWrapper.addEventListener("click", (event) => event.stopPropagation());
 
+		// add elements
 		genericPopupWrapper.appendChild(inner);
 		document.body.appendChild(genericPopupWrapper);
 
-		// ESC handler: add once globally
+		// close with escape
 		if (!genericPopupEscListenerAdded) {
 		document.addEventListener("keydown", function (event) {
 			if (!genericPopupWrapper || genericPopupWrapper.style.display !== "block") return;
@@ -6884,16 +6887,16 @@ function openGenericPagePopup(content, openerElem = null) {
 				closeGenericPagePopup();
 			}
 		});
-		genericPopupEscListenerAdded = true;
+			genericPopupEscListenerAdded = true;
 		}
 	}
 
 	const inner = genericPopupWrapper.querySelector(".LexinExplanations");
 
-	// Replace content
+	// replace content
 	inner.innerHTML = ""; // clear
 
-	// Always prepend close button
+	// prepend close button
 	inner.insertAdjacentHTML(
 		"afterbegin",
 		'<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng infosidan">' +
