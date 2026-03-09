@@ -31,7 +31,7 @@ h1 {
     margin-right: 0.4em;
 
     color: transparent;
-    background: url(/images/lexinlogo.png);
+    background: url(../images/lexinlogo.png);
     background-size: contain;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -48,7 +48,7 @@ h1 {
 }
 
 input[type="submit"] {
-    background: no-repeat center / 1em url(/svg/search.svg);
+    background: no-repeat center / 1em url(../svg/search.svg);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -206,7 +206,7 @@ select {
     pointer-events: none;*/
 
     content: "";
-    background-image: url("/svg/triangle.svg");
+    background-image: url("../svg/triangle.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 10px;
@@ -396,7 +396,7 @@ select {
     height: 1.3em;
     width: 2em;
     vertical-align: bottom;
-    background-image: url(/svg/lyssna.svg);
+    background-image: url(../svg/lyssna.svg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -968,7 +968,7 @@ footer .lp-icon {
     pointer-events: none;*/
 
     content: "";
-    background-image: url("/svg/triangle.svg");
+    background-image: url("../svg/triangle.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 10px;

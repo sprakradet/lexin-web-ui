@@ -348,7 +348,7 @@ function openHelpVideo(inner) {
 		För vissa ord kan du se ett videoklipp som visar vad ordet betyder.
 	</p>
 	<p>
-		Klicka på videoikonen <img src="/svg/video.svg" class="vidIcon"/ alt=""> 
+		Klicka på videoikonen <img src="svg/video.svg" class="vidIcon"/ alt=""> 
 		"Visa videon i Lexin" för att ladda videon och visa den i Lexin.
 	</p>
        `;

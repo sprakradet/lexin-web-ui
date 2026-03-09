@@ -204,6 +204,6 @@ body.help-open .popupButton {
 /* switch feedback icon colors to dynamic */
 @media (forced-colors: active) {
     .popupButton .popupIcon {
-        content: url("/svg/feedback-icon-high-contrast.svg");
+        content: url("../svg/feedback-icon-high-contrast.svg");
     }
 }
