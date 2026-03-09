@@ -2017,7 +2017,7 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
 
 	// open/close icon
     let exp = document.createElement('img');
-    exp.src = "/disclosure.svg";
+    exp.src = "/svg/disclosure.svg";
     exp.className = "expandGraminfoIcon";
 
 	// accessibility open/close icon
@@ -2262,7 +2262,7 @@ function expandSlashesInner(text) {
 /* --------- EXPAND ARTICLE BUTTON --------- */
 function addExpandResultElement() {
     let exp = document.createElement('img');
-    exp.src = "/submenuBlack.svg";
+    exp.src = "/svg/submenuBlack.svg";
     exp.className = "expandResultsIcon";
 
 	// accessibility
@@ -2925,7 +2925,7 @@ function getPictureIcon() {
     im.className = 'picWrap';
     let icon = document.createElement('img');
     //HB icon.src = '/images.svg';
-    icon.src = 'images.svg';
+    icon.src = '/svg/images.svg';
     icon.className = 'picIcon';
     //icon.title = "Visa bild i Lexin";
     im.appendChild(icon);
@@ -3569,7 +3569,7 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 				
 				// video icon
 				let im = document.createElement('img');
-				im.src = "video.svg";
+				im.src = "/svg/video.svg";
 				im.className = 'vidIcon';
 
 				// accessibility video icon
@@ -6124,7 +6124,7 @@ function openPageDescription(elem) {
 			(focusables[0] || relevantExplanationElement).focus();
 
 			// create close button
-			$(inner).prepend('<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng infosidan">	  <img src="/closebutton.svg">	</button>');
+			$(inner).prepend('<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng infosidan">	  <img src="/svg/closebutton.svg">	</button>');
 
 			// accessibility (first focus on close button)
 			const closeBtn = inner.querySelector(".closeHelp");
@@ -6900,7 +6900,7 @@ function openGenericPagePopup(content, openerElem = null) {
 	inner.insertAdjacentHTML(
 		"afterbegin",
 		'<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng infosidan">' +
-		'<img src="/closebutton.svg" alt="">' +
+		'<img src="/svg/closebutton.svg" alt="">' +
 		"</button>"
 	);
 
