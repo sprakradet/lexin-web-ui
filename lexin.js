@@ -6859,7 +6859,7 @@ function openGenericPagePopup(content, openerElem = null) {
 		// create content 
 		const inner = document.createElement("div");
 		inner.className = "LexinExplanations";
-		inner.style.height = "100%";
+		inner.style.minHeight = "100%";
 
 		// accessibiity
 		genericPopupWrapper.setAttribute("tabindex", "-1");
