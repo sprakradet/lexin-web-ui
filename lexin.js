@@ -2967,7 +2967,7 @@ function getBildTemaURL(selectedLang, page, subpage) {
 	const codeReplacement = {per: "fas", gre: "ell", alb: "sqi"};
 	const selectedLangCorrected = codeReplacement[selectedLang] || selectedLang;
 
-	const url = "/bildtema/bildetema.html?version=swedish&languages=swe,eng" +
+	const url = "bildtema/bildetema.html?version=swedish&languages=swe,eng" +
 				"&language=" + selectedLangCorrected +
 				"&page=" + page +
 				"&title=Bildtema%20html5-version&language_selector=simple" +
@@ -3055,6 +3055,7 @@ function createBildtemaLangSelector(parent, languages) {
 function getLangChoiceCodes() {
 	let selectedLangCodes = [];
 	const isMultilang = settings["multiple_languages"]?.val === true;
+	console.log("----------> CG IS MULTILANG " + isMultilang);
 	
 	// several languages chosen
 	if (isMultilang) {
