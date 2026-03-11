@@ -415,6 +415,13 @@ select {
     font-weight:bold;
 }
 
+/* accessibility (make non-Latin letters adapt their font size) */
+.translation,
+.idiomHeadTrans,
+.translatedExample {
+    font-size: 1rem;
+}
+
 /* --------- SYNONYMS --------- */
 
 .synonyms {
@@ -887,7 +894,7 @@ footer .lp-icon {
 .errorMessage {
     background-color: #FFCD00;
     border-radius: 5px; 
-    font-size: 16px;
+    font-size: 0.5em;
     padding: 5px;
     margin-top: 15px;
     margin-left: 10px;
@@ -896,6 +903,10 @@ footer .lp-icon {
     align-items: center;    /* align items */
     gap: 0.5rem;            /* align items */
 }
+
+/*.theform2 #errormessage {
+    font-size: 1em;
+}*/
 
 .warningIcon {
     width: 36px;

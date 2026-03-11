@@ -25,7 +25,7 @@ body.modal-open #popup {
     box-shadow:0 0 10px rgba(0,0,0,0.2);
     width: 300px;
     font-family: "Noto Sans",sans-serif;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: normal;
     z-index: 50;
 }
@@ -44,7 +44,7 @@ body.modal-open #popup {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-family: "Noto Sans",sans-serif;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: normal;
     padding: 5px;
 }
@@ -60,7 +60,7 @@ form#theForm2 input.popupText {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-family: "Noto Sans",sans-serif;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: normal;
     width: 95%;
     max-width: 95%;
