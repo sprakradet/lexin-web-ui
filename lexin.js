@@ -3212,7 +3212,7 @@ function addBildtemaInline(url, parent, lang, word) {
 
 	// accessibility
 	outer.tabIndex = -1;
-	outer.title = "Bildtema med bilder som är relaterade till " + word;	
+	outer.title = "Olika motiv som är relaterade till " + word + ". Illustration.";	
 	
 	// update bildtema on lang select change
 	onBildtemaLanguageSelectChange();
@@ -3402,7 +3402,11 @@ function addBildtemaInlineDetail(url, parent, word) {
 	//    inlineImg.style.height = "123px";
     parent.appendChild(inlineImg);
     //HB inlineImg.innerHTML='<img src="/bilder/' + url + '" style=""></object>';
-    inlineImg.innerHTML='<img src="bilder/' + url + '" style="" alt="' + word + '"></object>';
+    inlineImg.innerHTML='<img src="bilder/' 
+							+ url 
+							+ '" style="" alt="' 
+							+ word.charAt(0).toUpperCase() + word.slice(1) 
+							+ '. Illustration."></object>';
 }
 
 
@@ -3590,6 +3594,117 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 }
 
 /* --------- DISPLAY VIDEO INLINE --------- */
+const verbsWithDiacritics = {
+	aker: "åker",
+	anmaler: "anmäler",
+	ansoker: "ansöker",
+	at: "åt",
+	ater: "äter",
+	ansokan: "ansökan",
+	beskar: "beskär",
+	bestaller: "beställer",
+	bilbaltet: "bilbältet",
+	bladdrar: "bläddrar",
+	blaser: "blåser",
+	bojer: "böjer",
+	branner: "bränner",
+	dack: "däck",
+	elmataren: "elmätaren",
+	fa: "få",
+	faktas: "fäktas",
+	far: "får",
+	fardtjanst: "färdjänst",
+	farg: "färg",
+	fonster: "fönster",
+	forband: "förband",
+	forlorar: "förlorar",
+	fragar: "frågar",
+	frimarken: "frimärken",
+	gar: "går",
+	gaspar: "gäspar",
+	godkanner: "godkänner",
+	gor: "gör",
+	godslar: "gödslar",
+	glodlampa: "glödlampa",
+	graddar: "gräddar",
+	grater: "gråter",
+	graver: "gräver",
+	haret: "håret",
+	haftar: "häftar",
+	hal: "hål",
+	haller: "häller",
+	halsar: "hälsar",
+	hamtar: "hämtar",
+	hanger: "hänger",
+	haret: "håret",
+	hjartat: "hjärtat",
+	hoger: "höger",
+	hojd: "höjd",
+	kapp: "käpp",
+	klar: "klär",
+	knadar: "knådar",
+	koper: "köper",
+	kor: "kör",
+	lagger: "lägger",
+	lamnar: "lämnar",
+	lanar: "lånar",
+	langd: "längd",
+	laser: "läser",
+	loses: "löses",
+	mal: "mål",
+	malar: "målar",
+	mater: "mäter",
+	moblerar: "möblerar",
+	nedfor: "nedför",
+	oppnar: "öppnar",
+	over: "över",
+	overkastet: "överkastet",
+	pa: "på",
+	parm: "pärm",
+	plaster: "plåster",
+	raknar: "räknar",
+	rattar: "rättar",
+	roker: "röker",
+	sagar: "sågar",
+	sanker: "sänker",
+	sar: "sår",
+	satter: "sätter",
+	skar: "skär",
+	skoljer: "sköljer",
+	skordar: "skördar",
+	slacker: "släcker",
+	slar: "slår",
+	smalter: "smälter",
+	smorjer: "smörjer",
+	spanner: "spänner",
+	staller: "ställer",
+	stammer: "stämmer",
+	stanger: "stänger",
+	star: "står",
+	stoter: "stöter",
+	stracker: "sträcker",
+	styrketranar: "styrketränar",
+	svanger: "svänger",
+	taljer: "täljer",
+	tander: "tänder",
+	tanderna: "tänderna",
+	tarnar: "tärnar",
+	tommer: "tömmer",
+	traffas: "träffas",
+	tvatt: "tvätt",
+	tvattar: "tvättar",
+	underkanner: "underkänner",
+	uppfor: "uppför",
+	vagen: "vägen",
+	vager: "väger",
+	vanster: "vänster",	
+	vantar: "väntar",
+	varmer: "värmer",
+	vassar: "vässar",
+	vaver: "väver",
+	vaxlar: "växlar",
+};
+
 function loadAndShowHideVideo(elem, url) {
     let children = elem.parentElement.children;
     let seen = 0;
@@ -3613,7 +3728,9 @@ function loadAndShowHideVideo(elem, url) {
 		vid.src = url;
 
 		// accessibility
-		vid.setAttribute('aria-label', $("#searchQuery").val() + ', verbfilm');
+		let videoVerb = url.split('/').pop().replace(/\.mp4$/, '').replace(/_/g, ' ');
+		videoVerb = videoVerb.split(' ').map(word => verbsWithDiacritics[word] || word).join(' ');
+		vid.setAttribute('aria-label', 'Någon/något som ' + videoVerb + '.');
 
 		cont.appendChild(vid);
 
@@ -6098,6 +6215,11 @@ function openPageDescription(elem) {
 			} else if(elem.textContent.indexOf("Video") >= 0) {
 				openHelpVideo(inner);
 			}
+
+			else if(elem.textContent == 'Bild') {
+				openHelpImage(inner);
+			}
+
 			// unknown
 			else if(elem.textContent == 'referenceHead') {
 				console.log("openPageDescription: Element is an unknown type of clickableHeading", elem);
