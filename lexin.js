@@ -2846,12 +2846,19 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     wrap.className = 'ill';
 
 	// article category text
-    var tmp = document.createElement('span');
-    tmp.textContent = "Bild:";
-    tmp.lang = BaseLanguageSwe;
-    tmp.dir = "ltr";
-    tmp.className = 'imageLink';
-    wrap.appendChild(tmp);
+	var tmp = document.createElement('span');
+	tmp.classList.add('imageLink');
+	tmp.lang = BaseLanguageSwe;
+	tmp.dir = "ltr";
+	var textSpan = document.createElement('span');
+	textSpan.textContent = "Bild:";
+	textSpan.classList.add('clickableHeading', 'makeClickableHeadingsStandOut');
+
+	// accessibility
+	makeKeyboardClickable(textSpan);
+
+	tmp.appendChild(textSpan);
+	wrap.appendChild(tmp);
 
 	// picture icon
     let pictures = document.createElement('div');
@@ -3567,7 +3574,7 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 					loadAndShowHideVideo(this, ref.val);
 
 					// accessibility
-					im.alt = wasOpen ? "Visa videon i Lexin" : "Stäng videon";
+					im.alt = wasOpen ? "Visa video i Lexin" : "Stäng video";
 
 					return false;
 				};
@@ -3579,7 +3586,7 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 
 				// accessibility video icon
 				makeKeyboardClickable(im);
-				im.alt = "Visa videon i Lexin";
+				im.alt = "Visa video i Lexin";
 
 				imElem.appendChild(im);
 				imElem.lang = BaseLanguageSwe;
@@ -3704,7 +3711,6 @@ const verbsWithDiacritics = {
 	vaver: "väver",
 	vaxlar: "växlar",
 };
-
 function loadAndShowHideVideo(elem, url) {
     let children = elem.parentElement.children;
     let seen = 0;
@@ -6215,8 +6221,7 @@ function openPageDescription(elem) {
 			} else if(elem.textContent.indexOf("Video") >= 0) {
 				openHelpVideo(inner);
 			}
-
-			else if(elem.textContent == 'Bild') {
+			else if(elem.textContent == 'Bild:') {
 				openHelpImage(inner);
 			}
 

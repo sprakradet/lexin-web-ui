@@ -348,8 +348,8 @@ function openHelpVideo(inner) {
 		För vissa ord kan du se ett videoklipp som visar vad ordet betyder.
 	</p>
 	<p>
-		Klicka på videoikonen <img src="svg/video.svg" class="vidIcon"/ alt=""> 
-		"Visa videon i Lexin" för att ladda videon och visa den i Lexin.
+		Klicka på videoikonen<img src="svg/video.svg" class="vidIcon"/ alt=""> 
+		"Visa video i Lexin" för att ladda videon och visa den i Lexin.
 	</p>
        `;
 }
@@ -359,9 +359,11 @@ function openHelpImage(inner) {
     inner.innerHTML = `
 	<h3>Bild</h3>
 	<p>
-		Många ord har bilder som hjälper till att förklara ordet. För att visa
-		en bild, klicka på den lilla bildikonen "Visa bild i Lexin" bredvid 
-		texten "Bild:".
+		Många ord har en eller flera bilder som hjälper till att förklara ordet. 
+	</p>
+	<p>
+		Klicka på bildikonen<img src="svg/images.svg" class="picIcon"/ alt="">
+		"Visa bild i Lexin" för att ladda bilder och visa dem i Lexin.
 	</p>
        `;
 }
