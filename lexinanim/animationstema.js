@@ -74,7 +74,7 @@ function renderSubmenu(menunumber) {
 }
 
 $(function () {
-    $.ajax({url:"/lexinanim/animationstema.json", datatype: "json", type:"GET",
+    $.ajax({url:"lexinanim/animationstema.json", datatype: "json", type:"GET",
             success: function(json, status) {
 		menus = json.animationstema;
 		console.log("fetched animationstema.json");
