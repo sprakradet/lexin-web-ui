@@ -1026,45 +1026,55 @@ footer .lp-icon {
 
 @media (prefers-color-scheme: dark) { 
     /* background + text */
-
     .content,
     form#theForm2 input#searchQuery {
         background-color: #111b20;
         color: white;
     }
-
-    .wordInfo {
+    .wordInfo,
+    .graminfoExplanation {
         background-color: #233540;
     }
-
     .cueWord {
         color: #82a6bb;
     }
+    .listenPronunciation {
+        color: white;
+    }
 
     /* links */
-
-    .makeClickableHeadingsStandOut {
+    .makeClickableHeadingsStandOut,
+    .graminfoExplanationText {
         color: #3FD695;
     }
-
     .makeClickableHeadingsStandOut:hover,
-    .bildtemaLink:hover {
+    .bildtemaLink:hover,
+    .graminfoExplanationText:hover,
+    .referenceInfo a:hover,
+    .vidContainer a:hover {
         background-color: #324b5a;
     }
-
     a:any-link {
         color: #3FD695;
-        text-decoration-color: #3FD695;
+    }
+    .referenceInfo a,
+    .bildtemaLink,
+    .vidContainer a {
+        text-decoration-color: #3FD695 !important;
     }
 
     /* icons */
-
     input[type="submit"] {
         background-image: url(../svg/search_darkmode.svg);
     }
-
     .listenIcon {
         background-image: url(../svg/lyssna_darkmode.svg);
+    }
+    .expandGraminfoIcon {
+        filter: invert(1);
+    }
+    .expandResultsIcon {
+        filter: invert(1);
     }
 }
 

@@ -263,23 +263,19 @@ th {
 
 @media (prefers-color-scheme: dark) { 
     /* background + text */
-
     .LexinExplanations {
         background: #111b20;
         color: white;
     }
 
     /* links */
-
     .helpOpenMoreInfo {
         color: #3FD695;
     }
-
     .LexinExplanations a:hover,
     .helpOpenMoreInfo:hover {
         background-color: #324b5a;
     }
-
     /* icons */
     .closeHelp img {
         filter: invert(1);

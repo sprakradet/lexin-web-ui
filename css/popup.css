@@ -207,3 +207,28 @@ body.help-open .popupButton {
         content: url("../svg/feedback-icon-high-contrast.svg");
     }
 }
+
+/* --------- DARK MODE --------- */
+
+@media (prefers-color-scheme: dark) { 
+    .popup {
+        border: 2px solid #52666b;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+
+    /* background + text */
+    .popup,
+    .popupTextarea,
+    .popupText {
+        background-color: #111b20;
+        color: white;
+    }
+
+    /* links */
+    .gdprText {
+        text-decoration-color: #3FD695 !important;
+    }
+    .gdprText:hover {
+        background-color: #324b5a;
+    }
+}

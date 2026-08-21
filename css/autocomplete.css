@@ -17,9 +17,23 @@
 
 .autocomplete-items div:hover {
   background-color: #D7E9EC;
+  cursor: pointer;
 }
 
 .autocomplete-emph {
   background-color: #A1AEB1 !important;
   color: #ffffff;
+}
+
+/* --------- DARK MODE --------- */
+
+@media (prefers-color-scheme: dark) { 
+  .autocomplete-items div {
+      background-color: #111b20;
+      color: white;
+  }
+
+  .autocomplete-items div:hover {
+    background-color: #233540;
+  }
 }
