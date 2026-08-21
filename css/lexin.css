@@ -1056,6 +1056,7 @@ footer .lp-icon {
     }
     a:any-link {
         color: #3FD695;
+        text-decoration-color: #3FD695;
     }
     .referenceInfo a,
     .bildtemaLink,
