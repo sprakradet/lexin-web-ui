@@ -1022,6 +1022,52 @@ footer .lp-icon {
     }
 }
 
+/* --------- DARK MODE --------- */
+
+@media (prefers-color-scheme: dark) { 
+    /* background + text */
+
+    .content,
+    form#theForm2 input#searchQuery {
+        background-color: #111b20;
+        color: white;
+    }
+
+    .wordInfo {
+        background-color: #233540;
+    }
+
+    .cueWord {
+        color: #82a6bb;
+    }
+
+    /* links */
+
+    .makeClickableHeadingsStandOut {
+        color: #3FD695;
+    }
+
+    .makeClickableHeadingsStandOut:hover,
+    .bildtemaLink:hover {
+        background-color: #324b5a;
+    }
+
+    a:any-link {
+        color: #3FD695;
+        text-decoration-color: #3FD695;
+    }
+
+    /* icons */
+
+    input[type="submit"] {
+        background-image: url(../svg/search_darkmode.svg);
+    }
+
+    .listenIcon {
+        background-image: url(../svg/lyssna_darkmode.svg);
+    }
+}
+
 /* --------- CHECKBOXES --------- */
 
 input[type="checkbox"] {
