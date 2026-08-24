@@ -7097,7 +7097,6 @@ async function openPageFromFile(url, opener) {
 }
 
 /* --------- GO TO 'START PAGE' (EMPTY SEARCH) --------- */
-
 function doEmptySearch() {
 	$("#searchQuery").val("");
     callLexin(true);

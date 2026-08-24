@@ -1055,15 +1055,19 @@ footer .lp-icon {
 
     /* links */
     .makeClickableHeadingsStandOut,
+    .bildtemaLink,
+    .vidContainer a,
     .graminfoExplanationText,
-    .referenceInfo a {
-        color: #3FD695;
+    .referenceInfo a,
+    .antonym a {
+        color: #3FD695 !important;
     }
     .makeClickableHeadingsStandOut:hover,
     .bildtemaLink:hover,
     .graminfoExplanationText:hover,
     .referenceInfo a:hover,
-    .vidContainer a:hover {
+    .vidContainer a:hover,
+    .antonym a:hover {
         background-color: #324b5a;
     }
     /*a:any-link {
@@ -1072,7 +1076,8 @@ footer .lp-icon {
     }*/
     .referenceInfo a,
     .bildtemaLink,
-    .vidContainer a {
+    .vidContainer a,
+    .antonym a {
         text-decoration-color: #3FD695 !important;
     }
 
