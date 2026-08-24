@@ -102,6 +102,13 @@ form#theForm2 .inputwrapper {
     background-color: rgb(28, 63, 73);
 }
 
+/* remove stickiness for horizontal phone view */
+@media (max-height: 499px) {
+    .permbar {
+        position: static;
+    }
+}
+
 form#theForm input, form#theForm2 input {
     font: inherit;
     line-height: normal;
