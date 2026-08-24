@@ -122,3 +122,15 @@
         border-color: #3FD695;
     }
 }
+
+/* --------- DARK MODE --------- */
+
+@media (prefers-color-scheme: dark) { 
+    .saveWordsList a {
+        text-decoration: none !important;
+    }
+
+    .saveWordsList a:hover {
+        text-decoration-color: white;
+    }
+}

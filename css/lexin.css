@@ -243,6 +243,10 @@ select {
 .logo {
 }
 
+.heading {
+    cursor: pointer;
+}
+
 /* --------- SEARCH FIELD --------- */
 
 #inputwrapper.animate {
@@ -1044,7 +1048,8 @@ footer .lp-icon {
 
     /* links */
     .makeClickableHeadingsStandOut,
-    .graminfoExplanationText {
+    .graminfoExplanationText,
+    .referenceInfo a {
         color: #3FD695;
     }
     .makeClickableHeadingsStandOut:hover,
@@ -1054,10 +1059,10 @@ footer .lp-icon {
     .vidContainer a:hover {
         background-color: #324b5a;
     }
-    a:any-link {
+    /*a:any-link {
         color: #3FD695;
         text-decoration-color: #3FD695;
-    }
+    }*/
     .referenceInfo a,
     .bildtemaLink,
     .vidContainer a {

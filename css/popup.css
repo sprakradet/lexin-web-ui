@@ -226,6 +226,9 @@ body.help-open .popupButton {
 
     /* links */
     .gdprText {
+        color: #3FD695 !important;
+    }
+    .gdprText {
         text-decoration-color: #3FD695 !important;
     }
     .gdprText:hover {

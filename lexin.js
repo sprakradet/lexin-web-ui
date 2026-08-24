@@ -7095,3 +7095,10 @@ async function openPageFromFile(url, opener) {
 		console.error("Could not load page:", e);
 	}
 }
+
+/* --------- GO TO 'START PAGE' (EMPTY SEARCH) --------- */
+
+function doEmptySearch() {
+	$("#searchQuery").val("");
+    callLexin(true);
+}
