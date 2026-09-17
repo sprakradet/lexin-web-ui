@@ -2536,39 +2536,49 @@ function altToHTML(parentElement, alt1, lang1, show) {
     var altElem = document.createElement('span');
     altElem.className = 'alt_form';
     if(!show) {
-	altElem.className = ' notRelevant';
+		altElem.className = ' notRelevant';
     }
-    var head = document.createElement('span');
+
+	// new heading 
+	const headingText = alt1.length > 1 ? "variantformer" : "variantform";
+    altElem.appendChild(createArticleHeading(headingText));
+
+	// old heading
+    /*var head = document.createElement('span');
     head.className = 'clickableHeading';
 
 	// accessibility
 	makeKeyboardClickable(head);
 
     var mid = document.createElement('span');
-    mid.textContent = ": ";
-    if(alt1.length > 1) {
-	head.textContent = "Variantformer";
-	head.lang = BaseLanguageSwe;
-	head.dir = "ltr";
-	altElem.appendChild(head);
-	altElem.appendChild(mid);
-	
-	let tail = makeWordsClickable(alt1.join(", "));
-	// tail.className = 'alt_form';
-        assignLang(tail, lang1);
-	altElem.appendChild(tail);
-    } else if(alt1.length == 1) {
-	head.textContent = "Variantform";
-	head.lang = BaseLanguageSwe;
-	head.dir = "ltr";
-	altElem.appendChild(head);
-	altElem.appendChild(mid);
+    mid.textContent = ": ";*/
 
-	let tail = makeWordsClickable(alt1[0]);
-        assignLang(tail, lang1);
-	// tail.className = 'alt_form';
-	altElem.appendChild(tail);
+    if(alt1.length > 1) {
+		// old heading
+		/*head.textContent = "Variantformer";
+		head.lang = BaseLanguageSwe;
+		head.dir = "ltr";
+		altElem.appendChild(head);
+		altElem.appendChild(mid);*/
+		
+		let tail = makeWordsClickable(alt1.join(", "));
+		// tail.className = 'alt_form';
+		assignLang(tail, lang1);
+		altElem.appendChild(tail);
+    } else if(alt1.length == 1) {
+		// old heading
+		/*head.textContent = "Variantform";
+		head.lang = BaseLanguageSwe;
+		head.dir = "ltr";
+		altElem.appendChild(head);
+		altElem.appendChild(mid);*/
+
+		let tail = makeWordsClickable(alt1[0]);
+			assignLang(tail, lang1);
+		// tail.className = 'alt_form';
+		altElem.appendChild(tail);
     }
+
     altElem.appendChild(document.createElement('br'));
     parentElement.appendChild(altElem);
 }
@@ -6304,7 +6314,7 @@ function openPageDescription(elem) {
 				openHelpHyp(inner);
 			} else if(elem.textContent.indexOf('Förkortning') >= 0) {
 				openHelpAbbr(inner);
-			} else if(elem.textContent.indexOf('Variantform') >= 0) {
+			} else if(elem.textContent.indexOf('variantform') >= 0) {
 				openHelpVar(inner);
 			} else if(elem.textContent.indexOf('avledning') >= 0) {
 				openHelpDer(inner);

@@ -644,6 +644,10 @@ select {
 
 }
 
+.alt_form .longClickLink {
+    margin-left: 1.5rem;
+}
+
 /* ------ ARTICLE PARTS SELECTION ------ */
 
 .partsselectionBox {
@@ -722,6 +726,10 @@ a:any-link {
 .articleHeading {
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+.alt_form .articleHeadingDiv {
+    margin-top: 1rem;
 }
 
 /* new heading */
