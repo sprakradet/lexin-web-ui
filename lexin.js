@@ -3808,14 +3808,19 @@ function compoundToHTML(parentElement, comps1, comps2, baseForms, showAll, moreT
 	compElem.dir = "ltr";
 	compElem.className = 'compounds';
 
-	var tmp = document.createElement('span');
+	// old heading
+	/*var tmp = document.createElement('span');
 	compElem.appendChild(tmp);
 	let head = createTextSpan(pluralize(longest, "Sammansättning", "Sammansättningar"), 'clickableHeading');
 	let mid = createTextSpan(": ");
 	tmp.appendChild(head);
 	tmp.appendChild(mid);
 	tmp.lang = BaseLanguageSwe;
-	tmp.dir = "ltr";
+	tmp.dir = "ltr";*/
+
+	// new heading
+	const headingText = pluralize(longest, "sammansättning", "sammansättningar");
+	compElem.appendChild(createArticleHeading(headingText));
 	
 	var uElem = document.createElement('ul');
 	uElem.className = 'compoundList';
@@ -3916,7 +3921,8 @@ function compoundToHTML(parentElement, comps1, comps2, baseForms, showAll, moreT
 	var compElem = document.createElement('div');
 	compElem.className = 'compounds';
 
-	var tmp = document.createElement('span');
+	// old heading
+	/*var tmp = document.createElement('span');
 	compElem.appendChild(tmp);
 	var head = document.createElement('span');
 	var mid = document.createElement('span');
@@ -3934,7 +3940,16 @@ function compoundToHTML(parentElement, comps1, comps2, baseForms, showAll, moreT
 	tmp.appendChild(head);
 	tmp.appendChild(mid);
 	tmp.lang = BaseLanguageSwe;
-	tmp.dir = "ltr";
+	tmp.dir = "ltr";*/
+
+	// new heading
+	let headingText = "";
+	if (comps1.length > 1) {
+		headingText = "sammansättningar";
+	} else if (comps1.length == 1) {
+		headingText = "sammansättning";
+	}
+	compElem.appendChild(createArticleHeading(headingText));
 	
 	var uElem = document.createElement('ul');
 	uElem.className = 'compoundList';
@@ -6257,7 +6272,7 @@ function openPageDescription(elem) {
 				openHelpVar(inner);
 			} else if(elem.textContent.indexOf('Avledning') >= 0) {
 				openHelpDer(inner);
-			} else if(elem.textContent.indexOf('Sammansättning') >= 0) {
+			} else if(elem.textContent.indexOf('sammansättning') >= 0) {
 				openHelpComps(inner);
 			} else if(elem.textContent == 'Uttryck') {
 				openHelpIdioms(inner);
