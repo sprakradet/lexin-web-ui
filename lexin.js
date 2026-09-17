@@ -1817,7 +1817,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 		    wrap.className += ' notRelevant';
 		}
 		
-                let commentTexts = _.uniq(Object.values(base.com).map(comments => comments.join(", ")));
+        let commentTexts = _.uniq(Object.values(base.com).map(comments => comments.join(", ")));
 		for(const commentText of commentTexts) {
 		    var cm = document.createElement('span');
 		    cm.className = 'comment';
@@ -1843,21 +1843,30 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 		antonymToHTML(entryContent, targ.ant, undefined, baseForms, showAll, moreThanOneLanguage);
 	    }
 	    if(base?.use) {
-		var cElem = document.createElement('div');
-		cElem.className = 'gramInfo';
-		if(!showAll) {
-		    cElem.className += ' notRelevant';
-		}
-		
-		cElem.appendChild(createTextSpan("Användning", 'clickableHeading'));
-		cElem.appendChild(createTextSpan(": "));
-                let usageTexts = _.uniq(Object.values(base.use));
-		for(const usageText of usageTexts) {
-		    cElem.appendChild(makeWordsClickable(usageText + " "));
-		}
-                assignLang(cElem, "swe");
-		
-		entryContent.appendChild(cElem);			
+			var cElem = document.createElement('div');
+			cElem.className = 'gramInfo';
+			if(!showAll) {
+				cElem.className += ' notRelevant';
+			}
+			
+			// old heading
+			/*cElem.appendChild(createTextSpan("Användning", 'clickableHeading'));
+			cElem.appendChild(createTextSpan(": "));*/
+
+			// new heading
+			cElem.appendChild(createArticleHeading("användning"));
+
+			let usageTexts = _.uniq(Object.values(base.use));
+			
+			for(const usageText of usageTexts) {
+				/*cElem.appendChild(makeWordsClickable(usageText + " "));*/
+				const usageSpan = makeWordsClickable(usageText + " ");
+				usageSpan.classList.add("usageText");
+				cElem.appendChild(usageSpan);
+			}
+
+			assignLang(cElem, "swe");
+			entryContent.appendChild(cElem);	
 	    }
 	    if(base?.grinf) {
                 for(let thisItem of _.uniq(Object.values(base.grinf).flat(), false, e => graminfoString([e]))) {
@@ -6300,7 +6309,7 @@ function openPageDescription(elem) {
 				openHelpPhon(inner, elem.textContent);
 			} else if(elem.className.indexOf('PoS') >= 0) {
 				openHelpPoS(inner, elem.textContent);
-			} else if(elem.textContent.indexOf('Användning') >= 0) {
+			} else if(elem.textContent.indexOf('användning') >= 0) {
 				openHelpUse(inner);
 			} else if(elem.textContent.indexOf('Konstruktioner') >= 0) {
 				openHelpConstr(inner);

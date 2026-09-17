@@ -644,7 +644,17 @@ select {
 
 }
 
-.alt_form .longClickLink {
+.entryContent .alt_form .longClickLink {
+    margin-left: 1.5rem;
+}
+
+.alt_form .articleHeadingDiv {
+    margin-top: 1rem;
+}
+
+/* --------- USAGE TEXT --------- */
+
+.usageText {
     margin-left: 1.5rem;
 }
 
@@ -726,10 +736,6 @@ a:any-link {
 .articleHeading {
     margin-top: 0px;
     margin-bottom: 0px;
-}
-
-.alt_form .articleHeadingDiv {
-    margin-top: 1rem;
 }
 
 /* new heading */
