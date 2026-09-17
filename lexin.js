@@ -4166,7 +4166,8 @@ function idiomsToHTML(parentElement, id1, id2, baseForms, showAll, moreThanOneLa
 	iElem.dir = "ltr";
 	iElem.className = 'idioms';
 
-	var tmp = document.createElement('span');
+	// old heading
+	/*var tmp = document.createElement('span');
 	var head = document.createElement('span');
 	var mid = document.createElement('span');
 	head.textContent = "Uttryck";
@@ -4179,8 +4180,10 @@ function idiomsToHTML(parentElement, id1, id2, baseForms, showAll, moreThanOneLa
 	tmp.appendChild(head);
 	tmp.appendChild(mid);
 	tmp.lang = BaseLanguageSwe;
-	tmp.dir = "ltr";
+	tmp.dir = "ltr";*/
 	
+	// new heading
+	var tmp = createArticleHeading("uttryck");
 	iElem.appendChild(tmp);
 	
 	var uElem = document.createElement('ul');
@@ -4284,12 +4287,15 @@ function idiomsToHTML(parentElement, id1, id2, baseForms, showAll, moreThanOneLa
 	iElem.dir = "ltr";
 	iElem.className = 'idioms';
 
-	var tmp = document.createElement('span');
+	// old heading
+	/*var tmp = document.createElement('span');
 	tmp.appendChild(createTextSpan("Uttryck", 'clickableHeading'));
 	tmp.appendChild(createTextSpan(": "));
 	tmp.lang = BaseLanguageSwe;
-	tmp.dir = "ltr";
-	
+	tmp.dir = "ltr";*/
+
+	// new heading
+	var tmp = createArticleHeading("uttryck");
 	iElem.appendChild(tmp);
 	
 	var uElem = document.createElement('ul');
@@ -6274,7 +6280,7 @@ function openPageDescription(elem) {
 				openHelpDer(inner);
 			} else if(elem.textContent.indexOf('sammansättning') >= 0) {
 				openHelpComps(inner);
-			} else if(elem.textContent == 'Uttryck') {
+			} else if(elem.textContent == 'uttryck:') {
 				openHelpIdioms(inner);
 			} else if(elem.textContent == 'exempel:') {
 				openHelpExamples(inner);
