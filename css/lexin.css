@@ -433,6 +433,12 @@ select {
     font-size: 1rem;
 }
 
+/* --------- SEE/COMPARE --------- */
+
+.refText {
+    margin-left: 1.5rem;
+}
+
 /* --------- SYNONYMS --------- */
 
 .synonyms {

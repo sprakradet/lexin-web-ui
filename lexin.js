@@ -3577,45 +3577,51 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 				refWrap.appendChild(wrap);
 			
 		    } else if(ref.type == "see" || ref.type == "compare") {
-			var hElem = document.createElement('span');
-			hElem.className = 'referenceHead';
-			hElem.textContent = referenceDict[ref.type];
-			hElem.lang = BaseLanguageSwe;
-			hElem.dir = "ltr";
-			
-			var mid = document.createElement('span');
-			mid.textContent = ": ";
-			
-			var tElem = document.createElement('span');
-			tElem.className = 'referenceInfo';
+				// old heading
+				/*var hElem = document.createElement('span');
+				hElem.className = 'referenceHead';
+				hElem.textContent = referenceDict[ref.type];
+				hElem.lang = BaseLanguageSwe;
+				hElem.dir = "ltr";
+				
+				var mid = document.createElement('span');
+				mid.textContent = ": ";*/
 
-			let txts = thisText.split(",");
-			let txts2 = stripHTMLetc(ref.val).split(",");
-			for(let t = 0; t < txts.length; t++) {
-			    if(t > 0) {
-				let tmp = document.createElement('span');
-				tmp.textContent = ", ";
-				tElem.appendChild(tmp);
-			    }
-			    let txt = txts[t].replace(/^\s*/, "");
-			    if(t < txts2.length) {
-				let link = getLinkElemToSearch(txts2[t].replace(/^\s*/, ""));
-				link.textContent = txt;
-				tElem.appendChild(link);
-			    } else {
-				let link = document.createElement('span');
-				link.textContent = txt;
-				tElem.appendChild(link);
-			    }
-			}
+				// new heading
+				refWrap.appendChild(createArticleHeading(referenceDict[ref.type]));
+				
+				var tElem = document.createElement('span');
+				tElem.className = 'referenceInfo';
 
-			tElem.lang = BaseLanguageSwe;
-			tElem.dir = "ltr";
-			
-			refWrap.appendChild(hElem);
-			refWrap.appendChild(mid);
-			refWrap.appendChild(tElem);
+				let txts = thisText.split(",");
+				let txts2 = stripHTMLetc(ref.val).split(",");
+				for(let t = 0; t < txts.length; t++) {
+					if(t > 0) {
+						let tmp = document.createElement('span');
+						tmp.textContent = ", ";
+						tElem.appendChild(tmp);
+					}
+					let txt = txts[t].replace(/^\s*/, "");
+					if(t < txts2.length) {
+						let link = getLinkElemToSearch(txts2[t].replace(/^\s*/, ""));
+						link.textContent = txt;
+						tElem.appendChild(link);
+					} else {
+						let link = document.createElement('span');
+						link.textContent = txt;
+						tElem.appendChild(link);
+					}
+				}
 
+				tElem.lang = BaseLanguageSwe;
+				tElem.dir = "ltr";
+				tElem.classList.add('refText');
+				
+				// old heading
+				/*refWrap.appendChild(hElem);
+				refWrap.appendChild(mid);*/
+
+				refWrap.appendChild(tElem);
 		    } else if(ref.type == "animation") {
 				let wrap =  document.createElement('div');
 				let hElem = document.createElement('span');
@@ -5070,7 +5076,7 @@ function getExamples(js) {
 // References include antonyms, "see also", "compare to", and
 // animation references.
 // ----------------------------------------------------------------------
-const referenceDict = {"antonym":"motsats", "see":"Se", "compare":"Jämför", "animation":"Filmklipp"};
+const referenceDict = {"antonym":"motsats", "see":"se", "compare":"jämför", "animation":"Filmklipp"};
 function getReferences(js) {
     var res = []
     if(js) {
@@ -6315,9 +6321,9 @@ function openPageDescription(elem) {
 				openHelpConstr(inner);
 			} else if(elem.textContent.indexOf('motsats') >= 0) {
 				openHelpAnt(inner);
-			} else if(elem.textContent == 'Jämför') {
+			} else if(elem.textContent == 'jämför:') {
 				openHelpCompare(inner);
-			} else if(elem.textContent == 'Se') {
+			} else if(elem.textContent == 'se:') {
 				openHelpSee(inner);
 			} else if(elem.textContent.indexOf('Avstavning') >= 0) {
 				openHelpHyp(inner);
