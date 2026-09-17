@@ -21,7 +21,7 @@ body {
     position: relative;
 }
 
-h1 {
+.heading {
     font-weight: normal;
     font-style: normal;
     font-size: 1em;
