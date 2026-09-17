@@ -2587,7 +2587,8 @@ function antonymToHTML(parentElement, ant1, ant2, baseForms, showAll, moreThanOn
 	antElem.dir = "ltr";
 	antElem.className = 'antonym';
 
-	var head = document.createElement('span');
+	// old heading
+	/*var head = document.createElement('span');
 	head.className = 'clickableHeading';
 
 	// accessibility
@@ -2602,7 +2603,12 @@ function antonymToHTML(parentElement, ant1, ant2, baseForms, showAll, moreThanOn
 	mid.textContent = ": ";
 	
 	antElem.appendChild(head);
-	antElem.appendChild(mid);
+	antElem.appendChild(mid);*/
+
+	// new heading
+	const headingText = longest > 1 ? "motsatser" : "motsats";
+	refWrap.appendChild(createArticleHeading(headingText));
+
 	refWrap.appendChild(antElem);
 	parentElement.appendChild(refWrap);
 
@@ -2710,7 +2716,7 @@ function antonymToHTML(parentElement, ant1, ant2, baseForms, showAll, moreThanOn
 		    show = 1;
 		}
 	    }
-	    antElem2.textConten += " ";
+	    antElem2.textContent += " ";
 	    antElem.appendChild(antElem2);
 	}
 	
@@ -2723,7 +2729,8 @@ function antonymToHTML(parentElement, ant1, ant2, baseForms, showAll, moreThanOn
 	antElem.dir = "ltr";
 	antElem.className = 'antonym';
 
-	var head = document.createElement('span');
+	// old heading
+	/*var head = document.createElement('span');
 	head.className = 'clickableHeading';
 
 	// accessibility
@@ -2738,7 +2745,11 @@ function antonymToHTML(parentElement, ant1, ant2, baseForms, showAll, moreThanOn
 	mid.textContent = ": ";
 	
 	antElem.appendChild(head);
-	antElem.appendChild(mid);
+	antElem.appendChild(mid);*/
+
+	// new heading
+	const headingText = ant1.length > 1 ? "motsatser" : "motsats";
+	refWrap.appendChild(createArticleHeading(headingText));
 
 	let show = showAll;
 
@@ -3488,58 +3499,63 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 		    parentElement.appendChild(refWrap);
 		    
 		    if(ref.type == "antonym") {
-			var wrap = document.createElement('span');
-			wrap.className = 'antonym';
-			
-			var hElem = document.createElement('span');
-			hElem.className = 'referenceHead';
-			hElem.textContent = referenceDict[ref.type];
-			hElem.lang = BaseLanguageSwe;
-			hElem.dir = "ltr";
+				// new heading
+				refWrap.appendChild(createArticleHeading(referenceDict[ref.type]));
 
-			var mid = document.createElement('span');
-			mid.textContent = ": ";
-			
-			var tElem = document.createElement('span');
-			tElem.className = 'referenceInfo';
-			// These are returned with HTML reserved characters escaped in the JSON string (?)
+				var wrap = document.createElement('span');
+				wrap.className = 'antonym';
+				
+				/*var hElem = document.createElement('span');
+				hElem.className = 'referenceHead';
+				hElem.textContent = referenceDict[ref.type];
+				hElem.lang = BaseLanguageSwe;
+				hElem.dir = "ltr";
 
-			let txts = thisText.split(",");
-			let txts2 = stripHTMLetc(ref.val).split(",");
-			for(let t = 0; t < txts.length; t++) {
-			    if(t > 0) {
-				let tmp = document.createElement('span');
-				tmp.textContent = ", ";
-				tElem.appendChild(tmp);
-			    }
-			    let txt = txts[t].replace(/^\s*/, "");
-			    if(t < txts2.length) {
-				let link = getLinkElemToSearch(txts2[t].replace(/^\s*/, ""));
-				link.textContent = txt;
-				tElem.appendChild(link);
-			    } else {
-				let link = document.createElement('span');
-				link.textContent = txt;
-				tElem.appendChild(link);
-			    }
-			}
+				var mid = document.createElement('span');
+				mid.textContent = ": ";*/
+				
+				var tElem = document.createElement('span');
+				tElem.className = 'referenceInfo';
+				// These are returned with HTML reserved characters escaped in the JSON string (?)
 
-			tElem.lang = BaseLanguageSwe;
-			tElem.dir = "ltr";
+				let txts = thisText.split(",");
+				let txts2 = stripHTMLetc(ref.val).split(",");
+				for(let t = 0; t < txts.length; t++) {
+					if(t > 0) {
+					let tmp = document.createElement('span');
+					tmp.textContent = ", ";
+					tElem.appendChild(tmp);
+					}
+					let txt = txts[t].replace(/^\s*/, "");
+					if(t < txts2.length) {
+					let link = getLinkElemToSearch(txts2[t].replace(/^\s*/, ""));
+					link.textContent = txt;
+					tElem.appendChild(link);
+					} else {
+					let link = document.createElement('span');
+					link.textContent = txt;
+					tElem.appendChild(link);
+					}
+				}
 
-			wrap.appendChild(hElem);
-			wrap.appendChild(mid);
-			wrap.appendChild(tElem);
+				tElem.lang = BaseLanguageSwe;
+				tElem.dir = "ltr";
 
-			if(ref.spec) {
-			    let sp = document.createElement('span');
-			    sp.textContent = "(" + ref.spec + ")";
-			    sp.lang = BaseLanguageSwe;
-			    sp.dir = "ltr";
-			    tElem.appendChild(sp);
-			}
-			
-			refWrap.appendChild(wrap);
+				// old heading
+				/*wrap.appendChild(hElem);
+				wrap.appendChild(mid);*/
+
+				wrap.appendChild(tElem);
+
+				if(ref.spec) {
+					let sp = document.createElement('span');
+					sp.textContent = "(" + ref.spec + ")";
+					sp.lang = BaseLanguageSwe;
+					sp.dir = "ltr";
+					tElem.appendChild(sp);
+				}
+				
+				refWrap.appendChild(wrap);
 			
 		    } else if(ref.type == "see" || ref.type == "compare") {
 			var hElem = document.createElement('span');
@@ -5035,7 +5051,7 @@ function getExamples(js) {
 // References include antonyms, "see also", "compare to", and
 // animation references.
 // ----------------------------------------------------------------------
-const referenceDict = {"antonym":"Motsats", "see":"Se", "compare":"Jämför", "animation":"Filmklipp"};
+const referenceDict = {"antonym":"motsats", "see":"Se", "compare":"Jämför", "animation":"Filmklipp"};
 function getReferences(js) {
     var res = []
     if(js) {
@@ -6278,7 +6294,7 @@ function openPageDescription(elem) {
 				openHelpUse(inner);
 			} else if(elem.textContent.indexOf('Konstruktioner') >= 0) {
 				openHelpConstr(inner);
-			} else if(elem.textContent.indexOf('Motsats') >= 0) {
+			} else if(elem.textContent.indexOf('motsats') >= 0) {
 				openHelpAnt(inner);
 			} else if(elem.textContent == 'Jämför') {
 				openHelpCompare(inner);
