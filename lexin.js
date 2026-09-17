@@ -4391,9 +4391,10 @@ function derToHTML(parentElement, der1, der2, baseForms, showAll, moreThanOneLan
 	derElem.lang = BaseLanguageSwe;
 	derElem.dir = "ltr";
 	derElem.className = 'derivation';
-	var tmp = document.createElement('span');
-	derElem.appendChild(tmp);
 
+	// old heading
+	/*var tmp = document.createElement('span');
+	derElem.appendChild(tmp);
 	var head = document.createElement('span');
 	head.className = 'clickableHeading';
 
@@ -4410,7 +4411,11 @@ function derToHTML(parentElement, der1, der2, baseForms, showAll, moreThanOneLan
 	tmp.appendChild(head);
 	tmp.appendChild(mid);
 	tmp.lang = BaseLanguageSwe;
-	tmp.dir = "ltr";
+	tmp.dir = "ltr";*/
+
+	// new heading
+	const headingText = longest > 1 ? "avledningar" : "avledning";
+	derElem.appendChild(createArticleHeading(headingText));
 	
 	var uElem = document.createElement('ul');
 	uElem.className = 'derivationList';
@@ -4488,7 +4493,9 @@ function derToHTML(parentElement, der1, der2, baseForms, showAll, moreThanOneLan
 	derElem.lang = BaseLanguageSwe;
 	derElem.dir = "ltr";
 	derElem.className = 'derivation';
-	var tmp = document.createElement('span');
+	
+	// old heading
+	/*var tmp = document.createElement('span');
 	derElem.appendChild(tmp);
 
 	var head = document.createElement('span');
@@ -4507,7 +4514,11 @@ function derToHTML(parentElement, der1, der2, baseForms, showAll, moreThanOneLan
 	tmp.appendChild(head);
 	tmp.appendChild(mid);
 	tmp.lang = BaseLanguageSwe;
-	tmp.dir = "ltr";
+	tmp.dir = "ltr";*/
+
+	// new heading
+	const headingText = longest > 1 ? "avledningar" : "avledning";
+	derElem.appendChild(createArticleHeading(headingText));
 	
 	var uElem = document.createElement('ul');
 	uElem.className = 'derivationList';
@@ -6279,7 +6290,7 @@ function openPageDescription(elem) {
 				openHelpAbbr(inner);
 			} else if(elem.textContent.indexOf('Variantform') >= 0) {
 				openHelpVar(inner);
-			} else if(elem.textContent.indexOf('Avledning') >= 0) {
+			} else if(elem.textContent.indexOf('avledning') >= 0) {
 				openHelpDer(inner);
 			} else if(elem.textContent.indexOf('sammansättning') >= 0) {
 				openHelpComps(inner);
