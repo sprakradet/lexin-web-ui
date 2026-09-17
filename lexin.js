@@ -2880,8 +2880,8 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
     var wrap = document.createElement('div');
     wrap.className = 'ill';
 
-	// article category text
-	var tmp = document.createElement('span');
+	// old heading
+	/*var tmp = document.createElement('span');
 	tmp.classList.add('imageLink');
 	tmp.lang = BaseLanguageSwe;
 	tmp.dir = "ltr";
@@ -2892,7 +2892,10 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 	// accessibility
 	makeKeyboardClickable(textSpan);
 
-	tmp.appendChild(textSpan);
+	tmp.appendChild(textSpan);*/
+
+	// new heading
+	var tmp = createArticleHeading("bild");
 	wrap.appendChild(tmp);
 
 	// picture icon
@@ -6287,7 +6290,7 @@ function openPageDescription(elem) {
 			} else if(elem.textContent.indexOf("Video") >= 0) {
 				openHelpVideo(inner);
 			}
-			else if(elem.textContent == 'Bild:') {
+			else if(elem.textContent == 'bild:') {
 				openHelpImage(inner);
 			}
 
