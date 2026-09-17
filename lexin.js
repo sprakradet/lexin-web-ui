@@ -1153,6 +1153,41 @@ function assignLang(element, lang) {
     }
 }
 
+/* --------- CREATE HEADING IN ARTICLE --------- */
+function createArticleHeading(text) {
+	// create heading part
+	var tmp = document.createElement('div');
+	tmp.className = 'articleHeadingDiv';
+
+	// create heading
+	var head = document.createElement('h4');
+	head.textContent = text + ":";
+	head.className = 'articleHeading';
+
+	// create info button
+	var infoButton = document.createElement('button');
+	infoButton.type = 'button';
+	infoButton.className = 'infoButton';
+	infoButton.setAttribute('aria-label', 'Visa information om ' + text);
+	var icon = document.createElement('img');
+	icon.className = 'infoIcon';
+	icon.src = 'svg/information-icon.svg';
+	icon.alt = '';
+	infoButton.appendChild(icon);
+
+	// add click functionality to icon
+	infoButton.addEventListener('click', function () {
+		openPageDescription(head);
+	});
+
+	tmp.appendChild(head);
+	tmp.appendChild(infoButton);
+	tmp.lang = BaseLanguageSwe;
+	tmp.dir = "ltr";
+
+	return tmp;
+}
+
 // ----------------------------------------------------------------------
 // getOneResult(js, targetLang, baseForms)
 // ----------------------------------------------------------------------
@@ -3951,7 +3986,8 @@ function examplesToHTML(parentElement, ex1, ex2, baseForms, showAll, moreThanOne
 		var exElem = document.createElement('div');
 		exElem.className = 'examples';
 
-		var tmp = document.createElement('span');
+		// old heading 
+		/*var tmp = document.createElement('span');
 		var head = document.createElement('span');
 		var mid = document.createElement('span');
 		head.textContent = "Exempel";
@@ -3965,6 +4001,10 @@ function examplesToHTML(parentElement, ex1, ex2, baseForms, showAll, moreThanOne
 		tmp.appendChild(mid);
 		tmp.lang = BaseLanguageSwe;
 		tmp.dir = "ltr";
+		exElem.appendChild(tmp);*/
+
+		// new heading
+		const tmp = createArticleHeading("exempel");
 		exElem.appendChild(tmp);
 
 		var uElem = document.createElement('ul');
@@ -4039,7 +4079,8 @@ function examplesToHTML(parentElement, ex1, ex2, baseForms, showAll, moreThanOne
 		var exElem = document.createElement('div');
 		exElem.className = 'examples';
 
-		var tmp = document.createElement('span');
+		// old heading 
+		/*var tmp = document.createElement('span');
 		var head = document.createElement('span');
 		var mid = document.createElement('span');
 		head.textContent = "Exempel";
@@ -4053,6 +4094,10 @@ function examplesToHTML(parentElement, ex1, ex2, baseForms, showAll, moreThanOne
 		tmp.appendChild(mid);
 		tmp.lang = BaseLanguageSwe;
 		tmp.dir = "ltr";
+		exElem.appendChild(tmp);*/
+
+		// new heading
+		const tmp = createArticleHeading("exempel");
 		exElem.appendChild(tmp);
 
 		var uElem = document.createElement('ul');
@@ -6185,7 +6230,7 @@ function openPageDescription(elem) {
 
 	// specific help page
     if(elem) {
-		if(elem.className.indexOf('clickableHeading') >= 0) {
+		/* if(elem.className.indexOf('clickableHeading') >= 0) { */
 			let inner = relevantExplanationElement.children[0];
 			
 			if(elem.textContent == 'Förklaring') {		
@@ -6216,7 +6261,7 @@ function openPageDescription(elem) {
 				openHelpComps(inner);
 			} else if(elem.textContent == 'Uttryck') {
 				openHelpIdioms(inner);
-			} else if(elem.textContent == 'Exempel') {
+			} else if(elem.textContent == 'exempel:') {
 				openHelpExamples(inner);
 			} else if(elem.textContent.indexOf("Video") >= 0) {
 				openHelpVideo(inner);
@@ -6261,10 +6306,10 @@ function openPageDescription(elem) {
 			}
 
 			return;
-		} 
+		/*} 
 		else { 
 			console.log("openPageDescription: Element is not a clickableHeading", elem);
-		}
+		}*/
     } 
 	// general help page
 	else { 
