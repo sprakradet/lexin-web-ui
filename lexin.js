@@ -1108,9 +1108,6 @@ function createTextSpan(text, className, lang) {
 
 	// accessibility
 	if (className && className.toLowerCase().includes("clickable")) {
-		if (text =="Avstavning") {
-			console.log("CG ran clickable for Avstavning")
-		}
 		makeKeyboardClickable(elem);
 	}
 	
@@ -1168,6 +1165,14 @@ function createArticleHeading(text) {
 	var infoButton = document.createElement('button');
 	infoButton.type = 'button';
 	infoButton.className = 'infoButton';
+
+	// add extra classes for buttons in wordinfomain, else click function not working
+	const headings = ['förkortning', 'avstavning', 'phonetic', 'PoS'];
+	if (headings.includes(text)) {
+		infoButton.classList.add('clickableHeading');
+		infoButton.classList.add(text);
+	}
+
 	infoButton.setAttribute('aria-label', 'Visa information om ' + text);
 
 	// create info button icon
@@ -1294,19 +1299,19 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 	    
 	    // part of speech
 	    if(js.Type) {
-		var posElem = document.createElement('span');
-		posElem.className = 'PoS';
-		if(!showAll) {
-		    posElem.className += ' notRelevant';
-		}
+			var posElem = document.createElement('div');
+			posElem.className = 'PoS';
+			if(!showAll) {
+				posElem.className += ' notRelevant';
+			}
 
-        posElem.textContent = unAbbreviatePoS(Object.values(js.Type)[0]);
+			posElem.textContent = unAbbreviatePoS(Object.values(js.Type)[0]);
 
-		if(posElem.textContent != 'se') {
-		    posElem.appendChild(document.createElement('br'));
-		    wordInfoMain.appendChild(posElem);
-			wordInfoMain.appendChild(document.createElement('br'));
-		}
+			if(posElem.textContent != 'se') {
+				posElem.appendChild(document.createElement('br'));
+				wordInfoMain.appendChild(posElem);
+				wordInfoMain.appendChild(document.createElement('br'));
+			}
 	    }
 
 	    if(js.Reference) {
@@ -1314,18 +1319,30 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 		refToHTML(wordInfoMain, refs, baseForms, showAll);
 	    }
 
+		// hyphenation ('avstavning')
 	    if(js.Hyphenate) {
-		var hElem = document.createElement('span');
-		if(!showAll) {
-		    hElem.className += ' notRelevant';
-		}
-		hElem.appendChild(createTextSpan("Avstavning", 'clickableHeading'));
-		hElem.appendChild(createTextSpan(": " + Object.values(js.Hyphenate)[0]));
-		hElem.lang = BaseLanguageSwe;
-		hElem.dir = "ltr";
-		hElem.className = 'hyphenate';
-		hElem.appendChild(document.createElement('br'));
-		wordInfoMain.appendChild(hElem);
+			/*var hElem = document.createElement('span');*/
+			var hElem = document.createElement('div');
+			if(!showAll) {
+				hElem.className += ' notRelevant';
+			}
+
+			// old heading
+			/*hElem.appendChild(createTextSpan("Avstavning", 'clickableHeading'));
+			hElem.appendChild(createTextSpan(": " + Object.values(js.Hyphenate)[0]));*/
+
+			// new heading
+			hElem.appendChild(createArticleHeading("avstavning"));
+			var hyphenateText = document.createElement('span');
+			hyphenateText.textContent = Object.values(js.Hyphenate)[0];
+			hyphenateText.className = "hyphenateText";
+			hElem.appendChild(hyphenateText);
+
+			hElem.lang = BaseLanguageSwe;
+			hElem.dir = "ltr";
+			hElem.className = 'hyphenate';
+			hElem.appendChild(document.createElement('br'));
+			wordInfoMain.appendChild(hElem);
 	    }
 	    
 	    // inflected forms
@@ -2404,7 +2421,8 @@ function phoneticToHTML(parentElement, listenContainer, phonetics, show) {
 
 /* --------- ARTICLE PART: "FÖRKORTNING" (CLICKABLE) --------- */
 function abbrToHTML(parentElement, ab, show) {
-    var abElem = document.createElement('span');
+	// old heading
+    /*var abElem = document.createElement('span');
     var head = document.createElement('span');
     var mid = document.createElement('span');
     head.textContent = "Förkortning";
@@ -2415,7 +2433,16 @@ function abbrToHTML(parentElement, ab, show) {
 
     mid.textContent = ": " + ab;
     abElem.appendChild(head);
-    abElem.appendChild(mid);
+    abElem.appendChild(mid);*/
+
+	// new heading
+	var abElem = document.createElement('div');
+	abElem.appendChild(createArticleHeading("förkortning"));
+	var abText = document.createElement('span');
+	abText.className = "abbreviationText";
+	abText.textContent = ab;
+	abElem.appendChild(abText);
+
     abElem.lang = BaseLanguageSwe;
     abElem.dir = "ltr";
     abElem.className = 'abbr';
@@ -6357,9 +6384,9 @@ function openPageDescription(elem) {
 				openHelpCompare(inner);
 			} else if(elem.textContent == 'se:') {
 				openHelpSee(inner);
-			} else if(elem.textContent.indexOf('Avstavning') >= 0) {
+			} else if(elem.textContent.indexOf('avstavning') >= 0 || elem.classList.contains('avstavning')) {
 				openHelpHyp(inner);
-			} else if(elem.textContent.indexOf('Förkortning') >= 0) {
+			} else if(elem.textContent.indexOf('förkortning') >= 0 || elem.classList.contains('förkortning')) {
 				openHelpAbbr(inner);
 			} else if(elem.textContent.indexOf('variantform') >= 0) {
 				openHelpVar(inner);
@@ -6958,18 +6985,17 @@ $(document).ready(function() {
     registerPartsselectionUpdate(".comment_tr", "comments_other");
 
     $(document).on("lexin_settingsupdate_clickable_headings", function () {
-	if(settings.clickable_headings.val) {
-	    $(".clickableHeading").addClass('makeClickableHeadingsStandOut');
-	    
-	    $(".clickableHeading").off('click');
-	    $(".clickableHeading").on('click', function () {
-		openPageDescription(this);
-	    });
-	} else {
-	    $(".clickableHeading").removeClass('makeClickableHeadingsStandOut');
-	    
-	    $(".clickableHeading").off('click');
-	}
+		if(settings.clickable_headings.val) {
+			$(".clickableHeading").addClass('makeClickableHeadingsStandOut');
+			$(".clickableHeading").off('click');
+			$(".clickableHeading").on('click', function () {
+				openPageDescription(this);
+			});
+		} else {
+			$(".clickableHeading").removeClass('makeClickableHeadingsStandOut');
+			
+			$(".clickableHeading").off('click');
+		}
     });
 
     $(document).on("lexin_settingsupdate_clickable_words", function () {

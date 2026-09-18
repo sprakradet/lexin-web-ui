@@ -343,11 +343,9 @@ select {
     min-width: 0;  
     overflow-wrap: anywhere; 
     word-break: break-word; */
-}
-
-.inflections {
     font-weight: 500;
     display: block;
+    margin-top: 0.7rem;
 }
 
 .inflections .clickableHeading.phonetic {
@@ -628,13 +626,19 @@ select {
 /* --------- ABBREVIATIONS --------- */
 
 .abbr {
-    
+    margin-top: 0.7rem;
+}
+.abbreviationText {
+    margin-left: 1.5rem;
 }
 
-/* --------- HYPHENS (?) --------- */
+/* --------- HYPHENTIONS --------- */
 
 .hyphenate {
-    
+    margin-top: 0.7rem;
+}
+.hyphenateText {
+    margin-left: 1.5rem;
 }
 
 /* --------- ANTONYMS --------- */
@@ -646,7 +650,7 @@ select {
 /* --------- PARTS OF SPEECH --------- */
 
 .PoS {
-
+    /*display: block;*/
 }
 
 /* --------- ALT FORM (?) --------- */
@@ -712,7 +716,7 @@ select {
 .makeClickableHeadingsStandOut:hover {
     cursor: pointer;
     /*text-decoration: underline;*/
-    background-color: rgba(51, 82, 91, 0.1);
+    /*background-color: rgba(51, 82, 91, 0.1);*/
 }
 
 a:any-link {
