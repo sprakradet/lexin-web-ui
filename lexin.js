@@ -1167,7 +1167,7 @@ function createArticleHeading(text) {
 	infoButton.className = 'infoButton';
 
 	// add extra classes for buttons in wordinfomain, else click function not working
-	const headings = ['förkortning', 'avstavning'];
+	const headings = ['förkortning', 'avstavning', 'ordklass'];
 	if (headings.includes(text)) {
 		infoButton.classList.add('clickableHeading');
 		infoButton.classList.add(text);
@@ -1299,18 +1299,28 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 	    
 	    // part of speech
 	    if(js.Type) {
-			var posElem = document.createElement('div');
+			var posElem = document.createElement('span');
 			posElem.className = 'PoS';
 			if(!showAll) {
 				posElem.className += ' notRelevant';
 			}
 
-			posElem.textContent = unAbbreviatePoS(Object.values(js.Type)[0]);
+			/*posElem.textContent = unAbbreviatePoS(Object.values(js.Type)[0]);*/
+			var posText = unAbbreviatePoS(Object.values(js.Type)[0]);
 
 			if(posElem.textContent != 'se') {
-				posElem.appendChild(document.createElement('br'));
+				// new heading
+				posElem.appendChild(createArticleHeading("ordklass"));
+
+				/*posElem.appendChild(document.createElement('br'));
 				wordInfoMain.appendChild(posElem);
-				wordInfoMain.appendChild(document.createElement('br'));
+				wordInfoMain.appendChild(document.createElement('br'));*/
+				var textElem = document.createElement('span');
+				textElem.className = "PoSText";
+				textElem.textContent = posText;
+				posElem.appendChild(textElem);
+
+				wordInfoMain.appendChild(posElem);
 			}
 	    }
 
@@ -1793,20 +1803,36 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 	    if(base?.phon?.length > 0) {
 		phoneticToHTML(wordInfoMain, listenContainer, base.phon, showAll);
 	    }
+		// part of speech
 	    if(js.Type) {
-		var posElem = document.createElement('span');
-		posElem.className = 'PoS';
-		if(!showAll) {
-		    posElem.className += ' notRelevant';
-		}
-                let firstType = Object.values(js.Type)[0];
-		if (firstType) {
-		    posElem.textContent = unAbbreviatePoS(firstType);
-		}
-		if(posElem.textContent != 'se') {
-		    posElem.appendChild(document.createElement('br'));
-		    wordInfoMain.appendChild(posElem);
-		}
+			var posElem = document.createElement('span');
+			posElem.className = 'PoS';
+			if(!showAll) {
+				posElem.className += ' notRelevant';
+			}
+			let firstType = Object.values(js.Type)[0];
+
+			/*if (firstType) {
+				posElem.textContent = unAbbreviatePoS(firstType);
+			}
+			if(posElem.textContent != 'se') {
+				posElem.appendChild(document.createElement('br'));
+				wordInfoMain.appendChild(posElem);
+			}*/
+
+			// new heading
+			if (firstType) {
+				const posText = unAbbreviatePoS(firstType);
+
+				if(posText != 'se') {
+					posElem.appendChild(createArticleHeading("ordklass"));
+					var textElem = document.createElement('span');
+					textElem.className = 'PoSText';
+					textElem.textContent = posText;
+					posElem.appendChild(textElem);
+					wordInfoMain.appendChild(posElem);
+				}
+    		}
 	    }
 	    if(base?.infl) {
 		inflectionsToHTML(wordInfoMain, base.infl, showAll);
@@ -2396,7 +2422,7 @@ function phoneticToHTML(parentElement, listenContainer, phonetics, show) {
 			iconDark.className = 'infoIcon infoIconDark';
 			iconDark.src = 'svg/information-icon_darkmode.svg';
 			iconDark.alt = '';
-			
+
 			infoButton.appendChild(iconLight);
 			infoButton.appendChild(iconDark);
 			wrap.appendChild(infoButton);
@@ -6406,9 +6432,13 @@ function openPageDescription(elem) {
 			else if(elem.className.indexOf('phonetic') >= 0) {
 				openHelpPhon(inner, elem.dataset.phonetic);
 			}
-			else if(elem.className.indexOf('PoS') >= 0) {
+			/*else if(elem.className.indexOf('PoS') >= 0) {
 				openHelpPoS(inner, elem.textContent);
-			} else if(elem.textContent.indexOf('användning') >= 0) {
+			}*/
+			else if(elem.classList.contains('ordklass') >= 0) {
+				openHelpPoS(inner, "");
+			}
+			else if(elem.textContent.indexOf('användning') >= 0) {
 				openHelpUse(inner);
 			} else if(elem.textContent.indexOf('konstruktioner') >= 0) {
 				openHelpConstr(inner);
@@ -6665,10 +6695,10 @@ function initialShowHide() {
 	//    }
     
 	// ordklass
-    $(".PoS").addClass("clickableHeading");
+    /*$(".PoS").addClass("clickableHeading");
 	$(".PoS").each(function () {
 		makeKeyboardClickable(this);
-	});
+	});*/
 
 	// transkription
     /*$(".phonetic").addClass("clickableHeading");

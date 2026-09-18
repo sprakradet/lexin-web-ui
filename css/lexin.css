@@ -650,7 +650,12 @@ select {
 /* --------- PARTS OF SPEECH --------- */
 
 .PoS {
-    /*display: block;*/
+    margin-top: 0.7rem;
+    display: block;
+}
+.PoSText {
+    margin-left: 1.5rem;
+    font-weight: 500;
 }
 
 /* --------- ALT FORM (?) --------- */
@@ -761,6 +766,8 @@ a:any-link {
     margin: 0;
     margin-right: 0.2em;
     cursor: pointer;
+}
+.pronunciation .infoButton {
     vertical-align: -0.3em;
 }
 
