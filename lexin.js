@@ -2092,10 +2092,11 @@ function restoreListeners(org, copy) {
 // replace ngn and ngt with någon and något
 // replace a, b, X, Y, with något, någon
 function addExpandGramInfo(constructionsList, word, lsl4) {
-	// preview construction text
+	// preview text
     let txt = "<" + constructionsList.map(text => text.map(e => e.stringValue()).join("")).join(", ") + ">";
     let elem = document.createElement('div');
-    let textElem = document.createElement('span');
+    
+	/*let textElem = document.createElement('span');
     textElem.className = "graminfoExplanationText";
     textElem.textContent = txt;
 
@@ -2116,17 +2117,36 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
 
 	// accessibility open/close icon
     makeKeyboardClickable(exp);	
-	exp.alt = "Visa alla konstruktioner";
+	exp.alt = "Visa alla konstruktioner";*/
 
 	// new heading
 	elem.appendChild(createArticleHeading("konstruktioner"));
 
-    elem.appendChild(exp);		
+	// preview text
+    let textElem = document.createElement('span');
+    textElem.className = "graminfoExplanationText";
+    textElem.textContent = txt;
     elem.appendChild(textElem);
+
+	// open/close button
+    let constructionButton = document.createElement('button');
+    constructionButton.type = 'button';
+    constructionButton.className = 'constructionButton';
+    constructionButton.textContent = 'Visa alla konstruktioner +';
+    elem.appendChild(constructionButton);
+
+	// full construction text
+    let explanations = document.createElement('div');
+    explanations.style.display = 'none';
+    explanations.className = "graminfoExplanation";
     elem.appendChild(explanations);
+
+    /*elem.appendChild(exp);		
+    elem.appendChild(textElem);
+    elem.appendChild(explanations);*/
     
 	// on open/close icon click
-    elem.onclick = function () {
+    /*elem.onclick = function () {
 		if(explanations.style.display == 'none') {
 			$(exp).addClass("expanded");
 			explanations.style.display = 'block';
@@ -2142,30 +2162,64 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
 		}
     }
 
-    let ul = document.createElement('ul');
+    let ul = document.createElement('ul');*/
 
+    //let alreadySeen = {};
+    //for (const constructions of constructionsList) {
+    //    let vec = expandSlashes(constructions);
+    //    for(const expandedConstruction of vec) {
+	//		let tmp = handleSmallCaps(expandedConstruction);
+	//		let tmpstr = tmp.textContent.replace(/^\s*/, "").replace(/\s*$/, ""); // TODO: maybe we should strip leading and trailing space in the handleSmallCaps() instead?
+	//		if(!alreadySeen.hasOwnProperty(tmpstr)) {
+	//			alreadySeen[tmpstr] = 1;
+	//			
+	//			let li = document.createElement('li');
+	//			li.appendChild(tmp);
+	//			ul.appendChild(li);
+	//		}
+    //   }
+
+	 // only the button opens/closes the content
+    constructionButton.onclick = function () {
+        if(explanations.style.display == 'none') {
+            explanations.style.display = 'block';
+            constructionButton.textContent = 'Stäng alla konstruktioner –';
+        } else {
+            explanations.style.display = 'none';
+            constructionButton.textContent = 'Visa alla konstruktioner +';
+        }
+    };
+
+    let ul = document.createElement('ul');
     let alreadySeen = {};
+
     for (const constructions of constructionsList) {
         let vec = expandSlashes(constructions);
+
         for(const expandedConstruction of vec) {
-			let tmp = handleSmallCaps(expandedConstruction);
-			let tmpstr = tmp.textContent.replace(/^\s*/, "").replace(/\s*$/, ""); // TODO: maybe we should strip leading and trailing space in the handleSmallCaps() instead?
-			if(!alreadySeen.hasOwnProperty(tmpstr)) {
-				alreadySeen[tmpstr] = 1;
-				
-				let li = document.createElement('li');
-				li.appendChild(tmp);
-				ul.appendChild(li);
-			}
+            let tmp = handleSmallCaps(expandedConstruction);
+
+            let tmpstr = tmp.textContent
+                .replace(/^\s*/, "")
+                .replace(/\s*$/, "");
+
+            if(!alreadySeen.hasOwnProperty(tmpstr)) {
+                alreadySeen[tmpstr] = 1;
+
+                let li = document.createElement('li');
+                li.appendChild(tmp);
+                ul.appendChild(li);
+            }
         }
     }
+
     if (lsl4) {
-		explanations.textContent = "ngn = en person, ngt = en sak";
+        explanations.textContent = "ngn = en person, ngt = en sak";
     } else {
-		explanations.textContent = "A/B = en person, x/y = en sak";
+        explanations.textContent = "A/B = en person, x/y = en sak";
     }
     explanations.appendChild(ul);
-    
+
     return elem;
 }
 

@@ -809,7 +809,8 @@ a:any-link {
 }
 
 .picButton,
-.videoButton {
+.videoButton,
+.constructionButton {
     background-color: #D7E9EC;
     color: black;
     font: inherit;
@@ -915,14 +916,14 @@ div[dir=rtl] {
 }
 
 .graminfoExplanationText {
-    margin-left: 0.5em;
-    cursor: pointer;
+    margin-left: 1.5rem;
+    /*cursor: pointer;
     text-decoration: underline;
-    color: #33525B;
+    color: #33525B;*/
 }
 
 .graminfoExplanationText:hover {
-    background-color: #EBEEEF;
+    /*background-color: #EBEEEF;*/
 }
 
 .expandGraminfoIcon.expanded {
@@ -1023,7 +1024,8 @@ footer .lp-icon {
 @media (hover: hover) and (pointer: fine) {
     #multiLanguageChoiceButton:hover,
     .picButton:hover,
-    .videoButton:hover  {
+    .videoButton:hover,
+    .constructionButton:hover  {
         background-color: #3FD695;
     }
 }
