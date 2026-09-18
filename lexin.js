@@ -1167,7 +1167,7 @@ function createArticleHeading(text) {
 	infoButton.className = 'infoButton';
 
 	// add extra classes for buttons in wordinfomain, else click function not working
-	const headings = ['förkortning', 'avstavning', 'phonetic', 'PoS'];
+	const headings = ['förkortning', 'avstavning'];
 	if (headings.includes(text)) {
 		infoButton.classList.add('clickableHeading');
 		infoButton.classList.add(text);
@@ -2363,59 +2363,89 @@ function addExpandResultElement() {
 /* --------- ARTICLE PART: LISTEN ICON (CLICKABLE) --------- */
 function phoneticToHTML(parentElement, listenContainer, phonetics, show) {
     let first = true;
+
     for(const p of phonetics) {
-	var wrap = document.createElement('span');
-	wrap.className = 'pronunciation';
-	if(!first) {
-	    wrap.appendChild(createOrElem("eller"));
-	}
-        first = false;
-	
-	if(p.ph != "") {
-	    wrap.appendChild(createTextSpan("[" + p.ph + "]", 'phonetic'));
-	    if(!show) {
-		wrap.className += ' notRelevant';
-	    }
-	    parentElement.appendChild(wrap);
-	}
-	
-	if(p.file && p.file != "") {
-	    var fElem = document.createElement('div');
-	    fElem.className = 'soundFiles';
+		var wrap = document.createElement('span');
+		wrap.className = 'pronunciation';
 
-	    var listen = document.createElement('button');
-	    //listen.title = "Lyssna på uttalet";
-		listen.setAttribute("aria-label", "Lyssna på uttalet");
-	    listen.onclick = function() {var a = new Audio(p.file); a.play(); return false;};
-	    listen.type = "button";
-
-	    var im = document.createElement('div');
-	    im.className = 'listenIcon';
-		im.setAttribute("aria-hidden", "true");
-	    listen.appendChild(im);
-
-	    listen.lang = BaseLanguageSwe;
-	    listen.dir = "ltr";
-
-	    fElem.appendChild(listen);
-
-	    wrap = document.createElement('div');
-	    wrap.className = 'pronunciation';
-	    if (phonetics.length > 1) {
-		let pronunciation = document.createElement('div');
-		pronunciation.className = 'listenPronunciation';
-		if (p.ph != "") {
-		    pronunciation.textContent = " [" + p.ph + "] ";
+		// several pronunciations
+		if(!first) {
+			wrap.appendChild(createOrElem("eller"));
 		}
-		listen.appendChild(pronunciation);
-	    }
-	    
-	    wrap.appendChild(fElem);
-	    if(!show) {
-		wrap.className += ' notRelevant';
-	    }
-	    listenContainer.appendChild(wrap);
-	}
+			first = false;
+		
+		// create transcription
+		if(p.ph != "") {
+			wrap.appendChild(createTextSpan("[" + p.ph + "]", 'phonetic'));
+
+			// create info button (new heading)
+			var infoButton = document.createElement('button');
+			infoButton.type = 'button';
+			infoButton.className = 'infoButton clickableHeading phonetic';
+			infoButton.setAttribute('aria-label', 'Visa information om uttal');
+
+			// send phonetic info to openPageDesc function
+			infoButton.dataset.phonetic = p.ph;	
+
+			// add button icon
+			var iconLight = document.createElement('img');
+			iconLight.className = 'infoIcon infoIconLight';
+			iconLight.src = 'svg/information-icon.svg';
+			iconLight.alt = '';
+			var iconDark = document.createElement('img');
+			iconDark.className = 'infoIcon infoIconDark';
+			iconDark.src = 'svg/information-icon_darkmode.svg';
+			iconDark.alt = '';
+			
+			infoButton.appendChild(iconLight);
+			infoButton.appendChild(iconDark);
+			wrap.appendChild(infoButton);
+
+			if(!show) {
+				wrap.className += ' notRelevant';
+			}
+			parentElement.appendChild(wrap);
+		}
+		
+		if(p.file && p.file != "") {
+			var fElem = document.createElement('div');
+			fElem.className = 'soundFiles';
+
+			// create listen button
+			var listen = document.createElement('button');
+			listen.setAttribute("aria-label", "Lyssna på uttalet");
+			listen.onclick = function() {
+				var a = new Audio(p.file); a.play(); return false;};
+				listen.type = "button";
+
+				var im = document.createElement('div');
+				im.className = 'listenIcon';
+				im.setAttribute("aria-hidden", "true");
+				listen.appendChild(im);
+
+				listen.lang = BaseLanguageSwe;
+				listen.dir = "ltr";
+				fElem.appendChild(listen);
+
+				wrap = document.createElement('div');
+				wrap.className = 'pronunciation';
+
+				// several pronunciations
+				if (phonetics.length > 1) {
+					let pronunciation = document.createElement('div');
+					pronunciation.className = 'listenPronunciation';
+					if (p.ph != "") {
+						pronunciation.textContent = " [" + p.ph + "] ";
+					}
+					listen.appendChild(pronunciation);
+				}
+				
+				wrap.appendChild(fElem);
+				if(!show) {
+					wrap.className += ' notRelevant';
+			}
+			listenContainer.appendChild(wrap);
+		}
     }
 }
 
@@ -6370,9 +6400,13 @@ function openPageDescription(elem) {
 			
 			if(elem.textContent == 'förklaring:') {		
 				openHelpSakuppl(inner);
-			} else if(elem.className.indexOf('phonetic') >= 0) {
+			} /*else if(elem.className.indexOf('phonetic') >= 0) {
 				openHelpPhon(inner, elem.textContent);
-			} else if(elem.className.indexOf('PoS') >= 0) {
+			}*/ 
+			else if(elem.className.indexOf('phonetic') >= 0) {
+				openHelpPhon(inner, elem.dataset.phonetic);
+			}
+			else if(elem.className.indexOf('PoS') >= 0) {
 				openHelpPoS(inner, elem.textContent);
 			} else if(elem.textContent.indexOf('användning') >= 0) {
 				openHelpUse(inner);
@@ -6637,10 +6671,10 @@ function initialShowHide() {
 	});
 
 	// transkription
-    $(".phonetic").addClass("clickableHeading");
+    /*$(".phonetic").addClass("clickableHeading");
 	$(".phonetic").each(function () {
 		makeKeyboardClickable(this);
-	});
+	});*/
 	
 	// övrigt
     $(".referenceHead").addClass("clickableHeading");

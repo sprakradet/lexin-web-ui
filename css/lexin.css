@@ -759,7 +759,9 @@ a:any-link {
     border: none;
     padding: 0;
     margin: 0;
+    margin-right: 0.2em;
     cursor: pointer;
+    vertical-align: -0.3em;
 }
 
 /* new heading */
@@ -1129,7 +1131,7 @@ footer .lp-icon {
     .antonym a {
         color: #3FD695 !important;
     }
-    .makeClickableHeadingsStandOut:hover,
+    /*.makeClickableHeadingsStandOut:hover,*/
     .bildtemaLink:hover,
     .graminfoExplanationText:hover,
     .referenceInfo a:hover,
