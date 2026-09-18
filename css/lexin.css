@@ -754,10 +754,16 @@ a:any-link {
 }
 
 /* new heading */
-.infoIcon {
+.infoIconLight,
+.infoIconDark {
     width: 1.5rem;
     height: 1.5rem;
+}
+.infoIconLight {
     display: block;
+}
+.infoIconDark {
+    display: none;
 }
 
 /* --------- IMAGE --------- */
@@ -1120,10 +1126,6 @@ footer .lp-icon {
     .antonym a:hover {
         background-color: #324b5a;
     }
-    /*a:any-link {
-        color: #3FD695;
-        text-decoration-color: #3FD695;
-    }*/
     .referenceInfo a,
     .bildtemaLink,
     .vidContainer a,
@@ -1144,6 +1146,13 @@ footer .lp-icon {
     .expandResultsIcon {
         filter: invert(1);
     }
+    .infoIconLight {
+        display: none;
+    }
+    .infoIconDark {
+        display: block;
+    }
+
 }
 
 /* --------- CHECKBOXES --------- */

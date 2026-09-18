@@ -1169,11 +1169,18 @@ function createArticleHeading(text) {
 	infoButton.type = 'button';
 	infoButton.className = 'infoButton';
 	infoButton.setAttribute('aria-label', 'Visa information om ' + text);
-	var icon = document.createElement('img');
-	icon.className = 'infoIcon';
-	icon.src = 'svg/information-icon.svg';
-	icon.alt = '';
-	infoButton.appendChild(icon);
+
+	// create info button icon
+	var iconLight = document.createElement('img');
+	iconLight.className = 'infoIcon infoIconLight';
+	iconLight.src = 'svg/information-icon.svg';
+	iconLight.alt = '';
+	var iconDark = document.createElement('img');
+	iconDark.className = 'infoIcon infoIconDark';
+	iconDark.src = 'svg/information-icon_darkmode.svg';
+	iconDark.alt = '';
+	infoButton.appendChild(iconLight);
+	infoButton.appendChild(iconDark);
 
 	// add click functionality to icon
 	infoButton.addEventListener('click', function () {
