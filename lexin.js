@@ -4678,7 +4678,8 @@ function explToHTML(parentElement, ex1, ex2, baseForms, showAll) {
 	exElem.className = 'explanation';
 	// No settings for explanations?
 
-	var wrap = document.createElement('span');
+	// old heading
+	/*var wrap = document.createElement('span');
 	var head = document.createElement('span');
 	head.textContent = "Förklaring";
 	head.lang = BaseLanguageSwe;
@@ -4692,7 +4693,12 @@ function explToHTML(parentElement, ex1, ex2, baseForms, showAll) {
 
 	var mid = document.createElement('span');
 	mid.textContent = ": ";
-	wrap.appendChild(mid);
+	wrap.appendChild(mid);*/
+
+	// new heading
+	exElem.appendChild(createArticleHeading("förklaring"));
+	var wrap = document.createElement('span');
+	wrap.className = 'explanationText';
 
 	let prevTexts = [];
 	for(const lang in ex1) {
@@ -4765,7 +4771,8 @@ function explToHTML(parentElement, ex1, ex2, baseForms, showAll) {
 	exElem.className = 'explanation';
 	// No settings for explanations?
 
-	var wrap = document.createElement('span');	
+	// old heading
+	/*var wrap = document.createElement('span');	
 	var head = document.createElement('span');	
 	head.textContent = "Förklaring";
 	head.lang = BaseLanguageSwe;
@@ -4779,7 +4786,12 @@ function explToHTML(parentElement, ex1, ex2, baseForms, showAll) {
 	mid.textContent = ": ";
 
 	wrap.appendChild(head);
-	wrap.appendChild(mid);
+	wrap.appendChild(mid);*/
+
+	// new heading
+	exElem.appendChild(createArticleHeading("förklaring"));
+	var wrap = document.createElement('span');
+	wrap.className = 'explanationText';
 	
 	let first = 1;
 	for(const lang in ex1) {
@@ -6316,7 +6328,7 @@ function openPageDescription(elem) {
 		/* if(elem.className.indexOf('clickableHeading') >= 0) { */
 			let inner = relevantExplanationElement.children[0];
 			
-			if(elem.textContent == 'Förklaring') {		
+			if(elem.textContent == 'förklaring:') {		
 				openHelpSakuppl(inner);
 			} else if(elem.className.indexOf('phonetic') >= 0) {
 				openHelpPhon(inner, elem.textContent);

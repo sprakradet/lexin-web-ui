@@ -620,6 +620,11 @@ select {
     margin-bottom: 1em;
 }
 
+.explanationText {
+    display: block;
+    margin-left: 1.5rem;
+}
+
 /* --------- ABBREVIATIONS --------- */
 
 .abbr {
