@@ -38,6 +38,22 @@ body {
     line-height: 1.095;
 }
 
+.h1SearchHeading {
+    font-size: 1.5em;
+    font-weight: normal;
+    color: white;
+    margin-top: 0.2em;
+    margin-bottom: 0;
+}
+
+.h2SearchResultHeading {
+    font-size: 1.3em;
+    font-weight: normal;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0.4em;
+}
+
 #inputDiv {
     padding-top: 0.8em;
     background-color: rgb(28, 63, 73);
@@ -94,8 +110,8 @@ form#theForm2 .inputwrapper {
 
 .permbar {
     width: 100%;
-    padding-bottom: 0.5em;
-    padding-top: 0.5em;
+    padding-bottom: 0.3em;
+    padding-top: 0.3em;
     z-index: 10;
     position: sticky;
     top: 0;
@@ -334,6 +350,8 @@ select {
 .matchingWord {
     font-weight: bold;
     font-size: 1.3em;
+    margin: 0;
+    display: inline;
 }
 
 /* --------- INFLECTIONS --------- */
@@ -1028,6 +1046,22 @@ footer .lp-icon {
     .constructionButton:hover,
     .helpOpenMoreInfoButton:hover  {
         background-color: #3FD695;
+    }
+}
+
+/* --------- PHONE --------- */
+
+@media (max-width: 630px) {
+    h1,
+    h2 {
+        margin-left: 1.1rem;
+    }
+}
+
+@media (max-width: 630px) {
+    h1,
+    h2 {
+        margin-left: 1.1rem;
     }
 }
 

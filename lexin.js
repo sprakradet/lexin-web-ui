@@ -1097,7 +1097,12 @@ function makeKeyboardClickable(elem) {
 
 /* --------- CREATE TEXT SPAN IN ARTICLE --------- */
 function createTextSpan(text, className, lang) {
-    let elem = document.createElement('span');
+	let elem = document.createElement('span');
+	// make searchword h3
+	if(className == "matchingWord") {
+		elem = document.createElement('h3');
+	}
+
     elem.textContent = text;
     if (className) {
         elem.className = className;
@@ -7084,9 +7089,12 @@ $(document).ready(function() {
     }
     
     $("#theForm2").submit(function(e) {
-	dismissSettings();
-	callLexin(true);
-	e.preventDefault();
+		// add search word to h2
+		$("#searchResultQuery").text($("#searchQuery").val());
+
+		dismissSettings();
+		callLexin(true);
+		e.preventDefault();
     });
 
     // --------------------------------------------------------------------
@@ -7222,6 +7230,9 @@ $(document).ready(function() {
 	}
 	if(inpWord) {
 	    $("#searchQuery")[0].value = inpWord;
+		// add search word to h2
+		$("#searchResultQuery").text($("#searchQuery").val());
+
 	    await callLexin(false);
 	}
     })())})();
