@@ -3524,6 +3524,7 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 		    }
 		    parentElement.appendChild(refWrap);
 		    
+			// antonyms ('motsats')
 		    if(ref.type == "antonym") {
 				// new heading
 				refWrap.appendChild(createArticleHeading(referenceDict[ref.type]));
@@ -3583,7 +3584,10 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 				
 				refWrap.appendChild(wrap);
 			
-		    } else if(ref.type == "see" || ref.type == "compare") {
+		    } 
+
+			// see ('se') & compare ('jämför')
+			else if(ref.type == "see" || ref.type == "compare") {
 				// old heading
 				/*var hElem = document.createElement('span');
 				hElem.className = 'referenceHead';
@@ -3629,15 +3633,18 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 				refWrap.appendChild(mid);*/
 
 				refWrap.appendChild(tElem);
-		    } else if(ref.type == "animation") {
-				let wrap =  document.createElement('div');
-				let hElem = document.createElement('span');
+		    } 
 
-				// article category 
+			// animation ('video')
+			else if(ref.type == "animation") {
+				let wrap =  document.createElement('div');
+
+				// old heading
+				/*let hElem = document.createElement('span');
 				hElem.className = 'referenceHead';
 				hElem.textContent = "Video:";
 				hElem.lang = BaseLanguageSwe;
-				hElem.dir = "ltr";
+				hElem.dir = "ltr";*/
 				
 				/*let tElem = document.createElement('a');
 				tElem.className = 'referenceInfo';
@@ -3646,8 +3653,11 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 				tElem.lang = BaseLanguageSwe;
 				tElem.dir = "ltr";*/
 				
-				wrap.appendChild(hElem);
+				/*wrap.appendChild(hElem);*/
 				/*wrap.appendChild(tElem);*/
+
+				// new heading
+				wrap.appendChild(createArticleHeading("video"));
 
 				// inline the video when clicked
 				let imElem = document.createElement('div');
@@ -6358,7 +6368,7 @@ function openPageDescription(elem) {
 				openHelpIdioms(inner);
 			} else if(elem.textContent == 'exempel:') {
 				openHelpExamples(inner);
-			} else if(elem.textContent.indexOf("Video") >= 0) {
+			} else if(elem.textContent.indexOf("video") >= 0) {
 				openHelpVideo(inner);
 			}
 			else if(elem.textContent == 'bild:') {
