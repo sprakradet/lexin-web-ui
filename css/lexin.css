@@ -874,12 +874,14 @@ div[dir=rtl] {
     vertical-align: baseline;
     opacity: 0.6;
     cursor: pointer;
+    margin-left: 1.5rem;
 }
 
 .graminfoExplanation {
     background-color: #e0e0e0;
     padding: 1em;
     margin: 0.5em 0;
+    margin-left: 1.5rem;
 }
 
 .graminfoExplanationText {

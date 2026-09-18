@@ -2075,6 +2075,9 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
     makeKeyboardClickable(exp);	
 	exp.alt = "Visa alla konstruktioner";
 
+	// new heading
+	elem.appendChild(createArticleHeading("konstruktioner"));
+
     elem.appendChild(exp);		
     elem.appendChild(textElem);
     elem.appendChild(explanations);
@@ -6346,7 +6349,7 @@ function openPageDescription(elem) {
 				openHelpPoS(inner, elem.textContent);
 			} else if(elem.textContent.indexOf('användning') >= 0) {
 				openHelpUse(inner);
-			} else if(elem.textContent.indexOf('Konstruktioner') >= 0) {
+			} else if(elem.textContent.indexOf('konstruktioner') >= 0) {
 				openHelpConstr(inner);
 			} else if(elem.textContent.indexOf('motsats') >= 0) {
 				openHelpAnt(inner);
