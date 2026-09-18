@@ -3023,15 +3023,21 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 
 	// picture icon
     let pictures = document.createElement('div');
-    let picicon = getPictureIcon();
+    /*let picicon = getPictureIcon();
 	const iconImg = picicon.querySelector("img"); 
 	iconImg.alt = "Visa bild i Lexin";
     tmp.appendChild(picicon);
 
 	// accessibility
-    makeKeyboardClickable(picicon);
+    makeKeyboardClickable(picicon);*/
 
-	picicon.onclick = () => {
+	let picButton = document.createElement('button');
+	picButton.type = 'button';
+	picButton.className = 'picButton';
+	picButton.textContent = 'Visa bild i Lexin +';
+	wrap.appendChild(picButton);
+
+	picButton.onclick = () => {
 		/*if($(pictures).find(".inlineImage").length == 0 && (parentElement.querySelectorAll(":scope iframe.bildtemaIframe").length === 0)) {*/
 
 			// remove everything from previous load
@@ -3072,14 +3078,18 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 		
 			/*}*/
 
-		const iconImg = picicon.querySelector("img"); 
+		// add icon alt texts
+		/*const iconImg = picicon.querySelector("img");*/
 		if(!pictures.style.display || pictures.style.display == 'none') {
 			pictures.style.display = 'block';
-			iconImg.alt = "Stäng bild";
+			/*iconImg.alt = "Stäng bild";*/
+			picButton.textContent = "Stäng bild –";
 		} else {
 			pictures.style.display = 'none';
-			iconImg.alt = "Visa bild i Lexin";
+			/*iconImg.alt = "Visa bild i Lexin";*/
+			picButton.textContent = "Visa bild i Lexin +";
 		}
+
 		return false;
     };
 
@@ -3746,7 +3756,7 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 				wrap.appendChild(createArticleHeading("video"));
 
 				// inline the video when clicked
-				let imElem = document.createElement('div');
+				/*let imElem = document.createElement('div');
 				imElem.className = 'picWrap';
 				//imElem.title = "Visa videon i Lexin";
 				imElem.onclick = function () {
@@ -3774,6 +3784,29 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 				imElem.lang = BaseLanguageSwe;
 				imElem.dir = "ltr";
 				wrap.appendChild(imElem);
+				refWrap.appendChild(wrap);*/
+
+				// video button
+				let videoButton = document.createElement('button');
+				videoButton.type = 'button';
+				videoButton.className = 'videoButton';
+				videoButton.textContent = 'Visa video i Lexin +';
+				wrap.appendChild(videoButton);
+
+				videoButton.onclick = function () {
+					const vidContainer = wrap.querySelector(".vidContainer");
+					const wasOpen = vidContainer && vidContainer.style.display !== "none";
+					loadAndShowHideVideo(videoButton, ref.val);
+
+					if (wasOpen) {
+						videoButton.textContent = "Visa video i Lexin +";
+					} else {
+						videoButton.textContent = "Stäng video –";
+					}
+
+					return false;
+				};
+
 				refWrap.appendChild(wrap);
 		    }
 		}
@@ -6435,9 +6468,6 @@ function openPageDescription(elem) {
 			/*else if(elem.className.indexOf('PoS') >= 0) {
 				openHelpPoS(inner, elem.textContent);
 			}*/
-			else if(elem.classList.contains('ordklass') >= 0) {
-				openHelpPoS(inner, "");
-			}
 			else if(elem.textContent.indexOf('användning') >= 0) {
 				openHelpUse(inner);
 			} else if(elem.textContent.indexOf('konstruktioner') >= 0) {
@@ -6467,6 +6497,9 @@ function openPageDescription(elem) {
 			}
 			else if(elem.textContent == 'bild:') {
 				openHelpImage(inner);
+			}
+			else if(elem.classList.contains('ordklass') >= 0) {
+				openHelpPoS(inner, "");
 			}
 
 			// unknown
