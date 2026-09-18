@@ -97,16 +97,28 @@
 /* --------- SHOW MORE TEXT --------- */
 
 .helpOpenMoreInfo {
-    color: #32525B;
+    /*color: #32525B;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: underline;*/
     /*display: inline-block;*/
     /*margin-top: -4px;*/
+    background-color: #D7E9EC;
+    color: black;
+    font: inherit;
+    font-variant: normal;
+    font-weight: normal;
+    padding: 0.1em .5em 0.2em 0.5em;
+    border: none;
+    border-radius: 0.3em;
+    margin: 0;
+    margin-top: 0.2rem;
+    display: block;
+    cursor: pointer;
 }
 
 .helpOpenMoreInfo:hover {
     /*text-decoration: underline;*/
-    background-color: #EBEEEF;
+    /*background-color: #EBEEEF;*/
 }
 
 .helpMoreInfo {
@@ -246,7 +258,8 @@ th {
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
 
 @media (hover: hover) and (pointer: fine) {
-    .upButton:hover {
+    .upButton:hover,
+    .helpOpenMoreInfo:hover {
         background-color: #3FD695;
     }
 }

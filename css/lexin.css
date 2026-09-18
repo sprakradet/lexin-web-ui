@@ -1025,7 +1025,8 @@ footer .lp-icon {
     #multiLanguageChoiceButton:hover,
     .picButton:hover,
     .videoButton:hover,
-    .constructionButton:hover  {
+    .constructionButton:hover,
+    .helpOpenMoreInfoButton:hover  {
         background-color: #3FD695;
     }
 }

@@ -6381,6 +6381,11 @@ function initHelpOpenMoreInfo() {
 
 		// toggle visibility
 		const isOpen = target.style.display === "block";
+
+		target.style.display = isOpen ? "none" : "block";
+		elem.setAttribute("aria-expanded", String(!isOpen));
+		elem.textContent = isOpen ? "Visa mer +" : "Visa mindre -";
+
 		target.style.display = isOpen ? "none" : "block";
 		elem.setAttribute("aria-expanded", String(!isOpen));
   });
