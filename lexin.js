@@ -6389,7 +6389,7 @@ function initHelpOpenMoreInfo() {
 
 		target.style.display = isOpen ? "none" : "block";
 		elem.setAttribute("aria-expanded", String(!isOpen));
-		elem.textContent = isOpen ? "Visa mer +" : "Visa mindre -";
+		elem.textContent = isOpen ? "Visa mer +" : "Visa mindre –";
 
 		target.style.display = isOpen ? "none" : "block";
 		elem.setAttribute("aria-expanded", String(!isOpen));
@@ -7091,6 +7091,11 @@ $(document).ready(function() {
     $("#theForm2").submit(function(e) {
 		// add search word to h2
 		$("#searchResultQuery").text($("#searchQuery").val());
+		if ($("#searchResultQuery").text().trim()) {
+			$(".h2SearchResultHeading").show();
+		} else {
+			$(".h2SearchResultHeading").hide();
+		}
 
 		dismissSettings();
 		callLexin(true);
@@ -7232,6 +7237,11 @@ $(document).ready(function() {
 	    $("#searchQuery")[0].value = inpWord;
 		// add search word to h2
 		$("#searchResultQuery").text($("#searchQuery").val());
+		if ($("#searchResultQuery").text().trim()) {
+			$(".h2SearchResultHeading").show();
+		} else {
+			$(".h2SearchResultHeading").hide();
+		}
 
 	    await callLexin(false);
 	}
