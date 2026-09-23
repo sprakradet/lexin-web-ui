@@ -5,7 +5,7 @@
 /* --------- HELP PAGE: EXEMPEL --------- */
 function openHelpExamples(inner) {
     inner.innerHTML = `
-	<h3>Språkexempel</h3>
+	<h2>Språkexempel</h2>
 	<p>
 		Språkexempel visar hur uppslagsordet kan användas. Det finns tre sorters 
 		exempel: fria fraser och meningar (satser eller satsfragment),
@@ -17,13 +17,13 @@ function openHelpExamples(inner) {
 /* --------- HELP PAGE: IDIOM --------- */
 function openHelpIdioms(inner) {
     inner.innerHTML = `
-	<h3>Språkexempel, Idiom ("Uttryck")</h3>
+	<h2>Språkexempel, Idiom ("Uttryck")</h2>
 	<p>
 		Språkexempel visar hur uppslagsordet kan användas. Det finns tre sorters 
 		exempel: fria fraser och meningar (satser eller satsfragment),
 		sammansatta ord, och fasta uttryck (idiom).
 	</p>
-	<h4>Idiom</h4>
+	<h3>Idiom</h3>
 	<p>
 	  	Idiom är fraser och meningar som måste förklaras.
 	</p>
@@ -40,13 +40,13 @@ function openHelpIdioms(inner) {
 /* --------- HELP PAGE: SAMMANSÄTTNINGAR --------- */
 function openHelpComps(inner) {
     inner.innerHTML = `
-	<h3>Språkexempel, Sammansättning</h3>
+	<h2>Språkexempel, Sammansättning</h2>
 	<p>
 		Språkexempel visar hur uppslagsordet kan användas. Det finns tre sorters 
 		exempel: fria fraser och meningar (satser eller satsfragment),
 		sammansatta ord, och fasta uttryck (idiom).
 	</p>
-	<h4>Sammansättningar</h4>
+	<h3>Sammansättningar</h3>
 	<p>
 		När man gör en sammansättning av två eller flera ord på svenska ändras 
 		ofta något litet. T.ex. <em>skog</em> + <em>dunge</em> blir 
@@ -67,7 +67,7 @@ function openHelpComps(inner) {
 /* --------- HELP PAGE: ANVNÄNDNING --------- */
 function openHelpUse(inner) {
     inner.innerHTML = `
-	<h3>Användning</h3>
+	<h2>Användning</h2>
 	<p>
 		Användningskommentarer ger information om hur ett ord används eller 
 		begränsningar av sammanhang ordet kan användas i.
@@ -78,7 +78,7 @@ function openHelpUse(inner) {
 /* --------- HELP PAGE: AVLEDNINGAR --------- */
 function openHelpDer(inner) {
     inner.innerHTML = `
-	<h3>Avledning</h3>
+	<h2>Avledning</h2>
 	<p>
 		Avledningar är ord gjorda av ett annat ord genom att lägga till en 
 		förstavelse eller en ändelse, till exempel <em>allergi</em> och 
@@ -91,7 +91,7 @@ function openHelpDer(inner) {
 /* --------- HELP PAGE: FÖRTKORTNINGAR --------- */
 function openHelpAbbr(inner) {
     inner.innerHTML = `
-	<h3>Förkortning</h3>
+	<h2>Förkortning</h2>
 	<p>
 		"Förkortning" visar det vedertagna sättet att förkorta ordet, 
 		t.ex. <em>dr</em> i stället för <em>doktor</em>, <em>kg</em> i stället 
@@ -104,7 +104,7 @@ function openHelpAbbr(inner) {
 /* --------- HELP PAGE: UPPSLAGSORD --------- */
 function openHelpVar(inner) {
     inner.innerHTML = `
-	<h3>Uppslagsord</h3>
+	<h2>Uppslagsord</h2>
 	<p>
 		Ett uppslagsord kan följas av en alternativform. Ofta är det en annan 
 		form som har samma uttal men annan stavning, t.ex. <em>sjal</em> och 
@@ -119,7 +119,7 @@ function openHelpVar(inner) {
 /* --------- HELP PAGE: AVSTAVNNG --------- */
 function openHelpHyp(inner) {
     inner.innerHTML = `
-	<h3>Avstavning</h3>
+	<h2>Avstavning</h2>
 	<p>
 		Vissa ord ändras när de avstavas. Sammansatta ord med tre likadana 
 		konsonanter i rad skrivs som två, men när ordet avstavas skrivs alla tre
@@ -132,7 +132,7 @@ function openHelpHyp(inner) {
 /* --------- HELP PAGE: SE --------- */
 function openHelpSee(inner) {
     inner.innerHTML = `
-	<h3>"Se"-referens</h3>
+	<h2>"Se"-referens</h2>
 	<p>
 		"Se"-referenser hänvisar till ordet som en förkortning står för (t.ex. 
 		<em>AD, Se: Arbetsdomstolen</em>) eller normalformen för en talspråklig
@@ -144,7 +144,7 @@ function openHelpSee(inner) {
 /* --------- HELP PAGE: JÄMFÖR --------- */
 function openHelpCompare(inner) {
     inner.innerHTML = `
-	<h3>Jämförelse</h3>
+	<h2>Jämförelse</h2>
 	<p>
 		"Jämför"-referenser visar liknande ord, t.ex. <em>förstaspråk</em> och 
 		<em>andraspråk</em> och för partikelverb som både kan skrivas ihop och 
@@ -157,7 +157,7 @@ function openHelpCompare(inner) {
 /* --------- HELP PAGE: MOTSATS --------- */
 function openHelpAnt(inner) {
     inner.innerHTML = `
-	<h3>Motsats</h3>
+	<h2>Motsats</h2>
 	<p>
 		Ibland förklaras ord med ett motsatsord (en <em>antonym</em>).
 	</p>
@@ -173,7 +173,7 @@ function openHelpAnt(inner) {
 /* --------- HELP PAGE: GRAMMATISKA KONSTRUKTIONER --------- */
 function openHelpConstr(inner) {
     inner.innerHTML = `
-	<h3>Grammatiska konstruktioner</h3>
+	<h2>Grammatiska konstruktioner</h2>
 	<p>
 	  Alla verb i ordboken - utom de som bara förekommer i idiom - har mönster 
 	  som visar hur verbet används.
@@ -245,7 +245,7 @@ function openHelpConstr(inner) {
 /* --------- HELP PAGE: SAKUPPLYSNING --------- */
 function openHelpSakuppl(inner) {
     inner.innerHTML = `
-	<h3>Sakupplysning ("Förklaring")</h3>
+	<h2>Sakupplysning ("Förklaring")</h2>
 	<p>
 	  	En sakupplysning är en längre förklaring. Lexin innehåller 
 		sakupplysningar till många "samhällsord".
@@ -270,7 +270,7 @@ function openHelpSakuppl(inner) {
 /* --------- HELP PAGE: ORDKLASS --------- */
 function openHelpPoS(inner, pos) {
     inner.innerHTML = `
-	<h3>Ordklass</h3>
+	<h2>Ordklass</h2>
 	<p>
         Ord tillhör en ordklass, t.ex. substantiv eller verb. Ordklasser som 
 		förekommer i Lexin är: substantiv, adjektiv, verb, adverb, preposition, 
@@ -286,12 +286,12 @@ function openHelpPoS(inner, pos) {
 /* --------- HELP PAGE: UTTAL --------- */
 function openHelpPhon(inner, phon) {
     let html = `
-	<h3>Uttal</h3>
+	<h2>Uttal</h2>
 	<p> 
 		Uttal visas med både <em>fonetisk skrift</em>, t.ex. <strong>` + phon + 
 		`</strong>, och med en ljudfil du kan lyssna på.
 	</p>
-    <h4>` + phon + `</h4>
+    <h3>` + phon + `</h3>
 	<ul>`;
 
     if(phon.indexOf('ʃ') >= 0) {
@@ -343,13 +343,13 @@ function openHelpPhon(inner, phon) {
 /* --------- HELP PAGE: VIDEO --------- */
 function openHelpVideo(inner) {
     inner.innerHTML = `
-	<h3>Video</h3>
+	<h2>Video</h2>
 	<p>
 		För vissa ord kan du se ett videoklipp som visar vad ordet betyder.
 	</p>
 	<p>
-		Klicka på videoikonen<img src="svg/video.svg" class="vidIcon"/ alt=""> 
-		"Visa video i Lexin" för att ladda videon och visa den i Lexin.
+		Klicka på knappen "Visa video i Lexin" för att ladda videon och visa den 
+		i Lexin.
 	</p>
        `;
 }
@@ -357,15 +357,214 @@ function openHelpVideo(inner) {
 /* --------- HELP PAGE: IMAGE --------- */
 function openHelpImage(inner) {
     inner.innerHTML = `
-	<h3>Bild</h3>
+	<h2>Bild</h2>
 	<p>
 		Många ord har en eller flera bilder som hjälper till att förklara ordet. 
 	</p>
 	<p>
-		Klicka på bildikonen<img src="svg/images.svg" class="picIcon"/ alt="">
-		"Visa bild i Lexin" för att ladda bilder och visa dem i Lexin.
+		Klicka på knappen "Visa bild i Lexin" för att ladda bilder och visa dem 
+		i Lexin.
 	</p>
        `;
+}
+
+/* --------- HELP PAGE: HOW TO USE LEXIN --------- */
+async function openHelpUseLexin(inner) {
+	const response = await fetch("help.html");
+    const html = await response.text();
+    const parser = new DOMParser();
+    const helpDocument = parser.parseFromString(html, "text/html");
+    inner.innerHTML = helpDocument.body.innerHTML;
+}
+
+/* --------- OPEN HELP PAGE (NEW) --------- */
+let lastHelpOpener = null;
+let explanationTrapCleanup = null;
+function openPageDescription(elem, button) {
+	console.log(elem);
+
+	const popup = document.getElementById("popupGeneral");
+	const content = document.getElementById("popupGeneralContent");
+	lastHelpOpener = button !== undefined ? button : elem;
+
+	// clear content
+	content.innerHTML = "";
+
+	// add text content
+	populateHelpPopup(content, elem);
+
+	// show popup
+	popup.hidden = false;
+	document.body.classList.add("help-open");
+
+	initHelpOpenMoreInfo();
+	
+	// change/trap focus
+	popup.setAttribute("tabindex", "-1");
+	if (explanationTrapCleanup) {
+		explanationTrapCleanup();
+	}
+	explanationTrapCleanup = trapFocus(popup);
+	const focusables = getFocusableElements(popup);
+	(focusables[0] || popup).focus();
+}
+
+/* --------- ADD CONTENT TO HELP PAGE (NEW) --------- */
+async function populateHelpPopup(content, elem) {
+	// general help page
+	if (!elem) {
+		await openHelpUseLexin(content);
+	}
+	else if (elem.textContent === "förklaring:") {
+		openHelpSakuppl(content);
+	}
+	else if (elem.classList.contains("phonetic")) {
+		openHelpPhon(content, elem.dataset.phonetic);
+	}
+	else if (elem.textContent.includes("användning")) {
+		openHelpUse(content);
+	}
+	else if (elem.textContent.includes("konstruktioner")) {
+		openHelpConstr(content);
+	}
+	else if (elem.textContent.includes("motsats")) {
+		openHelpAnt(content);
+	}
+	else if (elem.textContent === "jämför:") {
+		openHelpCompare(content);
+	}
+	else if (elem.textContent === "se:") {
+		openHelpSee(content);
+	}
+	else if (
+		elem.textContent.includes("avstavning") ||
+		elem.classList.contains("avstavning")
+	) {
+		openHelpHyp(content);
+	}
+	else if (
+		elem.textContent.includes("förkortning") ||
+		elem.classList.contains("förkortning")
+	) {
+		openHelpAbbr(content);
+	}
+	else if (elem.textContent.includes("variantform")) {
+		openHelpVar(content);
+	}
+	else if (elem.textContent.includes("avledning")) {
+		openHelpDer(content);
+	}
+	else if (elem.textContent.includes("sammansättning")) {
+		openHelpComps(content);
+	}
+	else if (elem.textContent === "uttryck:") {
+		openHelpIdioms(content);
+	}
+	else if (elem.textContent === "exempel:") {
+		openHelpExamples(content);
+	}
+	else if (elem.textContent.includes("video")) {
+		openHelpVideo(content);
+	}
+	else if (elem.textContent === "bild:") {
+		openHelpImage(content);
+	}
+	else if (elem.classList.contains("ordklass")) {
+		openHelpPoS(content, "");
+	}
+	else {
+		console.log(
+			"unknown type of elem",
+			elem
+		);
+	}
+}
+
+/* --------- CLOSE HELP PAGE (NEW) --------- */
+function closePopupGeneral() {
+	const popup = document.getElementById("popupGeneral");
+	popup.hidden = true;
+	document.body.classList.remove("help-open");
+
+	if (explanationTrapCleanup) {
+		explanationTrapCleanup();
+		explanationTrapCleanup = null;
+	}
+
+	if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
+		lastHelpOpener.focus();
+	}
+}
+
+/* --------- CLOSE HELP PAGE ON ESC (NEW) --------- */
+document.addEventListener("keydown", function (event) {
+	const popup = document.getElementById("popupGeneral");
+
+	if (event.key === "Escape" && popup && !popup.hidden) {
+		event.preventDefault();
+		closePopupGeneral();
+	}
+});
+
+/* --------- 'SHOW MORE' FUNCTIONALITY (NEW) --------- */
+function initHelpOpenMoreInfo() {
+	// do nothing if already initialized
+	if (document.body.dataset.helpOpenMoreInfoInit === "1") return;
+	document.body.dataset.helpOpenMoreInfoInit = "1";
+
+	// set accessibility to open more info containers
+	function setAccessibility(root = document) {
+		const elements = root.querySelectorAll(".helpOpenMoreInfo");
+		elements.forEach((elem) => {
+			// accessibility already set
+			if (elem.dataset.helpOpenMoreInfoA11y === "1") return;
+			elem.dataset.helpOpenMoreInfoA11y = "1";
+
+			elem.setAttribute("tabindex", "0");
+			elem.setAttribute("role", "button");
+			if (!elem.hasAttribute("aria-expanded")) {
+				elem.setAttribute("aria-expanded", "false");
+			}
+		});
+	}
+	setAccessibility(document);
+	const observer = new MutationObserver(() => setAccessibility(document));
+	observer.observe(document.body, { childList: true, subtree: true });
+
+	// add click handler (delegated)
+	document.addEventListener("click", function (e) {
+		const elem = e.target.closest(".helpOpenMoreInfo");
+		if (!elem) return;
+
+		const targetId = elem.getAttribute("data-target");
+		if (!targetId) return;
+
+		// find container
+		const container = elem.closest("#LexinExplanationsWrapper, .LexinExplanationsWrapper") || document;
+		const target = container.querySelector("#" + CSS.escape(targetId));
+		if (!target) return;
+
+		// toggle visibility
+		const isOpen = target.style.display === "block";
+
+		target.style.display = isOpen ? "none" : "block";
+		elem.setAttribute("aria-expanded", String(!isOpen));
+		elem.textContent = isOpen ? "Visa mer +" : "Visa mindre –";
+
+		target.style.display = isOpen ? "none" : "block";
+		elem.setAttribute("aria-expanded", String(!isOpen));
+  });
+
+  // accessibility
+  document.addEventListener("keydown", function (e) {
+	const elem = e.target.closest(".helpOpenMoreInfo");
+	if (!elem) return;
+
+	if (e.key === "Enter" || e.key === " ") {
+	  e.preventDefault();
+	  elem.click();
+	}
+  });
 }
 
 /* --------- FIX LINK BUG (LINK SHOULD NOT JUMP TO TOP OF PAGE) --------- */
@@ -402,8 +601,14 @@ document.addEventListener('click', (e) => {
 
 /* --------- UP BUTTON JUMPS TO TOP OF PAGE --------- */
 function jumpToTopOfPage() {
-	window.scrollTo({
+	/*window.scrollTo({
 		top: 0,
 		behavior: "smooth"
-	});
+	});*/
+
+	const content = document.getElementById("popupGeneral");
+    content.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }

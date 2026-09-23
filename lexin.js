@@ -1194,7 +1194,7 @@ function createArticleHeading(text) {
 
 	// add click functionality to icon
 	infoButton.addEventListener('click', function () {
-		openPageDescription(head);
+		openPageDescription(head, infoButton);
 	});
 
 	tmp.appendChild(head);
@@ -6346,332 +6346,6 @@ function reOrderResultsWithSeeReferences(ls) {
   });
 }*/
 
-// CG ADD - fix "open more info" bug
-function initHelpOpenMoreInfo() {
-	// do nothing if already initialized
-	if (document.body.dataset.helpOpenMoreInfoInit === "1") return;
-	document.body.dataset.helpOpenMoreInfoInit = "1";
-
-	// set accessibility to open more info containers
-	function setAccessibility(root = document) {
-		const elements = root.querySelectorAll(".helpOpenMoreInfo");
-		elements.forEach((elem) => {
-			// accessibility already set
-			if (elem.dataset.helpOpenMoreInfoA11y === "1") return;
-			elem.dataset.helpOpenMoreInfoA11y = "1";
-
-			elem.setAttribute("tabindex", "0");
-			elem.setAttribute("role", "button");
-			if (!elem.hasAttribute("aria-expanded")) {
-				elem.setAttribute("aria-expanded", "false");
-			}
-		});
-	}
-  	setAccessibility(document);
-	const observer = new MutationObserver(() => setAccessibility(document));
-	observer.observe(document.body, { childList: true, subtree: true });
-
-	// add click handler (delegated)
-	document.addEventListener("click", function (e) {
-		const elem = e.target.closest(".helpOpenMoreInfo");
-		if (!elem) return;
-
-		const targetId = elem.getAttribute("data-target");
-		if (!targetId) return;
-
-		// find container
-		const container = elem.closest("#LexinExplanationsWrapper, .LexinExplanationsWrapper") || document;
-		const target = container.querySelector("#" + CSS.escape(targetId));
-		if (!target) return;
-
-		// toggle visibility
-		const isOpen = target.style.display === "block";
-
-		target.style.display = isOpen ? "none" : "block";
-		elem.setAttribute("aria-expanded", String(!isOpen));
-		elem.textContent = isOpen ? "Visa mer +" : "Visa mindre –";
-
-		target.style.display = isOpen ? "none" : "block";
-		elem.setAttribute("aria-expanded", String(!isOpen));
-  });
-
-  // accessibility
-  document.addEventListener("keydown", function (e) {
-    const elem = e.target.closest(".helpOpenMoreInfo");
-    if (!elem) return;
-
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      elem.click();
-    }
-  });
-}
-
-/* --------- OPEN/CLOSE HELP PAGES --------- */
-var relevantExplanationElement = null;
-let lastHelpOpener = null;
-let explanationTrapCleanup = null;
-function openPageDescription(elem) {
-	// close general help page
-	function closeGeneralHelpPage() {
-		explDiv.style.display = "none";
-
-		// feedback button helper
-		document.body.classList.remove("help-open");
-
-		if (searchBar) {
-			searchBar.style.display = "block";
-		}
-
-		// accessibility (stop focus trap)
-		if (explanationTrapCleanup) {
-			explanationTrapCleanup();
-			explanationTrapCleanup = null;
-		}
-
-		// accessibility (restore focus)
-		if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
-			lastHelpOpener.focus();
-		}
-	}
-
-	// accessibility
-	lastHelpOpener = elem || document.activeElement;
-
-	// initiate specific help pages (run only once)
-    if(!relevantExplanationElement) {
-		// close specific help page
-		function closeSpecificHelpPage() {
-			// accessibility (stop focus trap)
-			if (explanationTrapCleanup) {
-				explanationTrapCleanup();
-				explanationTrapCleanup = null;
-			}
-
-			closeHelpPopup();
-
-			// accessibility (restore focus)
-			if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
-				lastHelpOpener.focus();
-			}
-		}
-
-		// wrapper 
-		relevantExplanationElement = document.createElement('div');
-		relevantExplanationElement.className = 'LexinExplanationsWrapper';
-
-		// actual page content
-		let inner = document.createElement('div');
-		inner.className = 'LexinExplanations';
-
-		// feedback button helper
-		function closeHelpPopup() {
-			relevantExplanationElement.style.display = "none";
-			document.body.classList.remove("help-open");
-		}
-
-		// close specific help page
-		/*$(inner).on("click", ".closeHelp", function (event) {
-			event.stopPropagation();
-
-			// accessibility (stop focus trap)
-			if (explanationTrapCleanup) {
-				explanationTrapCleanup();
-				explanationTrapCleanup = null;
-			}
-
-			closeHelpPopup();
-
-			// accessibility (restore focus)
-			if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
-				lastHelpOpener.focus();
-			}
-		});*/
-
-		// close specific help page on close button click
-		$(inner).on("click", ".closeHelp", function (event) {
-			event.stopPropagation();
-			closeSpecificHelpPage();
-		});
-
-		// close specific help on esc button click
-		document.addEventListener("keydown", function (event) {
-			// only do something if element is specific help page
-			if (!relevantExplanationElement || relevantExplanationElement.style.display !== "block") return;
-
-			if (event.key === "Escape") {
-				closeSpecificHelpPage();
-			}
-		});
-		
-		relevantExplanationElement.style.top = 0;
-		inner.style.height = "100%";
-		relevantExplanationElement.appendChild(inner);
-		document.body.appendChild(relevantExplanationElement);
-
-		// CG ADD - fix "open more info" bug
-		initHelpOpenMoreInfo();
-    } 
-
-	// feedback button helper
-  	document.body.classList.add("help-open");
-
-	// specific help page
-    if(elem) {
-		/* if(elem.className.indexOf('clickableHeading') >= 0) { */
-			let inner = relevantExplanationElement.children[0];
-			
-			if(elem.textContent == 'förklaring:') {		
-				openHelpSakuppl(inner);
-			} /*else if(elem.className.indexOf('phonetic') >= 0) {
-				openHelpPhon(inner, elem.textContent);
-			}*/ 
-			else if(elem.className.indexOf('phonetic') >= 0) {
-				openHelpPhon(inner, elem.dataset.phonetic);
-			}
-			/*else if(elem.className.indexOf('PoS') >= 0) {
-				openHelpPoS(inner, elem.textContent);
-			}*/
-			else if(elem.textContent.indexOf('användning') >= 0) {
-				openHelpUse(inner);
-			} else if(elem.textContent.indexOf('konstruktioner') >= 0) {
-				openHelpConstr(inner);
-			} else if(elem.textContent.indexOf('motsats') >= 0) {
-				openHelpAnt(inner);
-			} else if(elem.textContent == 'jämför:') {
-				openHelpCompare(inner);
-			} else if(elem.textContent == 'se:') {
-				openHelpSee(inner);
-			} else if(elem.textContent.indexOf('avstavning') >= 0 || elem.classList.contains('avstavning')) {
-				openHelpHyp(inner);
-			} else if(elem.textContent.indexOf('förkortning') >= 0 || elem.classList.contains('förkortning')) {
-				openHelpAbbr(inner);
-			} else if(elem.textContent.indexOf('variantform') >= 0) {
-				openHelpVar(inner);
-			} else if(elem.textContent.indexOf('avledning') >= 0) {
-				openHelpDer(inner);
-			} else if(elem.textContent.indexOf('sammansättning') >= 0) {
-				openHelpComps(inner);
-			} else if(elem.textContent == 'uttryck:') {
-				openHelpIdioms(inner);
-			} else if(elem.textContent == 'exempel:') {
-				openHelpExamples(inner);
-			} else if(elem.textContent.indexOf("video") >= 0) {
-				openHelpVideo(inner);
-			}
-			else if(elem.textContent == 'bild:') {
-				openHelpImage(inner);
-			}
-			else if(elem.classList.contains('ordklass') >= 0) {
-				openHelpPoS(inner, "");
-			}
-
-			// unknown
-			else if(elem.textContent == 'referenceHead') {
-				console.log("openPageDescription: Element is an unknown type of clickableHeading", elem);
-			} 
-			// unknown
-			else {
-				console.log("openPageDescription: Element is an unknown type of clickableHeading", elem);
-			}
-
-			// display specific help page
-			relevantExplanationElement.style.display = 'block';
-			inner.focus();
-
-			// accessibility (make popup focusable)
-			if (!relevantExplanationElement.hasAttribute("tabindex")) {
-				relevantExplanationElement.setAttribute("tabindex", "-1");
-			}
-
-			// accessibility (start focus trap)
-			if (explanationTrapCleanup) explanationTrapCleanup();
-			explanationTrapCleanup = trapFocus(relevantExplanationElement);
-
-			// accessibility (move focus inside)
-			const focusables = getFocusableElements(relevantExplanationElement);
-			(focusables[0] || relevantExplanationElement).focus();
-
-			// create close button
-			$(inner).prepend('<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng infosidan">	  <img src="svg/closebutton.svg">	</button>');
-
-			// accessibility (first focus on close button)
-			const closeBtn = inner.querySelector(".closeHelp");
-			if (closeBtn) {
-				closeBtn.focus();
-			}
-
-			return;
-		/*} 
-		else { 
-			console.log("openPageDescription: Element is not a clickableHeading", elem);
-		}*/
-    } 
-	// general help page
-	else { 
-		console.log("openPageDescription: No element, open help page");
-    }
-
-	// hide search bar
-    let searchBar = $("#theForm2")[0];
-    if(searchBar) {
-		searchBar.style.display = 'none';
-    }
-    
-	// add general help page
-    let explDiv = $("#LexinExplanationsWrapper")[0];
-    $("#LexinExplanationsWrapper").empty().append(helpElement);
-
-	// CG REMOVE - fix "open more info" bug
-	//initHelpOpenMoreInfo();
-
-    explDiv.style.display = 'block';
-
-	// accessibility (make popup focusable)
-	if (!explDiv.hasAttribute("tabindex")) {
-	explDiv.setAttribute("tabindex", "-1");
-	}
-
-	// accessibility (start focus trap)
-	if (explanationTrapCleanup) explanationTrapCleanup();
-	explanationTrapCleanup = trapFocus(explDiv);
-
-	// accessibility (move focus inside)
-	const focusables = getFocusableElements(explDiv);
-	(focusables[0] || explDiv).focus();
-
-	// feedback button helper
-	document.body.classList.add("help-open");
-
-	// close general help on close button click
-	$(".LexinExplanations button.closeHelp").click(() => {
-		closeGeneralHelpPage();
-	});
-
-	// close general help on esc button click
-	document.addEventListener("keydown", function (event) {
-		// only do something if element is general help page
-  		if (!explDiv || explDiv.style.display !== "block") return;
-
-		if (event.key === "Escape") {
-			closeGeneralHelpPage();
-		}
-	});
-    
-    let anchor = $("#LexinExplanations")[0];
-    if(anchor) {
-		anchor.scrollIntoView();
-    }
-
-    explDiv.focus();
-
-	// accessibility
-	const closeBtn = explDiv.querySelector(".closeHelp");
-	if (closeBtn) {
-		closeBtn.focus();
-	}
-}
-
 // ----------------------------------------------------------------------
 // jQuery.condShow(shouldBeShown)
 // ----------------------------------------------------------------------
@@ -6819,9 +6493,13 @@ function initialShowHide() {
 
 	// show/hide for icons in articles
 	if(settings.info_buttons.val) {
-        $(".infoIconLight").css("display", "block");
+        /*$(".infoIconLight").css("display", "block");
+		$(".infoIconDark").css("display", "block");*/
+		$(".infoIconLight, .infoIconDark").addClass("infoIconEnabled");
     } else {
-        $(".infoIconLight").css("display", "none");
+        /*$(".infoIconLight").css("display", "none");
+		$(".infoIconDark").css("display", "none");*/
+		$(".infoIconLight, .infoIconDark").removeClass("infoIconEnabled");
     }
     
     if(settings.clickable_words.val && false) { /* Turn off for now */
@@ -7177,9 +6855,13 @@ $(document).ready(function() {
 	// show/hide info buttons in articles
 	$(document).on("change", "#info_buttonsSet", function () {
 		if ($(this).is(":checked")) {
-			$(".infoIconLight").css("display", "block");
+			/*$(".infoIconLight").css("display", "block");
+			$(".infoIconDark").css("display", "block");*/
+			$(".infoIconLight, .infoIconDark").addClass("infoIconEnabled");
 		} else {
-			$(".infoIconLight").css("display", "none");
+			/*$(".infoIconLight").css("display", "none");
+			$(".infoIconDark").css("display", "none");*/
+			$(".infoIconLight, .infoIconDark").removeClass("infoIconEnabled");
 		}
 	});
 
