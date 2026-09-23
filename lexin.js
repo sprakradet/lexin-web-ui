@@ -6816,6 +6816,13 @@ function initialShowHide() {
 			openPageDescription(this);
 		});
     }
+
+	// show/hide for icons in articles
+	if(settings.info_buttons.val) {
+        $(".infoIconLight").css("display", "block");
+    } else {
+        $(".infoIconLight").css("display", "none");
+    }
     
     if(settings.clickable_words.val && false) { /* Turn off for now */
 	$(".longClickLink").addClass('makeClickableStandOut');
@@ -6939,6 +6946,7 @@ var settings = {
     'multiple_languages':{'text':'Sök på flera språk samtidigt.', 'val':0},
     'clickable_words':{'text':'Tillåt sökning genom att klicka på sökbara ord.', 'val':1},
     'clickable_headings':{'text':'Gör rubriker klickbara för att öppna hjälptext.', 'val':1},
+	'info_buttons':{'text':'Visa infoknappar som öppnar hjälptext i artiklar .', 'val':1},
     'add_swedish_results':{'text':'Lägg till enspråkiga svenska resultat vid sökning i tvåspråkiga lexikon.', 'val':0},
     
     'completion':{'text':'Visa kompletteringsförslag under sökrutan.', 'val':1},
@@ -7162,10 +7170,18 @@ $(document).ready(function() {
 			});
 		} else {
 			$(".clickableHeading").removeClass('makeClickableHeadingsStandOut');
-			
 			$(".clickableHeading").off('click');
 		}
     });
+
+	// show/hide info buttons in articles
+	$(document).on("change", "#info_buttonsSet", function () {
+		if ($(this).is(":checked")) {
+			$(".infoIconLight").css("display", "block");
+		} else {
+			$(".infoIconLight").css("display", "none");
+		}
+	});
 
     $(document).on("lexin_settingsupdate_clickable_words", function () {
 	if(settings.clickable_words.val && false) { /* Turn off for now */
@@ -7455,5 +7471,14 @@ async function openPageFromFile(url, opener) {
 /* --------- GO TO 'START PAGE' (EMPTY SEARCH) --------- */
 function doEmptySearch() {
 	$("#searchQuery").val("");
+
+	// add search word to h2
+	$("#searchResultQuery").text($("#searchQuery").val());
+		if ($("#searchResultQuery").text().trim()) {
+			$(".h2SearchResultHeading").show();
+		} else {
+			$(".h2SearchResultHeading").hide();
+		}
+
     callLexin(true);
 }

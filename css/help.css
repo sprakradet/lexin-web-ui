@@ -283,15 +283,13 @@ th {
 
     /* links */
 
-    .helpOpenMoreInfo, 
     .LexinExplanations a {
         color: #3FD695;
     }
     .LexinExplanations a {
         text-decoration-color: #3FD695;
     }
-    .LexinExplanations a:hover,
-    .helpOpenMoreInfo:hover {
+    .LexinExplanations a:hover {
         background-color: #324b5a;
     }
     /* icons */
