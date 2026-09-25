@@ -42,10 +42,12 @@
 
 .savedWordsList a {
     color: white;
+    text-decoration: underline;
 }
 
 .savedWordsList a:hover {
     text-decoration: underline;
+    background-color: transparent;
 }
 
 .savedWordsList {

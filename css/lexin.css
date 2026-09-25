@@ -758,6 +758,9 @@ a:any-link {
    color: rgba(28, 63, 73, 0.9);
    text-decoration-color: rgba(28, 63, 73, 0.9);
 }
+a:any-link:hover {
+  background-color: #EBEEEF;
+}
 
 .notRelevant {
     /* display: none !important; */
@@ -1000,7 +1003,7 @@ footer ul {
 }
 
 footer li {
-    margin-bottom: 1rem;
+    /*margin-bottom: 1rem;*/
 }
 
 footer a:any-link {
@@ -1027,10 +1030,30 @@ footer .lp-icon {
     margin-left: .8rem;
 }
 
+.footerLink {
+    /*padding-top: 7px;
+    padding-bottom: 7px;*/
+    display: inline-block;
+    box-sizing: border-box;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
 .footerLink:hover {
   background-color: #16323A !important;
-  padding-top: 7px;
-  padding-bottom: 7px;
+}
+
+.accessibility-statement-button {
+    background: none;
+    border: none;
+    padding: 0;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /* --------- TEMP ERROR MESSAGE --------- */
@@ -1206,22 +1229,31 @@ footer .lp-icon {
     .vidContainer a,
     /*.graminfoExplanationText,*/
     .referenceInfo a,
-    .antonym a {
+    .antonym a,
+    a:any-link {
         color: #3FD695 !important;
+    }
+    a.footerLink {
+        color: white !important;
     }
     /*.makeClickableHeadingsStandOut:hover,*/
     .bildtemaLink:hover,
     /*.graminfoExplanationText:hover,*/
     .referenceInfo a:hover,
     .vidContainer a:hover,
-    .antonym a:hover {
+    .antonym a:hover,
+    a:any-link:hover {
         background-color: #324b5a;
     }
     .referenceInfo a,
     .bildtemaLink,
     .vidContainer a,
-    .antonym a {
+    .antonym a,
+    a:any-link {
         text-decoration-color: #3FD695 !important;
+    }
+    a.footerLink {
+        text-decoration-color: white !important;
     }
 
     /* icons */

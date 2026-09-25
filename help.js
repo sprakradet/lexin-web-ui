@@ -377,6 +377,15 @@ async function openHelpUseLexin(inner) {
     inner.innerHTML = helpDocument.body.innerHTML;
 }
 
+/* --------- PAGE: ACCESSIBILITY STATEMENT --------- */
+async function openAccessibilityStatement(inner) {
+	const response = await fetch("accessibility_statement.html");
+    const html = await response.text();
+    const parser = new DOMParser();
+    const helpDocument = parser.parseFromString(html, "text/html");
+    inner.innerHTML = helpDocument.body.innerHTML;
+}
+
 /* --------- OPEN HELP PAGE (NEW) --------- */
 let lastHelpOpener = null;
 let explanationTrapCleanup = null;
@@ -412,9 +421,14 @@ function openPageDescription(elem, button) {
 /* --------- ADD CONTENT TO HELP PAGE (NEW) --------- */
 async function populateHelpPopup(content, elem) {
 	// general help page
-	if (!elem) {
+	if (elem === "help_use_lexin") {
 		await openHelpUseLexin(content);
 	}
+	// accessibility statement page
+	else if (elem === "accessibility_statement") {
+		await openAccessibilityStatement(content);
+	}
+
 	else if (elem.textContent === "förklaring:") {
 		openHelpSakuppl(content);
 	}

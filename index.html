@@ -197,10 +197,10 @@
 					<input type="checkbox" class="settingsmenuCheckbox" id="add_swedish_resultsSet" name="add_swedish_resultsSet" value="settings_add_swedish_results">
 					<label class="settingsmenuLabel" for="add_swedish_resultsSet">Lägg alltid till svenska resultat</label>
 				</div>
-				<div class="settingsMainItem">
+				<!--<div class="settingsMainItem">
 					<input type="checkbox" class="settingsmenuCheckbox" id="clickable_headingsSet" name="clickable_headingsSet" value="settings_clickable_headings">
 					<label class="settingsmenuLabel" for="clickable_headingsSet">Klickbara rubriker</label>
-				</div>
+				</div>-->
 				<div class="settingsMainItem">
 					<input type="checkbox" class="settingsmenuCheckbox" id="info_buttonsSet" name="info_buttonsSet" value="settings_info_buttons">
 					<label class="settingsmenuLabel" for="info_buttonsSet">Visa infoknappar i artiklar</label>
@@ -242,7 +242,7 @@
 					</button>
 				</div>
 				<div class="settingsMainItem">
-					<button class="settingsNavigation openHelp" type="button">
+					<button class="settingsNavigation openHelp" type="button" onclick="openPageDescription('help_use_lexin', this)">
 						<span class="settingsNavigationText">Hjälp</span>
 						<img src="svg/submenu.svg" class="settingsNavigationIcon" alt="">
 					</button>
@@ -473,7 +473,7 @@
 	<!-- CG ADD HELP PAGE POPUP -->
 	<div id="popupGeneral" class="popupGeneral" role="dialog" aria-modal="true" hidden>
 		<button id="closePopupGeneral" class="closeButtonGeneral" type="button" onclick="closePopupGeneral()">Stäng</button>
-		<div id="popupGeneralContent"></div>
+		<div id="popupGeneralContent" class="popupGeneralContent"></div>
 	</div>
 
     <footer>
@@ -532,14 +532,19 @@
 					</svg>
 				</a>
 			</li>-->
-			<!--- NEW ACCESSIBILITY STATEMENT (hide in prod until ready)-->
 			<li>
-				<a href="#" class="footerLink" onclick="openPageFromFile('accessibility_statement.html', this); return false;">
+				<!--<a href="#" class="footerLink" onclick="openPageFromFile('accessibility_statement.html', this); return false;">
 					Tillgänglighetsredogörelse
 					<svg aria-hidden="true" class="lp-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
 					</svg>
-				</a>
+				</a>-->
+				<button type="button" class="normal footerLink accessibility-statement-button" onclick="openPageDescription('accessibility_statement', this)">
+					Tillgänglighetsredogörelse
+					<svg aria-hidden="true" class="lp-icon">
+						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
+					</svg>
+				</button>
 			</li>
 		</ul>
 

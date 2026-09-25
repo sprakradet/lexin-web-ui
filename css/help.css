@@ -270,7 +270,7 @@ th {
     width: min(500px, calc(100vw - 5rem));
 
     /* make scrollable */
-    max-height: calc(100vh - 5rem);         
+    max-height: calc(100vh - 10rem);         
     overflow-y: auto;
 
     background: white;
@@ -295,9 +295,14 @@ th {
     border-radius: 0.3em;
     cursor: pointer;
 
-    position: absolute;
+    /* sit in top-right corner */
+    position: absolute;     
     top: 1rem;
     right: 1rem;
+}
+
+.popupGeneralContent {
+    margin-top: 2em;
 }
 
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
