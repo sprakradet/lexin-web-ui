@@ -7164,3 +7164,25 @@ function doEmptySearch() {
 
     callLexin(true);
 }
+
+/* --------- OPEN NEW MENU (TEST) --------- */
+function toggleExpandMenu(button) {
+    const contentId = button.getAttribute("aria-controls");
+    const content = document.getElementById(contentId);
+
+    const isOpen = button.getAttribute("aria-expanded") === "true";
+	// close menu
+    if (isOpen) {
+        content.hidden = true;
+        button.setAttribute("aria-expanded", "false");
+        const icon = button.querySelector(".expandMenuIcon");
+        icon.textContent = "+";
+    } 
+	// open menu 
+	else {
+        content.hidden = false;
+        button.setAttribute("aria-expanded", "true");
+        const icon = button.querySelector(".expandMenuIcon");
+        icon.textContent = "−";
+    }
+}

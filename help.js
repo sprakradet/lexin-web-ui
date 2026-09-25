@@ -377,6 +377,38 @@ async function openHelpUseLexin(inner) {
     inner.innerHTML = helpDocument.body.innerHTML;
 }
 
+async function openHelpUseLexin2(inner) {
+	const response = await fetch("help_use_lexin.html");
+    const html = await response.text();
+    const parser = new DOMParser();
+    const helpDocument = parser.parseFromString(html, "text/html");
+    inner.innerHTML = helpDocument.body.innerHTML;
+}
+
+async function openHelpSearchResults(inner) {
+	const response = await fetch("help_search_results.html");
+    const html = await response.text();
+    const parser = new DOMParser();
+    const helpDocument = parser.parseFromString(html, "text/html");
+    inner.innerHTML = helpDocument.body.innerHTML;
+}
+
+async function openHelpAboutLexin(inner) {
+	const response = await fetch("help_about_lexin.html");
+    const html = await response.text();
+    const parser = new DOMParser();
+    const helpDocument = parser.parseFromString(html, "text/html");
+    inner.innerHTML = helpDocument.body.innerHTML;
+}
+
+async function openHelpLicenses(inner) {
+	const response = await fetch("help_licenses.html");
+    const html = await response.text();
+    const parser = new DOMParser();
+    const helpDocument = parser.parseFromString(html, "text/html");
+    inner.innerHTML = helpDocument.body.innerHTML;
+}
+
 /* --------- PAGE: ACCESSIBILITY STATEMENT --------- */
 async function openAccessibilityStatement(inner) {
 	const response = await fetch("accessibility_statement.html");
@@ -423,6 +455,18 @@ async function populateHelpPopup(content, elem) {
 	// general help page
 	if (elem === "help_use_lexin") {
 		await openHelpUseLexin(content);
+	}
+	else if (elem === "help_use_lexin2") {
+		await openHelpUseLexin2(content);
+	}
+	else if (elem === "help_search_results") {
+		await openHelpSearchResults(content);
+	}
+	else if (elem === "help_about_lexin") {
+		await openHelpAboutLexin(content);
+	}
+	else if (elem === "help_licenses") {
+		await openHelpLicenses(content);
 	}
 	// accessibility statement page
 	else if (elem === "accessibility_statement") {

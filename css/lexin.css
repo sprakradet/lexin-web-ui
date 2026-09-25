@@ -273,7 +273,7 @@ select {
     cursor: pointer;
 }
 
-/* --------- LOGO (?) --------- */
+/* --------- LEXIN LOGO --------- */
 
 .logo {
 }
@@ -730,6 +730,10 @@ select {
 
 }
 
+input[type="checkbox"] {
+  accent-color: #3FD695;
+}
+
 /* ------ CLICKABLE ARTICLE PARTS ------ */
 
 .makeClickableStandOut {
@@ -810,12 +814,6 @@ a:any-link:hover {
     width: 1.5rem;
     height: 1.5rem;
 }
-/*.infoIconLight {
-    display: block;
-}
-.infoIconDark {
-    display: none;
-}*/
 
 .infoIconLight,
 .infoIconDark {
@@ -852,7 +850,8 @@ a:any-link:hover {
 
 .picButton,
 .videoButton,
-.constructionButton {
+.constructionButton,
+.openPageButton {
     background-color: #D7E9EC;
     color: black;
     font: inherit;
@@ -875,7 +874,6 @@ a:any-link:hover {
 .imageLink {
     /*font-variant: small-caps;*/
 }
-
 
 /* --------- VIDEO --------- */
 
@@ -972,6 +970,57 @@ div[dir=rtl] {
   transform: rotate(90deg);
 }
 
+/* --------- NEW MENU (TEST) --------- */
+
+.expandMenu {
+    width: 100%;
+}
+
+.expandMenuItem {
+    border-bottom: 1px solid #ffffff40;;
+}
+
+.expandMenuButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0.8rem 0;
+    border: 0;
+    background: none;
+    color: white;
+    font-family: "Noto Sans",sans-serif;
+    font-weight: normal;
+    font-size:1em;
+    text-align: left;
+    cursor: pointer;
+}
+
+.expandMenuText {
+    flex: 1;
+}
+
+.expandMenuIcon {
+    margin-left: 1rem;
+    font-size: 2em;
+    line-height: 0.2;
+    font-weight: 100;
+}
+
+.expandMenuContent {
+    padding: 0.5rem 0 1rem 1rem;
+}
+
+.expandMenuButton:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.openPageButton {
+    margin-bottom: 0.5em;
+}
+
 /* --------- FOOTER --------- */
 
 footer {
@@ -1031,8 +1080,6 @@ footer .lp-icon {
 }
 
 .footerLink {
-    /*padding-top: 7px;
-    padding-bottom: 7px;*/
     display: inline-block;
     box-sizing: border-box;
     padding-top: 7px;
@@ -1079,28 +1126,6 @@ footer .lp-icon {
     width: 36px;
     height: 36px;
     flex-shrink: 0;         /* align items */
-}
-
-/* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
-
-@media (hover: hover) and (pointer: fine) {
-    #multiLanguageChoiceButton:hover,
-    .picButton:hover,
-    .videoButton:hover,
-    .constructionButton:hover,
-    .helpOpenMoreInfoButton:hover,
-    .closeButtonGeneral:hover  {
-        background-color: #3FD695;
-    }
-}
-
-/* --------- PHONE --------- */
-
-@media (max-width: 630px) {
-    .h1SearchHeading,
-    .h2SearchResultHeading {
-        margin-left: 1.1rem;
-    }
 }
 
 /* --------- BILDTEMA MULTILING --------- */
@@ -1170,6 +1195,29 @@ footer .lp-icon {
     top: 0.7em;
     pointer-events: none;
     transform: rotate(180deg);
+}
+
+/* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
+
+@media (hover: hover) and (pointer: fine) {
+    #multiLanguageChoiceButton:hover,
+    .picButton:hover,
+    .videoButton:hover,
+    .constructionButton:hover,
+    .helpOpenMoreInfoButton:hover,
+    .closeButtonGeneral:hover,
+    .openPageButton:hover  {
+        background-color: #3FD695;
+    }
+}
+
+/* --------- PHONE --------- */
+
+@media (max-width: 630px) {
+    .h1SearchHeading,
+    .h2SearchResultHeading {
+        margin-left: 1.1rem;
+    }
 }
 
 /* --------- HIGH CONTRAST MODE --------- */
@@ -1281,11 +1329,5 @@ footer .lp-icon {
     .infoIconDark.infoIconEnabled {
         display: block;
     }
-}
-
-/* --------- CHECKBOXES --------- */
-
-input[type="checkbox"] {
-  accent-color: #3FD695;
 }
 
