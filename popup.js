@@ -12,6 +12,10 @@ function showPopup() {
 	// accessibility (tab focus)
 	lastFocusedElement = document.activeElement;
 
+	// add non-clickable shadow background
+	const backdrop = document.getElementById("popupBackdrop");
+	backdrop.hidden = false;
+
 	popup.style.display = 'block';
 	document.body.classList.add("modal-open");
 
@@ -34,6 +38,10 @@ function closePopup() {
 	document.querySelectorAll("#popup input[type='text']").forEach(el => el.value = "");
 	document.querySelectorAll("#popup textarea").forEach(el => el.value = "");
 	document.querySelectorAll("#popup input[type='radio']").forEach(el => el.checked = false);
+
+	// remove non-clickable shadow background
+	const backdrop = document.getElementById("popupBackdrop");
+	backdrop.hidden = true;
 
 	// accessibility (stop focus trap)
 	if (popupTrapCleanup) {

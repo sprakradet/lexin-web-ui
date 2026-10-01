@@ -424,6 +424,7 @@ let explanationTrapCleanup = null;
 function openPageDescription(elem, button) {
 	console.log(elem);
 
+	const backdrop = document.getElementById("popupBackdrop");
 	const popup = document.getElementById("popupGeneral");
 	const content = document.getElementById("popupGeneralContent");
 	lastHelpOpener = button !== undefined ? button : elem;
@@ -435,6 +436,7 @@ function openPageDescription(elem, button) {
 	populateHelpPopup(content, elem);
 
 	// show popup
+	backdrop.hidden = false;
 	popup.hidden = false;
 	document.body.classList.add("help-open");
 
@@ -541,7 +543,9 @@ async function populateHelpPopup(content, elem) {
 /* --------- CLOSE HELP PAGE (NEW) --------- */
 function closePopupGeneral() {
 	const popup = document.getElementById("popupGeneral");
+	const backdrop = document.getElementById("popupBackdrop");
 	popup.hidden = true;
+	backdrop.hidden = true;
 	document.body.classList.remove("help-open");
 
 	if (explanationTrapCleanup) {
