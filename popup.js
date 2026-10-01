@@ -7,8 +7,6 @@ let popupTrapCleanup = null;
 
 /* --------- SHOW POPUP --------- */
 function showPopup() {
-	const popup = document.getElementById('popup');
-
 	// accessibility (tab focus)
 	lastFocusedElement = document.activeElement;
 
@@ -16,6 +14,8 @@ function showPopup() {
 	const backdrop = document.getElementById("popupBackdrop");
 	backdrop.hidden = false;
 
+	// show popup
+	const popup = document.getElementById('popup');
 	popup.style.display = 'block';
 	document.body.classList.add("modal-open");
 
@@ -33,8 +33,11 @@ function showPopup() {
 
 /* --------- CLOSE POPUP --------- */
 function closePopup() {
+	// hide popup
 	document.getElementById('popup').style.display = 'none';
 	document.body.classList.remove("modal-open");
+
+	// reset field values
 	document.querySelectorAll("#popup input[type='text']").forEach(el => el.value = "");
 	document.querySelectorAll("#popup textarea").forEach(el => el.value = "");
 	document.querySelectorAll("#popup input[type='radio']").forEach(el => el.checked = false);
