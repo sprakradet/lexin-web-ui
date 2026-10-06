@@ -97,7 +97,7 @@ function showSettings() {
 // show help text
 $(function () {
     $(".openHelp").on("click", function () {
-	openPageDescription();
+	//openPageDescription();
 	// if ($("#helpPopup").css("display") === "block") {
 	//     dismissSettings();
 	// } else {
