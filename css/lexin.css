@@ -1307,6 +1307,9 @@ footer .lp-icon {
     a.footerLink {
         text-decoration-color: white !important;
     }
+    a.skipLink {
+        color: black !important;
+    }
 
     /* icons */
     input[type="submit"] {
