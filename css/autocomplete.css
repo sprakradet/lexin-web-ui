@@ -21,8 +21,8 @@
 }
 
 .autocomplete-emph {
-  background-color: #A1AEB1 !important;
-  color: #ffffff;
+  /*background-color: #A1AEB1 !important;*/
+  background-color: #D7E9EC !important;
 }
 
 /* --------- DARK MODE --------- */
@@ -33,7 +33,8 @@
       color: white;
   }
 
-  .autocomplete-items div:hover {
-    background-color: #233540;
+  .autocomplete-items div:hover,
+  .autocomplete-emph {
+    background-color: #233540 !important;
   }
 }
