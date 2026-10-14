@@ -36,6 +36,10 @@ body {
     background-position: bottom;
     background-repeat: no-repeat;
     line-height: 1.095;
+
+    /* remove default button styling */
+    border: none;
+    padding: 0;
 }
 
 .h1SearchHeading {
