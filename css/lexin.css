@@ -821,13 +821,8 @@ a:any-link:hover {
 .infoIconDark {
     width: 1.5rem;
     height: 1.5rem;
-}
-
-.infoIconLight,
-.infoIconDark {
     display: none;
 }
-
 .infoIconLight.infoIconEnabled {
     display: block;
 }
@@ -852,9 +847,28 @@ a:any-link:hover {
     margin-left: .5em;
     margin-right: .2em;
     border: 1px solid black;
-    vertical-align: bottom;
+    vertical-align: center;
     cursor: pointer;
 }
+
+.picButtonIcon {
+    height: 1.5em;
+    padding: 0;
+    margin-left: -2px;
+    margin-right: .2em;
+    margin-top: 1px;
+    vertical-align: bottom;
+}
+
+.bildtemaLink:hover {
+    background-color: #EBEEEF;
+}
+
+.imageLink {
+    /*font-variant: small-caps;*/
+}
+
+/* --------- BUTTONS --------- */
 
 .picButton,
 .videoButton,
@@ -871,16 +885,19 @@ a:any-link:hover {
     margin: 0;
     margin-left: 1.5rem;
     margin-top: 0.2rem;
-    display: block;
     cursor: pointer;
 }
 
-.bildtemaLink:hover {
-    background-color: #EBEEEF;
+.constructionButton,
+.openPageButton {
+    display: block;
 }
 
-.imageLink {
-    /*font-variant: small-caps;*/
+.picButton,
+.videoButton {
+    display: flex;
+    align-items: center;
+    gap: 0.1em;
 }
 
 /* --------- VIDEO --------- */
@@ -893,6 +910,15 @@ a:any-link:hover {
     cursor: pointer;
     border: 1px solid black;
 }    
+
+.videoButtonIcon {
+    height: 1.5em;
+    padding: 0;
+    margin-left: -2px;
+    margin-right: .2em;
+    margin-top: 1px;
+    vertical-align: bottom;
+}
 
 .vidContainer {
     margin-top: .5em;

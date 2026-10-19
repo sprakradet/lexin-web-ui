@@ -3094,7 +3094,16 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 	let picButton = document.createElement('button');
 	picButton.type = 'button';
 	picButton.className = 'picButton';
-	picButton.textContent = 'Visa bild i Lexin +';
+
+	//picButton.textContent = 'Visa bild i Lexin +';
+
+	let icon = document.createElement('img');
+	icon.src = 'svg/image-icon.svg';
+	icon.alt = '';
+	icon.className = 'picButtonIcon';
+	picButton.appendChild(icon);
+	picButton.appendChild(document.createTextNode('Visa bild'));
+
 	wrap.appendChild(picButton);
 
 	picButton.onclick = () => {
@@ -3143,11 +3152,11 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 		if(!pictures.style.display || pictures.style.display == 'none') {
 			pictures.style.display = 'block';
 			/*iconImg.alt = "Stäng bild";*/
-			picButton.textContent = "Stäng bild –";
+			//picButton.textContent = "Stäng bild –";
 		} else {
 			pictures.style.display = 'none';
 			/*iconImg.alt = "Visa bild i Lexin";*/
-			picButton.textContent = "Visa bild i Lexin +";
+			//picButton.textContent = "Visa bild i Lexin +";
 		}
 
 		return false;
@@ -3850,7 +3859,16 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 				let videoButton = document.createElement('button');
 				videoButton.type = 'button';
 				videoButton.className = 'videoButton';
-				videoButton.textContent = 'Visa video i Lexin +';
+
+				//videoButton.textContent = 'Visa video i Lexin +';
+
+				let icon = document.createElement('img');
+				icon.src = 'svg/video-icon.svg';
+				icon.alt = '';
+				icon.className = 'videoButtonIcon';
+				videoButton.appendChild(icon);
+				videoButton.appendChild(document.createTextNode('Visa video'));
+
 				wrap.appendChild(videoButton);
 
 				videoButton.onclick = function () {
@@ -3858,11 +3876,11 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 					const wasOpen = vidContainer && vidContainer.style.display !== "none";
 					loadAndShowHideVideo(videoButton, ref.val);
 
-					if (wasOpen) {
+					/*if (wasOpen) {
 						videoButton.textContent = "Visa video i Lexin +";
 					} else {
 						videoButton.textContent = "Stäng video –";
-					}
+					}*/
 
 					return false;
 				};
