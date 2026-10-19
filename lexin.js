@@ -3109,8 +3109,47 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 	picButton.onclick = () => {
 		/*if($(pictures).find(".inlineImage").length == 0 && (parentElement.querySelectorAll(":scope iframe.bildtemaIframe").length === 0)) {*/
 
+		// open image(s) in popup
+		openPageDescription((content) => {
+				const picturesPopup = document.createElement("div");
+
+				// get & trim search word
+				let li = $(parentElement).closest(".entryContent").closest("li");
+				let word = li.find(".matchingWord").text().trim();
+				word = word.replace(/\|/g, "");
+				word = word.replace(/\s+\(\d+\)$/, "");
+
+				// add heading
+				let heading = document.createElement('h2');
+				heading.textContent = 'Bild: ' + word;
+				picturesPopup.appendChild(heading);
+				
+				content.appendChild(picturesPopup);
+				
+				// add detail images
+				for (let i = 0; i < ill.length; i++) {
+					let parsedUrl = new URL(ill[i]);
+					let urlParams = parsedUrl.searchParams;
+					let page = urlParams.get("page");
+					let subpage = urlParams.get("subpage");
+
+					let urls = bildtemaWords[word + "|" + page + "|" + subpage];
+					for (let url of urls || []) {
+						addBildtemaInlineDetail(url, picturesPopup, word);
+						//console.log("CG " + word + " detaljbild: " + url);
+					}
+				}
+
+				// add overview images
+				for (let i = 0; i < ill.length; i++) {
+					addBildtemaInline(ill[i], picturesPopup, langList, word);
+					//console.log("CG " + word + " översiktsbild: " + ill[i]);
+				}
+
+			}, picButton);
+
 			// remove everything from previous load
-			const existingFrame = parentElement.querySelector(".bildtemaMultiling");
+			/*const existingFrame = parentElement.querySelector(".bildtemaMultiling");
 			if(existingFrame) {
 				parentElement.querySelectorAll(".inlineImage").forEach(el => el.remove());
 				parentElement.querySelectorAll(".bildtemaMultiling").forEach(el => el.remove());
@@ -3121,12 +3160,12 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 			let li = $(parentElement).closest(".entryContent").closest("li");
 			let word = li.find(".matchingWord").text().trim();
 			word = word.replace(/\|/g, "");
-			word = word.replace(/\s+\(\d+\)$/, "");
+			word = word.replace(/\s+\(\d+\)$/, "");*/
 			
 			// console.log("CG sökord bild: \"" + word + "\"");
 
 			// add detail image
-			for(var i = 0; i < ill.length; i++) {
+			/*for(var i = 0; i < ill.length; i++) {
 				let parsedUrl = new URL(ill[i]);
 				let urlParams = parsedUrl.searchParams;
 				let page = urlParams.get("page");
@@ -3137,27 +3176,21 @@ function illustrationToHTML(parentElement, ill, lang, langList, show) {
 					addBildtemaInlineDetail(url, pictures, word);					// CG: detail picture
 					// console.log("CG " + word + " detaljbild: " + url);
 				}
-			}
+			}*/
 
 			// add overview image
-			for(var i = 0; i < ill.length; i++) {
+			/*for(var i = 0; i < ill.length; i++) {
 			    addBildtemaInline(ill[i], pictures, langList, word);				// CG: overview picture
 				// console.log("CG " + word + " översiktsbild: " + ill[i]);
-			}
+			}*/
 		
 			/*}*/
 
-		// add icon alt texts
-		/*const iconImg = picicon.querySelector("img");*/
-		if(!pictures.style.display || pictures.style.display == 'none') {
+		/*if(!pictures.style.display || pictures.style.display == 'none') {
 			pictures.style.display = 'block';
-			/*iconImg.alt = "Stäng bild";*/
-			//picButton.textContent = "Stäng bild –";
 		} else {
 			pictures.style.display = 'none';
-			/*iconImg.alt = "Visa bild i Lexin";*/
-			//picButton.textContent = "Visa bild i Lexin +";
-		}
+		}*/
 
 		return false;
     };
