@@ -1163,7 +1163,8 @@ function createArticleHeading(text) {
 
 	// create heading
 	var head = document.createElement('h4');
-	head.textContent = text + ":";
+	//head.textContent = text + ":";
+	head.textContent = text;
 	head.className = 'articleHeading';
 
 	// create info button

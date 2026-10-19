@@ -475,7 +475,7 @@ async function populateHelpPopup(content, elem) {
 		await openAccessibilityStatement(content);
 	}
 
-	else if (elem.textContent === "förklaring:") {
+	else if (elem.textContent === "förklaring") {
 		openHelpSakuppl(content);
 	}
 	else if (elem.classList.contains("phonetic")) {
@@ -490,10 +490,10 @@ async function populateHelpPopup(content, elem) {
 	else if (elem.textContent.includes("motsats")) {
 		openHelpAnt(content);
 	}
-	else if (elem.textContent === "jämför:") {
+	else if (elem.textContent === "jämför") {
 		openHelpCompare(content);
 	}
-	else if (elem.textContent === "se:") {
+	else if (elem.textContent === "se") {
 		openHelpSee(content);
 	}
 	else if (
@@ -517,16 +517,16 @@ async function populateHelpPopup(content, elem) {
 	else if (elem.textContent.includes("sammansättning")) {
 		openHelpComps(content);
 	}
-	else if (elem.textContent === "uttryck:") {
+	else if (elem.textContent === "uttryck") {
 		openHelpIdioms(content);
 	}
-	else if (elem.textContent === "exempel:") {
+	else if (elem.textContent === "exempel") {
 		openHelpExamples(content);
 	}
 	else if (elem.textContent.includes("video")) {
 		openHelpVideo(content);
 	}
-	else if (elem.textContent === "bild:") {
+	else if (elem.textContent === "bild") {
 		openHelpImage(content);
 	}
 	else if (elem.classList.contains("ordklass")) {
