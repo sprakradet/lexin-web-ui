@@ -176,7 +176,7 @@ const languageNames = {
     "fa":"persiska",
     "ru":"ryska",
     // "sr":"serbiska (latinskt)",		// CG REMOVE - FIX SERBIAN BUG
-	"srl":"serbiska (latinskt)",			// CG ADD - FIX SERBIAN BUG
+	"srl":"serbiska (latinskt)",		// CG ADD - FIX SERBIAN BUG
     // "sr":"serbiska (kyrilliskt)",	// CG REMOVE - FIX SERBIAN BUG
 	"src":"serbiska (kyrilliskt)",		// CG ADD - FIX SERBIAN BUG
     "so":"somaliska",
@@ -3872,15 +3872,19 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 				wrap.appendChild(videoButton);
 
 				videoButton.onclick = function () {
-					const vidContainer = wrap.querySelector(".vidContainer");
+					/*const vidContainer = wrap.querySelector(".vidContainer");
 					const wasOpen = vidContainer && vidContainer.style.display !== "none";
-					loadAndShowHideVideo(videoButton, ref.val);
+					loadAndShowHideVideo(videoButton, ref.val);*/
 
 					/*if (wasOpen) {
 						videoButton.textContent = "Visa video i Lexin +";
 					} else {
 						videoButton.textContent = "Stäng video –";
 					}*/
+
+					openPageDescription((content) => {
+						loadAndShowHideVideo(videoButton, ref.val, content);
+					}, videoButton);
 
 					return false;
 				};
@@ -4004,8 +4008,9 @@ const verbsWithDiacritics = {
 	vaver: "väver",
 	vaxlar: "växlar",
 };
-function loadAndShowHideVideo(elem, url) {
-    let children = elem.parentElement.children;
+function loadAndShowHideVideo(elem, url, container = elem.parentElement) {
+    //let children = elem.parentElement.children;
+	let children = container.children;
     let seen = 0;
 
     for(let c = 0; c < children.length; c++) {
@@ -4031,6 +4036,11 @@ function loadAndShowHideVideo(elem, url) {
 		videoVerb = videoVerb.split(' ').map(word => verbsWithDiacritics[word] || word).join(' ');
 		vid.setAttribute('aria-label', 'Någon/något som ' + videoVerb + '.');
 
+		// add heading
+		let heading = document.createElement('h2');
+		heading.textContent = 'Video: ' + videoVerb;
+		cont.appendChild(heading);
+
 		cont.appendChild(vid);
 
 		// add link for opening in new tab
@@ -4041,7 +4051,8 @@ function loadAndShowHideVideo(elem, url) {
 		link.rel = "noopener noreferrer";
 
 		cont.appendChild(link);
-		elem.parentElement.appendChild(cont);
+		//elem.parentElement.appendChild(cont);
+		container.appendChild(cont);
     }
 }
 

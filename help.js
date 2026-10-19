@@ -429,8 +429,13 @@ function openPageDescription(elem, button) {
 	content.innerHTML = "";
 
 	// add text content
-	populateHelpPopup(content, elem);
-
+	if (typeof elem === "function") {
+    	elem(content);
+	}
+	else {
+		populateHelpPopup(content, elem);
+	}
+	
 	// add non-clickable shadow background
 	const backdrop = document.getElementById("popupBackdrop");
 	backdrop.hidden = false;
@@ -559,6 +564,9 @@ function closePopupGeneral() {
 	if (lastHelpOpener && typeof lastHelpOpener.focus === "function") {
 		lastHelpOpener.focus();
 	}
+
+	const content = document.getElementById("popupGeneralContent");
+	content.innerHTML = "";
 }
 
 /* --------- CLOSE HELP PAGE ON ESC (NEW) --------- */
