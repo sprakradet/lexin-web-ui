@@ -220,12 +220,6 @@
 					<input type="checkbox" class="settingsmenuCheckbox" id="keyb_otherSet" name="keyb_otherSet" value="settings_keyb_other">
 					<label class="settingsmenuLabel" for="keyb_otherSet">Tangentbord för andra språk</label><br/>
 				</div>
-				<div class="settingsMainButton">
-					<button class="saveWordsButton" id="savedWordsSaveCurrent" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
-						Spara senaste
-					</button>
-					<span id="saveMessage2" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> 
-				</div>
 				<div class="settingsMainItem">
 					<button class="settingsNavigation" id="openSavedWords" type="button">
 						<span class="settingsNavigationText">Sparade ord</span>
@@ -255,15 +249,15 @@
 			<!-- SAVED WORDS VIEW -->
 			<div id="saveWordPopup" class="saveWordPopup">
 				<h2>Sparade ord</h2>
-				<button class="saveWordsButton" id="savedWordsSaveCurrentWrd" onclick="savedWordsSaveCurrentWord(this, 'saveMessage1')" type="button">
+				<!--<button class="saveWordsButton" id="savedWordsSaveCurrentWrd" onclick="savedWordsSaveCurrentWord(this, 'saveMessage1')" type="button">
 					Spara senaste
-				</button>
-				<span id="saveMessage1" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> 
+				</button>-->
+				<!--<span id="saveMessage1" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> -->
 				<div id="savedWordsList"></div>
-				<button class="saveWordsButton" id="savedWordsSort" onclick="savedWordsSortWords(this)" type="button">
+				<button class="saveWordsButton saveWordsHelpButton" id="savedWordsSort" onclick="savedWordsSortWords(this)" type="button">
 					Sortera orden
 				</button>
-				<button class="saveWordsButton" id="savedWordsClear" onclick="savedWordsClearWords(this)" type="button">
+				<button class="saveWordsButton saveWordsHelpButton" id="savedWordsClear" onclick="savedWordsClearWords(this)" type="button">
 					Rensa listan
 				</button>
 			</div>
@@ -411,6 +405,12 @@
     </form>
 
 	<h2 class="h2SearchResultHeading" style="display: none;">Sökresultat för "<span id="searchResultQuery"></span>"</h2>
+	<div class="settingsMainButton">
+		<button class="saveWordsButton" id="savedWordsSaveCurrent" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
+			Spara ord
+		</button>
+		<span id="saveMessage2" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> 
+	</div>
 
 	<!-- SEARCH RESULTS -->
     <div class="content">

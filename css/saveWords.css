@@ -64,8 +64,10 @@
     background-color: #D7E9EC;
     color: black;
     font: inherit;
+    font-size: 2em;
     padding: 0.1em .5em 0.2em 0.5em;
-    margin: 0.2em .8em 0.1em 1em;
+    /*margin: 0.2em .8em 0.1em 1em;*/
+    margin-bottom: 0.5em;
     border: none;
     border-radius: 0.3em;
     cursor: pointer;
@@ -75,6 +77,11 @@
     background-color: #BFCED0;
     color: #415558;
     cursor: not-allowed;
+}
+
+.saveWordsHelpButton {
+    margin: 0.2em .8em 0.1em 1em;
+    font-size: 1em;
 }
 
 /* --------- REMOVE BUTTON --------- */ 
@@ -105,6 +112,8 @@
   opacity: 0;
   /*transition: opacity 0.25s;*/
   transition: opacity 150ms ease;
+  font-size: 2em;
+  color: white;
 }
 
 .saveMessage.show {
@@ -122,6 +131,14 @@
         background-color: #3FD695;
         color: #1C3F49;
         border-color: #3FD695;
+    }
+}
+
+/* --------- PHONE --------- */
+
+@media (max-width: 630px) {
+    .saveWordsButton {
+        margin-left: 1.1rem;
     }
 }
 

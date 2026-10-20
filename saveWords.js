@@ -170,10 +170,10 @@ function removeOneSavedWord(word) {
 	// CG ADD
 	var cw = $("#searchQuery").val();
 	var btn = $("#savedWordsSaveCurrent")[0];		// used
-    var btn2 = $("#savedWordsSaveCurrentWrd")[0];	// not used?
+    //var btn2 = $("#savedWordsSaveCurrentWrd")[0];	// not used?
 	if (cw == word) {
 		btn.disabled = false;
-		btn2.disabled = false;
+		//btn2.disabled = false;
 		//btn.title = "Spara senaste uppslagning";
 		//btn2.title = "Spara senaste uppslagning";
 	} 
@@ -227,26 +227,26 @@ function updateSaveCurrentButton() {
     var btn = $("#savedWordsSaveCurrent")[0];		// used
     var btn2 = $("#savedWordsSaveCurrentWrd")[0];	// not used?
 
-    btn.innerText = "Spara \"" + cw + "\"";
-    btn2.innerText = "Spara \"" + cw + "\"";
+    //btn.innerText = "Spara \"" + cw + "\"";
+    //btn2.innerText = "Spara \"" + cw + "\"";
 
 	// search already saved
     if((savedWords && savedWords.includes(cw))) {
 		btn.disabled = true;
-		btn2.disabled = true;
+		//btn2.disabled = true;
 		//btn.title = "Uppslagningen är redan sparad";
 		//btn2.title = "Uppslagningen är redan sparad";
     } 
 	// search is empty
 	else if (cw == "") {
 		btn.disabled = true;
-		btn2.disabled = true;
+		//btn2.disabled = true;
 		//btn.title = "Uppslagningen är tom";
 		//btn2.title = "Uppslagningen är tom";
 	}
 	else {
 		btn.disabled = false;
-		btn2.disabled = false;
+		//btn2.disabled = false;
 		//btn.title = "Spara senaste uppslagning";
 		//btn2.title = "Spara senaste uppslagning";
     }
