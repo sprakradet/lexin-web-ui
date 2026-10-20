@@ -405,12 +405,13 @@
     </form>
 
 	<h2 class="h2SearchResultHeading" style="display: none;">Sökresultat för "<span id="searchResultQuery"></span>"</h2>
-	<div class="settingsMainButton">
-		<button class="saveWordsButton" id="savedWordsSaveCurrent" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
-			Spara ord
-		</button>
-		<span id="saveMessage2" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> 
-	</div>
+	<button class="saveWordsButton" id="savedWordsSaveCurrent" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
+		Spara ord
+	</button>
+	<span id="saveMessage2" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> 
+	<button class="articlePartsButton" id="articlePartsButton" onclick="" type="button">
+		Välj artikeldelar
+	</button>
 
 	<!-- SEARCH RESULTS -->
     <div class="content">

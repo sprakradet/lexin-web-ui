@@ -185,6 +185,32 @@
     vertical-align: middle;
 }
 
+/* --------- FILTER ARTICLE PARTS BUTTON --------- */
+
+.articlePartsButton {
+    background-color: #D7E9EC;
+    color: black;
+    font: inherit;
+    padding: 0.1em .5em 0.2em 0.5em;
+    margin-bottom: 0.5em;
+    border: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+
+    /* far right positioned */
+    position: absolute;
+    right: 0;
+    margin-right: var(--lexin-right-margin);
+}
+
+/* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
+
+@media (hover: hover) and (pointer: fine) {
+    .articlePartsButton:hover {
+        background-color: #3FD695;
+    }
+}
+
 /* --------- (CG ADD) HIGH CONTRAST MODE --------- */
 
 @media (prefers-contrast: more) {

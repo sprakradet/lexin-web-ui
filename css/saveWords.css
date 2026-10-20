@@ -64,7 +64,7 @@
     background-color: #D7E9EC;
     color: black;
     font: inherit;
-    font-size: 2em;
+    /*font-size: 2em;*/
     padding: 0.1em .5em 0.2em 0.5em;
     /*margin: 0.2em .8em 0.1em 1em;*/
     margin-bottom: 0.5em;
@@ -112,7 +112,7 @@
   opacity: 0;
   /*transition: opacity 0.25s;*/
   transition: opacity 150ms ease;
-  font-size: 2em;
+  /*font-size: 2em;*/
   color: white;
 }
 
