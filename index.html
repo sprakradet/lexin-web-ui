@@ -154,33 +154,6 @@
 				<!-- PAGE TITLE -->
 				<button type="button" class="heading" aria-label="Lexin – gå till startsidan" onClick="doEmptySearch()">LEXIN</button>
 
-				<!-- LANGUAGE SELECT -->
-				<div class="select-wrapper">
-					<select id="languageChoice" name="languageChoice" aria-label="Välj ett språk att visa">
-						<option value="alb">albanska</option>
-						<option value="amh">amhariska</option>
-						<option value="ara">arabiska</option>
-						<option value="azj">azerbajdzjanska</option>
-						<option value="bos">bosniska</option>
-						<option value="fin">finska</option>
-						<option value="gre">grekiska</option>
-						<option value="hrv">kroatiska</option>
-						<option value="kmr">kurdiska (kurmanji)</option>
-						<option value="pus">pashto</option>
-						<option value="per">persiska</option>
-						<option value="rus">ryska</option>
-						<option value="srp">serbiska (latinskt)</option>
-						<option value="srp_cyrillic">serbiska (kyrilliskt)</option>
-						<option value="som">somaliska</option>
-						<option value="spa">spanska</option>
-						<option value="swe" selected>svenska</option>
-						<option value="sdh">kurdiska (sorani)</option>
-						<option value="tir">tigrinska</option>
-						<option value="tur">turkiska</option>
-						<option value="ukr">ukrainska</option>
-					</select>
-				</div>
-
 				<!-- SETTINGS ICON -->
 				<button class="settingsIcon" onclick="openCloseSettings(this)" type="button" aria-label="Visa inställningar" aria-expanded="false">
 					<div class="settingsBar1"></div>
@@ -374,7 +347,35 @@
       
     </div>
 
-	<h1 class="h1SearchHeading">Sök i Lexin</h1>
+	<div class="headerrow2">
+		<h1 class="h1SearchHeading">Sök i Lexin</h1>
+		<!-- LANGUAGE SELECT -->
+		<div class="select-wrapper">
+			<select id="languageChoice" name="languageChoice" aria-label="Välj ett språk att visa">
+				<option value="alb">albanska</option>
+				<option value="amh">amhariska</option>
+				<option value="ara">arabiska</option>
+				<option value="azj">azerbajdzjanska</option>
+				<option value="bos">bosniska</option>
+				<option value="fin">finska</option>
+				<option value="gre">grekiska</option>
+				<option value="hrv">kroatiska</option>
+				<option value="kmr">kurdiska (kurmanji)</option>
+				<option value="pus">pashto</option>
+				<option value="per">persiska</option>
+				<option value="rus">ryska</option>
+				<option value="srp">serbiska (latinskt)</option>
+				<option value="srp_cyrillic">serbiska (kyrilliskt)</option>
+				<option value="som">somaliska</option>
+				<option value="spa">spanska</option>
+				<option value="swe" selected>svenska</option>
+				<option value="sdh">kurdiska (sorani)</option>
+				<option value="tir">tigrinska</option>
+				<option value="tur">turkiska</option>
+				<option value="ukr">ukrainska</option>
+			</select>
+		</div>
+	</div>
 
     <form id="theForm2" class="permbar">
 
@@ -405,7 +406,6 @@
     </form>
 
 	<div class="searchContentWrapper">
-		<h2 class="h2SearchResultHeading" style="display: none;">Sökresultat för "<span id="searchResultQuery"></span>"</h2>
 		<button class="saveWordsButton" id="savedWordsSaveCurrent" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
 			Spara ord
 		</button>
@@ -413,6 +413,7 @@
 		<button class="articlePartsButton" id="articlePartsButton" onclick="" type="button">
 			Välj artikeldelar
 		</button>
+		<h2 class="h2SearchResultHeading" style="display: none;">Sökresultat för "<span id="searchResultQuery"></span>"</h2>
 
 		<!-- SEARCH RESULTS -->
 		<div class="content">
