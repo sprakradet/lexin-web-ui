@@ -404,27 +404,30 @@
 
     </form>
 
-	<h2 class="h2SearchResultHeading" style="display: none;">Sökresultat för "<span id="searchResultQuery"></span>"</h2>
-	<button class="saveWordsButton" id="savedWordsSaveCurrent" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
-		Spara ord
-	</button>
-	<span id="saveMessage2" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> 
-	<button class="articlePartsButton" id="articlePartsButton" onclick="" type="button">
-		Välj artikeldelar
-	</button>
+	<div class="searchContentWrapper">
+		<h2 class="h2SearchResultHeading" style="display: none;">Sökresultat för "<span id="searchResultQuery"></span>"</h2>
+		<button class="saveWordsButton" id="savedWordsSaveCurrent" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
+			Spara ord
+		</button>
+		<span id="saveMessage2" class="saveMessage" role="status" aria-live="polite" aria-atomic="true"></span> 
+		<button class="articlePartsButton" id="articlePartsButton" onclick="" type="button">
+			Välj artikeldelar
+		</button>
 
-	<!-- SEARCH RESULTS -->
-    <div class="content">
-		<main>
-			<div class="resultsAndLemmasContainer">
-				<div id="lemmaListWrapper" class="lemmaListWrapper">
-					<!-- <button onclick="let d = getElementById('lemmaListWrapper'); d.style.display = 'none'; return false;">Stäng Lemmalista</button>-->
-					<div id="lemmaList" class="lemmaList"></div>
+		<!-- SEARCH RESULTS -->
+		<div class="content">
+			<main>
+				<div class="resultsAndLemmasContainer">
+					<div id="lemmaListWrapper" class="lemmaListWrapper">
+						<!-- <button onclick="let d = getElementById('lemmaListWrapper'); d.style.display = 'none'; return false;">Stäng Lemmalista</button>-->
+						<div id="lemmaList" class="lemmaList"></div>
+					</div>
+					<div id="resultsDiv" aria-live="polite"></div>
 				</div>
-				<div id="resultsDiv" aria-live="polite"></div>
-			</div>
-		</main>
-    </div>
+			</main>
+		</div>
+	</div>
+
     <div class="LexinExplanationsWrapper" id="LexinExplanationsWrapper"></div>
 
 	<!-- CG ADD FEEDBACK BUTTON -->
@@ -542,77 +545,79 @@
 	</div>
 
     <footer>
+		<div class="searchContentWrapper">
 
-		<!-- TOOL LINKS -->
-		<ul>
-			<li> 
-			  	<!-- HB 251120 <a href="https://bildtema.isof.se/" class="footerLink">Lexin bildtema-->
-			    <a href="bildtema/bildetema.html" class="footerLink">Lexin bildtema
-					<svg aria-hidden="true" class="lp-icon">
-						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
-					</svg>
-				</a> 
-			</li>
-			<li> 
-				<a href="lexinanim/" class="footerLink">Lexin verbfilmer
-					<svg aria-hidden="true" class="lp-icon">
-						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
-					</svg>
-				</a> 
-			</li>
-			<li> 
-				<a href="dialogteman/" class="footerLink">Lexin dialogfilmer
-					<svg aria-hidden="true" class="lp-icon">
-						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
-					</svg>
-				</a>
-			</li>
-		</ul>
+			<!-- TOOL LINKS -->
+			<ul>
+				<li> 
+					<!-- HB 251120 <a href="https://bildtema.isof.se/" class="footerLink">Lexin bildtema-->
+					<a href="bildtema/bildetema.html" class="footerLink">Lexin bildtema
+						<svg aria-hidden="true" class="lp-icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
+						</svg>
+					</a> 
+				</li>
+				<li> 
+					<a href="lexinanim/" class="footerLink">Lexin verbfilmer
+						<svg aria-hidden="true" class="lp-icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
+						</svg>
+					</a> 
+				</li>
+				<li> 
+					<a href="dialogteman/" class="footerLink">Lexin dialogfilmer
+						<svg aria-hidden="true" class="lp-icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
+						</svg>
+					</a>
+				</li>
+			</ul>
 
-		<!-- ISOF INFO -->
-		<div class="isoflogowrapper">
-			<img alt="Institutet för språk och folkminnen" src="svg/logotyp-isof.svg">
+			<!-- ISOF INFO -->
+			<div class="isoflogowrapper">
+				<img alt="Institutet för språk och folkminnen" src="svg/logotyp-isof.svg">
+			</div>
+			<ul class="signoff">
+				<li>
+					Lexin publiceras av Institutet för språk och folkminnen.
+				</li>
+			</ul>
+
+			<!-- ISOF LINKS -->
+			<ul class="lp-footer-menu">
+				<li>
+					<a class="normal footerLink" href="https://www.isof.se/vart-uppdrag/om-myndigheten">
+						<span>Om myndigheten Isof</span>
+						<svg aria-hidden="true" class="lp-icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
+						</svg>            
+					</a>
+				</li>
+				<!--<li>
+					<a href="https://www.isof.se/vart-uppdrag/om-myndigheten/om-webbplatsen/tillganglighetsredogorelse" class="footerLink">
+						Tillgänglighetsredogörelse
+						<svg aria-hidden="true" class="lp-icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
+						</svg>
+					</a>
+				</li>-->
+				<li>
+					<!--<a href="#" class="footerLink" onclick="openPageFromFile('accessibility_statement.html', this); return false;">
+						Tillgänglighetsredogörelse
+						<svg aria-hidden="true" class="lp-icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
+						</svg>
+					</a>-->
+					<button type="button" class="normal footerLink accessibility-statement-button" onclick="openPageDescription('accessibility_statement', this)">
+						Tillgänglighetsredogörelse
+						<svg aria-hidden="true" class="lp-icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
+						</svg>
+					</button>
+				</li>
+			</ul>
+
 		</div>
-		<ul class="signoff">
-			<li>
-				Lexin publiceras av Institutet för språk och folkminnen.
-			</li>
-		</ul>
-
-		<!-- ISOF LINKS -->
-		<ul class="lp-footer-menu">
-			<li>
-				<a class="normal footerLink" href="https://www.isof.se/vart-uppdrag/om-myndigheten">
-					<span>Om myndigheten Isof</span>
-					<svg aria-hidden="true" class="lp-icon">
-						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
-					</svg>            
-				</a>
-			</li>
-			<!--<li>
-				<a href="https://www.isof.se/vart-uppdrag/om-myndigheten/om-webbplatsen/tillganglighetsredogorelse" class="footerLink">
-					Tillgänglighetsredogörelse
-					<svg aria-hidden="true" class="lp-icon">
-						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
-					</svg>
-				</a>
-			</li>-->
-			<li>
-				<!--<a href="#" class="footerLink" onclick="openPageFromFile('accessibility_statement.html', this); return false;">
-					Tillgänglighetsredogörelse
-					<svg aria-hidden="true" class="lp-icon">
-						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
-					</svg>
-				</a>-->
-				<button type="button" class="normal footerLink accessibility-statement-button" onclick="openPageDescription('accessibility_statement', this)">
-					Tillgänglighetsredogörelse
-					<svg aria-hidden="true" class="lp-icon">
-						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/lp-icons.svg#lp-chevron-right"></use>
-					</svg>
-				</button>
-			</li>
-		</ul>
-
     </footer>
     
   </body>

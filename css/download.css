@@ -2,7 +2,7 @@
 
 .downloadPopup {
     display: none;
-    background-color: rgb(28, 63, 73);
+    background-color: var(--lexin-background-color-default);
     color: white;
     margin: 0 1em 1em 1em;
     padding: 1em 0em 0 0em;
@@ -71,12 +71,12 @@ progress::-webkit-progress-bar {        /* Chrome, Safari, Edge */
 /* filled part of progress bar */
 progress::-webkit-progress-value {      /* Chrome, Safari, Edge */
     /*background-color: rgb(28, 63, 73);*/
-    background-color: #3FD695;
+    background-color: var(--lexin-accent-color-green);
     border-radius: 5px;
     border: 2px rgb(215,233,236) solid;
 }
 progress::-moz-progress-bar {           /* Firefox */
-    background-color: #3FD695;
+    background-color: var(--lexin-accent-color-green);
     border-radius: 5px;
     border: 2px rgb(215,233,236) solid;
 }
@@ -84,7 +84,7 @@ progress::-moz-progress-bar {           /* Firefox */
 /* --------- DOWNLOAD BUTTON --------- */
 
 .downloadStartButton {
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
     color: black;
     font: inherit;
     padding: 0.1em .5em 0.2em 0.5em;
@@ -130,7 +130,7 @@ progress::-moz-progress-bar {           /* Firefox */
     border-radius: 0.3em;
 
     border-color: transparent;
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
     color: black;
 }
 
@@ -143,7 +143,7 @@ progress::-moz-progress-bar {           /* Firefox */
 /* --------- FAILED BUTTON --------- */
 
 .downloadFailedButton {
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
     color: black;
     font: inherit;
     padding: 0.1em .5em 0.2em 0.5em;
@@ -175,16 +175,16 @@ progress::-moz-progress-bar {           /* Firefox */
 
 @media (hover: hover) and (pointer: fine) {
     .downloadStartButton:hover {
-        background-color: #3FD695;
+        background-color: var(--lexin-accent-color-green);
     }
 
     .downloadFailedButton:hover {
-        background-color: #3FD695;
+        background-color: var(--lexin-accent-color-green);
     }
 
     .removeDownloadButton:hover {
-        background-color: #3FD695;
-        color: #1C3F49;
-        border-color: #3FD695;
+        background-color: var(--lexin-accent-color-green);
+        color: black;
+        border-color: var(--lexin-accent-color-green);
     }
 }

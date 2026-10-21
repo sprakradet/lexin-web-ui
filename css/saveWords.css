@@ -23,7 +23,8 @@
 
 .saveWordPopup {
     display: none;
-    background-color: rgb(28, 63, 73);
+    /*background-color: rgb(28, 63, 73);*/
+    background-color: var(lexin-background-color-default);
     color: white;
     margin: 0 1em 1em 1em;
     padding: 1em 0em 0 0em;
@@ -61,7 +62,7 @@
 /* --------- SAVE BUTTON --------- */ 
 
 .saveWordsButton {
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
     color: black;
     font: inherit;
     /*font-size: 2em;*/
@@ -97,7 +98,7 @@
     border-radius: 0.3em;
 
     border-color: transparent;
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
     color: black;
 }
 
@@ -124,13 +125,13 @@
 
 @media (hover: hover) and (pointer: fine) {
     .saveWordsButton:not(:disabled):hover {
-        background-color: #3FD695;
+        background-color: var(--lexin-accent-color-green);
     }
 
     .removeOneSavedWordButton:hover {
-        background-color: #3FD695;
-        color: #1C3F49;
-        border-color: #3FD695;
+        background-color: var(--lexin-accent-color-green);
+        /*color: #1C3F49;*/
+        border-color: var(--lexin-accent-color-green);
     }
 }
 

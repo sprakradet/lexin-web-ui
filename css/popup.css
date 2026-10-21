@@ -76,7 +76,7 @@ form#theForm2 input.popupText {
 }
 
 .gdprText:hover {
-    background-color: #EBEEEF;
+    background-color: var(--lexin-accent-color-light-grey);
 }
 
 .gdprContent {
@@ -141,7 +141,7 @@ form#theForm2 input.popupText {
 }
 
 .sendButton { 
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
 }
 
 
@@ -188,7 +188,7 @@ form#theForm2 input.popupText {
 
 @media (hover: hover) and (pointer: fine) {
     .sendButton:hover {
-        background-color: #3FD695;
+        background-color: var(--lexin-accent-color-green);
     }
 
     .closeButton:hover {
@@ -225,18 +225,18 @@ form#theForm2 input.popupText {
     .popup,
     .popupTextarea,
     .popupText {
-        background-color: #111b20;
+        background-color: var(--lexin-background-color-text-popup-dark);
         color: white;
     }
 
     /* links */
     .gdprText {
-        color: #3FD695 !important;
+        color: var(--lexin-accent-color-green) !important;
     }
     .gdprText {
-        text-decoration-color: #3FD695 !important;
+        text-decoration-color: var(--lexin-accent-color-green) !important;
     }
     .gdprText:hover {
-        background-color: #324b5a;
+        background-color: var(--lexin-accent-color-dark-blue);
     }
 }

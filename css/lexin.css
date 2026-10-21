@@ -1,7 +1,23 @@
 @import url(../fonts/noto.css);
 
+:root {
+    --lexin-max-width: 600px;
+    --lexin-left-margin: max(env(safe-area-inset-left), clamp(0em, calc((var(--lexin-max-width) - 100vw)/2 + 1rem), 1rem));
+    --lexin-right-margin: max(env(safe-area-inset-right), clamp(0em, calc((var(--lexin-max-width) - 100vw)/2 + 1rem), 1rem));
+
+    --lexin-background-color-default: #1c3f49;
+    --lexin-background-color-text-dark: #233540;
+    --lexin-background-color-text-popup-dark: #111b20;
+    --lexin-accent-color-darker-blue: #16323A;
+    --lexin-accent-color-dark-blue: #33525B;
+    --lexin-accent-color-light-blue: #D7E9EC;
+    --lexin-accent-color-light-grey: #EBEEEF;
+    --lexin-accent-color-green: #3FD695;
+}
+
 html {
-    background-color: rgb(28, 63, 73);
+    /*background-color: rgb(28, 63, 73);*/
+    background-color: var(--lexin-accent-color-dark-blue);
     -webkit-text-size-adjust: 100%;
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
@@ -11,13 +27,14 @@ html {
     background-color: white;
     min-height: 100vh;
     border-radius: 5px;
+    margin-bottom: 0.7em;
 }
 
 body {
     font-family: "Noto Sans",sans-serif;
     font-weight: normal;
     margin: 0 auto;
-    max-width: var(--lexin-max-width);
+    /*max-width: var(--lexin-max-width);*/
     position: relative;
 }
 
@@ -50,6 +67,10 @@ body {
     color: white;
     margin-top: 0.2em;
     margin-bottom: 0;
+
+    max-width: var(--lexin-max-width);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .h2SearchResultHeading {
@@ -64,7 +85,7 @@ body {
 
 #inputDiv {
     padding-top: 0.8em;
-    background-color: rgb(28, 63, 73);
+    background-color: var(--lexin-background-color-default);
 }
 
 .extrafunctions {
@@ -98,6 +119,12 @@ form#theForm, form#theForm2 {
     align-items: center;
     padding-left: var(--lexin-left-margin);
     padding-right: var(--lexin-right-margin);
+    padding-bottom: 0.3em;
+
+    /* center */
+    max-width: var(--lexin-max-width);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 form#theForm2 .inputwrapper {
@@ -122,12 +149,6 @@ legend {
     padding: 0;
 }
 
-:root {
-    --lexin-max-width: 600px;
-    --lexin-left-margin: max(env(safe-area-inset-left), clamp(0em, calc((var(--lexin-max-width) - 100vw)/2 + 1rem), 1rem));
-    --lexin-right-margin: max(env(safe-area-inset-right), clamp(0em, calc((var(--lexin-max-width) - 100vw)/2 + 1rem), 1rem));
-}
-
 .permbar {
     width: 100%;
     padding-bottom: 0.3em;
@@ -135,7 +156,12 @@ legend {
     z-index: 10;
     position: sticky;
     top: 0;
-    background-color: rgb(28, 63, 73);
+    /*background-color: rgb(28, 63, 73);*/
+    background-color: var(--lexin-accent-color-dark-blue);
+
+    max-width: var(--lexin-max-width);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* remove stickiness for horizontal phone view */
@@ -169,7 +195,7 @@ main {
 .skipLink {
     color: black;
     text-decoration: none;
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
     font: inherit;
     padding: 0.1em .5em 0.2em 0.5em;
     margin: 0.2em .8em 0.1em 1em;
@@ -191,7 +217,7 @@ main {
 }
 
 .skipLink:hover {
-    background-color: #3FD695;
+    background-color: var(--lexin-accent-color-green);
 }
 
 .skipLink,
@@ -219,7 +245,7 @@ select#languageChoice {
     width: 100%;
     max-width: 20em;
     cursor: pointer;
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
 }
 
 select {
@@ -277,7 +303,7 @@ select {
     vertical-align: middle;
     border-radius: 5px;
     border-color: transparent;
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
     cursor: pointer;
 }
 
@@ -288,6 +314,14 @@ select {
 
 .heading {
     cursor: pointer;
+}
+
+/* --------- SEARCH WRAPPER --------- */
+
+.searchContentWrapper {
+    margin: 0 auto;
+    max-width: var(--lexin-max-width);
+    position: relative;
 }
 
 /* --------- SEARCH FIELD --------- */
@@ -307,7 +341,7 @@ select {
 }
 
 .errorReport a:hover {
-    background-color: #EBEEEF;
+    background-color: var(--lexin-accent-color-light-grey);
 }
 
 /* --------- DOCUMENTATION --------- */
@@ -346,7 +380,7 @@ select {
 /* --------- LEMMA MAIN INFO ROW --------- */
 
 .wordInfo {
-    background-color: rgb(215,233,236);
+    background-color: var(--lexin-accent-color-light-blue);
     padding: 0.5em 0.5em 0.5em 1em;
     padding-left: max(env(safe-area-inset-left), 1em);
     padding-right: max(env(safe-area-inset-right), 0.5em);
@@ -739,7 +773,7 @@ select {
 }
 
 input[type="checkbox"] {
-  accent-color: #3FD695;
+  accent-color: var(--lexin-accent-color-green);
 }
 
 /* ------ CLICKABLE ARTICLE PARTS ------ */
@@ -757,7 +791,7 @@ input[type="checkbox"] {
     /* color: green; */
     /* text-decoration: underline; */
     text-decoration: underline;
-    color: #33525B;
+    color: var(--lexin-accent-color-dark-blue);
 }
 
 .makeClickableHeadingsStandOut:hover {
@@ -767,11 +801,13 @@ input[type="checkbox"] {
 }
 
 a:any-link {
-   color: rgba(28, 63, 73, 0.9);
-   text-decoration-color: rgba(28, 63, 73, 0.9);
+   /*color: rgba(28, 63, 73, 0.9);
+   text-decoration-color: rgba(28, 63, 73, 0.9);*/
+   color: var(--lexin-accent-color-dark-blue);
+   text-decoration-color: var(--lexin-accent-color-dark-blue);
 }
 a:any-link:hover {
-  background-color: #EBEEEF;
+  background-color: var(--lexin-accent-color-light-grey);
 }
 
 .notRelevant {
@@ -861,7 +897,7 @@ a:any-link:hover {
 }
 
 .bildtemaLink:hover {
-    background-color: #EBEEEF;
+    background-color: var(--lexin-accent-color-light-grey);
 }
 
 .imageLink {
@@ -874,7 +910,7 @@ a:any-link:hover {
 .videoButton,
 .constructionButton,
 .openPageButton {
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
     color: black;
     font: inherit;
     font-variant: normal;
@@ -983,7 +1019,7 @@ div[dir=rtl] {
 }
 
 .graminfoExplanation {
-    background-color: #e0e0e0;
+    background-color: var(--lexin-accent-color-light-grey);
     padding: 1em;
     margin: 0.5em 0;
     margin-left: 1.5rem;
@@ -1058,8 +1094,10 @@ div[dir=rtl] {
 /* --------- FOOTER --------- */
 
 footer {
-    margin: 0.5em auto;
-    background-color: rgb(28, 63, 73);
+    /*margin: 0.5em auto;*/
+    margin-top: 0.5em auto;
+    /*background-color: rgb(28, 63, 73);*/
+    background-color: var(--lexin-background-color-default);
     padding: 1em 20px 1em 20px;
     padding-left: var(--lexin-left-margin);
     padding-right: var(--lexin-right-margin);
@@ -1108,7 +1146,7 @@ footer a:any-link {
 }
 
 footer .lp-icon {
-    color: #3fd695;
+    color: var(--lexin-accent-color-green);
     font-size: .7em;
     margin-left: .8rem;
 }
@@ -1120,7 +1158,7 @@ footer .lp-icon {
     padding-bottom: 7px;
 }
 .footerLink:hover {
-  background-color: #16323A !important;
+  background-color: var(--lexin-accent-color-darker-blue) !important;
 }
 
 .accessibility-statement-button {
@@ -1198,7 +1236,7 @@ footer .lp-icon {
     width: 100%;
     max-width: 192px;
     cursor: pointer;
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
 }
 
 .bildtemaLangSelectorWrapper {
@@ -1241,7 +1279,7 @@ footer .lp-icon {
     .helpOpenMoreInfoButton:hover,
     .closeButtonGeneral:hover,
     .openPageButton:hover  {
-        background-color: #3FD695;
+        background-color: var(--lexin-accent-color-green);
     }
 }
 
@@ -1291,12 +1329,12 @@ footer .lp-icon {
     /* background + text */
     .content,
     form#theForm2 input#searchQuery {
-        background-color: #111b20;
+        background-color: var(--lexin-background-color-text-popup-dark);
         color: white;
     }
     .wordInfo,
     .graminfoExplanation {
-        background-color: #233540;
+        background-color: var(--lexin-background-color-text-dark);
     }
     .cueWord {
         color: #82a6bb;
@@ -1313,7 +1351,7 @@ footer .lp-icon {
     .referenceInfo a,
     .antonym a,
     a:any-link {
-        color: #3FD695 !important;
+        color: var(--lexin-accent-color-green) !important;
     }
     a.footerLink {
         color: white !important;
@@ -1325,14 +1363,14 @@ footer .lp-icon {
     .vidContainer a:hover,
     .antonym a:hover,
     a:any-link:hover {
-        background-color: #324b5a;
+        background-color: var(--lexin-accent-color-dark-blue);
     }
     .referenceInfo a,
     .bildtemaLink,
     .vidContainer a,
     .antonym a,
     a:any-link {
-        text-decoration-color: #3FD695 !important;
+        text-decoration-color: var(--lexin-accent-color-green) !important;
     }
     a.footerLink {
         text-decoration-color: white !important;

@@ -16,7 +16,7 @@
     height: 2.5em;
     font: inherit;
     font-size: 0.5em;
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
     border: 1px #afafaf;
     appearance: none;
     border-radius: 5px;
@@ -36,6 +36,6 @@
 @media (hover: hover) and (pointer: fine) {
     .keyboardKeyButton:hover {
         cursor: pointer;
-        background-color: #3FD695;
+        background-color: var(--lexin-accent-color-green);
     }
 }

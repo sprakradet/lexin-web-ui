@@ -106,7 +106,7 @@ body.help-open {
     text-decoration: underline;*/
     /*display: inline-block;*/
     /*margin-top: -4px;*/
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
     color: black;
     font: inherit;
     font-variant: normal;
@@ -222,7 +222,7 @@ th {
 }
 
 .LexinExplanations a:hover{
-  background-color: #EBEEEF;
+  background-color: var(--lexin-accent-color-light-grey);
 }
 
 /* --------- UP BUTTON --------- */
@@ -238,7 +238,7 @@ th {
     border: none;
     border-radius: 0.3em;
     cursor: pointer;
-    background-color: #D7E9EC;
+    background-color: var(--lexin-accent-color-light-blue);
     margin-top: 35px;
 }
 
@@ -319,7 +319,7 @@ th {
 @media (hover: hover) and (pointer: fine) {
     .upButton:hover,
     .helpOpenMoreInfo:hover {
-        background-color: #3FD695;
+        background-color: var(--lexin-accent-color-green);
     }
 }
 
@@ -338,7 +338,7 @@ th {
 
     .LexinExplanations,
     .popupGeneral {
-        background: #111b20;
+        background: var(--lexin-background-color-text-popup-dark);
         color: white;
     }
 
@@ -350,10 +350,10 @@ th {
     /* links */
 
     .LexinExplanations a {
-        color: #3FD695;
+        color: var(--lexin-accent-color-green);
     }
     .LexinExplanations a {
-        text-decoration-color: #3FD695;
+        text-decoration-color: var(--lexin-accent-color-green);
     }
     .LexinExplanations a:hover {
         background-color: #324b5a;

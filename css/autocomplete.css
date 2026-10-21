@@ -16,25 +16,25 @@
 }
 
 .autocomplete-items div:hover {
-  background-color: #D7E9EC;
+  background-color: var(--lexin-accent-color-light-blue);
   cursor: pointer;
 }
 
 .autocomplete-emph {
   /*background-color: #A1AEB1 !important;*/
-  background-color: #D7E9EC !important;
+  background-color: var(--lexin-accent-color-light-blue) !important;
 }
 
 /* --------- DARK MODE --------- */
 
 @media (prefers-color-scheme: dark) { 
   .autocomplete-items div {
-      background-color: #111b20;
+      background-color: var(--lexin-background-color-text-popup-dark);
       color: white;
   }
 
   .autocomplete-items div:hover,
   .autocomplete-emph {
-    background-color: #233540 !important;
+    background-color: var(--lexin-background-color-text-dark) !important;
   }
 }
