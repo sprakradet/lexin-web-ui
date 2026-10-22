@@ -61,14 +61,15 @@ body {
 }
 
 .h1SearchHeading {
-    /*font-size: 1.5em;
-    font-weight: normal;*/
-    font-size: 1em;
-    font-weight: 400;
+    /*font-size: 1em;
+    font-weight: 400;*/
+    font-size: 1.3em;
+    font-weight: bold;
     color: white;
     /*margin-top: 0.2em;*/
     margin-top: 0px;
     margin-bottom: 0;
+    margin-left: 0.3rem;
 
     max-width: var(--lexin-max-width);
     /*margin-left: auto;*/
@@ -76,13 +77,32 @@ body {
 }
 
 .h2SearchResultHeading {
-    /*font-size: 1.2em;
-    font-weight: normal;*/
-    font-size: 1em;
+    font-size: 1.2em;
+    /*font-size: 1em;*/
     font-weight: 400;
     color: white;
-    margin-top: 0.5em;
-    margin-bottom: 0.9em;
+    margin-top: 1em;
+    margin-left: 0.3rem;
+
+    /* background block */
+    background-color: var(--lexin-background-color-default);
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+    padding-top: 0.5em;
+}
+
+.h2SearchResultHeading::before {
+    content: "";
+    position: absolute;
+    top: -0.2rem;
+    bottom: -0.9rem;
+    left: -0.3rem;
+    right: 0rem;
+    background-color: var(--lexin-background-color-default);
+    z-index: -1;
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
 }
 
 #inputDiv {
@@ -1311,8 +1331,18 @@ footer .lp-icon {
         margin-left: 1.1rem;
     }
     #languageChoice,
-    .select-wrapper:after {
+    .select-wrapper:after,
+    #multiLanguageChoiceButton,
+    .h2SearchResultHeading {
         margin-right: 1.1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .h2SearchResultHeading::before {
+        left: -1.1rem;
+        right: -1.1rem;
+        border-radius: 0;
     }
 }
 

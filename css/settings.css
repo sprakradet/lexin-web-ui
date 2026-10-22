@@ -198,9 +198,22 @@
     cursor: pointer;
 
     /* far right positioned */
-    position: absolute;
+    /*position: absolute;
     right: 0;
+    margin-right: var(--lexin-right-margin);*/
+    margin-left: auto;
     margin-right: var(--lexin-right-margin);
+}
+
+.articleButtons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.articleButtons button {
+    white-space: nowrap;
 }
 
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */

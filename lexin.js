@@ -6873,6 +6873,9 @@ $(document).ready(function() {
 	openCloseSettings(".settingsIcon");
     }
 
+	// CG ADD - update save word button status, else always enabled on creation
+	updateSaveCurrentButton();
+
     // --------------------------------------------------------------------
     // Listen to changes in the settings, update HTML when necessary.
     // --------------------------------------------------------------------
