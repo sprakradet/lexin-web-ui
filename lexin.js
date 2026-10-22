@@ -400,6 +400,9 @@ async function callLexin(pushPreviousState) {
     let w = $("#searchQuery").val();
     w = w.replace(/\s*$/, "").replace(/^\s*/, "");
 
+	// CG ADD - update save word button status, else always enabled on creation
+	updateSaveCurrentButton();
+
     let lexicons = getSelectedLexicon();
     let tf = "both";
 
@@ -6872,9 +6875,6 @@ $(document).ready(function() {
     if (showSettings) {
 	openCloseSettings(".settingsIcon");
     }
-
-	// CG ADD - update save word button status, else always enabled on creation
-	updateSaveCurrentButton();
 
     // --------------------------------------------------------------------
     // Listen to changes in the settings, update HTML when necessary.

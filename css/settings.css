@@ -141,9 +141,9 @@
     color: white;
     margin: 0 1em 1em 1em;
     padding: 1em 0em 0 0em;
-    font-size: 0.5em;
-    margin-left: max(env(safe-area-inset-left), 1em);
-    margin-right: max(env(safe-area-inset-right), 1em);
+    font-size: 1em;
+    /*margin-left: max(env(safe-area-inset-left), 1em);
+    margin-right: max(env(safe-area-inset-right), 1em);*/
 
     /* CG ADD - move feedback button behind settings element */
     position: relative;
@@ -185,7 +185,7 @@
     vertical-align: middle;
 }
 
-/* --------- FILTER ARTICLE PARTS BUTTON --------- */
+/* --------- FILTER ARTICLE PARTS ELEMENTS --------- */
 
 .articlePartsButton {
     background-color: var(--lexin-accent-color-light-blue);
@@ -214,6 +214,33 @@
 
 .articleButtons button {
     white-space: nowrap;
+}
+
+.articleButtons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.articlePartsPopup {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 49;
+    width: 200px;
+    max-width: calc(100vw - 2rem);
+    padding: 1rem;
+    background-color: var(--lexin-background-color-default);
+    color: black;
+    /*border: 1px solid #ccc;*/
+    border-radius: 0.4rem;
+    box-shadow: 0 6px 12px -6px rgba(0, 0, 0, 0.6);
+}
+
+.articlePartsPopup[hidden] {
+    display: none;
 }
 
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */

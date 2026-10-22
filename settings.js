@@ -107,3 +107,19 @@ $(function () {
 	// }
     });
 });
+
+
+function openCloseArticleParts() {
+	const articlePartsButton = document.getElementById("articlePartsButton");
+	const articlePartsPopup = document.getElementById("articlePartsPopup");
+
+	const shouldOpen = articlePartsPopup.hidden;
+    articlePartsPopup.hidden = !shouldOpen;
+    articlePartsButton.setAttribute("aria-expanded", String(shouldOpen));
+
+	 if (shouldOpen) {
+        $("#partsselection").show();
+    } else {
+        $("#partsselection").hide();
+    }
+}
