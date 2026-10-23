@@ -135,10 +135,10 @@ function updateCheckboxes() {
 /* --------- OPEN/CLOSE POPUP FOR ARTICLE PARTS FILTER --------- */
 function openCloseArticleParts() {
 	const articlePartsButton = document.getElementById("articlePartsButton");
-	const articlePartsPopup = document.getElementById("articlePartsPopup");
+	const checkboxPopup = document.getElementById("checkboxPopup");
 
-	const shouldOpen = articlePartsPopup.hidden;
-    articlePartsPopup.hidden = !shouldOpen;
+	const shouldOpen = checkboxPopup.hidden;
+    checkboxPopup.hidden = !shouldOpen;
     articlePartsButton.setAttribute("aria-expanded", String(shouldOpen));
 
 	 if (shouldOpen) {
@@ -152,7 +152,7 @@ function openCloseArticleParts() {
 
 /* --------- CLOSE POPUP FOR ARTICLE PARTS FILTER --------- */
 function closeArticleParts() {
-    document.getElementById("articlePartsPopup").hidden = true;
+    document.getElementById("checkboxPopup").hidden = true;
 	const articlePartsButton = document.getElementById("articlePartsButton");
     articlePartsButton.setAttribute("aria-expanded", "false");
     $("#partsselection").hide();

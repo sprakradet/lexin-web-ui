@@ -225,14 +225,14 @@
     position: relative;
 }
 
-.articlePartsPopup {
+.checkboxPopup {
     position: absolute;
     top: 100%;
     right: 0;
     z-index: 49;
     width: 200px;
     max-width: calc(100vw - 2rem);
-    padding: 1rem;
+    padding: 0.8rem;
     background-color: var(--lexin-background-color-default);
     color: black;
     /*border: 1px solid #ccc;*/
@@ -240,7 +240,7 @@
     box-shadow: 0 6px 12px -6px rgba(0, 0, 0, 0.6);
 }
 
-.articlePartsPopup[hidden] {
+.checkboxPopup[hidden] {
     display: none;
 }
 
@@ -262,6 +262,11 @@
     position: absolute;     
     top: 1rem;
     right: 1rem;
+
+    /* align pic + text horizontally */
+    display: flex;
+    align-items: center;
+    gap: 0.1em;
 }
 
 .partsselectionLegend {

@@ -294,11 +294,26 @@ th {
     border: none;
     border-radius: 0.3em;
     cursor: pointer;
+    background-color: var(--lexin-accent-color-light-blue);
 
     /* sit in top-right corner */
     position: absolute;     
     top: 1rem;
     right: 1rem;
+
+    /* align pic + text horizontally */
+    display: flex;
+    align-items: center;
+    gap: 0.1em;
+}
+
+.closeButtonIcon {
+    height: 1.5em;
+    padding: 0;
+    margin-left: -5px;
+    margin-right: .2em;
+    margin-top: 1px;
+    vertical-align: bottom;
 }
 
 .popupGeneralContent {

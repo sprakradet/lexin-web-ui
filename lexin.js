@@ -6838,7 +6838,7 @@ $(document).ready(function() {
 
 	// close article parts filter popup when user clicks outside it
 	document.addEventListener("click", function(event) {
-		const popup = document.getElementById("articlePartsPopup");
+		const popup = document.getElementById("checkboxPopup");
 		const button = document.getElementById("articlePartsButton");
 
 		if (!popup || popup.hidden || !button) {
@@ -6856,7 +6856,7 @@ $(document).ready(function() {
 	// close article parts popup on escape
 	document.addEventListener("keydown", function(event) {
 		if (event.key === "Escape") {
-			const popup = document.getElementById("articlePartsPopup");
+			const popup = document.getElementById("checkboxPopup");
 			if (popup && !popup.hidden) {
 				closeArticleParts();
 			}
