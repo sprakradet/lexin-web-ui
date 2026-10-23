@@ -52,9 +52,10 @@ function savedWordsSaveCurrentWord(elem, id) {
     }
 
 	// show saved message
-	const msg = document.getElementById(id);
+	/*const msg = document.getElementById(id);
 	msg.textContent = "";
   	msg.textContent = "Sparat!";
+	msg.style.paddingBottom = "5px";
 
 	// fade in
 	msg.classList.add("show");
@@ -64,7 +65,7 @@ function savedWordsSaveCurrentWord(elem, id) {
 		msg._hideTimer = setTimeout(() => {
 		msg.classList.remove("show");
 		setTimeout(() => { msg.textContent = ""; }, 200);
-	}, 3000);
+	}, 3000);*/
 }
 
 // --------------------------------------------------------------------

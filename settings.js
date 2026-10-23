@@ -35,7 +35,7 @@ function dismissSettings() {
     $("#saveWordPopup").hide();
     $("#partsselection").hide();
     $("#downloadPopup").hide();
-    $("#multilangchoice").hide();
+    //$("#multilangchoice").hide();
     // $("#helpPopup").hide();
 }
 
@@ -135,10 +135,10 @@ function updateCheckboxes() {
 /* --------- OPEN/CLOSE POPUP FOR ARTICLE PARTS FILTER --------- */
 function openCloseArticleParts() {
 	const articlePartsButton = document.getElementById("articlePartsButton");
-	const checkboxPopup = document.getElementById("checkboxPopup");
+	const articlePartsPopup = document.getElementById("articlePartsPopup");
 
-	const shouldOpen = checkboxPopup.hidden;
-    checkboxPopup.hidden = !shouldOpen;
+	const shouldOpen = articlePartsPopup.hidden;
+    articlePartsPopup.hidden = !shouldOpen;
     articlePartsButton.setAttribute("aria-expanded", String(shouldOpen));
 
 	 if (shouldOpen) {
@@ -152,7 +152,7 @@ function openCloseArticleParts() {
 
 /* --------- CLOSE POPUP FOR ARTICLE PARTS FILTER --------- */
 function closeArticleParts() {
-    document.getElementById("checkboxPopup").hidden = true;
+    document.getElementById("articlePartsPopup").hidden = true;
 	const articlePartsButton = document.getElementById("articlePartsButton");
     articlePartsButton.setAttribute("aria-expanded", "false");
     $("#partsselection").hide();

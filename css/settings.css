@@ -156,19 +156,20 @@
 /* --------- MULTILANG SETTINGS --------- */
 
 #multilangchoice {
-    display: none;
-    background-color: var(--lexin-background-color-default);
+    /*display: none;*/
+    /*background-color: var(--lexin-background-color-default);
     color: white;
     margin: 0 1em 1em 1em;
-    padding: 1em 0em 0 0em;
-    font-size: 0.5em;
+    padding: 1em 0em 0 0em;*/
+    /*font-size: 0.5em;*/
+    /*font-size: 1.1em;
     margin-left: max(env(safe-area-inset-left), 1em);
-    margin-right: max(env(safe-area-inset-right), 1em);
+    margin-right: max(env(safe-area-inset-right), 1em);*/
 }
 
 .multilangcolumnwrapper {
     width:100%;
-    display: flex;
+    /*display: flex;*/
     flex-wrap: wrap;
 }
 
@@ -184,6 +185,31 @@
 
 .langcheckboxWrapper * {
     vertical-align: middle;
+}
+
+.multilang-wrapper {
+    position: relative;
+}
+
+#multilangchoice {
+    position: absolute;
+    top: 100%;
+    /*left: 0;*/
+    /*right: auto;*/
+    z-index: 1000;
+}
+
+.multiLangChoicePopup {
+    color: white;
+    font-size: 1.1em;
+    margin-top: 0.5em;
+}
+
+.multiLangChoiceLegend {
+}
+
+.multiLangChoiceFieldset {
+    padding: 0.7em;
 }
 
 /* --------- FILTER ARTICLE PARTS ELEMENTS --------- */
@@ -234,7 +260,6 @@
     max-width: calc(100vw - 2rem);
     padding: 0.8rem;
     background-color: var(--lexin-background-color-default);
-    color: black;
     /*border: 1px solid #ccc;*/
     border-radius: 0.4rem;
     box-shadow: 0 6px 12px -6px rgba(0, 0, 0, 0.6);

@@ -5949,11 +5949,21 @@ function multiLangOrNot() {
 		lc.css("display", "none");
 
 		// add new button
-		let multilangchoicebutton = $("<div class='multilang-wrapper'><button id='multiLanguageChoiceButton' aria-label='Välj flera språk att visa'>Välj språk</button></div>");
-		lc.after(multilangchoicebutton);
-
+		//let multilangchoicebutton = $("<div class='multilang-wrapper'><button id='multiLanguageChoiceButton' aria-label='Välj flera språk att visa'>Välj språk</button></div>");
 		let multilangchoice = $("#multilangchoice");
-		let columnwrapper = $("<div class='multilangcolumnwrapper'></div>");
+		//let columnwrapper = $("<div class='multilangcolumnwrapper'></div>");
+		let multilangchoicebutton = $(`
+			<div class="multilang-wrapper">
+				<button
+					id="multiLanguageChoiceButton"
+					type="button"
+					aria-expanded="false"
+					aria-controls="multilangchoice">
+					Välj språk
+				</button>
+			</div>
+		`);
+		lc.after(multilangchoicebutton);
 		
 		// build language array
 		let languages = $("#languageChoice").children("option").map((i, e) => {
@@ -5963,7 +5973,7 @@ function multiLangOrNot() {
 		}).get();
 
 		// divide language options into two columns
-		let halfway = (languages.length-1) / 2 + 1;
+		/*let halfway = (languages.length-1) / 2 + 1;
 		let firsthalf = languages.slice(0, halfway);
 		let secondhalf = languages.slice(halfway);
 		for (let langhalf of [firsthalf, secondhalf]) {
@@ -5981,14 +5991,40 @@ function multiLangOrNot() {
 				column.append(langcheckbox_wrapper);
 			}
 			columnwrapper.append(column)
+		}*/
+
+		// Create language checkboxes
+		let columnwrapper = $("<div class='multilangcolumnwrapper'></div>");
+
+		for (let lang of languages) {
+			let langcheckbox = $("<input type='checkbox' name='multilangchoice'>");
+			langcheckbox.attr("value", lang.code);
+			langcheckbox.attr("id", "multilangchoice-" + lang.code);
+
+			let langcheckbox_wrapper = $("<div class='partsselectionBox'></div>");
+
+			langcheckbox_wrapper.append(langcheckbox);
+
+			let langcheckbox_label = $("<label class='partsselectionLabel'></label>");
+			langcheckbox_label.attr("for", "multilangchoice-" + lang.code);
+			langcheckbox_label.text(lang.name);
+
+			langcheckbox_wrapper.append(langcheckbox_label);
+			columnwrapper.append(langcheckbox_wrapper);
 		}
 
 		// insert language options on page
-		$(multilangchoice).append(columnwrapper);
-		$("#theForm").append(multilangchoice);
+		/*$(multilangchoice).append(columnwrapper);*/
+		let fieldset = $("<fieldset class='multiLangChoiceFieldset'></fieldset>");
+		fieldset.append($("<legend class='multiLangChoiceLegend'>Välj språk att visa:</legend>"));
+		fieldset.append(columnwrapper);
+		multilangchoice.append(fieldset);
+
+		//$("#theForm").append(multilangchoice);
+		multilangchoicebutton.append(multilangchoice);
 
 		// clicking "choose language" (SE: "Välj språk") button 
-		multilangchoicebutton.click((e) => {
+		/*multilangchoicebutton.click((e) => {
 			let active = multilangchoice.is(":visible");
 			dismissSettings();
 			if (active) {
@@ -6007,6 +6043,21 @@ function multiLangOrNot() {
 			}
 
 			e.preventDefault();
+		});*/
+		$("#multiLanguageChoiceButton").on("click", function () {
+			const popup = document.getElementById("multilangchoice");
+			const shouldOpen = popup.hidden;
+
+			/*dismissSettings();*/
+
+			popup.hidden = !shouldOpen;
+			this.setAttribute("aria-expanded", String(shouldOpen));
+
+			if (shouldOpen) {
+				updateCheckboxes();
+				const firstCheckbox = popup.querySelector("input[type='checkbox']");
+				firstCheckbox?.focus();
+			}
 		});
 
 		let selectedLanguages = [$("#languageChoice")[0].value];
@@ -6068,10 +6119,14 @@ function getSelectedLexicon() {
 
 function setMultilangchoice(list) {
     console.log("setMultilangchoice", list);
-    for (let langchoicewrapper of $("#multilangchoice .multilangcolumn").children(".langcheckboxWrapper")) {
-	let langchoice = $(langchoicewrapper).find("input");
-	let langcode = $(langchoice).attr("value");
-	langchoice[0].checked = list.includes(langcode);
+    /*for (let langchoicewrapper of $("#multilangchoice .multilangcolumn").children(".langcheckboxWrapper")) {
+		let langchoice = $(langchoicewrapper).find("input");
+		let langcode = $(langchoice).attr("value");
+		langchoice[0].checked = list.includes(langcode);
+    }*/
+    // new popup
+    for (let checkbox of $("#multilangchoice input[name='multilangchoice']")) {
+        checkbox.checked = list.includes(checkbox.value);
     }
 }
 
@@ -6838,7 +6893,7 @@ $(document).ready(function() {
 
 	// close article parts filter popup when user clicks outside it
 	document.addEventListener("click", function(event) {
-		const popup = document.getElementById("checkboxPopup");
+		const popup = document.getElementById("articlePartsPopup");
 		const button = document.getElementById("articlePartsButton");
 
 		if (!popup || popup.hidden || !button) {
@@ -6856,7 +6911,7 @@ $(document).ready(function() {
 	// close article parts popup on escape
 	document.addEventListener("keydown", function(event) {
 		if (event.key === "Escape") {
-			const popup = document.getElementById("checkboxPopup");
+			const popup = document.getElementById("articlePartsPopup");
 			if (popup && !popup.hidden) {
 				closeArticleParts();
 			}

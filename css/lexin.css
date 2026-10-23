@@ -1063,6 +1063,7 @@ div[dir=rtl] {
     padding: 1em;
     margin: 0.5em 0;
     margin-left: 1.5rem;
+    border-radius: 0.3em;
 }
 
 .graminfoExplanationText {
