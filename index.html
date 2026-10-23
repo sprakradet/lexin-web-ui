@@ -415,8 +415,11 @@
 				Välj artikeldelar
 			</button>
 			<div id="articlePartsPopup" class="articlePartsPopup" hidden>
+				<button class="closeArticlePartsButton" type="button" onclick="closeArticleParts()">
+					Stäng
+    			</button>
 				<fieldset class="partsselectionFieldset" id="partsselection">
-					<legend>Välj delar av lexikontexten att visa:</legend>
+					<legend class="partsselectionLegend">Välj delar av lexikontexten att visa:</legend>
 					<div role="listitem" class="partsselectionBox">
 						<input type="checkbox" class="partsselectionCheckbox" id="derivationsSet" name="derivationsSet" value="settings_derivations">
 						<label class="partsselectionLabel" for="derivationsSet">Avledningar</label>

@@ -108,7 +108,31 @@ $(function () {
     });
 });
 
+/* --------- UPDATE STATUS FOR CHECKBOXES --------- */
+function updateCheckboxes() {
+	if(settings) {
+		for(let prop of Object.keys(settings)) {
+			let elID = "#" + prop + "Set";
+			let el = $(elID)[0];
+			if(el) {
+				if(settings[prop].val) {
+					el.checked = true;
+				} else {
+					el.checked = false;
+				}
+				$(elID).off("change.updateSettings");
+				$(elID).on("change.updateSettings", () => {
+					console.log(prop, "changed", el.checked);
+					settings[prop].val = el.checked;
+					$(document).trigger("lexin_settingsupdate_" + prop);
+					saveToLocalStorage();
+				});
+			}
+		}
+	}
+}
 
+/* --------- OPEN/CLOSE POPUP FOR ARTICLE PARTS FILTER --------- */
 function openCloseArticleParts() {
 	const articlePartsButton = document.getElementById("articlePartsButton");
 	const articlePartsPopup = document.getElementById("articlePartsPopup");
@@ -118,8 +142,19 @@ function openCloseArticleParts() {
     articlePartsButton.setAttribute("aria-expanded", String(shouldOpen));
 
 	 if (shouldOpen) {
+		updateCheckboxes();
         $("#partsselection").show();
     } else {
         $("#partsselection").hide();
+		articlePartsButton.focus();
     }
+}
+
+/* --------- CLOSE POPUP FOR ARTICLE PARTS FILTER --------- */
+function closeArticleParts() {
+    document.getElementById("articlePartsPopup").hidden = true;
+	const articlePartsButton = document.getElementById("articlePartsButton");
+    articlePartsButton.setAttribute("aria-expanded", "false");
+    $("#partsselection").hide();
+	articlePartsButton.focus();
 }

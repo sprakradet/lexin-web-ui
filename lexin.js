@@ -6836,6 +6836,33 @@ $(document).ready(function() {
     }
     permbartop = $(".permbar").offset().top;
 
+	// close article parts filter popup when user clicks outside it
+	document.addEventListener("click", function(event) {
+		const popup = document.getElementById("articlePartsPopup");
+		const button = document.getElementById("articlePartsButton");
+
+		if (!popup || popup.hidden || !button) {
+			return;
+		}
+
+		// keep open if user clicks inside it
+		if (popup.contains(event.target) || button.contains(event.target)) {
+			return;
+		}
+
+		closeArticleParts();
+	});
+
+	// close article parts popup on escape
+	document.addEventListener("keydown", function(event) {
+		if (event.key === "Escape") {
+			const popup = document.getElementById("articlePartsPopup");
+			if (popup && !popup.hidden) {
+				closeArticleParts();
+			}
+		}
+	});
+
     if (flags.loadResources) {
 	loadFromLocalStorage();
     }
