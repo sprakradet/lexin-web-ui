@@ -270,7 +270,7 @@
 }
 
 .partsselectionLegend {
-    width: 100px;
+    margin-top: 40px;
 }
 
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */

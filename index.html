@@ -538,7 +538,10 @@
 	<!-- CG ADD FEEDBACK POPUP -->
 	<div id="popup" class="popup" role="dialog" aria-modal="true" aria-labelledby="popupHeading">
 		<form id="theForm3">
-
+			<button class="closeButton" type="button" onclick="closePopup()">
+				<img src="svg/close-icon.svg" alt="" class="closeButtonIcon">
+				Stäng
+			</button>
 			<h2 class="popupHeading" id="popupHeading">Lämna återkoppling</h2>
 			
 			<!-- DEFAULT FIELDS -->
@@ -566,7 +569,6 @@
 		</form>
 		
 		<div class="popupButtons">
-			<button class="closeButton" type="button" onclick="closePopup()">Stäng</button>
 			<button class="sendButton" type="button" onclick="sendFeedback()">Skicka in</button>
 		</div>
 
