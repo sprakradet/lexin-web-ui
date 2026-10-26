@@ -1081,57 +1081,6 @@ div[dir=rtl] {
   transform: rotate(90deg);
 }
 
-/* --------- NEW MENU (TEST) --------- */
-
-.expandMenu {
-    width: 100%;
-}
-
-.expandMenuItem {
-    border-bottom: 1px solid #ffffff40;;
-}
-
-.expandMenuButton {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0.8rem 0;
-    border: 0;
-    background: none;
-    color: white;
-    font-family: "Noto Sans",sans-serif;
-    font-weight: normal;
-    font-size:1em;
-    text-align: left;
-    cursor: pointer;
-}
-
-.expandMenuText {
-    flex: 1;
-}
-
-.expandMenuIcon {
-    margin-left: 1rem;
-    font-size: 2em;
-    line-height: 0.2;
-    font-weight: 100;
-}
-
-.expandMenuContent {
-    padding: 0.5rem 0 1rem 1rem;
-}
-
-.expandMenuButton:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 3px;
-}
-
-.openPageButton {
-    margin-bottom: 0.5em;
-}
-
 /* --------- FOOTER --------- */
 
 footer {

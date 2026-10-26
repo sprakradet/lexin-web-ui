@@ -84,7 +84,7 @@ function getULfromSavedWords() {
 			var aElem = getLinkElemToSearch(w);
 			aElem.innerText = w;
 
-			let deleteBtn = document.createElement('div');
+			let deleteBtn = document.createElement('button');
 			deleteBtn.innerHTML = "&times;";
 			/*deleteBtn.title = "Ta bort " + w;*/
 			deleteBtn.className = "removeOneSavedWordButton";

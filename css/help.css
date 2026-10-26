@@ -63,6 +63,10 @@ body.help-open {
     }
 }
 
+.openHelp {
+    font-size: 0.5em;
+}
+
 /* --------- PLAIN TEXT --------- */
 
 .LexinExplanationsWrapper {

@@ -32,7 +32,7 @@ function dismissSettings() {
   	$(".settingsIcon").attr("aria-expanded", "false");
 	
     $("#settingsPopup").hide();
-    $("#saveWordPopup").hide();
+    //$("#saveWordPopup").hide();
     $("#partsselection").hide();
     $("#downloadPopup").hide();
     //$("#multilangchoice").hide();
@@ -69,27 +69,23 @@ function showSettings() {
 		$("#openSavedWords").on("click", function () {
 			openSavedWords();
 			$(".settingsIcon").addClass("change");
-			$("#settingsPopup").hide();
+			//$("#settingsPopup").hide();
 		});
 
 		// choose display parts
 		$("#openPartsSelection").off("click");
 		$("#openPartsSelection").on("click", function () {
 			$("#partsselection").show();
-
 			$(".settingsIcon").addClass("change");
-		
-			$("#settingsPopup").hide();
+			//$("#settingsPopup").hide();
 		});
 
 		// download lexicon
 		$("#openDownload").off("click");
 		$("#openDownload").on("click", function () {
 			openDownload();
-
 			$(".settingsIcon").addClass("change");
-		
-			$("#settingsPopup").hide();
+			//$("#settingsPopup").hide();
 		});
     }
 }
@@ -141,10 +137,13 @@ function openCloseArticleParts() {
     articlePartsPopup.hidden = !shouldOpen;
     articlePartsButton.setAttribute("aria-expanded", String(shouldOpen));
 
-	 if (shouldOpen) {
+	// open
+	if (shouldOpen) {
 		updateCheckboxes();
         $("#partsselection").show();
-    } else {
+    } 
+	// close 
+	else {
         $("#partsselection").hide();
 		articlePartsButton.focus();
     }
@@ -165,4 +164,50 @@ function closeMultiLangChoice() {
     const multiLanguageChoiceButton = document.getElementById("multiLanguageChoiceButton");
     multiLanguageChoiceButton.setAttribute("aria-expanded", "false");
     multiLanguageChoiceButton.focus();
+}
+
+/* --------- OPEN NEW MENU --------- */
+function toggleExpandMenu(button) {
+    const contentId = button.getAttribute("aria-controls");
+    const content = document.getElementById(contentId);
+    const isOpen = button.getAttribute("aria-expanded") === "true";
+
+	// close menu
+    /*if (isOpen) {
+        content.hidden = true;
+        button.setAttribute("aria-expanded", "false");
+        const icon = button.querySelector(".expandMenuIcon");
+        icon.textContent = "+";
+    } */
+	// open menu 
+	/*else {
+        content.hidden = false;
+        button.setAttribute("aria-expanded", "true");
+        const icon = button.querySelector(".expandMenuIcon");
+        icon.textContent = "−";
+    }*/
+
+   	// close clicked item if already open
+    if (isOpen) {
+        content.hidden = true;
+        button.setAttribute("aria-expanded", "false");
+        button.querySelector(".expandMenuIcon").textContent = "+";
+    }
+    // open clicked item and close others
+    else {
+        // close
+        const menu = button.closest(".expandMenu");
+        for (const otherButton of menu.querySelectorAll(".expandMenuButton[aria-expanded='true']")) {
+            const otherContentId = otherButton.getAttribute("aria-controls");
+            const otherContent = document.getElementById(otherContentId);
+            otherContent.hidden = true;
+            otherButton.setAttribute("aria-expanded", "false");
+            otherButton.querySelector(".expandMenuIcon").textContent = "+";
+        }
+
+        // open
+        content.hidden = false;
+        button.setAttribute("aria-expanded", "true");
+        button.querySelector(".expandMenuIcon").textContent = "−";
+    }
 }

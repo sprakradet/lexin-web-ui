@@ -2,31 +2,33 @@
 
 .settingsPopup {
     display: none;
-
     background-color: var(--lexin-background-color-default);
     color: white;
-    margin: 0 0.5em 0.5em 0.5em;
-    padding: 0.5em 0em 0 0em;
+    margin: 0 0.5em 0 0.5em;
+    padding: 0 0em 1.2em 0em;
     margin-left: max(env(safe-area-inset-left), 0.5em);
     margin-right: max(env(safe-area-inset-right), 0.5em);
 
-    /* CG ADD - move feedback button behind settings element */
+    /* move feedback button behind settings element */
     position: relative;
     z-index: 10;
-    margin-bottom: 0;
-    padding-bottom: 0.5em;
+
+    /* center */
+    max-width: var(--lexin-max-width);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* --------- LIST ITEMS --------- */
 
 .settingsMainItem {
     font-size: 0.5em;
-    padding: 0.5em 0;
+    padding: 0.3em 0;
 }
 
 .settingsMainItem + .settingsMainItem {
-    border: solid #ffffff40;
-    border-width: 1px 0 0px 0;
+    /*border: solid #ffffff40;
+    border-width: 1px 0 0px 0;*/
 }
 
 .settingsMainItem + .settingsMainButton {
@@ -35,6 +37,11 @@
 }
 
 .settingsMainButton + .settingsMainItem {
+    border: solid #ffffff40;
+    border-width: 1px 0 0px 0;
+}
+
+.settingsNavigation + .settingsNavigation {
     border: solid #ffffff40;
     border-width: 1px 0 0px 0;
 }
@@ -98,12 +105,9 @@
   display: inline-block;
   cursor: pointer;
   border: 1;
-
   padding: 0;
-
   background-color: transparent;
   border-color: white;
-
   appearance: none;
   border: none;
   background: none;
@@ -304,6 +308,64 @@
     gap: 0.1em;
 }
 
+/* --------- NEW MENU --------- */
+
+.menuTitle {
+    font-family: "Noto Sans",sans-serif;
+    color: white;
+    font-weight: 500;
+    padding-bottom: 0.8em;
+}
+
+.expandMenu {
+    width: 100%;
+}
+
+.expandMenuItem {
+    border-bottom: 1px solid #ffffff40;;
+}
+
+.expandMenuButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0.8rem 0;
+    border: 0;
+    background: none;
+    color: white;
+    font-family: "Noto Sans",sans-serif;
+    font-weight: normal;
+    font-size: 0.5em;
+    text-align: left;
+    cursor: pointer;
+}
+
+.expandMenuText {
+    flex: 1;
+}
+
+.expandMenuIcon {
+    margin-left: 1rem;
+    font-size: 2em;
+    line-height: 0.2;
+    font-weight: 100;
+}
+
+.expandMenuContent {
+    padding: 0.5rem 0 1rem 1rem;
+}
+
+.expandMenuButton:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.openPageButton {
+    margin-bottom: 0.5em;
+}
+
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
 
 @media (hover: hover) and (pointer: fine) {
@@ -311,6 +373,18 @@
     .closeArticlePartsButton:hover,
     .closeMultiLangChoiceButton:hover {
         background-color: var(--lexin-accent-color-green);
+    }
+
+    .expandMenuButton:hover {
+        background-color: var(--lexin-accent-color-dark-blue);
+    }
+}
+
+/* --------- PHONE --------- */
+
+@media (max-width: 630px) {
+    .settingsPopup {
+        margin-left: 1.1rem;
     }
 }
 
