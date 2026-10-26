@@ -4,19 +4,29 @@
     display: none;
     background-color: var(--lexin-background-color-default);
     color: white;
-    margin: 0 0.5em 0 0.5em;
-    padding: 0 0em 1.2em 0em;
-    margin-left: max(env(safe-area-inset-left), 0.5em);
-    margin-right: max(env(safe-area-inset-right), 0.5em);
+    padding-bottom: 0.8em;
+    /*margin: 0 0.5em 0 0;
+    padding: 0 0em 1.2em 0em;*/
+    /*margin-left: max(env(safe-area-inset-left), 0.5em);
+    margin-right: max(env(safe-area-inset-right), 0.5em);*/
 
     /* move feedback button behind settings element */
-    position: relative;
-    z-index: 10;
+    position: absolute;
+    z-index: 11;
 
     /* center */
-    max-width: var(--lexin-max-width);
+    /*max-width: var(--lexin-max-width);
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto;*/
+
+    /* center */
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* expand background */
+    width: 100%;
+    /*max-width: var(--lexin-max-width);*/
+    box-sizing: border-box;
 }
 
 /* --------- LIST ITEMS --------- */
@@ -26,9 +36,9 @@
     padding: 0.3em 0;
 }
 
-.settingsMainItem + .settingsMainItem {
-    /*border: solid #ffffff40;
-    border-width: 1px 0 0px 0;*/
+/*.settingsMainItem + .settingsMainItem {
+    border: solid #ffffff40;
+    border-width: 1px 0 0px 0;
 }
 
 .settingsMainItem + .settingsMainButton {
@@ -39,18 +49,13 @@
 .settingsMainButton + .settingsMainItem {
     border: solid #ffffff40;
     border-width: 1px 0 0px 0;
-}
-
-.settingsNavigation + .settingsNavigation {
-    border: solid #ffffff40;
-    border-width: 1px 0 0px 0;
-}
+}*/
 
 .settingsMainButton {
     font-size: 0.5em;
     padding: 0.2em 0;
-    border: solid #ffffff40;
-    border-width: 0px 0 1px 0;
+    /*border: solid #ffffff40;
+    border-width: 0px 0 1px 0;*/
 }
 
 .settingsNavigation {
@@ -318,19 +323,17 @@
 }
 
 .expandMenu {
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .expandMenuItem {
-    border-bottom: 1px solid #ffffff40;;
+    /*border-bottom: 1px solid #ffffff40;*/
 }
 
-.expandMenuButton {
-    width: 100%;
+.expandMenuButton {    
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 0.8rem 0;
     border: 0;
     background: none;
@@ -340,6 +343,15 @@
     font-size: 0.5em;
     text-align: left;
     cursor: pointer;
+
+    /* center */
+    width: 100%;
+    max-width: var(--lexin-max-width);
+    margin-left: auto;
+    margin-right: auto;
+
+    border: solid #ffffff40;
+    border-width: 0 0 1px 0;
 }
 
 .expandMenuText {
@@ -355,6 +367,12 @@
 
 .expandMenuContent {
     padding: 0.5rem 0 1rem 1rem;
+
+    /* center */
+    width: 100%;
+    max-width: var(--lexin-max-width);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .expandMenuButton:focus-visible {
@@ -384,7 +402,8 @@
 
 @media (max-width: 630px) {
     .settingsPopup {
-        margin-left: 1.1rem;
+        padding-left: 1.1rem;
+        padding-right: 1.1rem;
     }
 }
 

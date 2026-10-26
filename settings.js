@@ -10,7 +10,7 @@ function openCloseSettings(elem) {
 		dismissSettings();
 
 		// accessibility
-		$(elem).attr("aria-label", "Visa inställningar");
+		//$(elem).attr("aria-label", "Visa inställningar");
       	$(elem).attr("aria-expanded", "false");
     } else {
 		$("#settingsPopup").show();
@@ -19,7 +19,7 @@ function openCloseSettings(elem) {
 		updateSaveCurrentButton();
 
 		// accessibility
-		$(elem).attr("aria-label", "Stäng inställningar");
+		//$(elem).attr("aria-label", "Stäng inställningar");
       	$(elem).attr("aria-expanded", "true");
     }
 }
@@ -28,7 +28,7 @@ function dismissSettings() {
     $(".settingsIcon").removeClass("change");
 
 	// accessibility
-	$(".settingsIcon").attr("aria-label", "Visa inställningar")
+	//$(".settingsIcon").attr("aria-label", "Visa inställningar")
   	$(".settingsIcon").attr("aria-expanded", "false");
 	
     $("#settingsPopup").hide();
