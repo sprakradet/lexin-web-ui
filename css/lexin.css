@@ -800,7 +800,7 @@ select {
     vertical-align: middle;
 }
 
-.partsselectionCheckbox:hover {
+input[type="checkbox"]:hover {
     cursor: pointer;
 }
 

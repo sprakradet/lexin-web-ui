@@ -158,3 +158,11 @@ function closeArticleParts() {
     $("#partsselection").hide();
 	articlePartsButton.focus();
 }
+
+/* --------- CLOSE POPUP FOR MULTILANG CHOICE --------- */
+function closeMultiLangChoice() {
+	document.getElementById("multilangchoice").hidden = true;
+    const multiLanguageChoiceButton = document.getElementById("multiLanguageChoiceButton");
+    multiLanguageChoiceButton.setAttribute("aria-expanded", "false");
+    multiLanguageChoiceButton.focus();
+}

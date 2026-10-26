@@ -206,10 +206,19 @@
 }
 
 .multiLangChoiceLegend {
+    margin-top: 47px;
 }
 
 .multiLangChoiceFieldset {
-    padding: 0.7em;
+    padding: 0.6em;
+}
+
+.partsselectionLabel {
+    margin-left: 0.2em;
+}
+
+.partsselectionLegend {
+    margin-top: 40px;
 }
 
 /* --------- FILTER ARTICLE PARTS ELEMENTS --------- */
@@ -269,7 +278,8 @@
     display: none;
 }
 
-.closeArticlePartsButton {
+.closeArticlePartsButton,
+.closeMultiLangChoiceButton {
     background-color: var(--lexin-accent-color-light-blue);
     color: black;
     font: inherit;
@@ -294,15 +304,12 @@
     gap: 0.1em;
 }
 
-.partsselectionLegend {
-    margin-top: 40px;
-}
-
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
 
 @media (hover: hover) and (pointer: fine) {
     .articlePartsButton:hover,
-    .closeArticlePartsButton:hover {
+    .closeArticlePartsButton:hover,
+    .closeMultiLangChoiceButton:hover {
         background-color: var(--lexin-accent-color-green);
     }
 }

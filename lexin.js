@@ -5941,7 +5941,11 @@ function multiLangOrNot() {
     }
 
     let lc = $(".select-wrapper");
-    $(".multilang-wrapper").remove();
+    //$(".multilang-wrapper").remove();
+
+	// move popup outside the wrapper before removing the wrapper
+	$("#multilangchoice").appendTo(".headerrow2");
+	$(".multilang-wrapper").remove();
 
 	// turn on several languages
     if(settings.multiple_languages.val) {
@@ -5993,28 +5997,40 @@ function multiLangOrNot() {
 			columnwrapper.append(column)
 		}*/
 
-		// Create language checkboxes
+		// create lang checkboxes
 		let columnwrapper = $("<div class='multilangcolumnwrapper'></div>");
 
 		for (let lang of languages) {
+			// checkbox
 			let langcheckbox = $("<input type='checkbox' name='multilangchoice'>");
 			langcheckbox.attr("value", lang.code);
 			langcheckbox.attr("id", "multilangchoice-" + lang.code);
-
 			let langcheckbox_wrapper = $("<div class='partsselectionBox'></div>");
-
 			langcheckbox_wrapper.append(langcheckbox);
 
+			// label
 			let langcheckbox_label = $("<label class='partsselectionLabel'></label>");
 			langcheckbox_label.attr("for", "multilangchoice-" + lang.code);
 			langcheckbox_label.text(lang.name);
-
 			langcheckbox_wrapper.append(langcheckbox_label);
 			columnwrapper.append(langcheckbox_wrapper);
 		}
 
 		// insert language options on page
 		/*$(multilangchoice).append(columnwrapper);*/
+
+		// add close button
+		let closeButton = $(`
+			<button class="closeMultiLangChoiceButton" type="button">
+				<img src="svg/close-icon.svg" alt="" class="closeButtonIcon">
+				Stäng
+			</button>
+		`);
+		closeButton.on("click", function() {
+			closeMultiLangChoice();
+		});
+		multilangchoice.append(closeButton);
+
 		let fieldset = $("<fieldset class='multiLangChoiceFieldset'></fieldset>");
 		fieldset.append($("<legend class='multiLangChoiceLegend'>Välj språk att visa:</legend>"));
 		fieldset.append(columnwrapper);
@@ -6048,7 +6064,7 @@ function multiLangOrNot() {
 			const popup = document.getElementById("multilangchoice");
 			const shouldOpen = popup.hidden;
 
-			/*dismissSettings();*/
+			//dismissSettings();
 
 			popup.hidden = !shouldOpen;
 			this.setAttribute("aria-expanded", String(shouldOpen));
@@ -6076,6 +6092,7 @@ function multiLangOrNot() {
 
 		lc.css("display", "block");
 		$("#multilangchoice").empty();
+		$("#multilangchoice")[0].hidden = true;
 		multilangDisplay = "single";
     }
 }
@@ -6084,13 +6101,17 @@ function multiLangOrNot() {
 function getMultilangchoice() {
     let lexicons = [];
 
-    for (let langchoicewrapper of $("#multilangchoice .multilangcolumn").children(".langcheckboxWrapper")) {
+    /*for (let langchoicewrapper of $("#multilangchoice .multilangcolumn").children(".langcheckboxWrapper")) {
 		let langchoice = $(langchoicewrapper).find("input");
 		let langcode = $(langchoice).attr("value");
 		if (langchoice[0].checked) {
 			// console.log(langcode);
 			lexicons.push(langcode);
 		}
+    }*/
+
+	for (let checkbox of $("#multilangchoice input[name='multilangchoice']:checked")) {
+        lexicons.push(checkbox.value);
     }
 
     return lexicons;
@@ -6892,7 +6913,7 @@ $(document).ready(function() {
     permbartop = $(".permbar").offset().top;
 
 	// close article parts filter popup when user clicks outside it
-	document.addEventListener("click", function(event) {
+	/*document.addEventListener("click", function(event) {
 		const popup = document.getElementById("articlePartsPopup");
 		const button = document.getElementById("articlePartsButton");
 
@@ -6906,14 +6927,58 @@ $(document).ready(function() {
 		}
 
 		closeArticleParts();
+	});*/
+
+	// close settings filter popups when user clicks outside it
+	document.addEventListener("click", function(event) {
+		const popups = [
+			{
+				popup: document.getElementById("articlePartsPopup"),
+				button: document.getElementById("articlePartsButton"),
+				close: closeArticleParts
+			},
+			{
+				popup: document.getElementById("multilangchoice"),
+				button: document.getElementById("multiLanguageChoiceButton"),
+				close: closeMultiLangChoice
+			}
+		];
+
+		for (const item of popups) {
+			if (!item.popup || item.popup.hidden || !item.button) {
+				continue;
+			}
+
+			// Keep open if clicking inside the popup or its opening button
+			if (item.popup.contains(event.target) ||
+				item.button.contains(event.target)) {
+				continue;
+			}
+
+			item.close(false);
+		}
 	});
 
 	// close article parts popup on escape
-	document.addEventListener("keydown", function(event) {
+	/*document.addEventListener("keydown", function(event) {
 		if (event.key === "Escape") {
 			const popup = document.getElementById("articlePartsPopup");
 			if (popup && !popup.hidden) {
 				closeArticleParts();
+			}
+		}
+	});*/
+	// close settings filter popups on escape
+	document.addEventListener("keydown", function(event) {
+		if (event.key === "Escape") {
+			const articlePartsPopup = document.getElementById("articlePartsPopup");
+			const multilangPopup = document.getElementById("multilangchoice");
+
+			if (articlePartsPopup && !articlePartsPopup.hidden) {
+				closeArticleParts();
+			}
+			if (multilangPopup && !multilangPopup.hidden) {
+				closeMultiLangChoice();
 			}
 		}
 	});
