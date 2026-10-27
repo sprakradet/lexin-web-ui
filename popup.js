@@ -79,6 +79,12 @@ function restorePopupContent() {
     document.getElementById("popup").innerHTML = originalPopupHTML;
 }
 
+/* --------- CLOSE POPUP AFTER SENDING FEEDBACK --------- */
+function closePopupAfterSend() {
+	closePopup();
+	restorePopupContent();
+}
+
 /* --------- CHECK IF FEEDBACK VALID --------- */
 function isValidFeedback() {
 	// detect spam
@@ -240,9 +246,18 @@ async function sendFeedback() {
 	}
 
 	// close window & reset form
-	document.getElementById("popup").innerHTML = "<div class='popupTitle' style='text-align: center;'>Tack för din återkoppling!</div>";
-	setTimeout(() => {
+	document.getElementById("popup").innerHTML = 
+		"<button id='closeButtonSentFeedback' class='closeButton' type='button' onclick='closePopupAfterSend()'>" +
+		"<img src='svg/close-icon.svg' alt='' class='closeButtonIcon'>" +
+		"Stäng" +
+		"</button>" +
+		"<h2 class='popupHeading' id='popupHeading'>Ditt svar skickades</h2>" +
+		"<div>Tack för din återkoppling!</div>";
+
+	document.getElementById("closeButtonSentFeedback").focus();
+
+	/*setTimeout(() => {
         closePopup();
         restorePopupContent();
-    }, 2000);
+    }, 2000);*/
 }
