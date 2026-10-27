@@ -6,13 +6,21 @@
 // Called when the user clicks the Settings button.
 // --------------------------------------------------------------------
 function openCloseSettings(elem) {
+	// close
     if ($(elem).hasClass("change")) {
+		// collapse expanded menu items
+        $("#settingsPopup .expandMenuButton[aria-expanded='true']").each(function() {
+            toggleExpandMenu(this);
+        });
+
 		dismissSettings();
 
 		// accessibility
 		//$(elem).attr("aria-label", "Visa inställningar");
       	$(elem).attr("aria-expanded", "false");
-    } else {
+    } 
+	//open
+	else {
 		$("#settingsPopup").show();
 		$(elem).addClass("change");
 		showSettings();
@@ -166,7 +174,7 @@ function closeMultiLangChoice() {
     multiLanguageChoiceButton.focus();
 }
 
-/* --------- OPEN NEW MENU --------- */
+/* --------- OPEN&/CLOSE MENU ITEM --------- */
 function toggleExpandMenu(button) {
     const contentId = button.getAttribute("aria-controls");
     const content = document.getElementById(contentId);

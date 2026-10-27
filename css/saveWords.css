@@ -26,10 +26,10 @@
     /*background-color: rgb(28, 63, 73);*/
     background-color: var(lexin-background-color-default);
     color: white;
-    margin: 0 1em 1em 1em;
+    margin: 0 1em 1em 0;
     padding: 0 0em 0 0em;
     font-size: 0.5em;
-    margin-left: max(env(safe-area-inset-left), 1em);
+    /*margin-left: max(env(safe-area-inset-left), 1em);*/
     margin-right: max(env(safe-area-inset-right), 1em);
 
     /* move feedback button behind settings element */
@@ -44,11 +44,13 @@
 .savedWordsList a {
     color: white;
     text-decoration: underline;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
 }
 
 .savedWordsList a:hover {
     text-decoration: underline;
-    background-color: transparent;
+    background-color: var(--lexin-accent-color-darker-blue);
 }
 
 .savedWordsList {
@@ -63,6 +65,11 @@
 
 .savedWordsList li {
     margin-top: .6em;
+}
+
+/* --------- BUTTONS --------- */ 
+.saveWordsOtherButton {
+    margin-right: 1em;
 }
 
 /* --------- SAVE BUTTON --------- */ 
@@ -151,7 +158,7 @@
 /* --------- PHONE --------- */
 
 @media (max-width: 630px) {
-    .saveWordsButton {
+    .saveWordsOriginalButton {
         margin-left: 1.1rem;
     }
 }
@@ -160,10 +167,11 @@
 
 @media (prefers-color-scheme: dark) { 
     .saveWordsList a {
+        color: white !important;
         text-decoration: none !important;
     }
 
     .saveWordsList a:hover {
-        text-decoration-color: white;
+        text-decoration-color: white !important;
     }
 }

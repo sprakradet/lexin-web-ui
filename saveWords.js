@@ -90,7 +90,7 @@ function getULfromSavedWords() {
 			deleteBtn.className = "removeOneSavedWordButton";
 
 			// accessibility
-			deleteBtn.setAttribute("aria-label", "Ta bort " + w);
+			deleteBtn.setAttribute("aria-label", "Ta bort " + w + " från sparade ord");
 			deleteBtn.setAttribute("tabindex", "0");
 			deleteBtn.setAttribute("role", "button");
 			deleteBtn.addEventListener("keydown", function (e) {

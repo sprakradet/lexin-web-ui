@@ -116,6 +116,8 @@
   appearance: none;
   border: none;
   background: none;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
 }
 
 .settingsIcon.change {
@@ -319,7 +321,6 @@
     font-family: "Noto Sans",sans-serif;
     color: white;
     font-weight: 500;
-    padding-bottom: 0.8em;
 }
 
 .expandMenu {
@@ -327,7 +328,15 @@
 }
 
 .expandMenuItem {
-    /*border-bottom: 1px solid #ffffff40;*/
+    /* center */
+    width: 100%;
+    max-width: var(--lexin-max-width);
+    margin-left: auto;
+    margin-right: auto;
+
+    /* separation line */
+    border: solid #ffffff40;
+    border-width: 0 0 1px 0;
 }
 
 .expandMenuButton {    
@@ -349,9 +358,6 @@
     max-width: var(--lexin-max-width);
     margin-left: auto;
     margin-right: auto;
-
-    border: solid #ffffff40;
-    border-width: 0 0 1px 0;
 }
 
 .expandMenuText {
@@ -366,13 +372,14 @@
 }
 
 .expandMenuContent {
-    padding: 0.5rem 0 1rem 1rem;
-
     /* center */
     width: 100%;
     max-width: var(--lexin-max-width);
     margin-left: auto;
     margin-right: auto;
+    
+    padding: 0.5rem 0.6em 1rem;
+    box-sizing: border-box;
 }
 
 .expandMenuButton:focus-visible {
@@ -393,8 +400,9 @@
         background-color: var(--lexin-accent-color-green);
     }
 
-    .expandMenuButton:hover {
-        background-color: var(--lexin-accent-color-dark-blue);
+    .expandMenuButton:hover,
+    .settingsIcon:hover {
+        background-color: var(--lexin-accent-color-darker-blue);
     }
 }
 
@@ -405,6 +413,9 @@
         padding-left: 1.1rem;
         padding-right: 1.1rem;
     }
+    /*.expandMenuContent {
+        margin-right: 1.1rem;
+    }*/
 }
 
 /* --------- (CG ADD) HIGH CONTRAST MODE --------- */

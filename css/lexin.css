@@ -106,7 +106,7 @@ body {
 }
 
 #inputDiv {
-    padding-top: 0.8em;
+    /*padding-top: 0.8em;*/
     background-color: var(--lexin-background-color-default);
 }
 
@@ -141,7 +141,7 @@ form#theForm, form#theForm2 {
     align-items: center;
     padding-left: var(--lexin-left-margin);
     padding-right: var(--lexin-right-margin);
-    padding-bottom: 0.3em;
+    /*padding-bottom: 0.3em;*/
 
     /* center */
     max-width: var(--lexin-max-width);
@@ -959,9 +959,14 @@ a:any-link:hover {
     border: none;
     border-radius: 0.3em;
     margin: 0;
-    margin-left: 1.5rem;
     margin-top: 0.2rem;
     cursor: pointer;
+}
+
+.picButton,
+.videoButton,
+.constructionButton {
+    margin-left: 1.5rem;
 }
 
 .constructionButton,
@@ -1354,7 +1359,8 @@ footer .lp-icon {
     /*.graminfoExplanationText,*/
     .referenceInfo a,
     .antonym a,
-    a:any-link {
+    .errorReport a
+    /*a:any-link*/ {
         color: var(--lexin-accent-color-green) !important;
     }
     a.footerLink {
@@ -1373,7 +1379,8 @@ footer .lp-icon {
     .bildtemaLink,
     .vidContainer a,
     .antonym a,
-    a:any-link {
+    .errorReport a
+    /*a:any-link*/ {
         text-decoration-color: var(--lexin-accent-color-green) !important;
     }
     a.footerLink {

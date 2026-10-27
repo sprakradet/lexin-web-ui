@@ -209,13 +209,13 @@
 					</button>
 					<div id="menuContent2" class="expandMenuContent" hidden>
 						<div id="saveWordPopup" class="saveWordPopup">
-							<div id="savedWordsList"></div>
-							<button class="saveWordsButton" id="savedWordsSort" onclick="savedWordsSortWords(this)" type="button">
+							<button class="saveWordsButton saveWordsOtherButton" id="savedWordsSort" onclick="savedWordsSortWords(this)" type="button">
 								Sortera orden
 							</button>
-							<button class="saveWordsButton" id="savedWordsClear" onclick="savedWordsClearWords(this)" type="button">
+							<button class="saveWordsButton saveWordsOtherButton" id="savedWordsClear" onclick="savedWordsClearWords(this)" type="button">
 								Rensa listan
 							</button>
+							<div id="savedWordsList"></div>
 						</div>
 					</div>
 				</div>
@@ -451,7 +451,7 @@
 		<div class="articleButtons">
 
 			<!-- SAVE WORDS BUTTON -->
-			<button class="saveWordsButton" id="savedWordsSaveCurrent" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
+			<button class="saveWordsButton saveWordsOriginalButton" id="savedWordsSaveCurrent" onclick="savedWordsSaveCurrentWord(this, 'saveMessage2')" type="button">
 				Spara ord
 			</button>
 
