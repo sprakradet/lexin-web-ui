@@ -60,7 +60,8 @@ body {
     padding: 0;
 }
 
-.h1SearchHeading {
+.h1SearchHeading,
+.h2FooterHeading {
     /*font-size: 1em;
     font-weight: 400;*/
     font-size: 1.3em;
@@ -69,11 +70,18 @@ body {
     /*margin-top: 0.2em;*/
     margin-top: 0px;
     margin-bottom: 0;
-    margin-left: 0.3rem;
 
     max-width: var(--lexin-max-width);
     /*margin-left: auto;*/
     margin-right: auto;
+}
+
+.h1SearchHeading {
+    margin-left: 0.3rem;
+}
+
+.h2FooterHeading {
+    margin-top: 0.8em;
 }
 
 .h2SearchResultHeading {
@@ -354,6 +362,12 @@ select {
 
 .heading {
     cursor: pointer;
+}
+
+/* --------- ISOF LOGO --------- */
+
+.isoflogowrapper {
+    margin-top: 1.1em;
 }
 
 /* --------- SEARCH WRAPPER --------- */
@@ -1120,6 +1134,9 @@ footer ul {
 
 footer li {
     /*margin-bottom: 1rem;*/
+}
+.footerInfoText {
+    margin-top: 1em;
 }
 
 footer a:any-link {

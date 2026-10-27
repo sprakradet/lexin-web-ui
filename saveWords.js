@@ -83,6 +83,15 @@ function getULfromSavedWords() {
 			
 			var aElem = getLinkElemToSearch(w);
 			aElem.innerText = w;
+			
+			// close menu on click
+			aElem.addEventListener("click", function() {
+				const menuButton = document.querySelector(".settingsIcon");
+				if (menuButton && menuButton.classList.contains("change")) {
+					openCloseSettings(menuButton);
+					$("#searchQuery").focus();
+				}
+			});
 
 			let deleteBtn = document.createElement('button');
 			deleteBtn.innerHTML = "&times;";

@@ -39,7 +39,7 @@
 /* --------- PROGRESS BAR --------- */
 
 #downloadProgress {
-    margin: 1em 0;
+    margin-top: 1em;
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 0.5em;

@@ -6973,12 +6973,17 @@ $(document).ready(function() {
 		if (event.key === "Escape") {
 			const articlePartsPopup = document.getElementById("articlePartsPopup");
 			const multilangPopup = document.getElementById("multilangchoice");
+			const menuButton = document.querySelector(".settingsIcon");
 
 			if (articlePartsPopup && !articlePartsPopup.hidden) {
 				closeArticleParts();
 			}
 			if (multilangPopup && !multilangPopup.hidden) {
 				closeMultiLangChoice();
+			}
+			if (menuButton && menuButton.classList.contains("change")) {
+				openCloseSettings(menuButton);
+				menuButton.focus();
 			}
 		}
 	});
