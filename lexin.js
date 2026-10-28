@@ -4044,6 +4044,13 @@ const verbsWithDiacritics = {
 	vaver: "väver",
 	vaxlar: "växlar",
 };
+const verbswithCorrectedNames = {
+	"badar ute": "badar",
+	"blinkar trafik": "blinkar",
+	"dommer": "dömer",
+	"soover": "söver",
+	"skalar vin": "skålar"
+}
 function loadAndShowHideVideo(elem, url, container = elem.parentElement) {
     //let children = elem.parentElement.children;
 	let children = container.children;
@@ -4070,6 +4077,9 @@ function loadAndShowHideVideo(elem, url, container = elem.parentElement) {
 		// accessibility
 		let videoVerb = url.split('/').pop().replace(/\.mp4$/, '').replace(/_/g, ' ');
 		videoVerb = videoVerb.split(' ').map(word => verbsWithDiacritics[word] || word).join(' ');
+		if (videoVerb in verbswithCorrectedNames) {
+			videoVerb = verbswithCorrectedNames[videoVerb];
+		}
 		vid.setAttribute('aria-label', 'Någon/något som ' + videoVerb + '.');
 
 		// add heading
