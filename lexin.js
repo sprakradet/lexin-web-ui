@@ -2421,15 +2421,22 @@ function expandSlashesInner(text) {
 
 /* --------- EXPAND ARTICLE BUTTON --------- */
 function addExpandResultElement() {
-    let exp = document.createElement('img');
-    exp.src = "svg/submenuBlack.svg";
+	// create button
+    let button = document.createElement("button");
+    button.type = "button";
+    button.className = "expandResultsButton";
+    button.setAttribute("aria-label", "Visa hela artikeln");
+    button.setAttribute("aria-expanded", "false");
+
+	// add icon
+    let exp = document.createElement("img");
+    exp.src = "svg/expand-results-icon.svg";
     exp.className = "expandResultsIcon";
+    exp.alt = "";
+	button.appendChild(exp);
 
-	// accessibility
-	exp.alt = "Visa hela artikeln";
-	makeKeyboardClickable(exp);
-
-    exp.onclick = function() {
+	// show/hide article
+    button.onclick = function() {
 		let p = $(this).closest('li');
 		let des = p.find('.notRelevant');
 
@@ -2439,14 +2446,14 @@ function addExpandResultElement() {
 		des.toggle();
 
 		// accessibility
-        if (isOpen) {
-            exp.alt = "Visa hela artikeln";
-        } else {
-            exp.alt = "Stäng artikeln";
-        }
+        button.setAttribute("aria-expanded", String(!isOpen));
+        button.setAttribute(
+            "aria-label",
+            isOpen ? "Visa hela artikeln" : "Stäng artikeln"
+        );
     }
 
-    return exp;
+    return button;
 }
 
 /* --------- ARTICLE PART: LISTEN ICON (CLICKABLE) --------- */
@@ -7294,7 +7301,7 @@ function openGenericPagePopup(content, openerElem = null) {
 	inner.insertAdjacentHTML(
 		"afterbegin",
 		'<button title="Stäng" class="closeHelp" type="button" aria-label="Stäng infosidan">' +
-		'<img src="svg/closebutton.svg" alt="">' +
+		'<img src="svg/close-icon.svg" alt="">' +
 		"</button>"
 	);
 
