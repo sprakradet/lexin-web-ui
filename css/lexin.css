@@ -76,10 +76,6 @@ body {
     margin-right: auto;
 }
 
-.h1SearchHeading {
-    margin-left: 0.3rem;
-}
-
 .h2FooterHeading {
     margin-top: 0.8em;
 }
@@ -90,7 +86,8 @@ body {
     font-weight: 400;
     color: white;
     margin-top: 1em;
-    margin-left: 0.3rem;
+    margin-left: 0.3em;
+    padding-left: 0.5em;
 
     /* background block */
     background-color: var(--lexin-background-color-default);

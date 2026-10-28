@@ -6922,62 +6922,45 @@ $(document).ready(function() {
     }
     permbartop = $(".permbar").offset().top;
 
-	// close article parts filter popup when user clicks outside it
-	/*document.addEventListener("click", function(event) {
-		const popup = document.getElementById("articlePartsPopup");
-		const button = document.getElementById("articlePartsButton");
-
-		if (!popup || popup.hidden || !button) {
-			return;
-		}
-
-		// keep open if user clicks inside it
-		if (popup.contains(event.target) || button.contains(event.target)) {
-			return;
-		}
-
-		closeArticleParts();
-	});*/
-
 	// close settings filter popups when user clicks outside it
 	document.addEventListener("click", function(event) {
 		const popups = [
 			{
 				popup: document.getElementById("articlePartsPopup"),
 				button: document.getElementById("articlePartsButton"),
-				close: closeArticleParts
+				close: () => closeArticleParts(false)
 			},
 			{
 				popup: document.getElementById("multilangchoice"),
 				button: document.getElementById("multiLanguageChoiceButton"),
-				close: closeMultiLangChoice
+				close: () => closeMultiLangChoice(false)
+			},
+			{
+				popup: document.getElementById("settingsPopup"),
+				button: document.querySelector(".settingsIcon"),
+				close: () => openCloseSettings(document.querySelector(".settingsIcon"))
 			}
 		];
 
 		for (const item of popups) {
-			if (!item.popup || item.popup.hidden || !item.button) {
+			// ignore if not open
+			if (!item.popup || !item.button || item.button.getAttribute("aria-expanded") !== "true") {
+				continue;
+			}
+			// ignore if clicking inside popup 
+			/*if (item.popup.contains(event.target) || item.button.contains(event.target)) {
+				continue;
+			}*/
+			const path = event.composedPath();
+			if (path.includes(item.popup) || path.includes(item.button)) {
 				continue;
 			}
 
-			// Keep open if clicking inside the popup or its opening button
-			if (item.popup.contains(event.target) ||
-				item.button.contains(event.target)) {
-				continue;
-			}
-
-			item.close(false);
+			// close
+			item.close();
 		}
 	});
 
-	// close article parts popup on escape
-	/*document.addEventListener("keydown", function(event) {
-		if (event.key === "Escape") {
-			const popup = document.getElementById("articlePartsPopup");
-			if (popup && !popup.hidden) {
-				closeArticleParts();
-			}
-		}
-	});*/
 	// close settings filter popups on escape
 	document.addEventListener("keydown", function(event) {
 		if (event.key === "Escape") {
@@ -6985,6 +6968,7 @@ $(document).ready(function() {
 			const multilangPopup = document.getElementById("multilangchoice");
 			const menuButton = document.querySelector(".settingsIcon");
 
+			// close if open
 			if (articlePartsPopup && !articlePartsPopup.hidden) {
 				closeArticleParts();
 			}
