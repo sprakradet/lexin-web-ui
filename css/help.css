@@ -225,6 +225,11 @@ th {
   justify-content: space-between;
 }
 
+.tableOfContentsList {
+    margin-top: 0;
+    padding-top: 0;
+}
+
 .LexinExplanations a:hover{
   background-color: var(--lexin-accent-color-light-grey);
 }
