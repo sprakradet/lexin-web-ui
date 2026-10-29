@@ -6950,6 +6950,11 @@ $(document).ready(function() {
 		];
 
 		for (const item of popups) {
+			// ignore if help page open
+			const generalPopup = document.getElementById("popupGeneral");
+			if (generalPopup && event.composedPath().includes(generalPopup)) {
+				return;
+			}
 			// ignore if not open
 			if (!item.popup || !item.button || item.button.getAttribute("aria-expanded") !== "true") {
 				continue;
