@@ -1418,7 +1418,7 @@ footer .lp-icon {
 
     /* icons */
     input[type="submit"] {
-        background-image: url(../svg/search_darkmode.svg);
+        background-image: url(../svg/search-icon_darkmode.svg);
     }
     .listenIcon {
         background-image: url(../svg/listen-icon_darkmode.svg);
