@@ -90,7 +90,18 @@ function startDownload() {
 function setAsDownloaded(wrapper, lang) {
 	// show info text + remove button
     // wrapper.empty().append("Nedladdat <button class='removeDownloadButton' type='button' aria-label='Ta bort nedladdning'></button>");
-	wrapper.empty().append("Nedladdat <button class='removeDownloadButton' type='button' aria-label='Ta bort nedladdning'>&times;</button>");
+	const langName = $("#selectDownloadLanguages option").filter(function () {
+		return this.value === lang;
+	}).text();
+	//wrapper.empty().append("Nedladdat <button class='removeDownloadButton' type='button' aria-label='Ta bort nedladdning av ${langName}'>&times;</button>");
+	wrapper.empty().append(`
+		Nedladdat
+		<button class="removeDownloadButton"
+				type="button"
+				aria-label="Ta bort nedladdning av ${langName}">
+			&times;
+		</button>
+	`);
 
 	// remove button event
     wrapper.find("button").click(async function () {

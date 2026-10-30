@@ -1311,6 +1311,9 @@ footer .lp-icon {
     .h2SearchResultHeading {
         margin-left: 1.1rem;
     }
+    .h2SearchResultHeading {
+        padding-left: 0;
+    }
     #languageChoice,
     .select-wrapper:after,
     #multiLanguageChoiceButton,
