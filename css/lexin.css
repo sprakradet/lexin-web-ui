@@ -1290,6 +1290,78 @@ footer .lp-icon {
     transform: rotate(180deg);
 }
 
+/* --------- PAGE LAYOUT (PHONE VS. DESKTOP) --------- */
+
+/* phone */
+.pageLayout {
+    display: block;
+}
+.desktopSidebar {
+    display: none;
+}
+
+/* desktop */
+@media (min-width: 1024px) {
+    .pageLayout {
+        display: grid;
+        grid-template-columns: 405px minmax(0, 1fr);
+        gap: 2rem;
+        min-height: 100vh;
+        align-items: stretch;
+    }
+
+    .desktopSidebar {
+        display: block;
+        background-color: var(--lexin-background-color-default);
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .desktopSidebar .heading {
+        font-size: 2rem;
+        margin-top: 1.1rem;
+    }
+    .desktopSidebar .expandMenuItem {
+        font-size: 1.99rem;
+    }
+    .desktopSidebar .footerInfoText {
+        margin-bottom: 1rem;
+    }
+    .desktopSidebar a:any-link {
+        color: white !important;
+        text-decoration-color: white;
+    }
+
+    #theForm {
+        display: none;
+    }
+
+    .lexinMainContent {
+        min-width: 0;
+    }
+
+    footer {
+        display: none;
+    }
+    #footerElement {
+        color: white;
+        font-size: 0.99rem;
+    }
+    #footerElement ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    #footerElement .lp-icon {
+        color: var(--lexin-accent-color-green);
+        font-size: .7em;
+        margin-left: .8rem;
+    }
+    .desktopSidebar .h2FooterHeading {
+        margin-top: 2rem;
+        margin-bottom: 1.2rem;
+    }
+}
+
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
 
 @media (hover: hover) and (pointer: fine) {
@@ -1415,6 +1487,10 @@ footer .lp-icon {
     a.footerLink {
         text-decoration-color: white !important;
     }
+    /*.desktopSidebar .footerLink a {
+        color: white !important;
+    }
+    }*/
     a.skipLink {
         color: black !important;
     }

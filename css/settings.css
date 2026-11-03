@@ -397,6 +397,19 @@
     margin-bottom: 0.5em;
 }
 
+/* --------- DESKTOP --------- */
+
+.desktopSidebar .settingsPopup {
+    position: static;
+    z-index: auto;
+    left: auto;
+    transform: none;
+    width: auto;
+    box-sizing: border-box;
+    box-shadow: none;
+    margin-top: 1.3rem;
+}
+
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
 
 @media (hover: hover) and (pointer: fine) {

@@ -6995,7 +6995,7 @@ $(document).ready(function() {
 	});
 
     if (flags.loadResources) {
-	loadFromLocalStorage();
+		loadFromLocalStorage();
     }
     
     $("#theForm2").submit(function(e) {
@@ -7011,6 +7011,11 @@ $(document).ready(function() {
 		callLexin(true);
 		e.preventDefault();
     });
+
+	// choose between phone and desktop menu
+    const desktopQuery = window.matchMedia("(min-width: 1024px)");
+    updatePageLayout();
+    desktopQuery.addEventListener("change", updatePageLayout);
 
     // --------------------------------------------------------------------
     // When loading the page with a URL that has a search query, do that search.
@@ -7387,4 +7392,34 @@ function doEmptySearch() {
 		}
 
     callLexin(true);
+}
+
+function updatePageLayout() {
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    const sidebar = document.getElementById("desktopSidebar");
+
+	const phoneParentMenuElement = document.getElementById("theForm");
+	const phoneParentFooterElement = document.querySelector("footer");
+
+	const menuElement = document.getElementById("settingsPopup");
+	const footerElement = document.getElementById("footerElement");
+
+    if (isDesktop) {
+        sidebar.appendChild(menuElement);
+		sidebar.appendChild(footerElement);
+		$("#settingsPopup").show();
+		showSettings();
+		updateSaveCurrentButton();
+    } else {
+        phoneParentMenuElement.appendChild(menuElement);
+		phoneParentFooterElement.appendChild(footerElement);
+
+		// keep menu settings closed as default
+		$("#settingsPopup").hide();
+        /*$("#settingsPopup .expandMenuButton[aria-expanded='true']").each(function() {
+            toggleExpandMenu(this);
+        });
+		dismissSettings();
+      	$(elem).attr("aria-expanded", "false");*/
+    }
 }
