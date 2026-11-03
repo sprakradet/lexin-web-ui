@@ -105,6 +105,11 @@
     cursor: pointer;
 }
 
+.settingsLegend {
+    font-size: 0.5em;
+    margin-bottom: 1em;
+}
+
 /* --------- MENU ICON --------- */
 
 .settingsIcon {

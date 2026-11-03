@@ -174,30 +174,33 @@
 						<span class="expandMenuIcon" aria-hidden="true">+</span>
 					</button>
 					<div id="menuContent1" class="expandMenuContent" hidden>
-						<div class="settingsMainItem">
-							<input type="checkbox" class="settingsmenuCheckbox" id="multiple_languagesSet" name="multiple_languagesSet" value="settings_multiple_languages">
-							<label class="settingsmenuLabel" for="multiple_languagesSet">Sök på flera språk samtidigt</label>
-						</div>
-						<div class="settingsMainItem">
-							<input type="checkbox" class="settingsmenuCheckbox" id="add_swedish_resultsSet" name="add_swedish_resultsSet" value="settings_add_swedish_results">
-							<label class="settingsmenuLabel" for="add_swedish_resultsSet">Lägg alltid till svenska resultat</label>
-						</div>
-						<div class="settingsMainItem">
-							<input type="checkbox" class="settingsmenuCheckbox" id="info_buttonsSet" name="info_buttonsSet" value="settings_info_buttons">
-							<label class="settingsmenuLabel" for="info_buttonsSet">Visa infoknappar i artiklar</label>
-						</div>
-						<div class="settingsMainItem">
-							<input type="checkbox" class="settingsmenuCheckbox" id="completionSet" name="completionSet" value="settings_completion">
-							<label class="settingsmenuLabel" for="completionSet">Sökförslag</label>
-						</div>
-						<div class="settingsMainItem">
-							<input type="checkbox" class="settingsmenuCheckbox" id="keyb_seSet" name="keyb_seSet" value="settings_keyb_se">
-							<label class="settingsmenuLabel" for="keyb_seSet">Svenskt tangentbord med å, ä, ö</label><br/>
-						</div>
-						<div class="settingsMainItem">
-							<input type="checkbox" class="settingsmenuCheckbox" id="keyb_otherSet" name="keyb_otherSet" value="settings_keyb_other">
-							<label class="settingsmenuLabel" for="keyb_otherSet">Tangentbord för andra språk</label><br/>
-						</div>
+						<fieldset id="settingsFieldset" class="settingsFieldset">
+							<legend class="settingsLegend">Välj inställningar för ordboken:</legend>
+							<div class="settingsMainItem">
+								<input type="checkbox" class="settingsmenuCheckbox" id="multiple_languagesSet" name="multiple_languagesSet" value="settings_multiple_languages">
+								<label class="settingsmenuLabel" for="multiple_languagesSet">Sök på flera språk samtidigt</label>
+							</div>
+							<div class="settingsMainItem">
+								<input type="checkbox" class="settingsmenuCheckbox" id="completionSet" name="completionSet" value="settings_completion">
+								<label class="settingsmenuLabel" for="completionSet">Visa sökförslag</label>
+							</div>
+							<div class="settingsMainItem">
+								<input type="checkbox" class="settingsmenuCheckbox" id="add_swedish_resultsSet" name="add_swedish_resultsSet" value="settings_add_swedish_results">
+								<label class="settingsmenuLabel" for="add_swedish_resultsSet">Lägg alltid till svenska resultat</label>
+							</div>
+							<div class="settingsMainItem">
+								<input type="checkbox" class="settingsmenuCheckbox" id="info_buttonsSet" name="info_buttonsSet" value="settings_info_buttons">
+								<label class="settingsmenuLabel" for="info_buttonsSet">Visa infoknappar i artiklar</label>
+							</div>
+							<div class="settingsMainItem">
+								<input type="checkbox" class="settingsmenuCheckbox" id="keyb_seSet" name="keyb_seSet" value="settings_keyb_se">
+								<label class="settingsmenuLabel" for="keyb_seSet">Visa svenskt tangentbord med å, ä, ö</label><br/>
+							</div>
+							<div class="settingsMainItem">
+								<input type="checkbox" class="settingsmenuCheckbox" id="keyb_otherSet" name="keyb_otherSet" value="settings_keyb_other">
+								<label class="settingsmenuLabel" for="keyb_otherSet">Visa tangentbord för andra språk</label><br/>
+							</div>
+						</fieldset>
 					</div>
 				</div>
 
