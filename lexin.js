@@ -6942,11 +6942,11 @@ $(document).ready(function() {
 				button: document.getElementById("multiLanguageChoiceButton"),
 				close: () => closeMultiLangChoice(false)
 			},
-			{
+			/*{
 				popup: document.getElementById("settingsPopup"),
 				button: document.querySelector(".settingsIcon"),
 				close: () => openCloseSettings(document.querySelector(".settingsIcon"))
-			}
+			}*/
 		];
 
 		for (const item of popups) {
@@ -6960,9 +6960,9 @@ $(document).ready(function() {
 				continue;
 			}
 			// ignore if clicking inside popup 
-			/*if (item.popup.contains(event.target) || item.button.contains(event.target)) {
+			if (item.popup.contains(event.target) || item.button.contains(event.target)) {
 				continue;
-			}*/
+			}
 			const path = event.composedPath();
 			if (path.includes(item.popup) || path.includes(item.button)) {
 				continue;
@@ -7009,6 +7009,7 @@ $(document).ready(function() {
 
 		dismissSettings();
 		callLexin(true);
+		updatePageLayout();
 		e.preventDefault();
     });
 
@@ -7171,6 +7172,7 @@ $(document).ready(function() {
 		}
 
 	    await callLexin(false);
+		updatePageLayout();
 	}
     })())})();
 });
@@ -7291,13 +7293,13 @@ function openGenericPagePopup(content, openerElem = null) {
 
 		// close with escape
 		if (!genericPopupEscListenerAdded) {
-		document.addEventListener("keydown", function (event) {
-			if (!genericPopupWrapper || genericPopupWrapper.style.display !== "block") return;
-			if (event.key === "Escape") {
-				event.preventDefault();
-				closeGenericPagePopup();
-			}
-		});
+			document.addEventListener("keydown", function (event) {
+				if (!genericPopupWrapper || genericPopupWrapper.style.display !== "block") return;
+				if (event.key === "Escape") {
+					event.preventDefault();
+					closeGenericPagePopup();
+				}
+			});
 			genericPopupEscListenerAdded = true;
 		}
 	}
@@ -7392,6 +7394,7 @@ function doEmptySearch() {
 		}
 
     callLexin(true);
+	updatePageLayout();
 }
 
 function updatePageLayout() {
@@ -7416,10 +7419,13 @@ function updatePageLayout() {
 
 		// keep menu settings closed as default
 		$("#settingsPopup").hide();
-        /*$("#settingsPopup .expandMenuButton[aria-expanded='true']").each(function() {
-            toggleExpandMenu(this);
-        });
-		dismissSettings();
-      	$(elem).attr("aria-expanded", "false");*/
+		const settingsIcon = document.querySelector(".settingsIcon");
+		if (settingsIcon.classList.contains("change")) {
+        	$("#settingsPopup .expandMenuButton[aria-expanded='true']").each(function() {
+					toggleExpandMenu(this);
+			});
+			dismissSettings();
+			$(settingsIcon).attr("aria-expanded", "false");
+		}
     }
 }
