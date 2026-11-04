@@ -1334,8 +1334,8 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 	    }
 
 	    if(js.Reference) {
-		var refs = getReferences(js.Reference);
-		refToHTML(wordInfoMain, refs, baseForms, showAll);
+			var refs = getReferences(js.Reference);
+			refToHTML(wordInfoMain, refs, baseForms, showAll);
 	    }
 
 		// hyphenation ('avstavning')
@@ -1452,7 +1452,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 			abbrToHTML(lexElem, lex.abbr, showAll);
 		    }
 		    if(lex.ref) {
-			refToHTML(lexElem, lex.ref, baseForms, showAll);
+				refToHTML(lexElem, lex.ref, baseForms, showAll);
 		    }
 		    if(lex.targ) {
 			let targ = lex.targ;
@@ -1711,7 +1711,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 			    	abbrToHTML(li, cyc.abbr, showAll);
 			    }
 			    if(cyc.ref && cyc.ref.length > 0) {
-				refToHTML(li, cyc.ref, baseForms, showAll);
+					refToHTML(li, cyc.ref, baseForms, showAll);
 			    }
 			    if(cyc.comp && cyc.comp.length > 0) {
 				if(targCyc && targCyc.comp && targCyc.comp.length > 0) {
@@ -1892,7 +1892,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 		altToHTML(entryContent, base.alt, BaseLanguageSwe, showAll);
 	    }
 	    if(base?.ref?.length > 0) {
-		refToHTML(entryContent, base.ref, baseForms, showAll);
+			refToHTML(entryContent, base.ref, baseForms, showAll);
 	    }	    
             if(base?.ant && targ?.ant) {
 		antonymToHTML(entryContent, base.ant, targ.ant, baseForms, showAll, moreThanOneLanguage);
@@ -2057,7 +2057,7 @@ function getOneResult(js, targetLang, baseForms, moreThanOneLanguage) {
 	    }
 	    
 	    if(targ?.ref?.length) {
-		refToHTML(entryContent, targ.ref, baseForms, showAll);
+			refToHTML(entryContent, targ.ref, baseForms, showAll);
 	    }
             result.appendChild(entryContent);
             results.push(result);
@@ -3855,6 +3855,11 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 
 			// animation ('video')
 			else if(ref.type == "animation") {
+				// edge case bug fix: do not show "skalar" video for query "skålar"
+				if (baseForms.includes("skåla") && ref.val.includes("skalar.mp4")) {
+					continue;
+				}
+
 				let wrap =  document.createElement('div');
 
 				// old heading
