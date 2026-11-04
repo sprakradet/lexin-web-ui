@@ -556,6 +556,7 @@ function closePopupGeneral() {
 	popup.hidden = true;
 	document.body.classList.remove("help-open");
 
+	// accessibiliy (focus)
 	if (explanationTrapCleanup) {
 		explanationTrapCleanup();
 		explanationTrapCleanup = null;

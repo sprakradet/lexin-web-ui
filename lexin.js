@@ -3042,13 +3042,23 @@ function cleanWord(word) {
 }
 
 function getLinkElemToSearch(word) { // any language
-    var aElem = document.createElement('a');
-    var url = window.location.protocol + '//' + window.location.host + window.location.pathname;
-    aElem.href = url + "?&word=" + word;
-    aElem.onclick = function() {
-	$("#searchQuery")[0].value = word;
-	callLexin(true);
-	return false;
+	var aElem = document.createElement('a');
+	var url = window.location.protocol + '//' + window.location.host + window.location.pathname;
+	aElem.href = url + "?&word=" + word;
+	aElem.onclick = function() {
+		$("#searchQuery")[0].value = word;
+		callLexin(true);
+		updatePageLayout();
+		
+		// add search word to h2
+		$("#searchResultQuery").text($("#searchQuery").val());
+		if ($("#searchResultQuery").text().trim()) {
+			$(".h2SearchResultHeading").show();
+		} else {
+			$(".h2SearchResultHeading").hide();
+		}
+
+		return false;
     };
     return aElem;
 }
@@ -3757,19 +3767,19 @@ function refToHTML(parentElement, refs, baseForms, showAll) {
 				let txts2 = stripHTMLetc(ref.val).split(",");
 				for(let t = 0; t < txts.length; t++) {
 					if(t > 0) {
-					let tmp = document.createElement('span');
-					tmp.textContent = ", ";
-					tElem.appendChild(tmp);
+						let tmp = document.createElement('span');
+						tmp.textContent = ", ";
+						tElem.appendChild(tmp);
 					}
 					let txt = txts[t].replace(/^\s*/, "");
 					if(t < txts2.length) {
-					let link = getLinkElemToSearch(txts2[t].replace(/^\s*/, ""));
-					link.textContent = txt;
-					tElem.appendChild(link);
+						let link = getLinkElemToSearch(txts2[t].replace(/^\s*/, ""));
+						link.textContent = txt;
+						tElem.appendChild(link);
 					} else {
-					let link = document.createElement('span');
-					link.textContent = txt;
-					tElem.appendChild(link);
+						let link = document.createElement('span');
+						link.textContent = txt;
+						tElem.appendChild(link);
 					}
 				}
 
@@ -6987,7 +6997,12 @@ $(document).ready(function() {
 			if (multilangPopup && !multilangPopup.hidden) {
 				closeMultiLangChoice();
 			}
-			if (menuButton && menuButton.classList.contains("change")) {
+			/*if (menuButton && menuButton.classList.contains("change")) {
+				openCloseSettings(menuButton);
+				menuButton.focus();
+			}*/
+			const popupBackdrop = document.querySelector(".popupBackdrop");
+			if (menuButton && menuButton.classList.contains("change") && popupBackdrop && !popupBackdrop.hidden) {
 				openCloseSettings(menuButton);
 				menuButton.focus();
 			}
@@ -7350,22 +7365,22 @@ function openGenericPagePopup(content, openerElem = null) {
 		const focusables = getFocusableElements(genericPopupWrapper);
 		(focusables[0] || genericPopupWrapper).focus();
 	}
-	}
+}
 
-	function closeGenericPagePopup() {
+function closeGenericPagePopup() {
 	if (!genericPopupWrapper) return;
 
-	// Stop focus trap
+	// stop focus trap
 	if (genericPopupTrapCleanup) {
 		genericPopupTrapCleanup();
 		genericPopupTrapCleanup = null;
 	}
 
-	// Hide
+	// hide
 	genericPopupWrapper.style.display = "none";
 	document.body.classList.remove("help-open");
 
-	// Restore focus
+	// restore focus
 	if (lastGenericOpener && typeof lastGenericOpener.focus === "function") {
 		lastGenericOpener.focus();
 	}

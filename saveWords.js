@@ -86,10 +86,18 @@ function getULfromSavedWords() {
 			
 			// close menu on click
 			aElem.addEventListener("click", function() {
-				const menuButton = document.querySelector(".settingsIcon");
-				if (menuButton && menuButton.classList.contains("change")) {
-					openCloseSettings(menuButton);
-					$("#searchQuery").focus();
+				$("#searchQuery").focus();
+
+				// desktop: do nothing
+				if (window.matchMedia("(min-width: 1024px)").matches) {
+					return;
+				}
+				// phone
+				else {
+					const menuButton = document.querySelector(".settingsIcon");
+					if (menuButton && menuButton.classList.contains("change")) {
+						openCloseSettings(menuButton);
+					}
 				}
 			});
 
