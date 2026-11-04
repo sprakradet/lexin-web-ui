@@ -158,20 +158,28 @@ function openCloseArticleParts() {
 }
 
 /* --------- CLOSE POPUP FOR ARTICLE PARTS FILTER --------- */
-function closeArticleParts() {
+function closeArticleParts(hasClickedOutside) {
     document.getElementById("articlePartsPopup").hidden = true;
 	const articlePartsButton = document.getElementById("articlePartsButton");
     articlePartsButton.setAttribute("aria-expanded", "false");
     $("#partsselection").hide();
-	articlePartsButton.focus();
+
+	// only focus if close button, open button or esc key was clicked
+	if (hasClickedOutside == false) {
+		articlePartsButton.focus();
+	}
 }
 
 /* --------- CLOSE POPUP FOR MULTILANG CHOICE --------- */
-function closeMultiLangChoice() {
+function closeMultiLangChoice(hasClickedOutside) {
 	document.getElementById("multilangchoice").hidden = true;
     const multiLanguageChoiceButton = document.getElementById("multiLanguageChoiceButton");
     multiLanguageChoiceButton.setAttribute("aria-expanded", "false");
-    multiLanguageChoiceButton.focus();
+    
+	// only focus if close button, open button or esc key was clicked
+	if (hasClickedOutside == false) {
+		multiLanguageChoiceButton.focus();
+	}
 }
 
 /* --------- OPEN&/CLOSE MENU ITEM --------- */

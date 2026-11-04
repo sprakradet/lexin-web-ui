@@ -6059,7 +6059,7 @@ function multiLangOrNot() {
 			</button>
 		`);
 		closeButton.on("click", function() {
-			closeMultiLangChoice();
+			closeMultiLangChoice(false);
 		});
 		multilangchoice.append(closeButton);
 
@@ -6950,12 +6950,12 @@ $(document).ready(function() {
 			{
 				popup: document.getElementById("articlePartsPopup"),
 				button: document.getElementById("articlePartsButton"),
-				close: () => closeArticleParts(false)
+				close: () => closeArticleParts(true)
 			},
 			{
 				popup: document.getElementById("multilangchoice"),
 				button: document.getElementById("multiLanguageChoiceButton"),
-				close: () => closeMultiLangChoice(false)
+				close: () => closeMultiLangChoice(true)
 			},
 			/*{
 				popup: document.getElementById("settingsPopup"),
@@ -7000,12 +7000,8 @@ $(document).ready(function() {
 				closeArticleParts();
 			}
 			if (multilangPopup && !multilangPopup.hidden) {
-				closeMultiLangChoice();
+				closeMultiLangChoice(false);
 			}
-			/*if (menuButton && menuButton.classList.contains("change")) {
-				openCloseSettings(menuButton);
-				menuButton.focus();
-			}*/
 			const popupBackdrop = document.querySelector(".popupBackdrop");
 			if (menuButton && menuButton.classList.contains("change") && popupBackdrop && !popupBackdrop.hidden) {
 				openCloseSettings(menuButton);

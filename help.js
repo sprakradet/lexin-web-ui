@@ -454,6 +454,8 @@ function openPageDescription(elem, button) {
 	}
 	explanationTrapCleanup = trapFocus(popup);
 	const focusables = getFocusableElements(popup);
+	console.log("CG focusables");
+	console.log(focusables);
 	(focusables[0] || popup).focus();
 }
 
