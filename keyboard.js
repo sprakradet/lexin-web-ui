@@ -361,6 +361,10 @@ const keybLayouts = {
 		['č','ć','đ','š','ž']
 	]},
 
+	"kl":{'name':"Kelderasch", 'layout':[
+		['á','ä','é','ó','ö','č','ŕ','š','ź','ž']
+	]},
+
     "ku":{'name':"Kurdiskt (kurmanji)", 'layout':[
 		['ç','ê','î','ş','û']
 	]},

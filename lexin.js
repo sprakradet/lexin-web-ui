@@ -145,7 +145,8 @@ const languageMap = {
     "fin":"fi",
     "gre":"el",
     "hrv":"hr",
-    "kmr":"ku", // TODO: is this the right Kurdish?
+	"kal":"kl",				// kelderasch (CHANGE TWO LETTER CODE)
+    "kmr":"ku", 			// TODO: is this the right Kurdish?
     "pus":"ps",
     "per":"fa",
     "rus":"ru",
@@ -171,6 +172,7 @@ const languageNames = {
     "fi":"finska",
     "el":"grekiska",
     "hr":"kroatiska",
+	"kl":"kelderasch",
     "ku":"kurdiska (kurmanji)",
     "ps":"pashto",
     "fa":"persiska",
@@ -197,6 +199,7 @@ const languageDir = {
     "fin":"ltr",
     "gre":"ltr",
     "hrv":"ltr",
+	"kal":"ltr",
     "kmr":"rtl",
     "pus":"rtl",
     "per":"rtl",
@@ -223,6 +226,7 @@ const languageMapReverse = {
     "fi":"fin",
     "el":"gre",
     "hr":"hrv",
+	"kl":"kal", // kelderasch
     "ku":"kmr", // TODO: is this the right Kurdish?
     "ps":"pus",
     "fa":"per",
