@@ -3309,7 +3309,7 @@ function syncBildtemaLangSelector(selector) {
 /* --------- ADD OPTIONS TO BILDTEMA LANGUAGE SELECTOR --------- */
 function populateBildtemaLangSelector(selector, languages) {
 	const codeReplacement = {per: "fas", gre: "ell", alb: "sqi"};
-	const missingCodes = ["azj", "hrv", "pus", "srp", "srp_cyrillic", "ukr"];
+	const missingCodes = ["azj", "hrv", "pus", "srp", "srp_cyrillic", "ukr", "kal"];
 
 	// add available languages
 	languages.forEach(lang => {

@@ -1305,7 +1305,7 @@ footer .lp-icon {
 @media (min-width: 1024px) {
     .pageLayout {
         display: grid;
-        grid-template-columns: 405px minmax(0, 1fr);
+        grid-template-columns: 390px minmax(0, 1fr);
         gap: 2rem;
         min-height: 100vh;
         align-items: stretch;
@@ -1341,7 +1341,7 @@ footer .lp-icon {
     }
 
     .lexinMainContent {
-        min-width: 0;
+        min-width: var(--lexin-max-width);
     }
 
     footer {
