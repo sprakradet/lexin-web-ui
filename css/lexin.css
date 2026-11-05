@@ -1304,11 +1304,13 @@ footer .lp-icon {
 /* desktop */
 @media (min-width: 1024px) {
     .pageLayout {
-        display: grid;
-        grid-template-columns: 390px minmax(0, 1fr);
-        gap: 2rem;
+        position: relative;
         min-height: 100vh;
-        align-items: stretch;
+    }
+    
+    .lexinMainContent {
+        width: min(var(--lexin-max-width),calc(100% - 405px - 2rem));
+        margin-left: max(calc((100% - var(--lexin-max-width)) / 2),calc(405px + 2rem));
     }
 
     .desktopSidebar {
@@ -1316,6 +1318,13 @@ footer .lp-icon {
         background-color: var(--lexin-background-color-default);
         padding-left: 2rem;
         padding-right: 2rem;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 405px;
+        height: 100%;
+        box-sizing: border-box;
     }
     .desktopSidebar .heading {
         font-size: 2rem;
@@ -1338,10 +1347,6 @@ footer .lp-icon {
 
     #theForm {
         display: none;
-    }
-
-    .lexinMainContent {
-        min-width: var(--lexin-max-width);
     }
 
     footer {
