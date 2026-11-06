@@ -361,7 +361,7 @@ const keybLayouts = {
 		['č','ć','đ','š','ž']
 	]},
 
-	"rk":{'name':"Kelderasch", 'layout':[
+	"rk":{'name':"Kelderash", 'layout':[
 		['á','ä','é','ó','ö','č','ŕ','š','ź','ž']
 	]},
 

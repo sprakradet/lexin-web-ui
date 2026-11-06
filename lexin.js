@@ -172,7 +172,7 @@ const languageNames = {
     "fi":"finska",
     "el":"grekiska",
     "hr":"kroatiska",
-	"rk":"kelderasch",
+	"rk":"kelderash",
     "ku":"kurdiska (kurmanji)",
     "ps":"pashto",
     "fa":"persiska",
@@ -226,7 +226,7 @@ const languageMapReverse = {
     "fi":"fin",
     "el":"gre",
     "hr":"hrv",
-	"rk":"kal", // kelderasch
+	"rk":"kal", // kelderash
     "ku":"kmr", // TODO: is this the right Kurdish?
     "ps":"pus",
     "fa":"per",
