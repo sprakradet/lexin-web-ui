@@ -3053,6 +3053,7 @@ function getLinkElemToSearch(word) { // any language
 		$("#searchQuery")[0].value = word;
 		callLexin(true);
 		updatePageLayout();
+		$("#menuContent3 .downloadPopup").show();
 		
 		// add search word to h2
 		$("#searchResultQuery").text($("#searchQuery").val());
@@ -7030,6 +7031,7 @@ $(document).ready(function() {
 		dismissSettings();
 		callLexin(true);
 		updatePageLayout();
+		$("#menuContent3 .downloadPopup").show();
 		e.preventDefault();
     });
 
@@ -7193,6 +7195,7 @@ $(document).ready(function() {
 
 	    await callLexin(false);
 		updatePageLayout();
+		$("#menuContent3 .downloadPopup").show();
 	}
     })())})();
 });
@@ -7415,6 +7418,7 @@ function doEmptySearch() {
 
     callLexin(true);
 	updatePageLayout();
+	$("#menuContent3 .downloadPopup").show();
 }
 
 function updatePageLayout() {
