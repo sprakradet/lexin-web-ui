@@ -27,6 +27,16 @@
     pointer-events: none;
 }
 
+#keybSE {
+    padding-bottom: 0.5em;
+    display: flex;
+    gap: 0;
+}
+
+#keybSE.keyboardtrans-visible {
+    padding-bottom: 0;
+}
+
 .geezVowels, .geezConsonants {
     margin-bottom: 5px;
 }

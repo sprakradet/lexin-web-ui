@@ -8,6 +8,8 @@
 // Show the Swedish keyboard
 // --------------------------------------------------------------------
 function keyboardUpdate() {
+	console.log("CG called keyboard");
+
 	// show åäö
     if (settings.keyb_se.val) {
 		$("#keybSE").show();
@@ -27,10 +29,15 @@ function keyboardUpdate() {
     if (settings.keyb_other.val) {
 		$("#keybTrans").show();
 		updateKeyboardLanguage();
+
+		if ($("#keybTrans .keyboardKeyButton").length > 0) {
+			$("#keybSE").addClass("keyboardtrans-visible");
+		}
     } 
 	// hide keyboard for other languages
 	else {
 		$("#keybTrans").hide();
+		$("#keybSE").removeClass("keyboardtrans-visible");
     }
 }
 

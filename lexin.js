@@ -6045,6 +6045,10 @@ function multiLangOrNot() {
 			let langcheckbox_wrapper = $("<div class='partsselectionBox'></div>");
 			langcheckbox_wrapper.append(langcheckbox);
 
+			$(document).on("click", ".partsselectionBox", function() {
+				keyboardUpdate();
+			});
+
 			// label
 			let langcheckbox_label = $("<label class='partsselectionLabel'></label>");
 			langcheckbox_label.attr("for", "multilangchoice-" + lang.code);
