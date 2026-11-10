@@ -6131,6 +6131,8 @@ function multiLangOrNot() {
 		$("#multilangchoice").empty();
 		$("#multilangchoice")[0].hidden = true;
 		multilangDisplay = "single";
+
+		updateKeyboardLanguage();
     }
 }
 
@@ -6196,7 +6198,7 @@ function setSelectedLexicon(list) {
     	    if(list.length > 1) {
     		if(!settings.multiple_languages.val) {
     		    settings.multiple_languages.val = 1;
-		    multiLangOrNot();
+		    	multiLangOrNot();
     		}
     		let options = lexiconEl.options;
 		setMultilangchoice(list);
@@ -7140,7 +7142,7 @@ $(document).ready(function() {
     });
 
     $(document).on("lexin_settingsupdate_multiple_languages", function () {
-	multiLangOrNot();
+		multiLangOrNot();
     });
     
     $(document).on("lexin_settingsupdate_expand", function () {

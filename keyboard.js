@@ -37,11 +37,11 @@ function keyboardUpdate() {
 function keybExpandSwe(elem) {
     var kb = document.getElementById("keybSE");
     if (kb.style.display === "block") {
-	closeSettings();
-	kb.style.display = "none";	
+		closeSettings();
+		kb.style.display = "none";	
     } else {
-	showSettings();
-	kb.style.display = "block";
+		showSettings();
+		kb.style.display = "block";
     }
 }
 
@@ -156,27 +156,23 @@ function keybExpandTrans(elem) {
 // in the input field at the cursor position.
 // --------------------------------------------------------------------
 function keyboardPress(elem, event) {
-
     if (event) {
-	event.preventDefault();
+		event.preventDefault();
     }
     
     var c = elem.innerText;
-
     var inp = $("#searchQuery")[0];
-
     if (inp.selectionStart || inp.selectionStart == '0') {
         const start = inp.selectionStart;
         const end = inp.selectionEnd;
-
-	var s = inp.value;
-	inp.value = s.substring(0, start)
-            + c
-            + s.substring(end, s.length);
-	inp.selectionStart = start + 1;
-	inp.selectionEnd = start + 1;
+		var s = inp.value;
+		inp.value = s.substring(0, start)
+				+ c
+				+ s.substring(end, s.length);
+		inp.selectionStart = start + 1;
+		inp.selectionEnd = start + 1;
     } else { 
-	inp.value += c;
+		inp.value += c;
     }
     inp.focus();
 }
