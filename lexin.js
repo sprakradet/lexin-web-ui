@@ -3054,6 +3054,7 @@ function getLinkElemToSearch(word) { // any language
 		callLexin(true);
 		updatePageLayout();
 		$("#menuContent3 .downloadPopup").show();
+		keyboardUpdate();
 		
 		// add search word to h2
 		$("#searchResultQuery").text($("#searchQuery").val());
@@ -7038,6 +7039,7 @@ $(document).ready(function() {
 		callLexin(true);
 		updatePageLayout();
 		$("#menuContent3 .downloadPopup").show();
+		keyboardUpdate();
 		e.preventDefault();
     });
 
@@ -7202,6 +7204,7 @@ $(document).ready(function() {
 	    await callLexin(false);
 		updatePageLayout();
 		$("#menuContent3 .downloadPopup").show();
+		keyboardUpdate();
 	}
     })())})();
 });
@@ -7425,6 +7428,7 @@ function doEmptySearch() {
     callLexin(true);
 	updatePageLayout();
 	$("#menuContent3 .downloadPopup").show();
+	keyboardUpdate();
 }
 
 function updatePageLayout() {

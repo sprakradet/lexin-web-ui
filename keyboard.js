@@ -8,8 +8,6 @@
 // Show the Swedish keyboard
 // --------------------------------------------------------------------
 function keyboardUpdate() {
-	console.log("CG called keyboard");
-
 	// show åäö
     if (settings.keyb_se.val) {
 		$("#keybSE").show();
