@@ -25,6 +25,13 @@
   background-color: var(--lexin-accent-color-light-blue) !important;
 }
 
+@media (max-width: 630px) {
+    .autocomplete-items div {
+        margin-left: 1.1rem;
+        margin-right: 1.1rem;
+    }
+}
+
 /* --------- DARK MODE --------- */
 
 @media (prefers-color-scheme: dark) { 
