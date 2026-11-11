@@ -1441,6 +1441,20 @@ footer .lp-icon {
     .expandGraminfoIcon {
 	    opacity: 1;
     }
+
+    .footerLink:hover {
+        background-color: transparent !important;
+    }
+
+    .picButton,
+    .videoButton {
+        border: 1px solid currentColor;
+    }
+
+    .expandResultsIcon {
+        filter: none !important;
+    }
+
 }
 
 /* --------- DARK MODE --------- */

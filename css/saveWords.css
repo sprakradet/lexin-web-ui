@@ -163,6 +163,14 @@
     }
 }
 
+/* --------- HIGH CONTRAST MODE --------- */
+
+@media (prefers-contrast: more) {
+    .saveWordsButton {
+        border: 1px solid currentColor;
+    }
+}
+
 /* --------- DARK MODE --------- */
 
 @media (prefers-color-scheme: dark) { 

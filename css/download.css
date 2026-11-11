@@ -188,3 +188,11 @@ progress::-moz-progress-bar {           /* Firefox */
         border-color: var(--lexin-accent-color-green);
     }
 }
+
+/* --------- HIGH CONTRAST MODE --------- */
+
+@media (prefers-contrast: more) {
+    .downloadStartButton {
+        border: 1px solid currentColor;
+    }
+}

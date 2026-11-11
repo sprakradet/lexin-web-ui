@@ -254,4 +254,9 @@ form#theForm2 input.popupText {
     .gdprText:hover {
         background-color: var(--lexin-accent-color-dark-blue);
     }
+
+    .closeButton,
+    .sendButton {
+        border: 1px solid currentColor;
+    }
 }

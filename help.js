@@ -29,9 +29,9 @@ function openHelpIdioms(inner) {
 	</p>
 	<p>
 		Det är ofta svårt att gissa på vilket av orden i idiomet som man hittar 
-		förklaringen i en ordbok. Hittar man idiomet <em>lovar guld och gröna 
-		skogar</em> i artikeln <em>lovar</em>, <em>guld</em>, <em>grön</em> 
-		eller <em>skog</em>? I Lexin hittar informationen i alla fyra 
+		förklaringen i en ordbok. Hittar man idiomet <i>lovar guld och gröna 
+		skogar</i> i artikeln <i>lovar</i>, <i>guld</i>, <i>grön</i> 
+		eller <i>skog</i>? I Lexin hittar informationen i alla fyra 
 		artiklarna. Det bör spara en del tid och energi.
 	</p>
         `;
@@ -49,17 +49,17 @@ function openHelpComps(inner) {
 	<h3>Sammansättningar</h3>
 	<p>
 		När man gör en sammansättning av två eller flera ord på svenska ändras 
-		ofta något litet. T.ex. <em>skog</em> + <em>dunge</em> blir 
-		<em>skog<strong>s</strong>dunge</em>. Mycket ofta lägger man till ett 
-		<em>s</em> som i det här fallet. Andra exempel är
-		<em>berg<strong>s</strong></em>-<em>trakt</em>, 
-		<em>dag<strong>s</strong></em>-<em>resa</em>.
+		ofta något litet. T.ex. <i>skog</i> + <i>dunge</i> blir 
+		<i>skog<b>s</b>dunge</i>. Mycket ofta lägger man till ett 
+		<i>s</i> som i det här fallet. Andra exempel är
+		<i>berg<b>s</b></i>-<i>trakt</i>, 
+		<i>dag<b>s</b></i>-<i>resa</i>.
 	</p>
 	<p>
-		Om det första ordet är ett substantiv och slutar på <em>a</em> eller 
-		<em>e</em> är det vanligt att den vokalen försvinner: <em>flicka</em> + 
-		<em>grupp</em> blir <em>flick</em>-<em>grupp</em>, <em>skola</em> + 
-		<em>klass</em> blir <em>skol</em>-<em>klass</em>.
+		Om det första ordet är ett substantiv och slutar på <i>a</i> eller 
+		<i>e</i> är det vanligt att den vokalen försvinner: <i>flicka</i> + 
+		<i>grupp</i> blir <i>flick</i>-<i>grupp</i>, <i>skola</i> + 
+		<i>klass</i> blir <i>skol</i>-<i>klass</i>.
 	</p>
        `;
 }
@@ -81,9 +81,9 @@ function openHelpDer(inner) {
 	<h2>Avledning</h2>
 	<p>
 		Avledningar är ord gjorda av ett annat ord genom att lägga till en 
-		förstavelse eller en ändelse, till exempel <em>allergi</em> och 
-		<em>allergiker</em> (en person som har en allergi), eller <en>jogga</em> 
-		och <em>joggning</em> (när man joggar).
+		förstavelse eller en ändelse, till exempel <i>allergi</i> och 
+		<i>allergiker</i> (en person som har en allergi), eller <en>jogga</i> 
+		och <i>joggning</i> (när man joggar).
 	</p>
        `;
 }
@@ -94,9 +94,9 @@ function openHelpAbbr(inner) {
 	<h2>Förkortning</h2>
 	<p>
 		"Förkortning" visar det vedertagna sättet att förkorta ordet, 
-		t.ex. <em>dr</em> i stället för <em>doktor</em>, <em>kg</em> i stället 
-		för <em>kilogram</em>, eller <em>SVT</em> i stället för <em>Sveriges 
-		Television</em>.
+		t.ex. <i>dr</i> i stället för <i>doktor</i>, <i>kg</i> i stället 
+		för <i>kilogram</i>, eller <i>SVT</i> i stället för <i>Sveriges 
+		Television</i>.
 	</p>
        `;
 }
@@ -107,9 +107,9 @@ function openHelpVar(inner) {
 	<h2>Uppslagsord</h2>
 	<p>
 		Ett uppslagsord kan följas av en alternativform. Ofta är det en annan 
-		form som har samma uttal men annan stavning, t.ex. <em>sjal</em> och 
-		<em>schal</em> eller <em>i dag</em> och <em>idag</em>. Det kan också 
-		vara en talspråksvariant, t.ex. <em>sedan</em> och <em>sen</em>. Den 
+		form som har samma uttal men annan stavning, t.ex. <i>sjal</i> och 
+		<i>schal</i> eller <i>i dag</i> och <i>idag</i>. Det kan också 
+		vara en talspråksvariant, t.ex. <i>sedan</i> och <i>sen</i>. Den 
 		första formen är huvudformen och den form som rekommenderas. Uttal och 
 		böjningsformer gäller uppslagsordet, inte alternativformen.
     </p>
@@ -123,8 +123,8 @@ function openHelpHyp(inner) {
 	<p>
 		Vissa ord ändras när de avstavas. Sammansatta ord med tre likadana 
 		konsonanter i rad skrivs som två, men när ordet avstavas skrivs alla tre
-		ut igen, t.ex. <em>äggula</em> som avstavas <em>ägg-gula</em> eller 
-		<em>Halland</em> som avstavas <em>Hall-land</em>.
+		ut igen, t.ex. <i>äggula</i> som avstavas <i>ägg-gula</i> eller 
+		<i>Halland</i> som avstavas <i>Hall-land</i>.
 	</p>
        `;
 }
@@ -135,8 +135,8 @@ function openHelpSee(inner) {
 	<h2>"Se"-referens</h2>
 	<p>
 		"Se"-referenser hänvisar till ordet som en förkortning står för (t.ex. 
-		<em>AD, Se: Arbetsdomstolen</em>) eller normalformen för en talspråklig
-		variant (t.ex. <em>sen, Se: sedan</em>).
+		<i>AD, Se: Arbetsdomstolen</i>) eller normalformen för en talspråklig
+		variant (t.ex. <i>sen, Se: sedan</i>).
 	</p>
        `;
 }
@@ -146,10 +146,10 @@ function openHelpCompare(inner) {
     inner.innerHTML = `
 	<h2>Jämförelse</h2>
 	<p>
-		"Jämför"-referenser visar liknande ord, t.ex. <em>förstaspråk</em> och 
-		<em>andraspråk</em> och för partikelverb som både kan skrivas ihop och 
-		isär med liknande betydelse, t.ex. <em>hålla av</em> och 
-		<em>avhållen</em>.
+		"Jämför"-referenser visar liknande ord, t.ex. <i>förstaspråk</i> och 
+		<i>andraspråk</i> och för partikelverb som både kan skrivas ihop och 
+		isär med liknande betydelse, t.ex. <i>hålla av</i> och 
+		<i>avhållen</i>.
 	</p>
        `;
 }
@@ -159,7 +159,7 @@ function openHelpAnt(inner) {
     inner.innerHTML = `
 	<h2>Motsats</h2>
 	<p>
-		Ibland förklaras ord med ett motsatsord (en <em>antonym</em>).
+		Ibland förklaras ord med ett motsatsord (en <i>antonym</i>).
 	</p>
 	<p>
 		Syftet med att ge synonymer eller antonymer utöver definitionen är 
@@ -179,13 +179,13 @@ function openHelpConstr(inner) {
 	  som visar hur verbet används.
 	</p>
 	<p>
-		Ett exempel är verbet <em>tycker om</em> som har mönstret <strong>&lt;A 
-		tycker om B/x/att+SATS&gt;</strong>.
+		Ett exempel är verbet <i>tycker om</i> som har mönstret <b>&lt;A 
+		tycker om B/x/att+SATS&gt;</b>.
 	</p>
 	<p> 
 		För att få hjälp med att förstå en grammatisk konstruktion kan du klicka 
 		på mönstret. Då visas en kort förklaring till vad de olika delarna, 
-		t.ex. <em>A</em> och <em>B</em>, betyder. En lista med alla 
+		t.ex. <i>A</i> och <i>B</i>, betyder. En lista med alla 
 		kombinationer visas också.
 	</p>
     <p>
@@ -221,13 +221,13 @@ function openHelpConstr(inner) {
 		</ul>
 	</p>
 	<p>
-		<em>A</em> och <em>B</em> är personer, <em>x</em> är en sak, och 
-		<em>att+SATS</em> betyder att det också kan vara en fras eller en hel 
-		sats. Tecknet "/" betyder "eller", så mönstret betyder att <em>en person
-	    tycker om en person eller en sak eller att + en fras</em>. Exempel på 
-		hur <em>tycker om</em> kan användas: (1) <cite>jag tycker om 
-		Lisa</cite>, (2) <cite>jag tycker om jordgubbar</cite>, och (3) <em>jag
-	    tycker om att spela fotboll</em>.
+		<i>A</i> och <i>B</i> är personer, <i>x</i> är en sak, och 
+		<i>att+SATS</i> betyder att det också kan vara en fras eller en hel 
+		sats. Tecknet "/" betyder "eller", så mönstret betyder att <i>en person
+	    tycker om en person eller en sak eller att + en fras</i>. Exempel på 
+		hur <i>tycker om</i> kan användas: (1) <cite>jag tycker om 
+		Lisa</cite>, (2) <cite>jag tycker om jordgubbar</cite>, och (3) <i>jag
+	    tycker om att spela fotboll</i>.
 	</p>
 	<p> 
 		Mönster för verb är till för att visa möjliga sätt att använda verbet 
@@ -236,8 +236,8 @@ function openHelpConstr(inner) {
 	</p>
 	<p>
 		I verbmönstren finns personer och saker. Det kan också finnas satsdelar 
-		som <em>subjekt</em> och <em>objekt</em>. Det finns även ord som 
-		beskriver betydelse, t.ex. <em>TID</em> och <em>PLATS</em>.
+		som <i>subjekt</i> och <i>objekt</i>. Det finns även ord som 
+		beskriver betydelse, t.ex. <i>TID</i> och <i>PLATS</i>.
 	</p>
        `;
 }
@@ -259,10 +259,10 @@ function openHelpSakuppl(inner) {
 	</p>
 	<p>
 		Sakförklaringar finns dels för ord som är namnliknande (t.ex. 
-		<em>LO</em>, <em>Domänverket</em>, <em>advent</em>) och vars innebörd 
+		<i>LO</i>, <i>Domänverket</i>, <i>advent</i>) och vars innebörd 
 		inte är lätt att förstå, dels som kompletterande information till ord 
-		som också ges en vanlig ordförklaring (t.ex. <em>barnbidrag</em>, 
-		<em>adoption</em>).
+		som också ges en vanlig ordförklaring (t.ex. <i>barnbidrag</i>, 
+		<i>adoption</i>).
 	</p>
 		`;
 }
@@ -276,7 +276,7 @@ function openHelpPoS(inner, pos) {
 		förekommer i Lexin är: substantiv, adjektiv, verb, adverb, preposition, 
 		pronomen, konjunktion, interjektion, räkneord, namn, artikel, 
 		infinitivmärke och förkortning. Det finns också två klasser 
-		<em>förled</em> och <em>efterled</em> som inte är riktiga ordklasser men 
+		<i>förled</i> och <i>efterled</i> som inte är riktiga ordklasser men 
 		som används när uppslagsordet är förled eller efterled i sammansatta 
 		ord.
 	</p>
@@ -288,15 +288,15 @@ function openHelpPhon(inner, phon) {
     let html = `
 	<h2>Uttal</h2>
 	<p> 
-		Uttal visas med både <em>fonetisk skrift</em>, t.ex. <strong>` + phon + 
-		`</strong>, och med en ljudfil du kan lyssna på.
+		Uttal visas med både <i>fonetisk skrift</i>, t.ex. [` + phon + 
+		`], och med en ljudfil du kan lyssna på.
 	</p>
-    <h3>` + phon + `</h3>
+    <h3>[` + phon + `]</h3>
 	<ul>`;
 
     if(phon.indexOf('ʃ') >= 0) {
-		html += '<li>Tecknet esh "ʃ" betyder <em>sje</em>-ljud, som i '
-				+ '<em>sjunga</em> eller <em>7</em>.</li>';
+		html += '<li>Tecknet esh "ʃ" betyder <i>sje</i>-ljud, som i '
+				+ '<i>sjunga</i> eller <i>7</i>.</li>';
     }
     if(phon.indexOf(':') >= 0) {
 		html += '<li>Tecknet kolon ":" betyder att ljudet före kolon ":" är '
@@ -307,31 +307,31 @@ function openHelpPhon(inner, phon) {
 				+ 'på stavelsen där punkt " ̣" finns.</li>';
     }
     if(phon.indexOf('ç') >= 0) {
-		html += '<li>Tecknet cedilj-c "ç" betyder <em>tje</em>-ljud, som i '
-				+ '<em>kikare</em>, <em>kjol</em>, eller <em>20</em>.</li>';
+		html += '<li>Tecknet cedilj-c "ç" betyder <i>tje</i>-ljud, som i '
+				+ '<i>kikare</i>, <i>kjol</i>, eller <i>20</i>.</li>';
     }
     if(phon.search('[aeiouyåäöAEIOUYÅÄÖ]‿[aeiouyåäöAEIOUYÅÄÖ]') >= 0) {
-		html += '<li>Bågen "‿" mellan två vokaler betyder <em>diftong</em>, '
+		html += '<li>Bågen "‿" mellan två vokaler betyder <i>diftong</i>, '
 				+ 'att de två vokalerna flyter ihop som t.ex. i '
-				+ '<em>automat</em>.</li>';
+				+ '<i>automat</i>.</li>';
     }
     if(phon.search('[^aeiouyåäöAEIOUYÅÄÖ]‿[^aeiouyåäöAEIOUYÅÄÖ]') >= 0) {
 		html += '<li>Bågen "‿" mellan två konsonanter betyder att de två '
 				+ 'bokstäverna före och efter bågen "‿" smålter ihop till ett '
-				+ 'ljud. När <em>r</em> följs av <em>d</em>, <em>t</em>, '
-				+ '<em>n</em>, <em>l</em> eller <em>s</em>, smälter ljuden '
+				+ 'ljud. När <i>r</i> följs av <i>d</i>, <i>t</i>, '
+				+ '<i>n</i>, <i>l</i> eller <i>s</i>, smälter ljuden '
 				+ 'ofta ihop till ett enda ljud.</li>';
     }
     if(phon.indexOf('²') >= 0) {
-		html += '<li>Den upphöjda tvåan "²" betyder <em>grav accent</em> (som '
-				+ 'också kallas <em>accent 2</em>). När det inte finns någon '
+		html += '<li>Den upphöjda tvåan "²" betyder <i>grav accent</i> (som '
+				+ 'också kallas <i>accent 2</i>). När det inte finns någon '
 				+ ' tvåa utan bara tryckmarkering, punkt " ̣" (eller ingen '
 				+ 'tryckmarkering alls), betyder det att ordet har akut '
 				+ 'accent.</li>';
     }
     if(phon.indexOf('ŋ') >= 0) {
-		html += '<li>Tecknet eng "ŋ" betyder <em>ng</em>-ljud, som i '
-				+ '<em>lång</em>, <em>dygn</em>, eller <em>bank</em>.</li>';
+		html += '<li>Tecknet eng "ŋ" betyder <i>ng</i>-ljud, som i '
+				+ '<i>lång</i>, <i>dygn</i>, eller <i>bank</i>.</li>';
     }
     
     html += `</ul>

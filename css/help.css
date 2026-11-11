@@ -359,6 +359,14 @@ th {
     .closeHelp {
         color: CanvasText;
     }
+
+    .openPageButton {
+        border: 1px solid currentColor;
+    }
+
+    .closeButtonGeneral {
+        border: 1px solid currentColor;
+    }
 }
 
 /* --------- DARK MODE --------- */
