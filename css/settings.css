@@ -223,7 +223,7 @@
 }
 
 .multiLangChoiceLegend {
-    margin-top: 47px;
+    /*margin-top: 47px;*/
 }
 
 .multiLangChoiceFieldset {
@@ -235,7 +235,7 @@
 }
 
 .partsselectionLegend {
-    margin-top: 40px;
+    /*margin-top: 40px;*/
 }
 
 /* --------- FILTER ARTICLE PARTS ELEMENTS --------- */
@@ -311,9 +311,13 @@
     cursor: pointer;
 
     /* sit in top-right corner */
-    position: absolute;     
+    /*position: absolute;     
     top: 1rem;
-    right: 1rem;
+    right: 1rem;*/
+    position: static;
+    width: fit-content;
+    margin-left: auto;
+    margin-bottom: 1rem;
 
     /* align pic + text horizontally */
     display: flex;
