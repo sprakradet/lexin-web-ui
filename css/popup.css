@@ -226,6 +226,11 @@ form#theForm2 input.popupText {
     .popupButton .popupIcon {
         content: url("../svg/feedback-icon_contrastmode.svg");
     }
+
+    .closeButton,
+    .sendButton {
+        border: 1px solid currentColor;
+    }
 }
 
 /* --------- DARK MODE --------- */
@@ -253,10 +258,5 @@ form#theForm2 input.popupText {
     }
     .gdprText:hover {
         background-color: var(--lexin-accent-color-dark-blue);
-    }
-
-    .closeButton,
-    .sendButton {
-        border: 1px solid currentColor;
     }
 }

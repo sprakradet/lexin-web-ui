@@ -364,7 +364,9 @@ th {
         border: 1px solid currentColor;
     }
 
-    .closeButtonGeneral {
+    .closeButtonGeneral,
+    .helpOpenMoreInfo,
+    .upButton {
         border: 1px solid currentColor;
     }
 }

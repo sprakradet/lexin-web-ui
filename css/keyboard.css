@@ -49,3 +49,11 @@
         background-color: var(--lexin-accent-color-green);
     }
 }
+
+/* --------- HIGH CONTRAST MODE --------- */
+
+@media (prefers-contrast: more) {
+    .keyboardKeyButton {
+        border: 1px solid currentColor;
+    }
+}
