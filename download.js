@@ -75,12 +75,19 @@ async function openDownload() {
 /* --------- DOWNLOAD CHOSEN DICTIONARIES --------- */
 function startDownload() {
     _.each(downloadLanguages, language => {
+		const langName = $("#selectDownloadLanguages option").filter(function () {
+			return this.value === language.lang;
+		}).text();
+
 		console.log("download", language);
 		(async() => {
 			try {
+				showDownloadMessage(`Laddar ner ${langName} ...`, false);
 				await doDownload(language.progressWrapper, language.lang);
+				showDownloadMessage(`${langName.charAt(0).toUpperCase() + langName.slice(1)} har laddats ner.`, true);
 			} catch {
-				language.progressWrapper.empty().append("Nedladdning misslyckades");
+				language.progressWrapper.empty().append('<span>Nedladdning misslyckades</span>');
+				showDownloadMessage(`Nedladdningen av ${langName} misslyckades.`, true);
 			}
 		})();
     });
@@ -95,18 +102,17 @@ function setAsDownloaded(wrapper, lang) {
 	}).text();
 	//wrapper.empty().append("Nedladdat <button class='removeDownloadButton' type='button' aria-label='Ta bort nedladdning av ${langName}'>&times;</button>");
 	wrapper.empty().append(`
-		Nedladdat
-		<button class="removeDownloadButton"
-				type="button"
-				aria-label="Ta bort nedladdning av ${langName}">
-			&times;
-		</button>
+		<span>Nedladdat</span>
+		<button class="removeDownloadButton" type="button" aria-label="Ta bort nedladdning av ${langName}">&times;</button>
 	`);
 
 	// remove button event
     wrapper.find("button").click(async function () {
+		// show status message
+		showDownloadMessage(`Tar bort nedladdning av ${langName} ...`, false);
+
 		// show progress bar
-		let progress = $("<progress></progress>");
+		let progress = $("<progress></progress>").attr("aria-label", `Tar bort nedladdning av ${langName}`).attr("max", 1).val(0);
 		wrapper.empty().append(progress).val(0);
 		await removeLanguage(lang, progress);
 
@@ -119,11 +125,10 @@ function setAsDownloaded(wrapper, lang) {
 		}))
 
 		// update UI 
-		wrapper.empty()
-		//redrawDownload();
+		wrapper.empty();
 
-		// CG ADD
-		//openDownload();
+		// show status message
+		showDownloadMessage(`Nedladdningen av ${langName} har tagits bort.`, true);
     });
 
 	// CG add
@@ -139,7 +144,7 @@ function activateRedownloadButton(wrapper, lang) {
 			console.log(e.stack);
 			console.log(e.name);
 			console.log(e.message);
-			wrapper.empty().append("Nedladdning misslyckades");
+			wrapper.empty().append('<span>Nedladdning misslyckades</span>');
 		}
     });
 }
@@ -180,7 +185,10 @@ async function doDownload(wrapper, lang) {
     let metadata = downloadableDictionariesDict[lang];
 
 	// show progress bar
-    let progress = $("<progress></progress>");
+	const langName = $("#selectDownloadLanguages option").filter(function () {
+		return this.value === lang;
+	}).text();
+    let progress = $("<progress></progress>").attr("aria-label", `Laddar ner ${langName}`).attr("max", 1).val(0);
     wrapper.empty().append(progress).val(0);
 
 	// get language metadata
@@ -254,9 +262,9 @@ async function redrawDownload() {
     downloadLanguages = []
     
     $("#selectDownloadLanguages option").each(function () {
-	let lang = $(this).val();
-	if (lang == "") {
-	    return;
+		let lang = $(this).val();
+		if (lang == "") {
+			return;
 	}
 	if (this.selected || downloadedLanguages[lang]) {
 	    let progress = $("<div class='progressWrapper'>Inte nedladdat</div>");
@@ -288,3 +296,21 @@ function closeDownload() {
     var h = document.getElementById("downloadPopup");
     h.style.display = "none";
 } 
+
+/* --------- SHOW DOWNLOAD STATUS TEXT --------- */
+function showDownloadMessage(text, shouldFadeOut) {
+    const msg = document.getElementById("downloadMessage");
+    clearTimeout(msg._hideTimer);
+    clearTimeout(msg._clearTimer);
+    msg.textContent = text;
+    msg.classList.add("show");
+
+	if (shouldFadeOut) {
+		msg._hideTimer = setTimeout(() => {
+			msg.classList.remove("show");
+			msg._clearTimer = setTimeout(() => {
+				msg.textContent = "";
+			}, 150);
+		}, 5000);
+	}
+}

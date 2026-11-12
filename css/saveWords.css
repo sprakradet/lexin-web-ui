@@ -129,16 +129,15 @@
 /* --------- SAVE MESSAGE --------- */ 
 
 .saveMessage {
-  margin-left: 10px;
-  opacity: 0;
-  /*transition: opacity 0.25s;*/
-  transition: opacity 150ms ease;
-  /*font-size: 2em;*/
-  color: white;
+    opacity: 0;
+    /*transition: opacity 0.25s;*/
+    transition: opacity 150ms ease;
+    /*font-size: 2em;*/
+    color: var(--lexin-accent-color-green);   
 }
 
 .saveMessage.show {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
@@ -160,6 +159,10 @@
 @media (max-width: 630px) {
     .saveWordsOriginalButton {
         margin-left: 1.1rem;
+    }
+    .saveMessage {
+        position: relative;
+        left: 1.1rem;
     }
 }
 

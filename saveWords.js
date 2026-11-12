@@ -52,9 +52,8 @@ function savedWordsSaveCurrentWord(elem, id) {
     }
 
 	// show saved message
-	/*const msg = document.getElementById(id);
-	msg.textContent = "";
-  	msg.textContent = "Sparat!";
+	const msg = document.getElementById(id);
+  	msg.textContent = "Ordet sparades!";
 	msg.style.paddingBottom = "5px";
 
 	// fade in
@@ -65,7 +64,11 @@ function savedWordsSaveCurrentWord(elem, id) {
 		msg._hideTimer = setTimeout(() => {
 		msg.classList.remove("show");
 		setTimeout(() => { msg.textContent = ""; }, 200);
-	}, 3000);*/
+	}, 5000);
+
+	// change button text
+	button = document.getElementById("savedWordsSaveCurrent");
+	button.textContent = "Sparat";
 }
 
 // --------------------------------------------------------------------
@@ -185,12 +188,12 @@ function removeOneSavedWord(word) {
 
     saveToLocalStorage();
 
-	// CG ADD
 	var cw = $("#searchQuery").val();
 	var btn = $("#savedWordsSaveCurrent")[0];		// used
     //var btn2 = $("#savedWordsSaveCurrentWrd")[0];	// not used?
 	if (cw == word) {
 		btn.disabled = false;
+		btn.textContent = "Spara ord";
 		//btn2.disabled = false;
 		//btn.title = "Spara senaste uppslagning";
 		//btn2.title = "Spara senaste uppslagning";
@@ -251,6 +254,7 @@ function updateSaveCurrentButton() {
 	// search already saved
     if((savedWords && savedWords.includes(cw))) {
 		btn.disabled = true;
+		btn.textContent = "Sparat";
 		//btn2.disabled = true;
 		//btn.title = "Uppslagningen är redan sparad";
 		//btn2.title = "Uppslagningen är redan sparad";
@@ -264,6 +268,7 @@ function updateSaveCurrentButton() {
 	}
 	else {
 		btn.disabled = false;
+		btn.textContent = "Spara ord";
 		//btn2.disabled = false;
 		//btn.title = "Spara senaste uppslagning";
 		//btn2.title = "Spara senaste uppslagning";

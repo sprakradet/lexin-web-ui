@@ -44,6 +44,7 @@
     grid-template-columns: 1fr 1fr;
     row-gap: 0.5em;
     /*height:20px;*/
+    overflow-wrap: anywhere;
 }
 
 .downloadProgressLang {
@@ -94,6 +95,19 @@ progress::-moz-progress-bar {           /* Firefox */
     margin: 0;
     display: block;
     cursor: pointer;
+}
+
+/* --------- STATUS MESSAGE --------- */
+
+.downloadMessage {
+    opacity: 0;
+    transition: opacity 150ms ease;
+    margin-top: 0.5em;
+    color: var(--lexin-accent-color-green);
+}
+
+.downloadMessage.show {
+    opacity: 1;
 }
 
 /* --------- REMOVE BUTTON --------- */
@@ -159,16 +173,17 @@ progress::-moz-progress-bar {           /* Firefox */
 
 /* handle elements next to each other */
 .downloadControls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
 }
 
 .download-controls select,
 .download-controls .downloadStartButton{
-  font: inherit;
-  height: 2.25rem;
-  box-sizing: border-box;
+    font: inherit;
+    height: 2.25rem;
+    box-sizing: border-box;
 }
 
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */

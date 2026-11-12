@@ -564,7 +564,7 @@ select {
 /* --------- SYNONYMS --------- */
 
 .synonyms {
-
+    font-size: 1rem;
 }
 
 /* --------- MEANING --------- */
@@ -687,7 +687,7 @@ select {
 /* --------- COMMENTS --------- */
 
 .comment {
-
+    font-size: 1rem;
 }
 
 .comment_se {
@@ -740,6 +740,10 @@ select {
 .explanation {
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+.explanation span {
+    font-size: 1rem;
 }
 
 .explanationText {

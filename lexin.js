@@ -803,6 +803,9 @@ function printJSON(word, res, moreThanOneLanguage) {
 		html.className = 'errorReport';
 		html.innerHTML = "<p>Felstavat ord? Mer än ett liknande möjligt ord.</p>";
 
+		// accessibility
+		html.setAttribute("role", "status");
+
 		// show correction suggestions
 		if(res.Corrections?.length > 0) {
 			// console.log("CG rättningsförslag: ", res.Corrections);
@@ -3628,6 +3631,8 @@ function addBildtemaInline(url, parent, lang, word) {
 	// show loading icon
 	const loader = document.createElement("div");
 	loader.className = "bt-loader";
+	loader.setAttribute("role", "status");
+	loader.setAttribute("aria-label", "Bildtema laddas ...");
 	const spinner = document.createElement("div");
 	spinner.className = "bt-spinner";
 
