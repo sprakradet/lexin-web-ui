@@ -287,6 +287,7 @@ select#languageChoice {
     padding-left: 0.5em;
     padding-right: 1.5em;
     padding-bottom: 2px;
+    min-height: 24px;
     width: 100%;
     max-width: 20em;
     cursor: pointer;
@@ -528,6 +529,7 @@ select {
 .listenIcon {
     height: 1.3em;
     width: 2em;
+    min-height: 24px;
     vertical-align: bottom;
     background-image: url(../svg/listen-icon.svg);
     background-repeat: no-repeat;
@@ -810,10 +812,17 @@ select {
 
 .partsselectionBox {
     margin: 0.3em 0;
+    min-height: 28px;
 }
 
 .partsselectionBox * {
     vertical-align: middle;
+}
+
+input[type="checkbox"] {
+    accent-color: var(--lexin-accent-color-green);
+    min-width: 15px;
+    min-height: 15px;
 }
 
 input[type="checkbox"]:hover {
@@ -826,10 +835,6 @@ input[type="checkbox"]:hover {
 
 .longClickLink {
 
-}
-
-input[type="checkbox"] {
-  accent-color: var(--lexin-accent-color-green);
 }
 
 /* ------ CLICKABLE ARTICLE PARTS ------ */
@@ -1261,6 +1266,7 @@ footer .lp-icon {
     padding-bottom: 2px;
     width: 100%;
     max-width: 192px;
+    min-height: 24px;
     cursor: pointer;
     background-color: var(--lexin-accent-color-light-blue);
 }

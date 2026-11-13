@@ -236,6 +236,11 @@ th {
     padding-top: 0;
 }
 
+.tableOfContentsList a {
+    display: inline-block;
+    min-height: 24px;
+}
+
 .LexinExplanations a:hover{
   background-color: var(--lexin-accent-color-light-grey);
 }

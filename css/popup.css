@@ -87,6 +87,30 @@ form#theForm2 input.popupText {
     margin-top: 20px;
 }
 
+/* --------- RADIO BUTTONS --------- */
+
+.radioGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.radioOption {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    min-height: 24px;
+}
+
+.radioOption input[type="radio"] {
+    min-width: 15px;
+    min-height: 15px;
+    accent-color: var(--lexin-accent-color-green);
+    margin: 0;
+    cursor: pointer;
+}
+
 /* --------- BUTTONS --------- */
 
 .popupButton {
