@@ -19,6 +19,9 @@ function showPopup() {
 	popup.style.display = 'block';
 	document.body.classList.add("modal-open");
 
+	// accessibility (set dialog name)
+	popup.setAttribute("aria-labelledby", "popupHeading");
+
 	// accessibility (tab focus possible)
 	popup.setAttribute("tabindex", "-1");
 

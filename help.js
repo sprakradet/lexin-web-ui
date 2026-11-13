@@ -421,7 +421,7 @@ async function openAccessibilityStatement(inner) {
 /* --------- OPEN HELP PAGE (NEW) --------- */
 let lastHelpOpener = null;
 let explanationTrapCleanup = null;
-function openPageDescription(elem, button) {
+async function openPageDescription(elem, button) {
 	lastHelpOpener = button !== undefined ? button : elem;
 
 	// clear content
@@ -430,18 +430,31 @@ function openPageDescription(elem, button) {
 
 	// add text content
 	if (typeof elem === "function") {
-    	elem(content);
+    	await elem(content);
 	}
 	else {
-		populateHelpPopup(content, elem);
+		await populateHelpPopup(content, elem);
 	}
+
+	// accessibility
+	const popup = document.getElementById("popupGeneral");
+    const heading = content.querySelector("h2");
+	console.log("CG heading");
+	console.log(heading);
+
+    if (heading) {
+        heading.id = "dialogTitle";
+        popup.setAttribute("aria-labelledby", heading.id);
+    } else {
+        popup.removeAttribute("aria-labelledby");
+    }
 	
 	// add non-clickable shadow background
 	const backdrop = document.getElementById("popupBackdrop");
 	backdrop.hidden = false;
 
 	// show popup
-	const popup = document.getElementById("popupGeneral");
+	/*const popup = document.getElementById("popupGeneral");*/
 	popup.hidden = false;
 	document.body.classList.add("help-open");
 
