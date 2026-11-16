@@ -32,6 +32,14 @@ function openCloseSettings(elem) {
     }
 }
 
+function closeSettings(elem) {
+	$("#settingsPopup .expandMenuButton[aria-expanded='true']").each(function() {
+            toggleExpandMenu(this);
+        });
+	dismissSettings();
+	$(elem).attr("aria-expanded", "false");
+}
+
 function dismissSettings() {
     $(".settingsIcon").removeClass("change");
 

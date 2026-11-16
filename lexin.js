@@ -7004,7 +7004,7 @@ $(document).ready(function() {
 		}
 	});
 
-	// close settings filter popups on escape
+	// close menu + settings filter popups on escape
 	document.addEventListener("keydown", function(event) {
 		if (event.key === "Escape") {
 			const articlePartsPopup = document.getElementById("articlePartsPopup");
@@ -7024,6 +7024,40 @@ $(document).ready(function() {
 				menuButton.focus();
 			}
 		}
+	});
+
+	// close menu + settings filter popups when keyboard focus moves outside it
+	function closeOnFocusOut(elementIds, closeFunction) {
+		const elements = elementIds.map(id => document.getElementById(id));
+		elements.forEach(element => {
+			element.addEventListener("focusout", (event) => {
+				const focusIsInside = elements.some(el =>
+					el.contains(event.relatedTarget)
+				);
+				if (!focusIsInside) {
+					closeFunction();
+				}
+			});
+		});
+	}
+	/*const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+	if (!isDesktop) {
+		closeOnFocusOut(["settingsPopup", "settingsIcon"], () => {
+			console.log("not desktop");
+			closeSettings(document.querySelector(".settingsIcon"));
+		});
+	}*/
+	closeOnFocusOut(["settingsPopup", "settingsIcon"], () => {
+		if (window.matchMedia("(max-width: 1023px)").matches) {
+			console.log("not desktop");
+			closeSettings(document.querySelector(".settingsIcon"));
+		}
+	});
+	closeOnFocusOut(["articlePartsPopup"], () => {
+		closeArticleParts();
+	});
+	closeOnFocusOut(["multilangchoice"], () => {
+		closeMultiLangChoice(true);
 	});
 
     if (flags.loadResources) {
