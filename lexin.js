@@ -7040,16 +7040,8 @@ $(document).ready(function() {
 			});
 		});
 	}
-	/*const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-	if (!isDesktop) {
-		closeOnFocusOut(["settingsPopup", "settingsIcon"], () => {
-			console.log("not desktop");
-			closeSettings(document.querySelector(".settingsIcon"));
-		});
-	}*/
 	closeOnFocusOut(["settingsPopup", "settingsIcon"], () => {
 		if (window.matchMedia("(max-width: 1023px)").matches) {
-			console.log("not desktop");
 			closeSettings(document.querySelector(".settingsIcon"));
 		}
 	});
