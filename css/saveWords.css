@@ -140,6 +140,13 @@
     opacity: 1;
 }
 
+/* --------- EMPTY LIST MESSAGE --------- */ 
+
+.emptyListMessage {
+    display: none;
+    padding-bottom: 1em;
+}
+
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
 
 @media (hover: hover) and (pointer: fine) {

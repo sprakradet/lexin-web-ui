@@ -21,6 +21,8 @@ function openSavedWords() {
     var parentDiv = $("#savedWordsList")[0];
     parentDiv.innerHTML = null;
     parentDiv.appendChild(uElem);
+
+	checkListEmpty();
 } 
 
 function closeSavedWords() {
@@ -69,6 +71,8 @@ function savedWordsSaveCurrentWord(elem, id) {
 	// change button text
 	button = document.getElementById("savedWordsSaveCurrent");
 	button.textContent = "Sparat";
+
+	checkListEmpty();
 }
 
 // --------------------------------------------------------------------
@@ -218,6 +222,8 @@ function savedWordsClearWords(elem) {
 		updateSaveCurrentButton();
 
 		saveToLocalStorage();
+
+		checkListEmpty();
     }
 }
 
@@ -285,3 +291,23 @@ $(document).ready(function() {
 	e.preventDefault();
     });
 });
+
+/* --------- ENABLE/DISABLE FUNCTIONALITY & TEXT --------- */
+function checkListEmpty() {
+	var message = document.getElementById("emptyListMessage");
+	var sortButton = document.getElementById("savedWordsSort");
+	var clearButton = document.getElementById("savedWordsClear");
+
+	// words saved
+	if(savedWords && savedWords.length > 0) {
+		message.style.display = "none";
+		sortButton.disabled = false;
+		clearButton.disabled = false;
+	}
+	// no words saved
+	else {
+		message.style.display = "block";
+		sortButton.disabled = true;
+		clearButton.disabled = true;
+	}
+}
