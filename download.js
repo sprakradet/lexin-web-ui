@@ -85,7 +85,8 @@ function startDownload() {
 				showDownloadMessage(`Laddar ner ${langName} ...`, false);
 				await doDownload(language.progressWrapper, language.lang);
 				showDownloadMessage(`${langName.charAt(0).toUpperCase() + langName.slice(1)} har laddats ner.`, true);
-			} catch {
+			} catch (e) {
+				console.error(`Nedladdning av ${langName} misslyckades:`, e);
 				language.progressWrapper.empty().append('<span>Nedladdning misslyckades</span>');
 				showDownloadMessage(`Nedladdningen av ${langName} misslyckades.`, true);
 			}
