@@ -373,9 +373,26 @@ select {
     max-width: 350px;
 }
 
-.isoflogowrapper img {
+/*.isoflogowrapper img {
     width: 50%;
     min-width: 0;
+    height: auto;
+    object-fit: contain;
+}*/
+
+.isoflogowrapper a {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+}
+
+.isoflogowrapper a:hover {
+    background-color: transparent !important;
+}
+
+.isoflogowrapper img {
+    width: 100%;
     height: auto;
     object-fit: contain;
 }
