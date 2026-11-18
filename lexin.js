@@ -7028,19 +7028,24 @@ $(document).ready(function() {
 
 	// close menu + settings filter popups when keyboard focus moves outside it
 	function closeOnFocusOut(elementIds, closeFunction) {
-		const elements = elementIds.map(id => document.getElementById(id));
+		//const elements = elementIds.map(id => document.getElementById(id));
+		const elements = elementIds.map(id => document.getElementById(id)).filter(Boolean);
 		elements.forEach(element => {
 			element.addEventListener("focusout", (event) => {
-				const focusIsInside = elements.some(el =>
+				/*const focusIsInside = elements.some(el =>
 					el.contains(event.relatedTarget)
-				);
+				);*/
+				const focusIsInside = elementIds.some(id => {
+					const el = document.getElementById(id);
+					return el && el.contains(event.relatedTarget);
+				});
 				if (!focusIsInside) {
 					closeFunction();
 				}
 			});
 		});
 	}
-	closeOnFocusOut(["settingsPopup", "settingsIcon"], () => {
+	closeOnFocusOut(["settingsPopup", "settingsIcon", "validationPopup"], () => {
 		if (window.matchMedia("(max-width: 1023px)").matches) {
 			closeSettings(document.querySelector(".settingsIcon"));
 		}

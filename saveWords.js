@@ -109,6 +109,7 @@ function getULfromSavedWords() {
 			});
 
 			let deleteBtn = document.createElement('button');
+			deleteBtn.type = "button";
 			deleteBtn.innerHTML = "&times;";
 			/*deleteBtn.title = "Ta bort " + w;*/
 			deleteBtn.className = "removeOneSavedWordButton";
@@ -313,8 +314,11 @@ function checkListEmpty() {
 	}
 }
 
-/* --------- SHOW VALIDATION POPUP FOR SINGLE REMOVAL --------- */
+/* --------- SHOW VALIDATION POPUP FOR WORD REMOVAL --------- */
 function showValidationWordRemovalPopup(w) {
+	// accessibility (tab focus)
+	lastFocusedElement = document.activeElement;
+
 	// add non-clickable shadow background
 	const backdrop = document.getElementById("popupBackdrop");
 	backdrop.hidden = false;
@@ -360,7 +364,8 @@ function showValidationWordRemovalPopup(w) {
 
 	// add close functionality
 	cancelButton.addEventListener("click", () => {
-		closeValidationPopup(w);
+		closeValidationWordRemovalPopup(w);
+		lastFocusedElement.focus();
 	});
 
 	// add remove functionality
@@ -374,7 +379,7 @@ function showValidationWordRemovalPopup(w) {
 			removeOneSavedWord(w);
 			checkListEmpty();
 		}
-		closeValidationPopup(w);
+		closeValidationWordRemovalPopup(w);
 	});
 
 	// accessibility (set dialog name)
@@ -395,7 +400,8 @@ function showValidationWordRemovalPopup(w) {
 	(focusables[0] || popup).focus();	
 }
 
-function closeValidationPopup(w) {
+/* --------- CLOSE VALIDATION POPUP FOR WORD REMOVAL --------- */
+function closeValidationWordRemovalPopup(w) {
 	// hide popup
 	const popup = document.getElementById("validationPopup");
 	popup.remove();
