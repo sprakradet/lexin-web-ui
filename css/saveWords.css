@@ -69,7 +69,7 @@
 /* --------- BUTTONS --------- */ 
 .saveWordsOtherButton {
     margin-right: 1em;
-    margin-top: 0.4em;
+    /*margin-top: 0.4em;*/
 }
 
 /* --------- SAVE BUTTON --------- */ 
@@ -137,6 +137,19 @@
 }
 
 .saveMessage.show {
+    opacity: 1;
+}
+
+/* --------- REMOVAL OF WORDS MESSAGE --------- */ 
+
+.removeSavedWordsMessage {
+    opacity: 0;
+    transition: opacity 150ms ease;
+    margin-bottom: 0.5em;
+    color: var(--lexin-accent-color-green);
+}
+
+.removeSavedWordsMessage.show {
     opacity: 1;
 }
 

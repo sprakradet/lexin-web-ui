@@ -116,7 +116,7 @@ function getULfromSavedWords() {
 			deleteBtn.className = "removeOneSavedWordButton";
 
 			// accessibility
-			deleteBtn.setAttribute("aria-label", "Ta bort '" + w + "' från sparade ord");
+			deleteBtn.setAttribute("aria-label", "Ta bort " + w + " från sparade ord");
 			deleteBtn.setAttribute("tabindex", "0");
 			deleteBtn.setAttribute("role", "button");
 			deleteBtn.addEventListener("keydown", function (e) {
@@ -298,19 +298,19 @@ $(document).ready(function() {
 /* --------- ENABLE/DISABLE FUNCTIONALITY & TEXT --------- */
 function checkListEmpty() {
 	var message = document.getElementById("emptyListMessage");
-	var sortButton = document.getElementById("savedWordsSort");
+	/*var sortButton = document.getElementById("savedWordsSort");*/
 	var clearButton = document.getElementById("savedWordsClear");
 
 	// words saved
 	if(savedWords && savedWords.length > 0) {
 		message.style.display = "none";
-		sortButton.disabled = false;
+		/*sortButton.disabled = false;*/
 		clearButton.disabled = false;
 	}
 	// no words saved
 	else {
 		message.style.display = "block";
-		sortButton.disabled = true;
+		/*sortButton.disabled = true;*/
 		clearButton.disabled = true;
 	}
 }
@@ -345,7 +345,11 @@ function showValidationWordRemovalPopup(w) {
 	}
 	// add question (single word)
 	else {
-		questionText.textContent = "Vill du verkligen ta bort ordet '" + w + "'?";
+		questionText.textContent = "Vill du verkligen ta bort ordet ";
+		const word = document.createElement("em");
+		word.textContent = w;
+		questionText.append(word, "?");
+		/*questionText.textContent = `Vill du verkligen ta bort ordet <em>${w}</em>?`;*/
 	}
 	popup.append(questionText);
 
@@ -374,11 +378,19 @@ function showValidationWordRemovalPopup(w) {
 		// several words
 		if(w === undefined) {
 			savedWordsClearWords();
+			showRemovalMessage("Alla ord i listan har tagits bort.", true);
 		}
 		// single word
 		else {
 			removeOneSavedWord(w);
 			checkListEmpty();
+			/*showRemovalMessage(`Ordet <em>${w}</em> har tagits bort.`, true);*/
+			const message = document.createElement("span");
+			message.append("Ordet ");
+			const word = document.createElement("em");
+			word.textContent = w;
+			message.append(word, " har tagits bort.");
+			showRemovalMessage(message, true);
 		}
 		closeValidationWordRemovalPopup(w);
 	});
@@ -421,4 +433,30 @@ function closeValidationWordRemovalPopup(w) {
 	// reset focus (several words)
 	const saveWordsButton = document.getElementById("openSavedWords");
 	saveWordsButton.focus();
+}
+
+/* --------- SHOW DOWNLOAD STATUS TEXT --------- */
+function showRemovalMessage(text, shouldFadeOut) {
+    const msg = document.getElementById("removeSavedWordsMessage");
+    clearTimeout(msg._hideTimer);
+    clearTimeout(msg._clearTimer);
+
+    /*msg.textContent = text;*/
+	msg.replaceChildren();
+	if (text instanceof Node) {
+		msg.appendChild(text);
+	} else {
+		msg.textContent = text;
+	}
+	
+    msg.classList.add("show");
+
+	if (shouldFadeOut) {
+		msg._hideTimer = setTimeout(() => {
+			msg.classList.remove("show");
+			msg._clearTimer = setTimeout(() => {
+				msg.textContent = "";
+			}, 150);
+		}, 5000);
+	}
 }
