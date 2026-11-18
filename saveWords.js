@@ -73,6 +73,7 @@ function savedWordsSaveCurrentWord(elem, id) {
 	button.textContent = "Sparat";
 
 	checkListEmpty();
+	savedWordsSortWords();
 }
 
 // --------------------------------------------------------------------
