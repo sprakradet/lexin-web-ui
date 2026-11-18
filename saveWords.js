@@ -114,7 +114,7 @@ function getULfromSavedWords() {
 			deleteBtn.className = "removeOneSavedWordButton";
 
 			// accessibility
-			deleteBtn.setAttribute("aria-label", "Ta bort " + w + " från sparade ord");
+			deleteBtn.setAttribute("aria-label", "Ta bort '" + w + "' från sparade ord");
 			deleteBtn.setAttribute("tabindex", "0");
 			deleteBtn.setAttribute("role", "button");
 			deleteBtn.addEventListener("keydown", function (e) {
@@ -125,7 +125,8 @@ function getULfromSavedWords() {
 			});
 
 			deleteBtn.onclick = function () {
-				removeOneSavedWord(w);
+				//removeOneSavedWord(w);
+				showValidationWordRemovalPopup(w);
 			};
 			
 			var liElem = document.createElement('li');
@@ -209,7 +210,7 @@ function removeOneSavedWord(word) {
 // --------------------------------------------------------------------
 // Empty the savedWords array and update the HTML.
 // --------------------------------------------------------------------
-function savedWordsClearWords(elem) {
+function savedWordsClearWords() {
     if(savedWords && savedWords.length != 0) {
 		savedWords = [];
 		
@@ -310,4 +311,107 @@ function checkListEmpty() {
 		sortButton.disabled = true;
 		clearButton.disabled = true;
 	}
+}
+
+/* --------- SHOW VALIDATION POPUP FOR SINGLE REMOVAL --------- */
+function showValidationWordRemovalPopup(w) {
+	// add non-clickable shadow background
+	const backdrop = document.getElementById("popupBackdrop");
+	backdrop.hidden = false;
+
+	// create popup
+	const popup = document.createElement("div");
+	popup.id = "validationPopup";
+	popup.className = "popup";
+	popup.style.display = 'block';
+	popup.setAttribute("role", "dialog");
+	popup.setAttribute("aria-modal", "true");
+
+	// add heading
+	const heading = document.createElement("h2");
+	heading.id = "popupHeading";
+	heading.textContent = "Bekräftelse";
+	popup.append(heading);
+
+	// add question (several words)s
+	const questionText = document.createElement("p");
+	if(w === undefined) {
+		questionText.textContent = "Vill du verkligen ta bort alla ord?";
+	}
+	// add question (single word)
+	else {
+		questionText.textContent = "Vill du verkligen ta bort ordet '" + w + "'?";
+	}
+	popup.append(questionText);
+
+	// add buttons
+	const buttonContainer = document.createElement("div");
+	buttonContainer.className = "validationButtons";
+	const cancelButton = document.createElement("button");
+	cancelButton.type = "button";
+	cancelButton.textContent = "Avbryt";
+	cancelButton.className = "cancelWordRemovalButton saveWordsButton ";
+	const confirmButton = document.createElement("button");
+	confirmButton.type = "button";
+	confirmButton.textContent = "Ta bort";
+	confirmButton.className = "confirmWordRemovalButton saveWordsButton ";
+	buttonContainer.append(cancelButton, confirmButton);
+	popup.append(buttonContainer);
+
+	// add close functionality
+	cancelButton.addEventListener("click", () => {
+		closeValidationPopup(w);
+	});
+
+	// add remove functionality
+	confirmButton.addEventListener("click", () => {
+		// several words
+		if(w === undefined) {
+			savedWordsClearWords();
+		}
+		// single word
+		else {
+			removeOneSavedWord(w);
+			checkListEmpty();
+		}
+		closeValidationPopup(w);
+	});
+
+	// accessibility (set dialog name)
+	popup.setAttribute("aria-labelledby", "popupHeading");
+
+	// accessibility (tab focus possible)
+	popup.setAttribute("tabindex", "-1");
+
+	document.body.appendChild(popup);
+	document.body.classList.add("modal-open");
+
+	// accessibility (start focus trap)
+	if (popupTrapCleanup) popupTrapCleanup();
+	popupTrapCleanup = trapFocus(popup);
+
+	// accessibility (focus first element)
+	const focusables = getFocusableElements(popup);
+	(focusables[0] || popup).focus();	
+}
+
+function closeValidationPopup(w) {
+	// hide popup
+	const popup = document.getElementById("validationPopup");
+	popup.remove();
+	document.body.classList.remove("modal-open");
+
+	// remove non-clickable shadow background
+	const backdrop = document.getElementById("popupBackdrop");
+	backdrop.hidden = true;
+
+	// accessibility (stop focus trap)
+	if (popupTrapCleanup) {
+		popupTrapCleanup();
+		popupTrapCleanup = null;
+	}
+
+	// reset focus (several words)
+	const saveWordsButton = document.getElementById("openSavedWords");
+	saveWordsButton.focus();
 }

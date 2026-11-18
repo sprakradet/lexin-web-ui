@@ -147,6 +147,15 @@
     padding-bottom: 1em;
 }
 
+/* --------- VALIDATION POPUP BUTTONS --------- */ 
+
+.validationButtons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;  
+}
+
 /* --------- NO HOVER BUTTON COLOR ON PHONE (ELSE BUGGY) --------- */
 
 @media (hover: hover) and (pointer: fine) {

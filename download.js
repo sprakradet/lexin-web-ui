@@ -138,14 +138,21 @@ function setAsDownloaded(wrapper, lang) {
 
 /* --------- HANDLE DOWNLOAD FAIL --------- */
 function activateRedownloadButton(wrapper, lang) {
+	const langName = $("#selectDownloadLanguages option").filter(function () {
+		return this.value === lang;
+	}).text();
+
     wrapper.find("button").click(async function () {
 		try {
+			showDownloadMessage(`Laddar ner ${langName} ...`, false);
 			await doDownload(wrapper, lang);
+			showDownloadMessage(`${langName.charAt(0).toUpperCase() + langName.slice(1)} har laddats ner.`, true);
 		} catch(e) {
 			console.log(e.stack);
 			console.log(e.name);
 			console.log(e.message);
 			wrapper.empty().append('<span>Nedladdning misslyckades</span>');
+			showDownloadMessage(`Nedladdningen av ${langName} misslyckades.`, true);
 		}
     });
 }

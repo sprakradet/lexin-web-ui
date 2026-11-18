@@ -9,6 +9,10 @@ body.modal-open #popup {
   pointer-events: auto;
 }
 
+body.modal-open #validationPopup {
+  pointer-events: auto;
+}
+
 /* --------- POPUP --------- */
 
 .popup {
