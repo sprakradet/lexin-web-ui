@@ -6961,7 +6961,7 @@ $(document).ready(function() {
     permbartop = $(".permbar").offset().top;
 
 	// close settings filter popups when user clicks outside it
-	document.addEventListener("click", function(event) {
+	/*document.addEventListener("click", function(event) {
 		const popups = [
 			{
 				popup: document.getElementById("articlePartsPopup"),
@@ -6972,13 +6972,13 @@ $(document).ready(function() {
 				popup: document.getElementById("multilangchoice"),
 				button: document.getElementById("multiLanguageChoiceButton"),
 				close: () => closeMultiLangChoice(true)
-			},
+			},*/
 			/*{
 				popup: document.getElementById("settingsPopup"),
 				button: document.querySelector(".settingsIcon"),
 				close: () => openCloseSettings(document.querySelector(".settingsIcon"))
 			}*/
-		];
+		/*];
 
 		for (const item of popups) {
 			// ignore if help page open
@@ -7002,7 +7002,7 @@ $(document).ready(function() {
 			// close
 			item.close();
 		}
-	});
+	});*/
 
 	// close menu + settings filter popups on escape
 	document.addEventListener("keydown", function(event) {
@@ -7010,52 +7010,72 @@ $(document).ready(function() {
 			const articlePartsPopup = document.getElementById("articlePartsPopup");
 			const multilangPopup = document.getElementById("multilangchoice");
 			const menuButton = document.querySelector(".settingsIcon");
+			const validationPopup = document.getElementById("validationPopup");
 
 			// close if open
 			if (articlePartsPopup && !articlePartsPopup.hidden) {
 				closeArticleParts();
 			}
-			if (multilangPopup && !multilangPopup.hidden) {
+			else if (multilangPopup && !multilangPopup.hidden) {
 				closeMultiLangChoice(false);
 			}
-			const popupBackdrop = document.querySelector(".popupBackdrop");
-			if (menuButton && menuButton.classList.contains("change") && popupBackdrop && !popupBackdrop.hidden) {
-				openCloseSettings(menuButton);
-				menuButton.focus();
+			else if (validationPopup) {
+				closeValidationWordRemovalPopup();
+			}
+			else {
+				const popupBackdrop = document.querySelector(".popupBackdrop");
+				if (menuButton && menuButton.classList.contains("change") && popupBackdrop && !popupBackdrop.hidden) {
+					openCloseSettings(menuButton);
+					menuButton.focus();
+				}
 			}
 		}
 	});
 
 	// close menu + settings filter popups when keyboard focus moves outside it
-	function closeOnFocusOut(elementIds, closeFunction) {
-		//const elements = elementIds.map(id => document.getElementById(id));
-		const elements = elementIds.map(id => document.getElementById(id)).filter(Boolean);
-		elements.forEach(element => {
-			element.addEventListener("focusout", (event) => {
-				/*const focusIsInside = elements.some(el =>
-					el.contains(event.relatedTarget)
-				);*/
-				const focusIsInside = elementIds.some(id => {
-					const el = document.getElementById(id);
-					return el && el.contains(event.relatedTarget);
-				});
+	/*function closePopupOnTabOut(elementIds, closeFunction) {
+		document.addEventListener("keydown", event => {
+			// ignore if other key than tab was pressed
+			if (event.key !== "Tab") return;
+
+			const elements = elementIds.map(id => document.getElementById(id)).filter(Boolean);
+			const activeElement = document.activeElement;
+
+			// only handle focus currently inside the popup group
+			if (!elements.some(el => el.contains(activeElement))) {
+				return;
+			}
+
+			// check next focus
+			requestAnimationFrame(() => {
+				const newFocus = document.activeElement;
+				const focusIsInside = elements.some(el =>
+					el.contains(newFocus)
+				);
+
+				// close if tabbed outside
 				if (!focusIsInside) {
 					closeFunction();
 				}
 			});
 		});
 	}
-	closeOnFocusOut(["settingsPopup", "settingsIcon", "validationPopup"], () => {
-		if (window.matchMedia("(max-width: 1023px)").matches) {
-			closeSettings(document.querySelector(".settingsIcon"));
+	closePopupOnTabOut(
+		["settingsPopup", "settingsIcon", "validationPopup"],
+		() => {
+			if (window.matchMedia("(max-width: 1023px)").matches) {
+				closeSettings(document.querySelector(".settingsIcon"));
+			}
 		}
-	});
-	closeOnFocusOut(["articlePartsPopup"], () => {
-		closeArticleParts();
-	});
-	closeOnFocusOut(["multilangchoice"], () => {
-		closeMultiLangChoice(true);
-	});
+	);
+	closePopupOnTabOut(
+		["articlePartsPopup"],
+		() => closeArticleParts()
+	);
+	closePopupOnTabOut(
+		["multilangchoice"],
+		() => closeMultiLangChoice(true)
+	);*/
 
     if (flags.loadResources) {
 		loadFromLocalStorage();
