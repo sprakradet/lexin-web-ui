@@ -7021,6 +7021,7 @@ $(document).ready(function() {
 			}
 			else if (validationPopup) {
 				closeValidationWordRemovalPopup();
+				lastFocusedElementBeforeValidationPopup.focus();
 			}
 			else {
 				const popupBackdrop = document.querySelector(".popupBackdrop");

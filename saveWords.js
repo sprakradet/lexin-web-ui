@@ -316,9 +316,10 @@ function checkListEmpty() {
 }
 
 /* --------- SHOW VALIDATION POPUP FOR WORD REMOVAL --------- */
+let lastFocusedElementBeforeValidationPopup;
 function showValidationWordRemovalPopup(w) {
 	// accessibility (tab focus)
-	lastFocusedElement = document.activeElement;
+	lastFocusedElementBeforeValidationPopup = document.activeElement;
 
 	// add non-clickable shadow background
 	const backdrop = document.getElementById("popupBackdrop");
@@ -338,7 +339,7 @@ function showValidationWordRemovalPopup(w) {
 	heading.textContent = "Bekräftelse";
 	popup.append(heading);
 
-	// add question (several words)s
+	// add question (several words)
 	const questionText = document.createElement("p");
 	if(w === undefined) {
 		questionText.textContent = "Vill du verkligen ta bort alla ord?";
@@ -370,7 +371,7 @@ function showValidationWordRemovalPopup(w) {
 	// add close functionality
 	cancelButton.addEventListener("click", () => {
 		closeValidationWordRemovalPopup(w);
-		lastFocusedElement.focus();
+		lastFocusedElementBeforeValidationPopup.focus();
 	});
 
 	// add remove functionality
@@ -393,6 +394,10 @@ function showValidationWordRemovalPopup(w) {
 			showRemovalMessage(message, true);
 		}
 		closeValidationWordRemovalPopup(w);
+
+		// reset focus
+		const saveWordsButton = document.getElementById("openSavedWords");
+		saveWordsButton.focus();
 	});
 
 	// accessibility (set dialog name)
@@ -429,10 +434,6 @@ function closeValidationWordRemovalPopup(w) {
 		popupTrapCleanup();
 		popupTrapCleanup = null;
 	}
-
-	// reset focus (several words)
-	const saveWordsButton = document.getElementById("openSavedWords");
-	saveWordsButton.focus();
 }
 
 /* --------- SHOW DOWNLOAD STATUS TEXT --------- */
