@@ -28,16 +28,29 @@ async function openDownload() {
     let downloadedLanguages = _.map(metadata, (e) => e.version ? e.lang : null);
 
 	// default language option is empty
-    $("#selectDownloadLanguages").empty();
+    /*$("#selectDownloadLanguages").empty();
     let e = $("<option></option>");
     e.text("");
     e.val("");
     $("#selectDownloadLanguages").append(e);
-    e.prop("selected", true);
+    e.prop("selected", true);*/
+	$("#selectDownloadLanguages")
+		.empty()
+		.append($("<option>", {
+			value: "",
+			text: "Välj språk",
+			selected: true
+	}));
 
 	// add languages to selector dropdown
     $("#languageChoice option").each(function () {
 		let lang = $(this).val();
+
+		// placeholder already added
+		if (lang === "") {
+			return;
+		}
+
 		let e = $("<option></option>");
 		e.text($(this).text());
 		e.val(lang);

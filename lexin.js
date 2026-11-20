@@ -3312,6 +3312,12 @@ function syncBildtemaLangSelector(selector) {
 
 /* --------- ADD OPTIONS TO BILDTEMA LANGUAGE SELECTOR --------- */
 function populateBildtemaLangSelector(selector, languages) {
+	// add empty option
+	const option = document.createElement("option");
+	option.value = "";
+	option.textContent = "Välj språk";
+	selector.appendChild(option);
+
 	const codeReplacement = {per: "fas", gre: "ell", alb: "sqi"};
 	const missingCodes = ["azj", "hrv", "pus", "srp", "srp_cyrillic", "ukr", "kal"];
 

@@ -27,6 +27,8 @@
     padding-bottom: 2px;
     /*width: 100%;*/
     /*max-width: 30em;*/
+    background-color: var(--lexin-accent-color-light-blue);
+    min-height: 24px;
 
     /* align with download button */
     flex:1;
