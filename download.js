@@ -258,45 +258,72 @@ async function doDownload(wrapper, lang) {
 
 let downloadLanguages;
 
-// "draws" the current view for the download popup
+/* --------- DRAW VIEW FOR DOWNLOAD POPUP --------- */
 async function redrawDownload() {
+	// fetch database
     let dbServerValue = await dbServer.promise;
 
+	// clear interface
     $("#downloadProgress").empty();
 
+	// retrieve downloadable dictionaries
     let metadata = await dbServerValue.metadata.query().all().execute();
     console.log("redrawDownload downloadedLanguages", metadata);
     let downloadedLanguages = _.object(_.map(metadata, (e) => e.version ? [e.lang, e] : null));
+
+	// langs not downloaded yet
     downloadLanguages = []
     
     $("#selectDownloadLanguages option").each(function () {
+		// get current lang
 		let lang = $(this).val();
 		if (lang == "") {
 			return;
-	}
-	if (this.selected || downloadedLanguages[lang]) {
-	    let progress = $("<div class='progressWrapper'>Inte nedladdat</div>");
-	    progress.attr("data-lang", lang);
-	    let langLabel = $("<div class='downloadProgressLang'></div>");
-	    langLabel.text($(this).text());
-	    $("#downloadProgress").append(langLabel);
-	    $("#downloadProgress").append(progress);
-	    if (downloadedLanguages[lang]) {
-		console.log("stored", downloadedLanguages[lang]);
-		console.log("server", downloadableDictionariesDict[lang]);
-		if (downloadedLanguages[lang].status != "active") {
-		    progress.empty().append("<div class='downloadControls'>Misslyckades <button type='button' class='downloadFailedButton'>Ladda ner ny</button></div>");
-		    activateRedownloadButton(progress, lang);
-		} else if (downloadedLanguages[lang].version == downloadableDictionariesDict[lang].version) {
-		    setAsDownloaded(progress, lang);
-		} else {
-		    progress.empty().append("Nedladdat <button type='button'>Ladda ner ny</button>");
-		    activateRedownloadButton(progress, lang);
 		}
-	    } else {
-		downloadLanguages.push({lang:lang, progressWrapper:progress});
-	    }
-	}
+		
+		// only display currently selected or already downloaded langs
+		if (this.selected || downloadedLanguages[lang]) {
+			// create row for each lang + status 
+			/*let progress = $("<div class='progressWrapper'>Inte nedladdat</div>");
+			progress.attr("data-lang", lang);
+			let langLabel = $("<div class='downloadProgressLang'></div>");
+			langLabel.text($(this).text());
+			$("#downloadProgress").append(langLabel);
+			$("#downloadProgress").append(progress);*/
+			let progress = $("<div class='progressWrapper'>Inte nedladdat</div>");
+			progress.attr("data-lang", lang);
+			let langLabel = $("<span class='downloadProgressLang'></span>");
+			langLabel.text($(this).text());
+			let li = $("<li class='downloadRow'></li>");
+			li.append(langLabel);
+			li.append(progress);
+			$("#downloadProgress").append(li);
+
+			// determine download status
+			if (downloadedLanguages[lang]) {
+				console.log("stored", downloadedLanguages[lang]);
+				console.log("server", downloadableDictionariesDict[lang]);
+
+				// download failed
+				if (downloadedLanguages[lang].status != "active") {
+					progress.empty().append("<div class='downloadControls'>Misslyckades <button type='button' class='downloadFailedButton'>Ladda ner ny</button></div>");
+					activateRedownloadButton(progress, lang);
+				} 
+				// download succeded
+				else if (downloadedLanguages[lang].version == downloadableDictionariesDict[lang].version) {
+					setAsDownloaded(progress, lang);
+				} 
+				// download succeded, database changed
+				else {
+					progress.empty().append("Nedladdat <button type='button'>Ladda ner ny</button>");
+					activateRedownloadButton(progress, lang);
+				}
+			} 
+			// add langs not downloaded
+			else {
+			downloadLanguages.push({lang:lang, progressWrapper:progress});
+			}
+		}
     });
 }
 

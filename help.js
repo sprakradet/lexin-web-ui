@@ -439,8 +439,6 @@ async function openPageDescription(elem, button) {
 	// accessibility
 	const popup = document.getElementById("popupGeneral");
     const heading = content.querySelector("h2");
-	console.log("CG heading");
-	console.log(heading);
 
     if (heading) {
         heading.id = "dialogTitle";

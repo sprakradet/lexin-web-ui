@@ -36,15 +36,30 @@
     cursor: pointer;
 }
 
-/* --------- PROGRESS BAR --------- */
+/* --------- PROGRESS PART --------- */
 
 #downloadProgress {
     margin-top: 1em;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    /*display: grid;
+    grid-template-columns: 1fr 1fr;*/
     row-gap: 0.5em;
     /*height:20px;*/
     overflow-wrap: anywhere;
+
+    /* remove list styling */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    margin-top: 1em;
+}
+
+.downloadRow {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .downloadProgressLang {
