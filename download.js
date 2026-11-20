@@ -139,7 +139,8 @@ function setAsDownloaded(wrapper, lang) {
 		}))
 
 		// update UI 
-		wrapper.empty();
+		//wrapper.empty();
+		wrapper.empty().append(`<span>Inte nedladdat</span>`);
 
 		// show status message
 		showDownloadMessage(`Nedladdningen av ${langName} har tagits bort.`, true);
