@@ -1340,6 +1340,8 @@ footer .lp-icon {
 
 .bildtemaIframe {
     display: block;
+    height: 387px;
+    min-height: 387px;
     width: 500px;
     min-width: 500px;
     border: 0;
