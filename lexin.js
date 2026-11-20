@@ -3520,7 +3520,7 @@ function addBildtemaInline(url, parent, lang, word) {
 	// create iframe
 	const outer = document.createElement("iframe");
 	outer.className = "bildtemaIframe";
-	/*outer.style.width = "100%";*/
+	outer.style.width = "100%";
 	outer.style.height = "700px";
 	outer.style.border = "0";
 
@@ -3593,9 +3593,9 @@ function addBildtemaInline(url, parent, lang, word) {
 				// resize
 				const r = canvas.getBoundingClientRect();
 				const needed = Math.ceil(r.top + r.height);
-				/*inner.style.height = needed + "px";
+				inner.style.height = needed + "px";
 				outer.style.height = needed + "px";
-				host.style.height = needed + "px";*/
+				host.style.height = needed + "px";
 
 				// show iframe after loading + resizing finished
 				outer.style.visibility = "visible";
@@ -3631,7 +3631,7 @@ function addBildtemaInline(url, parent, lang, word) {
 	host.style.marginBottom = "0.5em";
 
 	// reduce iframe height while loading
-	/*host.style.overflow = "hidden";*/
+	host.style.overflow = "hidden";
 	host.style.overflowX = "auto";
 	host.style.overflowY = "hidden";
 	host.style.height = "120px";
