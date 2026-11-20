@@ -3593,9 +3593,9 @@ function addBildtemaInline(url, parent, lang, word) {
 				// resize
 				const r = canvas.getBoundingClientRect();
 				const needed = Math.ceil(r.top + r.height);
-				inner.style.height = needed + "px";
-				/*outer.style.height = needed + "px";*/
-				host.style.height = needed + "px";
+				/*inner.style.height = needed + "px";
+				outer.style.height = needed + "px";
+				host.style.height = needed + "px";*/
 
 				// show iframe after loading + resizing finished
 				outer.style.visibility = "visible";
