@@ -7035,8 +7035,10 @@ $(document).ready(function() {
 		if (event.key === "Escape") {
 			const articlePartsPopup = document.getElementById("articlePartsPopup");
 			const multilangPopup = document.getElementById("multilangchoice");
-			const menuButton = document.querySelector(".settingsIcon");
 			const validationPopup = document.getElementById("validationPopup");
+			const infoPopup = document.getElementById("popupGeneral");
+			const feedbackPopup = document.getElementById("popup");
+			const menuButton = document.querySelector(".settingsIcon");
 
 			// close if open
 			if (articlePartsPopup && !articlePartsPopup.hidden) {
@@ -7048,6 +7050,14 @@ $(document).ready(function() {
 			else if (validationPopup) {
 				closeValidationWordRemovalPopup();
 				lastFocusedElementBeforeValidationPopup.focus();
+			}
+			else if (infoPopup && !infoPopup.hidden) {
+				event.preventDefault();
+    			closePopupGeneral();
+			}
+			else if (popup && popup.style.display == "block") {
+				event.preventDefault();
+        		closePopup();
 			}
 			else {
 				const popupBackdrop = document.querySelector(".popupBackdrop");

@@ -582,14 +582,14 @@ function closePopupGeneral() {
 }
 
 /* --------- CLOSE HELP PAGE ON ESC (NEW) --------- */
-document.addEventListener("keydown", function (event) {
+/*document.addEventListener("keydown", function (event) {
 	const popup = document.getElementById("popupGeneral");
 
 	if (event.key === "Escape" && popup && !popup.hidden) {
 		event.preventDefault();
 		closePopupGeneral();
 	}
-});
+});*/
 
 /* --------- 'SHOW MORE' FUNCTIONALITY (NEW) --------- */
 function initHelpOpenMoreInfo() {
