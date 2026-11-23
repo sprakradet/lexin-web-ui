@@ -136,6 +136,11 @@ input[type="submit"] {
     z-index: 1;
 }
 
+.inputIcon:focus-visible {
+    z-index: 2;
+    background-color: #ffffff;
+}
+
 form#theForm, form#theForm2 {
     font-size: 2em;
     line-height: normal;
@@ -568,6 +573,11 @@ select {
     background-position: center;
     margin: auto;
     cursor: pointer;
+}
+
+.listenButton:focus-visible {
+    z-index: 2;
+    background-color: #d7e9ec;
 }
 
 .listenPronunciation {
@@ -1600,6 +1610,12 @@ footer .lp-icon {
     }
     .infoIconDark.infoIconEnabled {
         display: block;
+    }
+    .inputIcon:focus-visible {
+        background-color: #111b20;
+    }
+    .listenButton:focus-visible {
+        background-color: #233540;
     }
 }
 

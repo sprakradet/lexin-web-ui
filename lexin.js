@@ -2517,6 +2517,7 @@ function phoneticToHTML(parentElement, listenContainer, phonetics, show) {
 			// create listen button
 			var listen = document.createElement('button');
 			listen.setAttribute("aria-label", "Lyssna på uttalet");
+			listen.classList.add("listenButton");
 			listen.onclick = function() {
 				var a = new Audio(p.file); a.play(); return false;};
 				listen.type = "button";
@@ -6054,20 +6055,24 @@ function multiLangOrNot() {
 			// checkbox
 			let langcheckbox = $("<input type='checkbox' name='multilangchoice'>");
 			langcheckbox.attr("value", lang.code);
-			langcheckbox.attr("id", "multilangchoice-" + lang.code);
-			let langcheckbox_wrapper = $("<div class='partsselectionBox'></div>");
-			langcheckbox_wrapper.append(langcheckbox);
 
-			$(document).on("click", ".partsselectionBox", function() {
-				keyboardUpdate();
-			});
+			// ignore "välj språk" option
+			if (!(lang.code == "")) {
+				langcheckbox.attr("id", "multilangchoice-" + lang.code);
+				let langcheckbox_wrapper = $("<div class='partsselectionBox'></div>");
+				langcheckbox_wrapper.append(langcheckbox);
 
-			// label
-			let langcheckbox_label = $("<label class='partsselectionLabel'></label>");
-			langcheckbox_label.attr("for", "multilangchoice-" + lang.code);
-			langcheckbox_label.text(lang.name);
-			langcheckbox_wrapper.append(langcheckbox_label);
-			columnwrapper.append(langcheckbox_wrapper);
+				$(document).on("click", ".partsselectionBox", function() {
+					keyboardUpdate();
+				});
+
+				// label
+				let langcheckbox_label = $("<label class='partsselectionLabel'></label>");
+				langcheckbox_label.attr("for", "multilangchoice-" + lang.code);
+				langcheckbox_label.text(lang.name);
+				langcheckbox_wrapper.append(langcheckbox_label);
+				columnwrapper.append(langcheckbox_wrapper);
+			}
 		}
 
 		// insert language options on page
