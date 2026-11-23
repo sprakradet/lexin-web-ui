@@ -329,7 +329,7 @@ async function redrawDownload() {
 				} 
 				// download succeded, database changed
 				else {
-					progress.empty().append("Nedladdat <button type='button'>Ladda ner ny</button>");
+					progress.empty().append("Nedladdat <button class='downloadFailedButton' type='button'>Ladda ner ny</button>");
 					activateRedownloadButton(progress, lang);
 				}
 			} 

@@ -634,7 +634,13 @@ function initHelpOpenMoreInfo() {
 
 		target.style.display = isOpen ? "none" : "block";
 		elem.setAttribute("aria-expanded", String(!isOpen));
-		elem.textContent = isOpen ? "Visa mer +" : "Visa mindre –";
+		/*elem.textContent = isOpen ? "Visa mer +" : "Visa mindre –";*/
+
+		// change text+icon on open/close
+		const img = elem.querySelector("img");
+		const text = elem.querySelector("span");
+		img.src = isOpen ? "svg/more-icon.svg" : "svg/less-icon.svg";
+		text.textContent = isOpen ? "Visa mer" : "Visa mindre";
 
 		target.style.display = isOpen ? "none" : "block";
 		elem.setAttribute("aria-expanded", String(!isOpen));
