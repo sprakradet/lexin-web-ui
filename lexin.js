@@ -7069,6 +7069,40 @@ $(document).ready(function() {
 		}
 	});
 
+	// close menu + settings popups when user tabs out of it
+	/*document.addEventListener("keydown", function(event) {
+		if (event.key === "Tab") {
+			const articlePartsPopup = document.getElementById("articlePartsPopup");
+			const multilangPopup = document.getElementById("multilangchoice");
+			const menuPopup = document.getElementById("settingsPopup");
+
+			const focusedElement = document.activeElement;
+
+			// close if open
+			// OBS - detta gör att man måste gå 2 steg fram för att stänga, inte bara 1 ...
+			if (articlePartsPopup && !articlePartsPopup.hidden) {
+				if (!(articlePartsPopup.contains(focusedElement)) && !(focusedElement.id == "articlePartsButton")) {
+					closeArticleParts();
+				}
+			}
+		}
+	});*/
+	document.addEventListener("focusin", function(event) {
+			const articlePartsPopup = document.getElementById("articlePartsPopup");
+			const multilangPopup = document.getElementById("multilangchoice");
+			const menuPopup = document.getElementById("settingsPopup");
+
+			// close if open
+			if (articlePartsPopup && !articlePartsPopup.hidden) {
+				const focusedElement = event.target;
+
+				if (!(articlePartsPopup.contains(focusedElement)) && !(focusedElement.id == "articlePartsButton")) {
+					closeArticleParts();
+				}
+			}
+		}
+	);
+
 	// close menu + settings filter popups when keyboard focus moves outside it
 	/*function closePopupOnTabOut(elementIds, closeFunction) {
 		document.addEventListener("keydown", event => {
