@@ -1043,6 +1043,10 @@ a:any-link:hover {
     gap: 0.1em;
 }
 
+.constructionButton {
+    padding: 0.2em .5em 0.3em 0.5em;
+}
+
 /* --------- VIDEO --------- */
 
 .vidIcon {

@@ -2148,8 +2148,32 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
     let constructionButton = document.createElement('button');
     constructionButton.type = 'button';
     constructionButton.className = 'constructionButton';
-    constructionButton.textContent = 'Visa alla konstruktioner +';
+	constructionButton.setAttribute('aria-expanded', 'false');
+    /*constructionButton.textContent = 'Visa alla konstruktioner +';*/
+	let icon = document.createElement('img');
+	icon.src = 'svg/more-icon2.svg';
+	icon.alt = '';
+	icon.className = 'picButtonIcon moreIcon'
+	constructionButton.appendChild(icon);
+	let buttonText = document.createElement('span');
+	buttonText.textContent = 'Visa alla konstruktioner';
+	constructionButton.appendChild(buttonText);
     elem.appendChild(constructionButton);
+
+	// only the button opens/closes the content
+	constructionButton.onclick = function () {
+		if(explanations.style.display == 'none') {
+			explanations.style.display = 'block';
+			buttonText.textContent = 'Stäng alla konstruktioner';
+			icon.src = 'svg/less-icon2.svg';
+			constructionButton.setAttribute('aria-expanded', 'true');
+		} else {
+			explanations.style.display = 'none';
+			buttonText.textContent = 'Visa alla konstruktioner';
+			icon.src = 'svg/more-icon2.svg';
+			constructionButton.setAttribute('aria-expanded', 'false');
+		}
+	};
 
 	// full construction text
     let explanations = document.createElement('div');
@@ -2194,17 +2218,6 @@ function addExpandGramInfo(constructionsList, word, lsl4) {
 	//			ul.appendChild(li);
 	//		}
     //   }
-
-	 // only the button opens/closes the content
-    constructionButton.onclick = function () {
-        if(explanations.style.display == 'none') {
-            explanations.style.display = 'block';
-            constructionButton.textContent = 'Stäng alla konstruktioner –';
-        } else {
-            explanations.style.display = 'none';
-            constructionButton.textContent = 'Visa alla konstruktioner +';
-        }
-    };
 
     let ul = document.createElement('ul');
     let alreadySeen = {};

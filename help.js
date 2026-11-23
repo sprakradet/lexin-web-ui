@@ -639,7 +639,7 @@ function initHelpOpenMoreInfo() {
 		// change text+icon on open/close
 		const img = elem.querySelector("img");
 		const text = elem.querySelector("span");
-		img.src = isOpen ? "svg/more-icon.svg" : "svg/less-icon.svg";
+		img.src = isOpen ? "svg/more-icon2.svg" : "svg/less-icon2.svg";
 		text.textContent = isOpen ? "Visa mer" : "Visa mindre";
 
 		target.style.display = isOpen ? "none" : "block";
