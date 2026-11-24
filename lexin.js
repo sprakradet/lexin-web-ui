@@ -7069,84 +7069,40 @@ $(document).ready(function() {
 		}
 	});
 
-	// close menu + settings popups when user tabs out of it
-	/*document.addEventListener("keydown", function(event) {
-		if (event.key === "Tab") {
-			const articlePartsPopup = document.getElementById("articlePartsPopup");
-			const multilangPopup = document.getElementById("multilangchoice");
-			const menuPopup = document.getElementById("settingsPopup");
-
-			const focusedElement = document.activeElement;
-
-			// close if open
-			// OBS - detta gör att man måste gå 2 steg fram för att stänga, inte bara 1 ...
-			if (articlePartsPopup && !articlePartsPopup.hidden) {
-				if (!(articlePartsPopup.contains(focusedElement)) && !(focusedElement.id == "articlePartsButton")) {
-					closeArticleParts();
-				}
-			}
-		}
-	});*/
+	// close menu + settings popups when focus moves out of it
 	document.addEventListener("focusin", function(event) {
 			const articlePartsPopup = document.getElementById("articlePartsPopup");
 			const multilangPopup = document.getElementById("multilangchoice");
-			const menuPopup = document.getElementById("settingsPopup");
+			const settingsPopup = document.getElementById("settingsPopup");
+
+			const focusedElement = event.target;
 
 			// close if open
 			if (articlePartsPopup && !articlePartsPopup.hidden) {
-				const focusedElement = event.target;
-
 				if (!(articlePartsPopup.contains(focusedElement)) && !(focusedElement.id == "articlePartsButton")) {
 					closeArticleParts();
 				}
 			}
-		}
-	);
-
-	// close menu + settings filter popups when keyboard focus moves outside it
-	/*function closePopupOnTabOut(elementIds, closeFunction) {
-		document.addEventListener("keydown", event => {
-			// ignore if other key than tab was pressed
-			if (event.key !== "Tab") return;
-
-			const elements = elementIds.map(id => document.getElementById(id)).filter(Boolean);
-			const activeElement = document.activeElement;
-
-			// only handle focus currently inside the popup group
-			if (!elements.some(el => el.contains(activeElement))) {
-				return;
-			}
-
-			// check next focus
-			requestAnimationFrame(() => {
-				const newFocus = document.activeElement;
-				const focusIsInside = elements.some(el =>
-					el.contains(newFocus)
-				);
-
-				// close if tabbed outside
-				if (!focusIsInside) {
-					closeFunction();
+			else if (multilangPopup && !multilangPopup.hidden) {
+				if (!(multilangPopup.contains(focusedElement)) && !(focusedElement.id == "multiLanguageChoiceButton")) {
+					closeMultiLangChoice(true);
 				}
-			});
-		});
-	}
-	closePopupOnTabOut(
-		["settingsPopup", "settingsIcon", "validationPopup"],
-		() => {
-			if (window.matchMedia("(max-width: 1023px)").matches) {
-				closeSettings(document.querySelector(".settingsIcon"));
+			}
+			else if (settingsPopup && settingsPopup.style.display == "block") {
+				if (window.matchMedia("(max-width: 1023px)").matches) {
+					const validationPopup = document.getElementById("validationPopup");
+					const infoPopup = document.getElementById("popupGeneral");
+					if (validationPopup || (infoPopup && !infoPopup.hidden)) {
+						return;
+					}
+					else if (!(settingsPopup.contains(focusedElement)) && !(focusedElement.id == "settingsIcon")) {
+						const menuButton = document.querySelector(".settingsIcon");
+						openCloseSettings(menuButton);
+					}
+				}
 			}
 		}
 	);
-	closePopupOnTabOut(
-		["articlePartsPopup"],
-		() => closeArticleParts()
-	);
-	closePopupOnTabOut(
-		["multilangchoice"],
-		() => closeMultiLangChoice(true)
-	);*/
 
     if (flags.loadResources) {
 		loadFromLocalStorage();

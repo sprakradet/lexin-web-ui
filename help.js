@@ -702,4 +702,7 @@ function jumpToTopOfPage() {
         top: 0,
         behavior: "smooth"
     });
+
+	const closeButton = document.getElementById("closePopupGeneral");
+	closeButton.focus();
 }
