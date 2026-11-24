@@ -7061,7 +7061,10 @@ $(document).ready(function() {
 			}
 			else {
 				const popupBackdrop = document.querySelector(".popupBackdrop");
-				if (menuButton && menuButton.classList.contains("change") && popupBackdrop && !popupBackdrop.hidden) {
+				if (popupBackdrop && !popupBackdrop.hidden) {
+					return;
+				}
+				else if (menuButton && menuButton.classList.contains("change")) {
 					openCloseSettings(menuButton);
 					menuButton.focus();
 				}
