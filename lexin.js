@@ -136,31 +136,34 @@ let flags = new Flags();
 // Maps for looking up the HTML language codes from the codes used by
 // Lexin, and to look up the human readable language name.
 // ----------------------------------------------------------------------
+// left = internal code, right = public code
 const languageMap = {
-    "alb":"sq",
-    "amh":"am",
-    "ara":"ar",
-    "azj":"az",
-    "bos":"bs",
-    "fin":"fi",
-    "gre":"el",
-    "hrv":"hr",
-	"kal":"rk",				// kelderasch
-    "kmr":"ku", 			// TODO: is this the right Kurdish?
-    "pus":"ps",
-    "per":"fa",
-    "rus":"ru",
-    // "srp":"sr",			// CG REMOVE - FIX SERBIAN BUG
-	"srp":"srl",			// CG ADD - FIX SERBIAN BUG
-	// "srp_cyrillic":"sr", // CG REMOVE - FIX SERBIAN BUG
-    "srp_cyrillic":"src",	// CG ADD - FIX SERBIAN BUG
-    "som":"so",
-    "spa":"es",
-    "swe":"sv",
-    "sdh":"ckb", // TODO: Is this the correct HTML language code?
-    "tir":"ti",
-    "tur":"tr",
-    "ukr":"uk"
+    "alb":"sq",		// enl. IANA
+    "amh":"am",		// enl. IANA
+    "ara":"ar",		// enl. IANA
+    "azj":"az",		// enl. IANA
+    "bos":"bs",		// enl. IANA
+    "fin":"fi",		// enl. IANA
+    "gre":"el",		// enl. IANA
+    "hrv":"hr",		// enl. IANA
+	"kal":"rmy",	// Vlax Romani enl. IANA
+    "kmr":"kmr",	// enl. IANA
+    "pus":"ps",		// enl. IANA
+    "per":"fa",		// enl. IANA
+    "rus":"ru",		// enl. IANA
+    // "srp":"sr",
+	//"srp":"srl",
+	"srp":"sr-Latn",			// enl. IANA - prefix
+	// "srp_cyrillic":"sr",
+    //"srp_cyrillic":"src",
+	"srp_cyrillic":"sr-Cyrl",	// enl. IANA - prefix
+    "som":"so",		// enl. IANA
+    "spa":"es",		// enl. IANA
+    "swe":"sv",		// enl. IANA
+    "sdh":"ckb",	// enl. IANA
+    "tir":"ti",		// enl. IANA
+    "tur":"tr",		// enl. IANA
+    "ukr":"uk"		// enl. IANA
 };
 
 const languageNames = {
@@ -172,19 +175,19 @@ const languageNames = {
     "fi":"finska",
     "el":"grekiska",
     "hr":"kroatiska",
-	"rk":"kelderash",
-    "ku":"kurdiska (kurmanji)",
+	"rmy":"kelderash",
+    "kmr":"kurdiska (kurmanji)",		// (kurmanji/nordkurdiska)
     "ps":"pashto",
     "fa":"persiska",
     "ru":"ryska",
     // "sr":"serbiska (latinskt)",		// CG REMOVE - FIX SERBIAN BUG
-	"srl":"serbiska (latinskt)",		// CG ADD - FIX SERBIAN BUG
+	"sr-Latn":"serbiska (latinskt)",		// CG ADD - FIX SERBIAN BUG
     // "sr":"serbiska (kyrilliskt)",	// CG REMOVE - FIX SERBIAN BUG
-	"src":"serbiska (kyrilliskt)",		// CG ADD - FIX SERBIAN BUG
+	"sr-Cyrl":"serbiska (kyrilliskt)",		// CG ADD - FIX SERBIAN BUG
     "so":"somaliska",
     "es":"spanska",
     "sv":"svenska",
-    "ckb":"kurdiska (sorani)",
+    "ckb":"kurdiska (sorani)",			// (sorani/centralkurdiska [språkvetenskapligt]/sydkurdiska [vardagligt])
     "ti":"tigrinska",
     "tr":"turkiska",
     "uk":"ukrainska"
@@ -226,8 +229,8 @@ const languageMapReverse = {
     "fi":"fin",
     "el":"gre",
     "hr":"hrv",
-	"rk":"kal", // kelderash
-    "ku":"kmr", // TODO: is this the right Kurdish?
+	"rmy":"kal", // kelderash
+    "kmr":"kmr", // TODO: is this the right Kurdish?
     "ps":"pus",
     "fa":"per",
     "ru":"rus",
@@ -3088,7 +3091,7 @@ function getLinkElemToSearch(word) { // any language
 // ----------------------------------------------------------------------
 // List of languages with illustrations
 // ----------------------------------------------------------------------
-const langWithIllustration = {"sv":"swe", "fi":"fin", "sq":"sqi", "am":"amh", "ar":"ara", "bs":"bos", "el":"ell", "ku":"kmr", "fa":"far", "ru":"rus", "so":"som", "es":"spa", "ckb":"sdh", "ti":"tir", "tr":"tur"};
+const langWithIllustration = {"sv":"swe", "fi":"fin", "sq":"sqi", "am":"amh", "ar":"ara", "bs":"bos", "el":"ell", "kmr":"kmr", "fa":"far", "ru":"rus", "so":"som", "es":"spa", "ckb":"sdh", "ti":"tir", "tr":"tur"};
 
 /* --------- DISPLAY DETAIL/OVERVIEW PICTURES --------- */
 function illustrationToHTML(parentElement, ill, lang, langList, show) {    
